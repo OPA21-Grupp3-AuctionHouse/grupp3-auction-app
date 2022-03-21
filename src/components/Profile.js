@@ -46,7 +46,7 @@ const Profile = () => {
       tempUser.newPassword === tempUser.repeatPassword
     ) {
       setUser({ ...user, password: tempUser.newPassword });
-    } else if (user.password != tempUser.password) {
+    } else if (user.password !== tempUser.password) {
       alert("not the same password");
     } else {
       //document.querySelector("#repeatPassword").
