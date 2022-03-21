@@ -11,3 +11,16 @@
 .App h2 {
   font-size: 500%;
 }
+
+.submit-button-profile {
+  display: flex;
+  background-color: #4f97db;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  align-items: center;
+}

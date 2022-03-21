@@ -5,7 +5,7 @@ const Profile = () => {
   const [user, setUser] = useState({
     name: "blabla",
     email: "blabla@bla",
-    username: "username",
+    username: "MyUsername",
     street: "astreet",
     areacode: "2121",
     city: "acity",
@@ -13,20 +13,28 @@ const Profile = () => {
   });
 
   const [tempUser, setTempUser] = useState({
-    name: "blabla",
-    email: "blabla@bla",
-    username: "username",
-    street: "astreet",
-    areacode: "2121",
-    city: "acity",
+    name: user.name,
+    email: user.email,
+    username: user.username,
+    street: user.street,
+    areacode: user.areacode,
+    city: user.city,
+    password: user.password,
+  });
+  const [tempPassword, setTempPassword] = useState({
     newPassword: "",
     password: "",
     repeatPassword: "",
   });
+  const handleChangePassword = (e) => {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
 
+    setTempPassword({ ...tempPassword, [name]: value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setUser(tempUser);
   };
   console.log(user);
@@ -42,14 +50,16 @@ const Profile = () => {
   const updatePassword = (e) => {
     e.preventDefault();
     if (
-      user.password === tempUser.password &&
-      tempUser.newPassword === tempUser.repeatPassword
+      user.password === tempPassword.password &&
+      tempPassword.newPassword === tempPassword.repeatPassword
     ) {
-      setUser({ ...user, password: tempUser.newPassword });
-    } else if (user.password != tempUser.password) {
-      alert("not the same password");
+      setUser({ ...user, password: tempPassword.newPassword });
+      alert("Password changed!");
+    } else if (user.password !== tempPassword.password) {
+      alert("Wrong current password");
     } else {
       //document.querySelector("#repeatPassword").
+      alert("New passwords doesnt match");
     }
   };
 
@@ -57,99 +67,119 @@ const Profile = () => {
     <>
       <form>
         <div style={{ marginBottom: "2vh" }}>
+          <label htmlFor="userName">Username: {user.username}</label>
+        </div>
+        <div style={{ marginBottom: "2vh" }}>
           <label htmlFor="name">Name: </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            defaultValue={user.name}
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              defaultValue={user.name}
+              onChange={handleChange}
+            />
+          </div>
         </div>
         <div style={{ marginBottom: "2vh" }}>
           <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            defaultValue={user.email}
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              defaultValue={user.email}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div style={{ marginBottom: "2vh" }}>
-          <label htmlFor="userName">Username: </label>
-          <input
-            type="text"
-            id="userName"
-            name="userName"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </div>
+
         <div style={{ marginBottom: "2vh" }}>
           <label htmlFor="street">Street: </label>
-          <input
-            type="text"
-            id="street"
-            name="street"
-            defaultValue={user.street}
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="street"
+              name="street"
+              defaultValue={user.street}
+              onChange={handleChange}
+            />
+          </div>
         </div>
         <div style={{ marginBottom: "2vh" }}>
           <label htmlFor="areaCode">Areacode: </label>
-          <input
-            type="text"
-            id="areaCode"
-            name="areaCode"
-            defaultValue={user.areacode}
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="areaCode"
+              name="areaCode"
+              defaultValue={user.areacode}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div>
+        <div style={{ marginBottom: "2vh" }}>
           <label htmlFor="city">City: </label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            defaultValue={user.city}
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              defaultValue={user.city}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <button type="submit" onClick={handleSubmit}>
-          Submit
+        <button
+          className="submit-button-profile"
+          type="submit"
+          onClick={handleSubmit}
+          style={{ marginLeft: "1vh" }}
+        >
+          Update profile
         </button>
       </form>
       <form>
-        <div>
+        <div style={{ marginBottom: "2vh", marginLeft: "2vh" }}>
           <label htmlFor="password">Current Password: </label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              onChange={handleChangePassword}
+            />
+          </div>
         </div>
-        <div>
+        <div style={{ marginBottom: "2vh", marginLeft: "2vh" }}>
           <label htmlFor="newPassword">New Password: </label>
-          <input
-            type="text"
-            id="newPassword"
-            name="newPassword"
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              id="newPassword"
+              name="newPassword"
+              onChange={handleChangePassword}
+            />
+          </div>
         </div>
-        <div>
+        <div style={{ marginBottom: "2vh", marginLeft: "2vh" }}>
           <label htmlFor="repeatPassword">repeat Password: </label>
-          <input
-            type="text"
-            id="repeatPassword"
-            name="repeatPassword"
-            onChange={handleChange}
-            className="@error('title') is-invalid @enderror"
-          />
+          <div>
+            <input
+              type="text"
+              id="repeatPassword"
+              name="repeatPassword"
+              onChange={handleChangePassword}
+              className="@error('title') is-invalid @enderror"
+            />
+          </div>
         </div>
-        <button type="submit" onClick={updatePassword}>
+        <button
+          className="submit-button-profile"
+          type="submit"
+          onClick={updatePassword}
+          style={{ marginLeft: "1vh" }}
+        >
           Change password
         </button>
       </form>
