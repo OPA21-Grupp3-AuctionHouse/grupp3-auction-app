@@ -1,11 +1,10 @@
 import React from "react";
+import WelcomePageHeader from "./components/WelcomePageHeader";
 
 function App() {
   return (
-    <div className="App">
-      <h2>Auction House</h2>
-    </div>
+    <WelcomePageHeader />
   );
-}
+};
 
 export default App;

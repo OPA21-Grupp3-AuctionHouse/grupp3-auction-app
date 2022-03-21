@@ -5,6 +5,20 @@
   align-items: center;
 }
 
-.App h2 {
-  font-size: 500%;
+body {
+  margin: 0;
+  font-size: 70px;
+}
+
+h1{
+  font-size: 100%;
+  margin: 0;
+}
+
+header {
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  color: rgb(25, 247, 235);
+  background-color: #440acc;
 }
