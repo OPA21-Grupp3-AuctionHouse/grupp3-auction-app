@@ -1,4 +1,5 @@
-// import login component to welcomepage
+import Login from "./Login.js"
+
 
 const WelcomePage = () => {
     return (
@@ -15,7 +16,7 @@ const WelcomePage = () => {
                 <p>
                     Här kommer login att vara.
                 </p>
-                 {/* <Login /> */}
+                 <Login />
             </section>
         </div>
     );
