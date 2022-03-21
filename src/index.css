@@ -8,6 +8,7 @@
 body {
   margin: 0;
   font-size: 70px;
+  background-color: #440acc;
 }
 
 h1{
@@ -20,5 +21,14 @@ header {
   width: 100%;
   text-align: center;
   color: rgb(25, 247, 235);
-  background-color: #440acc;
+}
+
+.welcomePage {
+  display: flex;
+  margin-top: 10px;
+}
+
+p {
+  font-size: 40%;
+  color: white
 }
