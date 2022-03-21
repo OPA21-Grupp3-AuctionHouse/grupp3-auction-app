@@ -10,6 +10,7 @@ body {
   background-color: #440acc;
 }
 
+/* css for the header */
 header {
   display: flex;
   align-items: center;
@@ -19,6 +20,7 @@ header {
   color: rgb(25, 247, 235);
 }
 
+/* css for the welcomePage */
 .welcomePage {
   display: flex;
   margin-top: 50px;
@@ -39,6 +41,7 @@ header {
   flex: 1;
 }
 
+/* css for text in the welcomePage */
 p {
   font-size: 40%;
   color: white
