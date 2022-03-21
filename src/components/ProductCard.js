@@ -3,7 +3,7 @@ import React from "react";
 const ProductCard = ({ product }) => {
   return (
     <div className="product-card">
-      <div className="product-image">{product.image}</div>
+      <div className="product-image">image</div>
       <div className="product-category">{product.category}</div>
       <div className="product-name">{product.name}</div>
       <div className="product-description">{product.description}</div>

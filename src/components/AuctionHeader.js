@@ -1,11 +1,14 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function AuctionHeader() {
   return (
     <div className="auction-header-container">
-      <h2>Card Bazaar</h2>
-      <h2>My Auctions</h2>
-      <h2>Profile</h2>
+      <ul>
+        <Link to="/">Card Bazaar</Link>
+        <Link to="/auctions">My Auctions</Link>
+        <Link to="/profile">Profile</Link>
+      </ul>
     </div>
   );
 }
