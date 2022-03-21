@@ -1,9 +1,10 @@
 import React from "react";
+import AuctionPage from "./components/AuctionPage";
 
 function App() {
   return (
     <div className="App">
-      <h2>Auction House</h2>
+      <AuctionPage />
     </div>
   );
 }

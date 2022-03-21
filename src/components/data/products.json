@@ -1,0 +1,26 @@
+[
+    {
+        "key": 1,
+        "image": "image",
+        "name": "Charizard",
+        "description": "Lorem ipsum yadda yadda",
+        "price": 100,
+        "buyout": 250
+    },
+    {
+        "key": 2,
+        "image": "image",
+        "name": "Bulbasaur",
+        "description": "Lorem ipsum yadda yadda",
+        "price": 70,
+        "buyout": 180
+    },
+    {
+        "key": 3,
+        "image": "image",
+        "name": "Pikachu",
+        "description": "Lorem ipsum yadda yadda",
+        "price": 120,
+        "buyout": 280
+    }
+]
