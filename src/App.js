@@ -1,9 +1,10 @@
 import React from "react";
+import Profile from "./components/Profile";
 
 function App() {
   return (
     <div className="App">
-      <h2>Auction House</h2>
+      <Profile />
     </div>
   );
 }
