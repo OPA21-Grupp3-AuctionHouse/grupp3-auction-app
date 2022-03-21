@@ -1,9 +1,13 @@
 import React from "react";
 import WelcomePageHeader from "./components/WelcomePageHeader";
+import WelcomePage from "./components/WelcomePage";
 
 function App() {
   return (
-    <WelcomePageHeader />
+    <main>
+      <WelcomePageHeader />
+      <WelcomePage />
+    </main>
   );
 };
 
