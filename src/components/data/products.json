@@ -2,6 +2,7 @@
     {
         "key": 1,
         "image": "image",
+        "category": "Pokemon",
         "name": "Charizard",
         "description": "Lorem ipsum yadda yadda",
         "price": 100,
@@ -9,6 +10,7 @@
     },
     {
         "key": 2,
+        "category": "Pokemon",
         "image": "image",
         "name": "Bulbasaur",
         "description": "Lorem ipsum yadda yadda",
@@ -17,6 +19,7 @@
     },
     {
         "key": 3,
+        "category": "Pokemon",
         "image": "image",
         "name": "Pikachu",
         "description": "Lorem ipsum yadda yadda",

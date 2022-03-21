@@ -6,17 +6,19 @@ function ProductList() {
   return (
     <div className="product-container">
       {products.map((product) => (
-        <ProductCard
-          key={product.key}
-          productImage={product.image}
-          productName={product.name}
-          productDescription={product.description}
-          productPrice={product.price}
-          productBuyout={product.buyout}
-        />
+        <ProductCard product={product} />
       ))}
     </div>
   );
 }
 
 export default ProductList;
+
+/*
+key={product.key}
+          productImage={product.image}
+          productName={product.name}
+          productDescription={product.description}
+          productPrice={product.price}
+          productBuyout={product.buyout}
+*/

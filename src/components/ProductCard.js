@@ -1,26 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const ProductCard = ({ productImage, productName, productDescription, productPrice, productBuyout }) => {
+const ProductCard = ({ product }) => {
+  return (
+    <div className="product-card">
+      <div className="product-image">{product.image}</div>
+      <div className="product-category">{product.category}</div>
+      <div className="product-name">{product.name}</div>
+      <div className="product-description">{product.description}</div>
+      <div className="product-price">{product.price}</div>
+      <div className="product-buyout">{product.buyout}</div>
+    </div>
+  );
+};
 
-    return (
-        <div className='product-card'>
-            <div className='product-image'>
-                {productImage}
-            </div>
-            <div className='product-name'>
-                {productName}
-            </div>
-            <div className='product-description'>
-                {productDescription}
-            </div>
-            <div className='product-price'>
-                {productPrice}
-            </div>
-            <div className='product-buyout'>
-                {productBuyout} 
-            </div>
-        </div>
-    )
-}
-
-export default ProductCard
+export default ProductCard;

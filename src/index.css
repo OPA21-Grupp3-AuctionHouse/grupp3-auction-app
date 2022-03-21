@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   height: 100vh;
   display: flex;
@@ -33,6 +39,7 @@
   height: 7vh;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid black;
 }
 
@@ -51,6 +58,7 @@
 
 .auction-categories-container h4 {
   margin-left: 10px;
+  margin-top: 20px;
 }
 
 .search-form {
@@ -75,27 +83,40 @@
   justify-content: space-between;
 }
 
-.image-bar {
+.sort-outer-container div {
+  border: 1px solid black;
+}
+
+.category-bar,
+.product-category {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-bar,
+.product-image {
   width: 10%;
   display: flex;
   justify-content: center;
-  border: 1px solid black;
 }
 
 .name-bar,
-.description-bar {
-  width: 30%;
+.description-bar,
+.product-name,
+.product-description {
+  width: 25%;
   display: flex;
   justify-content: center;
-  border: 1px solid black;
 }
 
 .price-bar,
-.buyout-bar {
-  width: 15%;
+.buyout-bar,
+.product-price,
+.product-buyout {
+  width: 10%;
   display: flex;
   justify-content: center;
-  border: 1px solid black;
 }
 
 .product-card {
@@ -104,24 +125,4 @@
   display: flex;
   align-items: center;
   border: 1px solid black;
-}
-
-.product-image {
-  width: 10%;
-  display: flex;
-  justify-content: center;
-}
-
-.product-name,
-.product-description {
-  width: 30%;
-  display: flex;
-  justify-content: center;
-}
-
-.product-price,
-.product-buyout {
-  width: 15%;
-  display: flex;
-  justify-content: center;
 }
