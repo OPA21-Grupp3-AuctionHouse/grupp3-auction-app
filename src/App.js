@@ -1,14 +1,12 @@
 import React from "react";
-import OrderDetail from "./components/OrderDetail";
-import Titles from "./components/Titles";
-import UnderNav from "./components/UnderNav";
+import OrderPage from "./components/OrderPage";
 
 function App() {
   return (
-    <div>
-      <Titles/>
-      <UnderNav/>
-      <OrderDetail/>
+    <div className ="App">
+
+      <OrderPage/>
+      
     </div>
   );
 }
