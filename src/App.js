@@ -1,12 +1,17 @@
 import React from "react";
 import Profile from "./components/Profile";
+import NewAuctionPage from "./components/NewAuctionPage"
 
 function App() {
   return (
     <div className="App">
-      <Profile />
+      
+      <NewAuctionPage />
     </div>
   );
 }
 
 export default App;
+
+/* <Profile />
+*/
