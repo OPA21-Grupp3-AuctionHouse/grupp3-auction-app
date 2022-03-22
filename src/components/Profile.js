@@ -66,8 +66,17 @@ const Profile = () => {
   return (
     <>
       <form>
-        <div style={{ marginBottom: "2vh" }}>
-          <label htmlFor="userName">Username: {user.username}</label>
+        <div class="col-auto">
+          <label for="staticEmail2" class="visually-hidden">
+            Username:
+          </label>
+          <input
+            type="text"
+            readonly
+            class="form-control-plaintext"
+            id="staticEmail2"
+            value={user.username}
+          />
         </div>
 
         <div class="input-group mb-3">
@@ -105,18 +114,16 @@ const Profile = () => {
           <span class="input-group-text" id="inputGroup-sizing-default">
             Street:
           </span>
-          <div>
-            <input
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="street"
-              name="street"
-              defaultValue={user.street}
-              onChange={handleChange}
-            />
-          </div>
+          <input
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            type="text"
+            id="street"
+            name="street"
+            defaultValue={user.street}
+            onChange={handleChange}
+          />
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">
@@ -139,18 +146,17 @@ const Profile = () => {
           <span class="input-group-text" id="inputGroup-sizing-default">
             City:
           </span>
-          <div>
-            <input
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="city"
-              name="city"
-              defaultValue={user.city}
-              onChange={handleChange}
-            />
-          </div>
+
+          <input
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            type="text"
+            id="city"
+            name="city"
+            defaultValue={user.city}
+            onChange={handleChange}
+          />
         </div>
         <button
           className="submit-button-profile"
@@ -161,54 +167,52 @@ const Profile = () => {
           Update profile
         </button>
       </form>
+      <div className="container-profile"></div>
       <form>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">
             Current Password:
           </span>
-          <div>
-            <input
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="password"
-              name="password"
-              onChange={handleChangePassword}
-            />
-          </div>
+
+          <input
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            type="text"
+            id="password"
+            name="password"
+            onChange={handleChangePassword}
+          />
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">
             New Password:
           </span>
-          <div>
-            <input
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="newPassword"
-              name="newPassword"
-              onChange={handleChangePassword}
-            />
-          </div>
+
+          <input
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            type="text"
+            id="newPassword"
+            name="newPassword"
+            onChange={handleChangePassword}
+          />
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">
             Repeat Password:
           </span>
-          <div>
-            <input
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="repeatPassword"
-              name="repeatPassword"
-              onChange={handleChangePassword}
-            />
-          </div>
+
+          <input
+            className="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            type="text"
+            id="repeatPassword"
+            name="repeatPassword"
+            onChange={handleChangePassword}
+          />
         </div>
         <button
           className="submit-button-profile"
