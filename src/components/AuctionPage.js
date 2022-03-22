@@ -11,9 +11,7 @@ export const DataContext = createContext();
 
 function AuctionPage() {
   const [products, setProducts] = useState(Products);
-  const [searchResult, setSearchResult] = useState([])
-
-  const sortByCategory = () => {};
+  const [searchResult, setSearchResult] = useState([]);
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -21,15 +19,19 @@ function AuctionPage() {
         return true;
       }
       if (
-        product.name.includes(searchInput) ||
-        product.description.includes(searchInput) ||
-        product.category.includes(searchInput)
+        product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchInput.toLowerCase())
       ) {
         return true;
       }
       return false;
     });
-    setSearchResult(result);
+    if (result.length > 0) {
+      setSearchResult(result);
+    } else {
+      setSearchResult(searchInput);
+    }
   };
 
   return (
@@ -43,13 +45,15 @@ function AuctionPage() {
             element={
               <>
                 <DataContext.Provider value={products}>
-                  <AuctionCategories />
-                  <div className="auction-inner-inner-container">
-                    <SearchBar sortBySearch={sortBySearch} />
-                    <SortBar />
-                    <ProductList products={products} searchResult={searchResult} />
-                  </div>
+                  <AuctionCategories sortBySearch={sortBySearch} />
                 </DataContext.Provider>
+                <div className="auction-inner-inner-container">
+                  <SearchBar sortBySearch={sortBySearch} />
+                  <SortBar />
+                  <DataContext.Provider value={{ products, searchResult }}>
+                    <ProductList />
+                  </DataContext.Provider>
+                </div>
               </>
             }
           />

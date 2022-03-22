@@ -11,7 +11,6 @@ const SearchBar = ({sortBySearch}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchInput)
     sortBySearch(searchInput);
   };
 

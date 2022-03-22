@@ -64,8 +64,7 @@
   border: 1px solid black;
 }
 
-.auction-categories-container h4 {
-  margin-left: 10px;
+.auction-categories-container button {
   margin-top: 20px;
   font-size: 100%;
 }
@@ -107,12 +106,17 @@
 }
 
 .product-container {
-  height:inherit;
+  height: inherit;
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   flex-grow: 1;
   text-align: center;
+  justify-content: center;
+}
+
+.product-container h2 {
+  margin-top: 100px;
 }
 
 .category-bar,
