@@ -47,7 +47,27 @@ p {
   color: white
 }
 
-.login>h4 {
+.login>h4,
+.register>h4 {
   color: white;
   margin: 0;
 }
+
+.login,
+.register {
+  background-color: grey;
+  border: black;
+  border-radius: 10px;
+  border-style: solid;
+  padding: 5vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.login>input,
+.register>input {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  padding: 1vh;
+}
+
