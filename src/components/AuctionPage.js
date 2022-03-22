@@ -1,7 +1,6 @@
 import React from "react";
-
+import { Routes, Route } from "react-router-dom";
 import AuctionHeader from "./AuctionHeader";
-import { BrowserRouter as Route, Routes } from "react-router-dom";
 import NewAuctionPage from "./NewAuctionPage";
 const AuctionPage = (props) => {
   return (
