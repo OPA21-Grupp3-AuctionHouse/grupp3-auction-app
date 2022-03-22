@@ -11,23 +11,35 @@ const NewAuctionPage = () => {
     "Fotbollskort",
   ];
 
+  const [auctionList, setAuctionList] = useState([]);
+
   const [auction, setAuction] = useState({
-    image: "https://cdn.shopify.com/s/files/1/0903/7868/products/Pokemon-Pikachu-60-64-Jungle-Unlimited-1999-Wizards-WOTC-012221_7_-SMALL_grande.jpg?v=1611385126",   
-    category: "pokemon",
-    name: "pikachu",
-    description: "BEST POKEMON IN TOWN",
-    bidPrice: "10",
-    buyout: "100",
-    endDate: "2022-02-03",
+    image: "",
+    category: "",
+    name: "",
+    description: "",
+    bidPrice: "",
+    buyout: "",
+    endDate: "",
   });
 
+  const handleAuctionSubmit = (e) => {
+
+    setAuctionList([...auctionList, auction]);
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setAuction({ ...auction, [name]: value });
+  };
+
   return (
-    
-      <>
+    <>
       <h1>Post new auction!!</h1>
       <div className="new-auction-page-container">
-        
-
         <form className="new-auction-page-form">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">
@@ -40,7 +52,7 @@ const NewAuctionPage = () => {
               aria-describedby="inputGroup-sizing-default"
               id="name"
               name="name"
-              defaultValue={auction.name}
+              onChange={handleChange}
             />
           </div>
 
@@ -48,8 +60,13 @@ const NewAuctionPage = () => {
             <label class="input-group-text" for="inputGroupSelect01">
               Category:
             </label>
-            <select class="form-select" id="category" name="category">
-              <option selected>Choose...</option>
+            <select
+              onClick={handleChange}
+              class="form-select"
+              id="category"
+              name="category"
+            >
+              <option>Choose...</option>
               {categories.map((category) => {
                 return <option value={category}>{category}</option>;
               })}
@@ -67,6 +84,7 @@ const NewAuctionPage = () => {
               id="description"
               name="description"
               defaultValue={auction.description}
+              onChange={handleChange}
             />
           </div>
           <div class="input-group mb-3">
@@ -81,6 +99,7 @@ const NewAuctionPage = () => {
               id="bidPrice"
               name="bidPrice"
               defaultValue={auction.bidPrice}
+              onChange={handleChange}
             />
           </div>
           <div class="input-group mb-3">
@@ -95,6 +114,7 @@ const NewAuctionPage = () => {
               id="buyout"
               name="buyout"
               defaultValue={auction.buyout}
+              onChange={handleChange}
             />
           </div>
 
@@ -107,28 +127,36 @@ const NewAuctionPage = () => {
               type="date"
               id="example"
               class="form-control"
+              name="endDate"
+              onChange={handleChange}
             />
           </div>
 
           <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile02" />
+            <input
+              onChange={handleChange}
+              type="file"
+              class="form-control"
+              id="inputGroupFile02"
+              name="image"
+            />
             <label class="input-group-text" for="inputGroupFile02">
               Upload
             </label>
           </div>
-          
-          
-          
-        </form>
-        <div >  
-              <img src={auction.image} className="new-auction-page-picture"/>
-              </div>
-        
-      </div>
-              
 
-              </>
-    
+          <button
+            className="submit-button-profile"
+            onClick={handleAuctionSubmit}
+          >
+            Submit
+          </button>
+        </form>
+        <div>
+          <img src={auction.image} className="new-auction-page-picture" />
+        </div>
+      </div>
+    </>
   );
 };
 
