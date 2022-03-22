@@ -6,12 +6,14 @@ import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
 import ProductList from "./ProductList";
 import Products from "./data/products.json";
+import NewAuctionPage from "./NewAuctionPage";
+import Profile from "./Profile";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
   const [products, setProducts] = useState(Products);
-  const [searchResult, setSearchResult] = useState([])
+  const [searchResult, setSearchResult] = useState([]);
 
   const sortByCategory = () => {};
 
@@ -47,9 +49,30 @@ function AuctionPage() {
                   <div className="auction-inner-inner-container">
                     <SearchBar sortBySearch={sortBySearch} />
                     <SortBar />
-                    <ProductList products={products} searchResult={searchResult} />
+                    <ProductList
+                      products={products}
+                      searchResult={searchResult}
+                    />
                   </div>
                 </DataContext.Provider>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/profile"
+            element={
+              <>
+                <Profile />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/auctions"
+            element={
+              <>
+                <NewAuctionPage />
               </>
             }
           />
