@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {BsSearch} from "react-icons/bs";
 
-const SearchBar = () => {
+const SearchBar = ({sortBySearch}) => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleChange = (e) => {
@@ -12,6 +12,7 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(searchInput)
+    sortBySearch(searchInput);
   };
 
   return (
