@@ -1,30 +1,32 @@
 import React from "react";
-import { useState } from "react";
-import AuctionHeader from "./AuctionHeader";
+import { useContext, useState } from "react";
+import Products from "./data/products.json";
+import { DataContext } from "./AuctionPage";
 
 const NewAuctionPage = () => {
-  const categories = [
-    "Pokemon",
-    "Hockeykort",
-    "Digimon",
-    "Magic, The Gathering",
-    "Fotbollskort",
-  ];
+  const products = useContext(DataContext);
 
-  const [auctionList, setAuctionList] = useState([]);
+  let allCategories = products.map((product) => product.category);
+  let categories = allCategories.filter(
+    (item, i, arr) => arr.indexOf(item) === i
+  );
 
-  const [auction, setAuction] = useState({
-    image: "",
-    category: "",
-    name: "",
-    description: "",
-    bidPrice: "",
-    buyout: "",
-    endDate: "",
-  });
+  const [auctionList, setAuctionList] = useState(products);
+  console.log(auctionList);
+  const [auction, setAuction] = useState([
+    {
+      image: "",
+      category: "",
+      name: "",
+      description: "",
+      bidPrice: "",
+      buyout: "",
+      endDate: "",
+    },
+  ]);
 
   const handleAuctionSubmit = (e) => {
-
+    e.preventDefault();
     setAuctionList([...auctionList, auction]);
   };
 

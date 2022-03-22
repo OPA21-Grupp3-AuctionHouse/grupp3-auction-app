@@ -63,7 +63,9 @@ function AuctionPage() {
             path="/profile"
             element={
               <>
-                <Profile />
+                
+                    <Profile />
+                
               </>
             }
           />
@@ -72,7 +74,9 @@ function AuctionPage() {
             path="/auctions"
             element={
               <>
+              <DataContext.Provider value={products}>
                 <NewAuctionPage />
+            </DataContext.Provider>
               </>
             }
           />
