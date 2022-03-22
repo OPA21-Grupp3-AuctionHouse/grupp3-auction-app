@@ -5,13 +5,10 @@ import { DataContext } from "./AuctionPage";
 function ProductList() {
   const provider = useContext(DataContext);
 
-  if (
-    provider.searchResult.length > 0 &&
-    typeof provider.searchResult === "object"
-  ) {
+  if (provider.filteredView === false) {
     return (
       <div className="product-container">
-        {provider.searchResult.map((product) => (
+        {provider.products.map((product) => (
           <ProductCard key={product.key} product={product} />
         ))}
       </div>
@@ -25,7 +22,7 @@ function ProductList() {
   } else {
     return (
       <div className="product-container">
-        {provider.products.map((product) => (
+        {provider.searchResult.map((product) => (
           <ProductCard key={product.key} product={product} />
         ))}
       </div>

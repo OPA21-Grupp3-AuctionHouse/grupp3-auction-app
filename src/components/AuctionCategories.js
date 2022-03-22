@@ -1,32 +1,46 @@
-import React, { useContext } from "react";
-import {DataContext} from "./AuctionPage";
+import React from "react";
 
-function AuctionCategories({sortBySearch}) {
-
-  const products = useContext(DataContext);
+function AuctionCategories({ sortBySearch }) {
+  const categories = [
+    "All",
+    "Baseball Cards",
+    "Football Cards",
+    "Hockey Cards",
+    "Pokémon",
+    "Magic: The Gathering",
+    "Sorcerer",
+    "Final Fantasy",
+    "Star Realms/Hero Realms",
+    "Skyforge",
+    "Yu-Gi-Oh!",
+    "Android: Netrunner",
+    "MetaZoo",
+  ];
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     if (e.target.value === "All") {
-      sortBySearch("")
+      sortBySearch("");
     } else {
-      sortBySearch(e.target.value)
+      sortBySearch(e.target.value);
     }
-  }
+  };
 
-  let allCategories = products.map((product) => product.category);
+  /*
+  let allCategories = provider.products.map((product) => product.category);
   let uniqueCategories = allCategories.filter(
     (item, i, arr) => arr.indexOf(item) === i
   );
+  */
 
   return (
-      <div className="auction-categories-container">
-        <button onClick={handleClick} value="All">All</button>
-        {uniqueCategories.map((category) => (
-          <button onClick={handleClick} value={category}>{category}</button>
-        ))}
-      </div>
+    <div className="auction-categories-container">
+      {categories.map((category) => (
+        <button onClick={handleClick} value={category}>
+          {category}
+        </button>
+      ))}
+    </div>
   );
 }
 

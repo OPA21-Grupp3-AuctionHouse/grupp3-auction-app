@@ -6,12 +6,18 @@ import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
 import ProductList from "./ProductList";
 import Products from "./data/products.json";
+import WelcomePage from "./WelcomePage";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
   const [products, setProducts] = useState(Products);
   const [searchResult, setSearchResult] = useState([]);
+  const [filteredView, setFilteredView] = useState(Boolean);
+
+  const loadProducts = () => {
+    setProducts(Products);
+  };
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -27,33 +33,45 @@ function AuctionPage() {
       }
       return false;
     });
-    if (result.length > 0) {
+
+    if (result.length === products.length) {
+      setFilteredView(false);
+    }
+    if (result.length > 0 && result.length !== products.length) {
+      setFilteredView(true);
       setSearchResult(result);
     } else {
       setSearchResult(searchInput);
+      setFilteredView(false);
     }
   };
 
   return (
     <div className="auction-outer-container">
-      <AuctionHeader />
+      <AuctionHeader loadProducts={loadProducts} />
       <div className="auction-inner-container">
         <Routes>
+          <Route exact path="/" element={<WelcomePage />} />
           <Route
-            exact
-            path="/"
+            path="/bazaar"
             element={
               <>
-                <DataContext.Provider value={products}>
+                <DataContext.Provider
+                  value={{
+                    products,
+                    setProducts,
+                    searchResult,
+                    setSearchResult,
+                    filteredView,
+                  }}
+                >
                   <AuctionCategories sortBySearch={sortBySearch} />
+                  <div className="auction-inner-inner-container">
+                    <SearchBar sortBySearch={sortBySearch} />
+                    <SortBar />
+                    <ProductList setFilteredView={setFilteredView} />
+                  </div>
                 </DataContext.Provider>
-                <div className="auction-inner-inner-container">
-                  <SearchBar sortBySearch={sortBySearch} />
-                  <SortBar />
-                  <DataContext.Provider value={{ products, searchResult }}>
-                    <ProductList />
-                  </DataContext.Provider>
-                </div>
               </>
             }
           />
