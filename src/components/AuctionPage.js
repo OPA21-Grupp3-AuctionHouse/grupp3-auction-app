@@ -1,9 +1,10 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 import AuctionHeader from "./AuctionHeader";
-import { BrowserRouter as Route, Routes } from "react-router-dom";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
+import * as ReactDOM from "react-dom";
 const AuctionPage = (props) => {
   return (
     <>
@@ -14,7 +15,7 @@ const AuctionPage = (props) => {
           path="/"
           element={
             <>
-                <NewAuctionPage />
+              <NewAuctionPage />
             </>
           }
         />
@@ -23,7 +24,7 @@ const AuctionPage = (props) => {
           path="/profile"
           element={
             <>
-                <Profile />
+              <Profile />
             </>
           }
         />
@@ -32,7 +33,7 @@ const AuctionPage = (props) => {
           path="/auctions"
           element={
             <>
-                <NewAuctionPage />
+              <NewAuctionPage />
             </>
           }
         />
