@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import AuctionHeader from "./AuctionHeader";
 
 const NewAuctionPage = () => {
   const categories = [
@@ -11,8 +12,7 @@ const NewAuctionPage = () => {
   ];
 
   const [auction, setAuction] = useState({
-    image:
-      "https://i.pinimg.com/originals/f5/1d/08/f51d08be05919290355ac004cdd5c2d6.png",
+    image: "https://cdn.shopify.com/s/files/1/0903/7868/products/Pokemon-Pikachu-60-64-Jungle-Unlimited-1999-Wizards-WOTC-012221_7_-SMALL_grande.jpg?v=1611385126",   
     category: "pokemon",
     name: "pikachu",
     description: "BEST POKEMON IN TOWN",
@@ -22,11 +22,13 @@ const NewAuctionPage = () => {
   });
 
   return (
-    <>
+    
+      <>
+      <h1>Post new auction!!</h1>
       <div className="new-auction-page-container">
-        <h1>Post new auction!!</h1>
+        
 
-        <form>
+        <form className="new-auction-page-form">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">
               Name:
@@ -107,15 +109,26 @@ const NewAuctionPage = () => {
               class="form-control"
             />
           </div>
+
           <div class="input-group mb-3">
             <input type="file" class="form-control" id="inputGroupFile02" />
             <label class="input-group-text" for="inputGroupFile02">
               Upload
             </label>
           </div>
+          
+          
+          
         </form>
+        <div >  
+              <img src={auction.image} className="new-auction-page-picture"/>
+              </div>
+        
       </div>
-    </>
+              
+
+              </>
+    
   );
 };
 
