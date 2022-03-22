@@ -34,16 +34,22 @@ function AuctionPage() {
       return false;
     });
 
+    console.log(products)
+
     if (result.length === products.length) {
       setFilteredView(false);
-    }
-    if (result.length > 0 && result.length !== products.length) {
+    } else if (result.length > 0 && result.length !== products.length) {
       setFilteredView(true);
       setSearchResult(result);
+    } else if (searchInput.length > 0) {
+      setFilteredView(true)
+      setSearchResult(searchInput)
     } else {
       setSearchResult(searchInput);
       setFilteredView(false);
     }
+
+    console.log(products)
   };
 
   return (
