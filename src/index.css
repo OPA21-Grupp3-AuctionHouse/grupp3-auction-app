@@ -32,3 +32,15 @@ p {
   font-size: 40%;
   color: white
 }
+
+.Login>h2 {
+  margin: 0px;
+  font-size: 120%;
+}
+
+.Login {
+  background-color: gray;
+  border-style: solid;
+  border-radius: 10px;
+
+}

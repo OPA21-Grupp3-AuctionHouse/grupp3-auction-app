@@ -12,10 +12,7 @@ const WelcomePage = () => {
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 </p>
             </article>
-            <section class="login">
-                <p>
-                    Här kommer login att vara.
-                </p>
+            <section>
                  <Login />
             </section>
         </div>
