@@ -6,6 +6,7 @@ import Login from "./components/LoginRegister/Login";
 import Register from "./components/LoginRegister/Register";
 import WelcomePageHeader from "./components/WelcomePageHeader";
 import WelcomePage from "./components/WelcomePage";
+import WelcomePageFooter from "./components/WelcomePageFooter.js";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" element={<Col><Register /></Col>} />
         </Routes>
       </Row>
+      <WelcomePageFooter />
     </div>
   );
 }

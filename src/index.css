@@ -66,5 +66,9 @@ header {
   padding: 1vh;
 }
 
-
+.arrow-down{
+  position: fixed;
+  bottom: 0px;
+  right: 50%;
+}
 

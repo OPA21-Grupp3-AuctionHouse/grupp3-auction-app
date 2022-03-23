@@ -33,7 +33,7 @@ class Register extends Component {
                   </Button>
                 </div>
                 <p className="forgot-password text-right">
-                  Already registered <a href="#">log in?</a>
+                  Already registered <a href="/">log in?</a>
                 </p>
               </Form>
             </Col>
