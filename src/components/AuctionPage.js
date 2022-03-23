@@ -59,7 +59,7 @@ function AuctionPage() {
       <AuctionHeader loadProducts={loadProducts} />
       <div className="auction-inner-container">
         <Routes>
-          <Route exact path="/" element={<WelcomePage />} />
+          {/* <Route exact path="/" element={<WelcomePage />} /> */}
           <Route
             path="/bazaar"
             element={

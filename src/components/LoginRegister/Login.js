@@ -10,9 +10,7 @@ const Login = () => {
         <Row className="mt-5">
           <Col>
             <Form>
-              <h3 className="text-success p-3 text-center">
-                Login
-              </h3>
+              <h3 className="text-success p-3 text-center">Login</h3>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
@@ -22,11 +20,13 @@ const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
-              <div className="d-grid gap-2 mt-3">
-                <Button variant="success" size="sm" type="submit">
-                  Login
-                </Button>
-              </div>
+              <Link to="/startpage">
+                <div className="d-grid gap-2 mt-3">
+                  <Button variant="success" size="sm" type="submit">
+                    Login
+                  </Button>
+                </div>
+              </Link>
               <Link to="/register">
                 <div className="d-grid gap-2 mt-3">
                   <Button variant="secondary" size="sm" type="submit">
