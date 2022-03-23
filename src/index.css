@@ -5,9 +5,8 @@
   align-items: center;
 } */
 
-body {
-  font-size: 70px;
-  background-color: #440acc;
+p {
+  font-size: 20px;
 }
 
 /* css for the header */
@@ -17,14 +16,14 @@ header {
   justify-content: center;
   height: 300px;
   width: 100%;
-  color: rgb(25, 247, 235);
 }
 
 /* css for the welcomePage */
-.welcomePage {
+.landing {
   display: flex;
   margin-top: 50px;
   align-items: center;
+  font-size: 40%;
 }
 
 .welcomeText,
@@ -42,17 +41,15 @@ header {
 }
 
 /* css for text in the welcomePage */
-p {
-  font-size: 40%;
-  color: white
-}
 
-.login>h4 {
+.login>h4,
+.register>h4 {
   color: white;
   margin: 0;
 }
 
-.login {
+.login,
+.register {
   background-color: grey;
   border: black;
   border-radius: 10px;
@@ -62,8 +59,12 @@ p {
   flex-direction: column;
 }
 
-.login>input {
+.login>input,
+.register>input {
   margin-top: 1vh;
   margin-bottom: 1vh;
   padding: 1vh;
 }
+
+
+
