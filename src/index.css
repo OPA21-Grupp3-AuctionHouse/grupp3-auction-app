@@ -6,6 +6,34 @@
   background-color: #050933;
 }
 
+.new-auction-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-auction-page-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.1;
+  align-items: center;
+}
+
+.new-auction-page-picture {
+  width: 300px;
+}
+
+.profile-outer-div {
+  display: flex;
+  width: 100%;
+  flex-direction: ROW;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-outer-div form {
+  width: 35%;
+}
+
 p {
   font-size: 20px;
 }
@@ -43,8 +71,8 @@ header {
 
 /* css for text in the welcomePage */
 
-.login>h4,
-.register>h4 {
+.login > h4,
+.register > h4 {
   color: white;
   margin: 0;
 }
@@ -60,8 +88,8 @@ header {
   flex-direction: column;
 }
 
-.login>input,
-.register>input {
+.login > input,
+.register > input {
   margin-top: 1vh;
   margin-bottom: 1vh;
   padding: 1vh;
@@ -82,6 +110,7 @@ header {
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  justify-content: center;
 }
 
 .auction-inner-inner-container {
@@ -291,11 +320,6 @@ header {
 }
 .new-auction-page-picture {
   width: 300px;
-}
-
-.profile-outer-div {
-  display: flex;
-  justify-content: space-evenly;
 }
 
 .order-sort {

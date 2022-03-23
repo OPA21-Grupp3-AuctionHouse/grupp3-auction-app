@@ -1,9 +1,7 @@
 import React from "react";
-import { useContext, useState } from "react";
-
+import { useState } from "react";
 
 const Profile = () => {
-  
   const [user, setUser] = useState({
     name: "blabla",
     email: "blabla@bla",
@@ -74,7 +72,6 @@ const Profile = () => {
               Username:
             </label>
             <input
-              
               type="text"
               readonly
               class="form-control-plaintext"
