@@ -25,8 +25,14 @@ const NewAuctionPage = () => {
     },
   ]);
 
-  const handleAuctionSubmit = (e) => {
+  const handleChangeImage = (e) => {
     e.preventDefault();
+    const tempImage = URL.createObjectURL(e.target.files[0]);
+    setAuction({ ...auction, image: tempImage });
+  };
+
+  const handleAuctionSubmit = (e) => {
+    alert("Auction posted!!");
     setAuctionList([...auctionList, auction]);
   };
 
@@ -136,15 +142,12 @@ const NewAuctionPage = () => {
 
           <div class="input-group mb-3">
             <input
-              onChange={handleChange}
+              onChange={handleChangeImage}
               type="file"
               class="form-control"
               id="inputGroupFile02"
               name="image"
             />
-            <label class="input-group-text" for="inputGroupFile02">
-              Upload
-            </label>
           </div>
 
           <button
