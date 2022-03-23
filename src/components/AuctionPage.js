@@ -12,6 +12,9 @@ import WelcomePage from "./WelcomePage";
 import UnderNav from "./UnderNav";
 import OrderList from "./OrderList";
 import OrderSort from "./OrderSort";
+import MyBidsPage from "./MyBidsPage";
+import myBids from "./data/myBids.json";
+import MyBidsSortBar from "./MyBidsSortBar";
 
 export const DataContext = createContext();
 
@@ -19,6 +22,7 @@ function AuctionPage() {
   const [products, setProducts] = useState(Products);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
+  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
 
   const loadProducts = () => {
     setProducts(Products);
@@ -100,9 +104,14 @@ function AuctionPage() {
             exact
             path="/auctions"
             element={
-              <>
-                <UnderNav />
-              </>
+              <div>
+                <DataContext.Provider value={myBidsProducts}>
+                  <UnderNav />
+                  <MyBidsSortBar/>
+
+                  <MyBidsPage />
+                </DataContext.Provider>
+              </div>
             }
           />
           <Route
