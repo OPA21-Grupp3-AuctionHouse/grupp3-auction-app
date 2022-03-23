@@ -19,6 +19,7 @@ import MyBidsSortBar from "./MyBidsSortBar";
 import Myauctions from "./Myauctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
+import StartPage from "./StartPage";
 
 export const DataContext = createContext();
 
@@ -32,6 +33,7 @@ function AuctionPage() {
 
   const loadProducts = () => {
     setProducts(Products);
+    filteredView(false);
   };
 
   const sortBySearch = (searchInput) => {
@@ -49,8 +51,6 @@ function AuctionPage() {
       return false;
     });
 
-    console.log(products);
-
     if (result.length === products.length) {
       setFilteredView(false);
     } else if (result.length > 0 && result.length !== products.length) {
@@ -63,8 +63,6 @@ function AuctionPage() {
       setSearchResult(searchInput);
       setFilteredView(false);
     }
-
-    console.log(products);
   };
 
   return (
@@ -74,6 +72,7 @@ function AuctionPage() {
       <div className="auction-inner-container">
         {/* <Route exact path="/" element={<WelcomePage />} /> */}
         <Routes>
+          <Route exact path="/" element={<StartPage />} />
           <Route
             path="bazaar"
             element={

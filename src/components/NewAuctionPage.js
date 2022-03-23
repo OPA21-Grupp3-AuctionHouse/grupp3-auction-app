@@ -32,8 +32,8 @@ const NewAuctionPage = () => {
     setAuction({ ...auction, image: tempImage });
   };
 
+
   const handleAuctionSubmit = (e) => {
-    alert("Auction posted!!");
     setAuctionList([...auctionList, auction]);
   };
 
@@ -49,15 +49,14 @@ const NewAuctionPage = () => {
     <>
       <div className="new-auction-page-container">
         <h1>Post new auction!!</h1>
-
         <form className="new-auction-page-form">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Name:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="name"
@@ -66,13 +65,13 @@ const NewAuctionPage = () => {
             />
           </div>
 
-          <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className="input-group mb-3">
+            <label className="input-group-text" htmlFor="inputGroupSelect01">
               Category:
             </label>
             <select
               onClick={handleChange}
-              class="form-select"
+              className="form-select"
               id="category"
               name="category"
             >
@@ -82,13 +81,13 @@ const NewAuctionPage = () => {
               })}
             </select>
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Description:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="description"
@@ -97,13 +96,13 @@ const NewAuctionPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Bid price:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="bidPrice"
@@ -112,13 +111,13 @@ const NewAuctionPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Buyout:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="buyout"
@@ -145,25 +144,25 @@ const NewAuctionPage = () => {
             />
           </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               End Date:
             </span>
             <input
               placeholder="Select date"
               type="date"
               id="example"
-              class="form-control"
+              className="form-control"
               name="endDate"
               onChange={handleChange}
             />
           </div>
 
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <input
               onChange={handleChangeImage}
               type="file"
-              class="form-control"
+              className="form-control"
               id="inputGroupFile02"
               name="image"
             />
@@ -176,9 +175,13 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-        <div>
-          <img src={auction.image} className="new-auction-page-picture" />
-        </div>
+      </div>
+      <div className="new-auction-picture-container">
+          <img
+            src={auction.image}
+            className="new-auction-page-picture"
+            alt="new-auction"
+          />
       </div>
     </>
   );
