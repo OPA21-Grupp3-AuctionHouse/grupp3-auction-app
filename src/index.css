@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  justify-content: center;
 }
 
 .auction-inner-inner-container {
@@ -59,13 +60,13 @@
   font-size: 150%;
 }
 
-.auction-welcome-container {
+.auction-start-container {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.auction-welcome-container h2 {
+.auction-start-container h2 {
   margin-top: 100px;
 }
 
@@ -170,6 +171,11 @@
   display: flex;
   align-items: center;
   border: 1px solid black;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
 .App h2 {
@@ -222,21 +228,41 @@
   border: 1px solid black;
 }
 
+.new-auction-page-container {
+  margin-left: 100px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .new-auction-page-form {
   display: flex;
   flex-direction: column;
   flex-grow: 0.1;
   align-items: center;
 }
-.new-auction-page-picture {
-  width: 300px;
+
+.new-auction-picture-container {
+  margin-right: 100px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h1 {
-  margin-left: 70vh;
+.new-auction-page-picture {
+  width: 30%;
 }
 
 .profile-outer-div {
   display: flex;
-  justify-content: space-evenly;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-outer-div form {
+  width: 35%;
 }
