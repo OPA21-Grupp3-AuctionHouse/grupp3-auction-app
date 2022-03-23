@@ -12,6 +12,9 @@ import WelcomePage from "./WelcomePage";
 import UnderNav from "./UnderNav";
 import OrderList from "./OrderList";
 import OrderSort from "./OrderSort";
+import MyBidsPage from "./MyBidsPage";
+import myBids from "./data/myBids.json";
+import MyBidsSortBar from "./MyBidsSortBar";
 
 export const DataContext = createContext();
 
@@ -19,6 +22,7 @@ function AuctionPage() {
   const [products, setProducts] = useState(Products);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
+  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
 
   const loadProducts = () => {
     setProducts(Products);
@@ -100,9 +104,21 @@ function AuctionPage() {
             exact
             path="/auctions"
             element={
-              <>
-                <UnderNav />
-              </>
+              <div>
+                <DataContext.Provider
+                  value={{
+                    myBidsProducts,
+                    setMyBidsProducts,
+                    searchResult,
+                    setSearchResult,
+                    filteredView,
+                  }}
+                >
+                  <UnderNav />
+                  <MyBidsSortBar />
+                  <MyBidsPage />
+                </DataContext.Provider>
+              </div>
             }
           />
           <Route
@@ -110,9 +126,12 @@ function AuctionPage() {
             path="/newauction"
             element={
               <>
-                <DataContext.Provider value={products}>
-                  <NewAuctionPage />
-                </DataContext.Provider>
+                <div>
+                  <DataContext.Provider value={products}>
+                    <UnderNav />
+                    <NewAuctionPage />
+                  </DataContext.Provider>
+                </div>
               </>
             }
           />
@@ -125,6 +144,29 @@ function AuctionPage() {
                   <UnderNav />
                   <OrderSort />
                   <OrderList />
+                </div>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/follow"
+            element={
+              <>
+                <div>
+                  <UnderNav />
+                </div>
+              </>
+            }
+          />
+
+          <Route
+            exact
+            path="/myAuction"
+            element={
+              <>
+                <div>
+                  <UnderNav />
                 </div>
               </>
             }
