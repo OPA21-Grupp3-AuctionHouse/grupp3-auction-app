@@ -8,14 +8,18 @@ import ProductList from "./ProductList";
 import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
+import WelcomePage from "./WelcomePage";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
   const [products, setProducts] = useState(Products);
   const [searchResult, setSearchResult] = useState([]);
+  const [filteredView, setFilteredView] = useState(Boolean);
 
-  const sortByCategory = () => {};
+  const loadProducts = () => {
+    setProducts(Products);
+  };
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -23,36 +27,57 @@ function AuctionPage() {
         return true;
       }
       if (
-        product.name.includes(searchInput) ||
-        product.description.includes(searchInput) ||
-        product.category.includes(searchInput)
+        product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchInput.toLowerCase())
       ) {
         return true;
       }
       return false;
     });
-    setSearchResult(result);
+
+    console.log(products)
+
+    if (result.length === products.length) {
+      setFilteredView(false);
+    } else if (result.length > 0 && result.length !== products.length) {
+      setFilteredView(true);
+      setSearchResult(result);
+    } else if (searchInput.length > 0) {
+      setFilteredView(true)
+      setSearchResult(searchInput)
+    } else {
+      setSearchResult(searchInput);
+      setFilteredView(false);
+    }
+
+    console.log(products)
   };
 
   return (
     <div className="auction-outer-container">
-      <AuctionHeader />
+      <AuctionHeader loadProducts={loadProducts} />
       <div className="auction-inner-container">
         <Routes>
+          <Route exact path="/" element={<WelcomePage />} />
           <Route
-            exact
-            path="/"
+            path="/bazaar"
             element={
               <>
-                <DataContext.Provider value={products}>
-                  <AuctionCategories />
+                <DataContext.Provider
+                  value={{
+                    products,
+                    setProducts,
+                    searchResult,
+                    setSearchResult,
+                    filteredView,
+                  }}
+                >
+                  <AuctionCategories sortBySearch={sortBySearch} />
                   <div className="auction-inner-inner-container">
                     <SearchBar sortBySearch={sortBySearch} />
                     <SortBar />
-                    <ProductList
-                      products={products}
-                      searchResult={searchResult}
-                    />
+                    <ProductList setFilteredView={setFilteredView} />
                   </div>
                 </DataContext.Provider>
               </>

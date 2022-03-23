@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductCard from "./ProductCard";
+import { DataContext } from "./AuctionPage";
 
-function ProductList({products, searchResult}) {
-  if (searchResult.length > 0) {
+function ProductList() {
+  const provider = useContext(DataContext);
+
+  if (provider.filteredView === false) {
     return (
       <div className="product-container">
-        {searchResult.map((product) => (
+        {provider.products.map((product) => (
           <ProductCard key={product.key} product={product} />
         ))}
+      </div>
+    );
+  } else if (typeof provider.searchResult === "string" && provider.searchResult !== "") {
+    return (
+      <div className="product-container">
+        <h2>No results found</h2>
       </div>
     );
   } else {
     return (
       <div className="product-container">
-        {products.map((product) => (
+        {provider.searchResult.map((product) => (
           <ProductCard key={product.key} product={product} />
         ))}
       </div>
