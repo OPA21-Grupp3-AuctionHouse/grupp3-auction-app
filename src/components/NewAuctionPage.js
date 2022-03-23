@@ -22,6 +22,7 @@ const NewAuctionPage = () => {
       bidPrice: "",
       buyout: "",
       endDate: "",
+      endTime: ""
     },
   ]);
 
@@ -122,6 +123,21 @@ const NewAuctionPage = () => {
               id="buyout"
               name="buyout"
               defaultValue={auction.buyout}
+              onChange={handleChange}
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">
+              End Time:
+            </span>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              id="endTime"
+              name="endTime"
+              defaultValue={auction.endTime}
               onChange={handleChange}
             />
           </div>
