@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Col, Row } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/LoginRegister/Login";
 import Register from "./components/LoginRegister/Register";
@@ -8,24 +9,18 @@ import WelcomePage from "./components/WelcomePage";
 
 function App() {
   return (
-    <Router>
+    <div className="App">
       <WelcomePageHeader />
-      <WelcomePage />
-    </Router>
+      <Row className="landing">
+        <Col><WelcomePage /></Col>
+        <Routes>
+          <Route exact path="/" element={<Col><Login /></Col>} />
+          <Route path="/register" element={<Col><Register /></Col>} />
+        </Routes>
+      </Row>
+    </div>
   );
 }
 
 export default App;
 
-
-// {
-//         <div className="outer">
-//           <div className="inner">
-//             <Routes>
-//               <Route exact path="/" component={Login} />
-//               <Route path="/sign-in" component={Login} />
-//               <Route path="/sign-up" component={Register} />
-//             </Routes>
-//           </div>
-//         </div>
-//      }

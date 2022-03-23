@@ -1,11 +1,12 @@
 import React from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./LoginRegister.css";
 
 const Login = () => {
   return (
     <>
-      <Container className="loginComponent">
+      <Container>
         <Row className="mt-5">
           <Col>
             <Form>
@@ -25,10 +26,14 @@ const Login = () => {
                 <Button variant="success" size="sm" type="submit">
                   Login
                 </Button>
-                <Button variant="secondary" size="sm" type="submit">
-                  Register
-                </Button>
               </div>
+              <Link to="/register">
+                <div className="d-grid gap-2 mt-2">
+                  <Button variant="secondary" size="sm" type="submit">
+                    Register
+                  </Button>
+                </div>
+              </Link>
             </Form>
           </Col>
         </Row>

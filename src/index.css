@@ -19,7 +19,7 @@ header {
 }
 
 /* css for the welcomePage */
-.welcomePage {
+.landing {
   display: flex;
   margin-top: 50px;
   align-items: center;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row, Form, Button, Container } from "react-bootstrap";
+import { Col, Row, Form, Button, Container, Link } from "react-bootstrap";
 import "./LoginRegister.css";
 
 class Register extends Component {

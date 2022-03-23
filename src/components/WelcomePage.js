@@ -16,9 +16,6 @@ const WelcomePage = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </article>
-      <section className="welcomeLogin">
-        <Register />
-      </section>
     </div>
   );
 };
