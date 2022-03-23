@@ -1,6 +1,6 @@
 const OrderDetail = () =>{
     return(
-        <div className = "order-detail">
+        <div className = "order-sort">
             <la className="image">Image</la>
             <la className="name">Name</la>
             <la className="status">Status</la>
