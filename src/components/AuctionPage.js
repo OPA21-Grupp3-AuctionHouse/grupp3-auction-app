@@ -9,6 +9,9 @@ import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import WelcomePage from "./WelcomePage";
+import UnderNav from "./UnderNav";
+import OrderList from "./OrderList";
+import OrderSort from "./OrderSort";
 
 export const DataContext = createContext();
 
@@ -57,6 +60,7 @@ function AuctionPage() {
   return (
     <div className="auction-outer-container">
       <AuctionHeader loadProducts={loadProducts} />
+    
       <div className="auction-inner-container">
         <Routes>
           <Route exact path="/" element={<WelcomePage />} />
@@ -88,9 +92,7 @@ function AuctionPage() {
             path="/profile"
             element={
               <>
-                
-                    <Profile />
-                
+                <Profile />
               </>
             }
           />
@@ -99,9 +101,22 @@ function AuctionPage() {
             path="/auctions"
             element={
               <>
-              <DataContext.Provider value={products}>
-                <NewAuctionPage />
-            </DataContext.Provider>
+              <UnderNav/>
+              <NewAuctionPage />
+                
+              </>
+            }
+          />
+            <Route
+            exact
+            path="/History"
+            element={
+              <>
+                <div >
+                <UnderNav/>
+                  <OrderSort/>
+                  <OrderList /> 
+                </div>
               </>
             }
           />
