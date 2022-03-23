@@ -1,12 +1,10 @@
 import React from "react";
-import OrderPage from "./components/OrderPage";
+import AuctionPage from "./components/AuctionPage";
 
 function App() {
   return (
-    <div className ="App">
-
-      <OrderPage/>
-      
+    <div className="App">
+      <AuctionPage />
     </div>
   );
 }

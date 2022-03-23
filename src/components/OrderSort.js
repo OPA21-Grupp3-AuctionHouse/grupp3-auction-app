@@ -1,12 +1,13 @@
-const OrderDetail = () =>{
+const OrderSort = () =>{
+    
     return(
         <div className = "order-sort">
-            <la className="image">Image</la>
-            <la className="name">Name</la>
-            <la className="status">Status</la>
-            <la className="date">Date</la>
-            <la className="price">Price</la>
+            <button className="image">Image</button>
+            <button className="name">Name</button>
+            <button className="status">Status</button>
+            <button className="date">Date</button>
+            <button className="price">Price</button>
          </div>
     )
 }
-export default OrderDetail;
+export default OrderSort;
