@@ -1,9 +1,10 @@
-/* .App {
+.App {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+  background-color: #050933;
+}
 
 p {
   font-size: 20px;
@@ -66,9 +67,230 @@ header {
   padding: 1vh;
 }
 
-.arrow-down{
-  position: fixed;
-  bottom: 0px;
-  right: 50%;
+.auction-outer-container {
+  width: 70vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  border-color: black;
+  background-color: white;
 }
 
+.auction-inner-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.auction-inner-inner-container {
+  height: 100%;
+  width: 100%;
+}
+
+.auction-header-container {
+  height: 7vh;
+}
+
+.auction-header-container ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.auction-header-container ul * {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 150%;
+}
+
+.auction-welcome-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.auction-welcome-container h2 {
+  margin-top: 100px;
+}
+
+.auction-categories-container {
+  width: 10vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.auction-categories-container button {
+  margin-top: 20px;
+  font-size: 100%;
+}
+
+.search-container {
+  height: 3vh;
+  width: 100%;
+}
+
+.search-form {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
+.search-form input {
+  width: 90%;
+  font-size: 140%;
+}
+
+.search-form button {
+  width: 10%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.sort-outer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort-outer-container div {
+  border: 1px solid black;
+}
+
+.product-container {
+  height: inherit;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  flex-grow: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+.product-container h2 {
+  margin-top: 100px;
+}
+
+.category-bar,
+.product-category {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-bar,
+.product-image {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.name-bar,
+.description-bar,
+.product-name,
+.product-description {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+
+.price-bar,
+.buyout-bar,
+.product-price,
+.product-buyout {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.product-card {
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.App h2 {
+  font-size: 500%;
+}
+
+.container-profile {
+  display: flex;
+  flex-grow: 0.2;
+  flex-direction: row;
+}
+
+.submit-button-profile {
+  display: flex;
+  background-color: #4f97db;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  align-items: center;
+}
+
+.new-auction-page-container {
+  display: flex;
+  flex-grow: 0.1;
+  flex-direction: row;
+  width: 100%;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.auction-header-container ul * {
+  margin-left: 100px;
+  margin-right: 100px;
+  text-decoration: none;
+  color: black;
+  font-size: 150%;
+}
+
+.auction-header-container ul {
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.new-auction-page-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.1;
+  align-items: center;
+}
+.new-auction-page-picture {
+  width: 300px;
+}
+
+h1 {
+  margin-left: 70vh;
+}
+
+.profile-outer-div {
+  display: flex;
+  justify-content: space-evenly;
+}
