@@ -126,6 +126,8 @@ const NewAuctionPage = () => {
               onChange={handleChange}
             />
           </div>
+          </form>
+          <form className="new-auction-page-form">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">
               End Time:
