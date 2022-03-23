@@ -22,7 +22,7 @@ const NewAuctionPage = () => {
       bidPrice: "",
       buyout: "",
       endDate: "",
-      endTime: ""
+      endTime: "",
     },
   ]);
 
@@ -47,8 +47,9 @@ const NewAuctionPage = () => {
 
   return (
     <>
-      <h1>Post new auction!!</h1>
       <div className="new-auction-page-container">
+        <h1>Post new auction!!</h1>
+
         <form className="new-auction-page-form">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">
@@ -126,8 +127,8 @@ const NewAuctionPage = () => {
               onChange={handleChange}
             />
           </div>
-          </form>
-          <form className="new-auction-page-form">
+        </form>
+        <form className="new-auction-page-form">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">
               End Time:
