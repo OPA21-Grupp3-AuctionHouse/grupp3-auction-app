@@ -6,6 +6,8 @@ import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
 import ProductList from "./ProductList";
 import Products from "./data/products.json";
+import NewAuctionPage from "./NewAuctionPage";
+import Profile from "./Profile";
 import WelcomePage from "./WelcomePage";
 
 export const DataContext = createContext();
@@ -78,6 +80,24 @@ function AuctionPage() {
                     <ProductList setFilteredView={setFilteredView} />
                   </div>
                 </DataContext.Provider>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/profile"
+            element={
+              <>
+                <Profile />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/auctions"
+            element={
+              <>
+                <NewAuctionPage />
               </>
             }
           />
