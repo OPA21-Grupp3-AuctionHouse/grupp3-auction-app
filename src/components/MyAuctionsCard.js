@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "./AuctionPage";
 
 const MyAuctionsCard = ({ product }) => {
-  const currentDate = new Date().getTime();
+  const provider = useContext(DataContext);
 
+  const delAuction = (e) => {
+    const toId = e.target.value;
+    if (window.confirm("Are you sure?")) {
+      const tempTestList = provider.myBidsProducts.filter(
+        (product) => product.key != toId
+      );
+      console.log(tempTestList);
+      provider.setMyBidsProducts(tempTestList);
+    }
+  };
+
+  const currentDate = new Date().getTime();
   const msToTime = (s) => {
     const pad = (n, z) => {
       z = z || 2;
@@ -34,6 +47,9 @@ const MyAuctionsCard = ({ product }) => {
       <div className="product-myAuctionBid">
         {product.buyout}
         <button>BUY</button>
+        <button value={product.key} onClick={delAuction}>
+          Delete
+        </button>
       </div>
     </div>
   );
