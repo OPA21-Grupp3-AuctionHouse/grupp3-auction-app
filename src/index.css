@@ -165,6 +165,12 @@
   justify-content: center;
 }
 
+.product-myAuctionBid{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
 .product-myBid {
   width: 14%;
   display: flex;
