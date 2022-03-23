@@ -32,9 +32,18 @@ const NewAuctionPage = () => {
     setAuction({ ...auction, image: tempImage });
   };
 
-
   const handleAuctionSubmit = (e) => {
-    setAuctionList([...auctionList, auction]);
+    if (
+      auction.category &&
+      auction.name &&
+      auction.description &&
+      auction.bidPrice > 49 &&
+      auction.buyout > auction.bidPrice
+    ) {
+      setAuctionList([...auctionList, auction]);
+    } else {
+      alert("enter values");
+    }
   };
 
   const handleChange = (e) => {
@@ -177,11 +186,11 @@ const NewAuctionPage = () => {
         </form>
       </div>
       <div className="new-auction-picture-container">
-          <img
-            src={auction.image}
-            className="new-auction-page-picture"
-            alt="new-auction"
-          />
+        <img
+          src={auction.image}
+          className="new-auction-page-picture"
+          alt="new-auction"
+        />
       </div>
     </>
   );
