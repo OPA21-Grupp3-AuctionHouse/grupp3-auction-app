@@ -12,5 +12,4 @@ const OrderCard = ({ order }) => {
   );
 };
 
-
 export default OrderCard;

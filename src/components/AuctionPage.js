@@ -1,10 +1,14 @@
 import React, { useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import AuctionHeader from "./AuctionHeader";
+import UnderNav from "./UnderNav";
 import AuctionCategories from "./AuctionCategories";
 import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
+import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
+import OrderList from "./OrderList";
+import OrderData from "./data/OrderData.json";
 import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
@@ -22,6 +26,7 @@ export const DataContext = createContext();
 function AuctionPage() {
   const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
+  const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
@@ -167,9 +172,18 @@ function AuctionPage() {
             path="/myAuction"
             element={
               <>
-                <div>
-                  <UnderNav />
-                </div>
+                <DataContext.Provider
+                  value={{
+                    orderProducts,
+                    setOrderProducts,
+                  }}
+                >
+                  <div className="order-inner-inner-container">
+                    <UnderNav />
+                    <OrderSort />
+                    <OrderList />
+                  </div>
+                </DataContext.Provider>
               </>
             }
           />

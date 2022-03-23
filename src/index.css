@@ -108,6 +108,7 @@ header {
   height: 100%;
   width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: row;
   overflow: hidden;
   justify-content: center;
@@ -336,6 +337,7 @@ header {
   padding-left: 50px;
   padding-right: 50px;
 }
+/*Under nav css */
 
 .under-nav-container ul {
   width: 100%;
@@ -356,7 +358,7 @@ header {
   font-size: 100%;
   margin-bottom: 0;
 }
-
+/*Order Css*/
 .order-container {
   height: inherit;
   width: 100%;
@@ -365,15 +367,15 @@ header {
   flex-grow: 1;
   text-align: center;
 }
-.images-bar,
+.images-head,
 .order-images {
-  width: 15%;
+  width: 10%;
   display: flex;
   justify-content: center;
 }
 
-.names-bar,
-.status-bar,
+.names-head,
+.status-head,
 .order-names,
 .order-status {
   width: 25%;
@@ -381,9 +383,9 @@ header {
   justify-content: center;
 }
 
-.price-bar,
-.date-bar,
-.order-price,
+.prices-head,
+.date-head,
+.order-prices,
 .order-date {
   width: 25%;
   display: flex;
@@ -401,4 +403,14 @@ header {
   display: flex;
   align-items: center;
   border: 1px solid black;
+}
+.orderSort-outer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-inner-inner-container {
+  height: 100%;
+  width: 100%;
 }
