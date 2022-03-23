@@ -45,7 +45,7 @@ function App() {
             </>
           }
         />
-        <Route path="/startpage" element={<AuctionPage />} />
+        <Route path="/startpage/*" element={<AuctionPage />} />
       </Routes>
     </div>
   );
