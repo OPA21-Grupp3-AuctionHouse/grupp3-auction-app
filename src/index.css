@@ -249,6 +249,12 @@ header {
   justify-content: center;
 }
 
+.product-myAuctionBid {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
 .product-myBid {
   width: 14%;
   display: flex;
@@ -413,4 +419,31 @@ header {
 .order-inner-inner-container {
   height: 100%;
   width: 100%;
+}
+.new-auction-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-auction-page-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.1;
+  align-items: center;
+}
+
+.new-auction-page-picture {
+  width: 300px;
+}
+
+.profile-outer-div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-outer-div form {
+  width: 35%;
 }

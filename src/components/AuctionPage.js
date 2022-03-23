@@ -16,6 +16,8 @@ import WelcomePage from "./WelcomePage";
 import MyBidsPage from "./MyBidsPage";
 import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
+import Myauctions from "./Myauctions";
+import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
 
 export const DataContext = createContext();
@@ -144,14 +146,19 @@ function AuctionPage() {
             path="myAuction"
             element={
               <>
-                <div>
+                <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
-                      orderProducts,
-                      setOrderProducts,
+                      myBidsProducts,
+                      setMyBidsProducts,
+                      searchResult,
+                      setSearchResult,
+                      filteredView,
                     }}
                   >
                     <UnderNav />
+                    <MyAuctionsBar />
+                    <Myauctions />
                   </DataContext.Provider>
                 </div>
               </>
