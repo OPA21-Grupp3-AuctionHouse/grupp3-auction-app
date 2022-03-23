@@ -14,15 +14,15 @@ class Register extends Component {
                 <h3 className="text-success p-3 text-center">Register</h3>
                 <Form.Group className="mb-3" controlId="formBasicFirstName">
                   <Form.Label>First Name</Form.Label>
-                  <Form.Control type="firstName" placeholder="First Name" />
+                  <Form.Control type="text" placeholder="First Name" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicLastName">
                   <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="lastName" placeholder="Last Name" />
+                  <Form.Control type="text" placeholder="Last Name" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicUsername">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="username" placeholder="Username" />
+                  <Form.Control type="text" placeholder="Username" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>

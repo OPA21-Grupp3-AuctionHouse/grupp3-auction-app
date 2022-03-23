@@ -26,7 +26,7 @@ const Login = () => {
               <h3 className="text-success p-3 text-center">Login</h3>
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="username" placeholder="Username" />
+                <Form.Control type="text" placeholder="Username" />
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
