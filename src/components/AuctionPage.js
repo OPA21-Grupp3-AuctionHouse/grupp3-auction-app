@@ -108,7 +108,7 @@ function AuctionPage() {
             exact
             path="auctions"
             element={
-              <div>
+              <div className="order-inner-inner-container">
                 <DataContext.Provider
                   value={{
                     myBidsProducts,
@@ -141,7 +141,7 @@ function AuctionPage() {
           />
           <Route
             exact
-            path="history"
+            path="myAuction"
             element={
               <>
                 <div>
@@ -152,8 +152,6 @@ function AuctionPage() {
                     }}
                   >
                     <UnderNav />
-                    <OrderSort />
-                    <OrderList />
                   </DataContext.Provider>
                 </div>
               </>
@@ -173,21 +171,21 @@ function AuctionPage() {
 
           <Route
             exact
-            path="/myAuction"
+            path="history"
             element={
               <>
-                <DataContext.Provider
-                  value={{
-                    orderProducts,
-                    setOrderProducts,
-                  }}
-                >
-                  <div className="order-inner-inner-container">
+                <div className="order-inner-inner-container">
+                  <DataContext.Provider
+                    value={{
+                      orderProducts,
+                      setOrderProducts,
+                    }}
+                  >
                     <UnderNav />
                     <OrderSort />
                     <OrderList />
-                  </div>
-                </DataContext.Provider>
+                  </DataContext.Provider>
+                </div>
               </>
             }
           />
