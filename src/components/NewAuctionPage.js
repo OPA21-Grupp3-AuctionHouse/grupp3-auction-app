@@ -24,7 +24,6 @@ const NewAuctionPage = () => {
   });
 
   const handleAuctionSubmit = (e) => {
-
     setAuctionList([...auctionList, auction]);
   };
 
@@ -38,8 +37,8 @@ const NewAuctionPage = () => {
 
   return (
     <>
-      <h1>Post new auction!!</h1>
       <div className="new-auction-page-container">
+        <h1>Post new auction!!</h1>
         <form className="new-auction-page-form">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">
