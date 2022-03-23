@@ -15,7 +15,7 @@ import OrderSort from "./OrderSort";
 import MyBidsPage from "./MyBidsPage";
 import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
-import Users from './data/users.json';
+import Users from "./data/users.json";
 
 export const DataContext = createContext();
 
@@ -68,8 +68,8 @@ function AuctionPage() {
       <AuctionHeader loadProducts={loadProducts} />
 
       <div className="auction-inner-container">
-          {/* <Route exact path="/" element={<WelcomePage />} /> */}
-          <Routes>
+        {/* <Route exact path="/" element={<WelcomePage />} /> */}
+        <Routes>
           <Route
             path="bazaar"
             element={
@@ -125,7 +125,7 @@ function AuctionPage() {
           />
           <Route
             exact
-            path="/newauction"
+            path="newauction"
             element={
               <>
                 <div>
@@ -139,7 +139,7 @@ function AuctionPage() {
           />
           <Route
             exact
-            path="/History"
+            path="History"
             element={
               <>
                 <div>
@@ -152,7 +152,7 @@ function AuctionPage() {
           />
           <Route
             exact
-            path="/follow"
+            path="follow"
             element={
               <>
                 <div>

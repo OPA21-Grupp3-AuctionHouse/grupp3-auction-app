@@ -5,11 +5,11 @@ function UnderNav() {
   return (
     <div className="under-nav-container">
       <ul>
-        <Link to="/auctions">My bids</Link>
-        <Link to="/myAuction">My auctions</Link>
-        <Link to="/follow">Followed auctions</Link>
-        <Link to="/history">Order history</Link>
-        <Link to="/newauction">Post auction</Link>
+        <Link to="/startpage/auctions">My bids</Link>
+        <Link to="/startpage/myAuction">My auctions</Link>
+        <Link to="/startpage/follow">Followed auctions</Link>
+        <Link to="/startpage/history">Order history</Link>
+        <Link to="/startpage/newauction">Post auction</Link>
       </ul>
     </div>
   );
