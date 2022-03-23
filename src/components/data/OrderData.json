@@ -1,71 +1,82 @@
-[{
-    "Key":1,
+[
+  {
+    "Key": 1,
     "Image": "http://dummyimage.com/127x100.png/ff4444/ffffff",
     "Name": "Abra",
     "Status": "Cancel",
     "Date": "2021-06-01",
     "Price": "€494,67"
-  }, {
-    "Key":2,
+  },
+  {
+    "Key": 2,
     "Image": "http://dummyimage.com/214x100.png/dddddd/000000",
     "Name": "Gengar",
     "Status": "Complete",
     "Date": "2021-09-22",
     "Price": "€519,83"
-  }, {
-    "Key":3,
+  },
+  {
+    "Key": 3,
     "Image": "http://dummyimage.com/158x100.png/dddddd/000000",
     "Name": "Plus",
     "Status": "Sent",
     "Date": "2022-02-21",
     "Price": "€886,04"
-  }, {
-    "Key":4,
+  },
+  {
+    "Key": 4,
     "Image": "http://dummyimage.com/215x100.png/ff4444/ffffff",
     "Name": "Minus",
     "Status": "Returning",
     "Date": "2021-05-15",
     "Price": "€736,80"
-  }, {
-    "Key":5,
+  },
+  {
+    "Key": 5,
     "Image": "http://dummyimage.com/162x100.png/dddddd/000000",
     "Name": "Ghastly",
     "Status": "Complete",
     "Date": "2021-04-16",
     "Price": "€709,61"
-  }, {
-    "Key":6,
+  },
+  {
+    "Key": 6,
     "Image": "http://dummyimage.com/184x100.png/cc0000/ffffff",
     "Name": "Pot Of Greed",
     "Status": "Failed",
     "Date": "2021-12-22",
     "Price": "€558,47"
-  }, {
-    "Key":7,
+  },
+  {
+    "Key": 7,
     "Image": "http://dummyimage.com/221x100.png/ff4444/ffffff",
     "Name": "Eevee",
     "Status": "Sent",
     "Date": "2022-01-02",
     "Price": "€984,09"
-  }, {
-    "Key":8,
+  },
+  {
+    "Key": 8,
     "Image": "http://dummyimage.com/229x100.png/dddddd/000000",
     "Name": "Ursula",
     "Status": "Lost",
     "Date": "2021-03-09",
     "Price": "€676,75"
-  }, {
-    "Key":9,
+  },
+  {
+    "Key": 9,
     "Image": "http://dummyimage.com/120x100.png/ff4444/ffffff",
     "Name": "Aaron",
     "Status": "Sent",
     "Date": "2021-11-27",
     "Price": "€827,00"
-  }, {
-    "Key":10,
+  },
+  {
+    "Key": 10,
     "Image": "http://dummyimage.com/130x100.png/dddddd/000000",
     "Name": "Unknown",
     "Status": "Unknown",
     "Date": "2021-06-14",
     "Price": "€850,09"
-  }]
+  }
+]
