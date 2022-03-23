@@ -13,9 +13,6 @@ import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import WelcomePage from "./WelcomePage";
-import UnderNav from "./UnderNav";
-import OrderList from "./OrderList";
-import OrderSort from "./OrderSort";
 import MyBidsPage from "./MyBidsPage";
 import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
@@ -144,13 +141,20 @@ function AuctionPage() {
           />
           <Route
             exact
-            path="History"
+            path="history"
             element={
               <>
                 <div>
-                  <UnderNav />
-                  <OrderSort />
-                  <OrderList />
+                  <DataContext.Provider
+                    value={{
+                      orderProducts,
+                      setOrderProducts,
+                    }}
+                  >
+                    <UnderNav />
+                    <OrderSort />
+                    <OrderList />
+                  </DataContext.Provider>
                 </div>
               </>
             }
