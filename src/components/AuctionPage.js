@@ -39,7 +39,7 @@ function AuctionPage() {
       return false;
     });
 
-    console.log(products)
+    console.log(products);
 
     if (result.length === products.length) {
       setFilteredView(false);
@@ -47,20 +47,20 @@ function AuctionPage() {
       setFilteredView(true);
       setSearchResult(result);
     } else if (searchInput.length > 0) {
-      setFilteredView(true)
-      setSearchResult(searchInput)
+      setFilteredView(true);
+      setSearchResult(searchInput);
     } else {
       setSearchResult(searchInput);
       setFilteredView(false);
     }
 
-    console.log(products)
+    console.log(products);
   };
 
   return (
     <div className="auction-outer-container">
       <AuctionHeader loadProducts={loadProducts} />
-    
+
       <div className="auction-inner-container">
         <Routes>
           <Route exact path="/" element={<WelcomePage />} />
@@ -101,21 +101,30 @@ function AuctionPage() {
             path="/auctions"
             element={
               <>
-              <UnderNav/>
-              <NewAuctionPage />
-                
+                <UnderNav />
               </>
             }
           />
-            <Route
+          <Route
+            exact
+            path="/newauction"
+            element={
+              <>
+                <DataContext.Provider value={products}>
+                  <NewAuctionPage />
+                </DataContext.Provider>
+              </>
+            }
+          />
+          <Route
             exact
             path="/History"
             element={
               <>
-                <div >
-                <UnderNav/>
-                  <OrderSort/>
-                  <OrderList /> 
+                <div>
+                  <UnderNav />
+                  <OrderSort />
+                  <OrderList />
                 </div>
               </>
             }
