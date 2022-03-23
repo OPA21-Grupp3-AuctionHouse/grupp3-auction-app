@@ -3,12 +3,12 @@ import { DataContext } from "./AuctionPage";
 import MyBidsCard from "./MyBidsCard";
 
 function MyBidsPage() {
-  const products = useContext(DataContext);
-  console.log(products);
+  const provider = useContext(DataContext);
+
   return (
     <div className="order-container">
-      {products.map((product) => (
-        <MyBidsCard key={product.key} product={product} />
+      {provider.myBidsProducts.map((product) => (
+        <MyBidsCard key={provider.myBidsProducts.key} product={product} />
       ))}
     </div>
   );

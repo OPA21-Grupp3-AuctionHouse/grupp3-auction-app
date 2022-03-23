@@ -105,10 +105,17 @@ function AuctionPage() {
             path="/auctions"
             element={
               <div>
-                <DataContext.Provider value={myBidsProducts}>
+                <DataContext.Provider
+                  value={{
+                    myBidsProducts,
+                    setMyBidsProducts,
+                    searchResult,
+                    setSearchResult,
+                    filteredView,
+                  }}
+                >
                   <UnderNav />
-                  <MyBidsSortBar/>
-
+                  <MyBidsSortBar />
                   <MyBidsPage />
                 </DataContext.Provider>
               </div>
@@ -119,9 +126,12 @@ function AuctionPage() {
             path="/newauction"
             element={
               <>
-                <DataContext.Provider value={products}>
-                  <NewAuctionPage />
-                </DataContext.Provider>
+                <div>
+                  <DataContext.Provider value={products}>
+                    <UnderNav />
+                    <NewAuctionPage />
+                  </DataContext.Provider>
+                </div>
               </>
             }
           />
@@ -134,6 +144,29 @@ function AuctionPage() {
                   <UnderNav />
                   <OrderSort />
                   <OrderList />
+                </div>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/follow"
+            element={
+              <>
+                <div>
+                  <UnderNav />
+                </div>
+              </>
+            }
+          />
+
+          <Route
+            exact
+            path="/myAuction"
+            element={
+              <>
+                <div>
+                  <UnderNav />
                 </div>
               </>
             }

@@ -8,7 +8,7 @@
     "myBid": 50,
     "highestBid": 90,
     "buyout": 150,
-    "endTime": "2022-05-25 20:30"
+    "endTime": "2022-03-24 20:30"
   },
   {
     "key": 2,
@@ -19,7 +19,7 @@
     "myBid": 70,
     "highestBid": 200,
     "buyout": 210,
-    "endTime": "2022-06-25 20:30"
+    "endTime": "2022-03-25 20:30"
   },
   {
     "key": 3,
@@ -30,6 +30,6 @@
     "myBid": 100,
     "highestBid": 100,
     "buyout": 167,
-    "endTime": "2022-08-25 20:30"
+    "endTime": "2022-04-25 20:30"
   }
 ]

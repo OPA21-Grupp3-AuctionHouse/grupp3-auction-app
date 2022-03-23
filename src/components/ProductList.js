@@ -13,12 +13,15 @@ function ProductList() {
         ))}
       </div>
     );
-  } else if (typeof provider.searchResult === "string" && provider.searchResult !== "") {
+  } else if (
+    typeof provider.searchResult === "string" &&
+    provider.searchResult !== ""
+  ) {
     return (
       <div className="product-container">
         <h2>No results found</h2>
       </div>
-    );
+    );  
   } else {
     return (
       <div className="product-container">
