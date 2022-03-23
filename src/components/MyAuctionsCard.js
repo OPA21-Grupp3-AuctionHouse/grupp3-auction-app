@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "./AuctionPage";
+import ProductModal from "./ProductModal";
 
 const MyAuctionsCard = ({ product }) => {
+  const [modalShow, setModalShow] = useState(false);
   const provider = useContext(DataContext);
 
   const delAuction = (e) => {
@@ -36,22 +38,29 @@ const MyAuctionsCard = ({ product }) => {
   };
 
   return (
-    <div className="product-card">
-      <div className="product-image">image</div>
-      <div className="product-name">{product.name}</div>
-      <div className="product-endTime">
-        {msToTime(Date.parse(product.endTime) - currentDate)}
-      </div>
+    <>
+      <div className="product-card" onClick={() => setModalShow(true)}>
+        <div className="product-image">image</div>
+        <div className="product-name">{product.name}</div>
+        <div className="product-endTime">
+          {msToTime(Date.parse(product.endTime) - currentDate)}
+        </div>
 
-      <div className="product-myAuctionBid">{product.highestBid}</div>
-      <div className="product-myAuctionBid">
-        {product.buyout}
-        <button>BUY</button>
-        <button value={product.key} onClick={delAuction}>
-          Delete
-        </button>
+        <div className="product-myAuctionBid">{product.highestBid}</div>
+        <div className="product-myAuctionBid">
+          {product.buyout}
+          <button>BUY</button>
+          <button value={product.key} onClick={delAuction}>
+            Delete
+          </button>
+        </div>
       </div>
-    </div>
+      <ProductModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        product={product}
+      />
+    </>
   );
 };
 

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import ProductModal from "./ProductModal";
 
 const MyBidsCard = ({ product }) => {
+  const [modalShow, setModalShow] = useState(false);
   const currentDate = new Date().getTime();
 
   const msToTime = (s) => {
@@ -23,19 +25,26 @@ const MyBidsCard = ({ product }) => {
   };
 
   return (
-    <div className="product-card">
-      <div className="product-image">image</div>
-      <div className="product-name">{product.name}</div>
-      <div className="product-endTime">
-        {msToTime(Date.parse(product.endTime) - currentDate)}
+    <>
+      <div className="product-card" onClick={() => setModalShow(true)}>
+        <div className="product-image">image</div>
+        <div className="product-name">{product.name}</div>
+        <div className="product-endTime">
+          {msToTime(Date.parse(product.endTime) - currentDate)}
+        </div>
+        <div className="product-myBid">{product.myBid}</div>
+        <div className="product-myBid">{product.highestBid}</div>
+        <div className="product-myBid">
+          {product.buyout}
+          <button>BUY</button>
+        </div>
       </div>
-      <div className="product-myBid">{product.myBid}</div>
-      <div className="product-myBid">{product.highestBid}</div>
-      <div className="product-myBid">
-        {product.buyout}
-        <button>BUY</button>
-      </div>
-    </div>
+      <ProductModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        product={product}
+      />
+    </>
   );
 };
 

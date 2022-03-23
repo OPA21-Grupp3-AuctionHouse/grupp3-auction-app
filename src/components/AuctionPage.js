@@ -16,7 +16,7 @@ import WelcomePage from "./WelcomePage";
 import MyBidsPage from "./MyBidsPage";
 import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
-import Myauctions from "./Myauctions";
+import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
 import StartPage from "./StartPage";
@@ -157,7 +157,7 @@ function AuctionPage() {
                   >
                     <UnderNav />
                     <MyAuctionsBar />
-                    <Myauctions />
+                    <MyAuctions />
                   </DataContext.Provider>
                 </div>
               </>
