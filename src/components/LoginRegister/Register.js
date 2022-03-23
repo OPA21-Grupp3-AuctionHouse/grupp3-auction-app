@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Col, Row, Form, Button, Container, Link } from "react-bootstrap";
+import { Col, Row, Form, Button, Container} from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import "./LoginRegister.css";
 
 class Register extends Component {
@@ -10,7 +11,7 @@ class Register extends Component {
           <Row className="mt-5">
             <Col>
               <Form>
-                <h3>Register</h3>
+                <h3 className="text-success p-3 text-center">Register</h3>
                 <Form.Group className="mb-3" controlId="formBasicFirstName">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control type="firstName" placeholder="First Name" />
@@ -19,6 +20,7 @@ class Register extends Component {
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control type="lastName" placeholder="Last Name" />
                 </Form.Group>
+                {/* Do we need a username field? */}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control type="email" placeholder="Email" />
@@ -32,8 +34,8 @@ class Register extends Component {
                     Register
                   </Button>
                 </div>
-                <p className="forgot-password text-right">
-                  Already registered <a href="#">log in?</a>
+                <p>
+                  Already registered <Link to="/">log in?</Link>
                 </p>
               </Form>
             </Col>
