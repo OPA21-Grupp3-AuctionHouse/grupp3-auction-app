@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./LoginRegister.css";
+import Users from '../data/users.json';
 
 const Login = () => {
+
+  const [users, setUsers] = useState(Users);
+  const [loggedInUser, setLoggedInUser] = useState();
+
+  const logInValidation = () => {
+    setLoggedInUser(Users);
+    
+    var x = 2
+  };
+
+
+
   return (
     <>
       <Container>
@@ -11,18 +24,17 @@ const Login = () => {
           <Col>
             <Form>
               <h3 className="text-success p-3 text-center">Login</h3>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+              <Form.Group controlId="formBasicUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="username" placeholder="Username" />
               </Form.Group>
-
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
               <Link to="/startpage">
                 <div className="d-grid gap-2 mt-3">
-                  <Button variant="success" size="sm" type="submit">
+                  <Button onClick={logInValidation} variant="success" size="sm" type="submit">
                     Login
                   </Button>
                 </div>

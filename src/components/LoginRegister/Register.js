@@ -20,7 +20,10 @@ class Register extends Component {
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control type="lastName" placeholder="Last Name" />
                 </Form.Group>
-                {/* Do we need a username field? */}
+                <Form.Group className="mb-3" controlId="formBasicUsername">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="username" placeholder="Username" />
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control type="email" placeholder="Email" />
