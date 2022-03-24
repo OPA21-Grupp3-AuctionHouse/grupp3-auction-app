@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "./AuctionPage";
 
 const SortBar = () => {
@@ -61,6 +61,9 @@ const SortBar = () => {
         value="description"
       >
         Description
+      </button>
+      <button className="time-bar" onClick={sortColumn} value="time">
+        End Time
       </button>
       <button className="price-bar" onClick={sortColumn} value="price">
         Price

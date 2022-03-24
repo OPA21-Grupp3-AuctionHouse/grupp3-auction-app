@@ -19,12 +19,14 @@ import MyBidsSortBar from "./MyBidsSortBar";
 import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
+import Bids from "./data/allBids.json"
 
 export const DataContext = createContext();
 
 function AuctionPage() {
   const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
+  const [bids, setBids] = useState(Bids);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
@@ -82,6 +84,7 @@ function AuctionPage() {
                     searchResult,
                     setSearchResult,
                     filteredView,
+                    bids
                   }}
                 >
                   <AuctionCategories sortBySearch={sortBySearch} />
@@ -131,9 +134,12 @@ function AuctionPage() {
               <>
                 <div>
                   <DataContext.Provider
-                    value={
-                      {products, setProducts, myBidsProducts, setMyBidsProducts}
-                    }
+                    value={{
+                      products,
+                      setProducts,
+                      myBidsProducts,
+                      setMyBidsProducts,
+                    }}
                   >
                     <UnderNav />
                     <NewAuctionPage />
@@ -176,7 +182,6 @@ function AuctionPage() {
               </>
             }
           />
-
           <Route
             exact
             path="history"
