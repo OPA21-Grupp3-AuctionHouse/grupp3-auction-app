@@ -117,7 +117,7 @@ const NewAuctionPage = () => {
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
-              Bid price:
+              Start price:
             </span>
             <input
               type="text"
