@@ -1,44 +1,55 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./LoginRegister.css";
-import Users from '../data/users.json';
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "", // required
+    password: "", // required
+  });
 
-  const [users, setUsers] = useState(Users);
-  const [loggedInUser, setLoggedInUser] = useState();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const logInValidation = () => {
-    setLoggedInUser(Users);
-    
-    var x = 2
+    fetch("http://localhost:3333/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log("successful login", data.user));
   };
 
-
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
       <Container>
         <Row className="mt-5">
           <Col>
-            <Form>
+            <Form onSubmit={e => handleSubmit(e)}>
               <h3 className="text-success p-3 text-center">Login</h3>
-              <Form.Group controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Username" />
+
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Email" value={formData.email} name="email" onChange={e => handleChange(e)} />
               </Form.Group>
+
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password" value={formData.password} name='password' onChange={e => handleChange(e)}/>
               </Form.Group>
-              <Link to="/startpage">
+
+              {/* <Link to="/startpage"> */}
                 <div className="d-grid gap-2 mt-3">
-                  <Button onClick={logInValidation} variant="success" size="sm" type="submit">
+                  <Button variant="success" size="sm" type="submit">
                     Login
                   </Button>
                 </div>
-              </Link>
+              {/* </Link> */}
               <Link to="/register">
                 <div className="d-grid gap-2 mt-3">
                   <Button variant="secondary" size="sm" type="submit">

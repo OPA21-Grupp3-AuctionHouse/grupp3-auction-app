@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "email": "tajianaodero@gmail.com",
+      "password": "$2a$10$/LVfw5067YNGcnTSR/WB2uqxF7eGAxckd0/flhC1SF/tKSwgcM.my",
+      "firstname": "Tajiana",
+      "lastname": "Odero",
+      "username": "taj",
+      "id": 1
+    },
+    {
+      "email": "testperson1@gmail.com",
+      "password": "$2a$10$p0Y/2Chppa4WAWpl/64XQe6eRuykNOjosZF53FsZxN/jIKD8xBQPy",
+      "firstname": "Test1",
+      "lastname": "Person1",
+      "username": "TP1",
+      "id": 2
+    }
+  ]
+}

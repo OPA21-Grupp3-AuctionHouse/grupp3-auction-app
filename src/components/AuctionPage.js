@@ -5,16 +5,13 @@ import AuctionCategories from "./AuctionCategories";
 import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
 import ProductList from "./ProductList";
-import Products from "./data/products.json";
+import Products from "../data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import WelcomePage from "./WelcomePage";
-import Users from './data/users.json';
-
 export const DataContext = createContext();
 
 function AuctionPage() {
-  const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
