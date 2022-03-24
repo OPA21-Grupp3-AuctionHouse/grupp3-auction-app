@@ -1,28 +1,39 @@
 import React from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Products from "./data/products.json";
+import { DataContext } from "./AuctionPage";
 
 const NewAuctionPage = () => {
-  const categories = [
-    "Pokemon",
-    "Hockeykort",
-    "Digimon",
-    "Magic, The Gathering",
-    "Fotbollskort",
-  ];
+  const products = useContext(DataContext);
 
-  const [auctionList, setAuctionList] = useState([]);
+  let allCategories = products.map((product) => product.category);
+  let categories = allCategories.filter(
+    (item, i, arr) => arr.indexOf(item) === i
+  );
 
-  const [auction, setAuction] = useState({
-    image: "",
-    category: "",
-    name: "",
-    description: "",
-    bidPrice: "",
-    buyout: "",
-    endDate: "",
-  });
+  const [auctionList, setAuctionList] = useState(products);
+  console.log(auctionList);
+  const [auction, setAuction] = useState([
+    {
+      image: "",
+      category: "",
+      name: "",
+      description: "",
+      bidPrice: "",
+      buyout: "",
+      endDate: "",
+      endTime: "",
+    },
+  ]);
+
+  const handleChangeImage = (e) => {
+    e.preventDefault();
+    const tempImage = URL.createObjectURL(e.target.files[0]);
+    setAuction({ ...auction, image: tempImage });
+  };
 
   const handleAuctionSubmit = (e) => {
+    alert("Auction posted!!");
     setAuctionList([...auctionList, auction]);
   };
 
@@ -115,6 +126,23 @@ const NewAuctionPage = () => {
               onChange={handleChange}
             />
           </div>
+        </form>
+        <form className="new-auction-page-form">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">
+              End Time:
+            </span>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              id="endTime"
+              name="endTime"
+              defaultValue={auction.endTime}
+              onChange={handleChange}
+            />
+          </div>
 
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
@@ -132,17 +160,13 @@ const NewAuctionPage = () => {
 
           <div className="input-group mb-3">
             <input
-              onChange={handleChange}
+              onChange={handleChangeImage}
               type="file"
               className="form-control"
               id="inputGroupFile02"
               name="image"
             />
-            <label className="input-group-text" htmlFor="inputGroupFile02">
-              Upload
-            </label>
           </div>
-
           <button
             className="submit-button-profile"
             onClick={handleAuctionSubmit}

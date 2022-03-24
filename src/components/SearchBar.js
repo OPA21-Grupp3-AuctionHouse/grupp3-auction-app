@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {BsSearch} from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 
-const SearchBar = ({sortBySearch}) => {
+const SearchBar = ({ sortBySearch }) => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleChange = (e) => {
@@ -16,18 +16,18 @@ const SearchBar = ({sortBySearch}) => {
 
   return (
     <div className="search-container">
-        <form className="search-form" onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="Search..."
-                name="search"
-                onChange={handleChange}
-                value={searchInput}
-            />
-            <button type="submit">
-                <BsSearch />
-            </button>
-        </form>
+      <form className="search-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search..."
+          name="search"
+          onChange={handleChange}
+          value={searchInput}
+        />
+        <button type="submit">
+          <BsSearch />
+        </button>
+      </form>
     </div>
   );
 };

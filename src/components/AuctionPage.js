@@ -1,21 +1,34 @@
 import React, { useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import AuctionHeader from "./AuctionHeader";
+import UnderNav from "./UnderNav";
 import AuctionCategories from "./AuctionCategories";
 import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
+import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
+import OrderList from "./OrderList";
+import OrderData from "./data/OrderData.json";
 import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import StartPage from "./StartPage";
+import MyBidsPage from "./MyBidsPage";
+import myBids from "./data/myBids.json";
+import MyBidsSortBar from "./MyBidsSortBar";
+import Myauctions from "./Myauctions";
+import MyAuctionsBar from "./MyAuctionsBar";
+import Users from "./data/users.json";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
+  const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
+  const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
+  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
 
   const loadProducts = () => {
     setProducts(Products);
@@ -54,11 +67,12 @@ function AuctionPage() {
   return (
     <div className="auction-outer-container">
       <AuctionHeader loadProducts={loadProducts} />
+
       <div className="auction-inner-container">
         <Routes>
           <Route exact path="/" element={<StartPage />} />
           <Route
-            path="/bazaar"
+            path="bazaar"
             element={
               <>
                 <DataContext.Provider
@@ -82,7 +96,7 @@ function AuctionPage() {
           />
           <Route
             exact
-            path="/profile"
+            path="profile"
             element={
               <>
                 <Profile />
@@ -91,10 +105,91 @@ function AuctionPage() {
           />
           <Route
             exact
-            path="/auctions"
+            path="auctions"
+            element={
+              <div className="order-inner-inner-container">
+                <DataContext.Provider
+                  value={{
+                    myBidsProducts,
+                    setMyBidsProducts,
+                    searchResult,
+                    setSearchResult,
+                    filteredView,
+                  }}
+                >
+                  <UnderNav />
+                  <MyBidsSortBar />
+                  <MyBidsPage />
+                </DataContext.Provider>
+              </div>
+            }
+          />
+          <Route
+            exact
+            path="newauction"
             element={
               <>
-                <NewAuctionPage />
+                <div>
+                  <DataContext.Provider value={products}>
+                    <UnderNav />
+                    <NewAuctionPage />
+                  </DataContext.Provider>
+                </div>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="myAuction"
+            element={
+              <>
+                <div className="order-inner-inner-container">
+                  <DataContext.Provider
+                    value={{
+                      myBidsProducts,
+                      setMyBidsProducts,
+                      searchResult,
+                      setSearchResult,
+                      filteredView,
+                    }}
+                  >
+                    <UnderNav />
+                    <MyAuctionsBar />
+                    <Myauctions />
+                  </DataContext.Provider>
+                </div>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="follow"
+            element={
+              <>
+                <div>
+                  <UnderNav />
+                </div>
+              </>
+            }
+          />
+
+          <Route
+            exact
+            path="history"
+            element={
+              <>
+                <div className="order-inner-inner-container">
+                  <DataContext.Provider
+                    value={{
+                      orderProducts,
+                      setOrderProducts,
+                    }}
+                  >
+                    <UnderNav />
+                    <OrderSort />
+                    <OrderList />
+                  </DataContext.Provider>
+                </div>
               </>
             }
           />

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "auctionId": 1,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 50
+  },
+  {
+    "id": 2,
+    "userId": 1,
+    "auctionId": 2,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 50
+  },
+  {
+    "id": 3,
+    "userId": 2,
+    "auctionId": 2,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 50
+  }
+]
