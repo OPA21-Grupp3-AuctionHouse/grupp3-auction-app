@@ -40,12 +40,14 @@ const MyAuctionsCard = ({ product }) => {
   return (
     <>
       <div className="product-card" onClick={() => setModalShow(true)}>
-        <div className="product-image">image</div>
+        <div className="product-image">
+          <img className="Card-image-css" src={product.image}></img>
+        </div>
         <div className="product-name">{product.name}</div>
         <div className="product-endTime">
           {msToTime(Date.parse(product.endTime) - currentDate)}
         </div>
-
+        <div className="product-myAuctionBid">{product.startPrice}</div>
         <div className="product-myAuctionBid">{product.highestBid}</div>
         <div className="product-myAuctionBid">
           {product.buyout}

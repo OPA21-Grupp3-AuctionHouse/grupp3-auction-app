@@ -132,7 +132,11 @@ function AuctionPage() {
             element={
               <>
                 <div>
-                  <DataContext.Provider value={products}>
+                  <DataContext.Provider
+                    value={
+                      {products, setProducts, myBidsProducts, setMyBidsProducts}
+                    }
+                  >
                     <UnderNav />
                     <NewAuctionPage />
                   </DataContext.Provider>

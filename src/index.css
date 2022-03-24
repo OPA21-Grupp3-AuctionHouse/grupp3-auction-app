@@ -9,17 +9,20 @@
 .new-auction-page-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
 .new-auction-page-form {
   display: flex;
   flex-direction: column;
-  flex-grow: 0.1;
+  flex-grow: 1;
   align-items: center;
 }
 
 .new-auction-page-picture {
   width: 300px;
+  margin-bottom: 10vh;
 }
 
 .profile-outer-div {
@@ -305,6 +308,7 @@ header {
   flex-grow: 1;
   align-items: center;
   justify-content: space-evenly;
+  margin-top: 100px;
 }
 
 .auction-header-container ul * {
@@ -322,14 +326,6 @@ header {
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;
-}
-
-.new-auction-page-container {
-  margin-left: 100px;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .new-auction-page-form {
@@ -438,10 +434,6 @@ header {
   height: 100%;
   width: 100%;
 }
-.new-auction-page-container {
-  display: flex;
-  flex-direction: column;
-}
 
 .new-auction-page-form {
   display: flex;
@@ -450,18 +442,31 @@ header {
   align-items: center;
 }
 
-.new-auction-page-picture {
-  width: 300px;
-}
-
 .profile-outer-div {
   display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 .profile-outer-div form {
   width: 35%;
+}
+.Card-image-css {
+  height: 44px;
+}
+.Card-image-css:hover {
+  height: 200px;
+  z-index: 10;
+}
+.my-auction-bar {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+.my-auction-price-bar {
+  width: 21%;
+  display: flex;
+  justify-content: center;
 }
