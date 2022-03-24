@@ -1,5 +1,4 @@
 .App {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +19,15 @@ header {
 }
 
 /* css for the welcomePage */
+.WelcomePageStart{
+  display: flex;
+  flex-direction: column;
+}
+
+.WelcomePageStart>div{
+  height: 100vh;
+}
+
 .landing {
   display: flex;
   margin-top: 50px;
@@ -293,4 +301,21 @@ h1 {
 .profile-outer-div {
   display: flex;
   justify-content: space-evenly;
+}
+
+.welcomePageHeader{
+  margin: 0%;
+}
+
+.arrow-down{
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 15vh;
+  margin-bottom: 10vh;
+}
+
+.preview {
+  height: auto;
+  width: max-content;
 }
