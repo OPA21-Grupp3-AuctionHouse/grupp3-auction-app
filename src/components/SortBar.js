@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DataContext } from "./AuctionPage";
 
 const SortBar = () => {

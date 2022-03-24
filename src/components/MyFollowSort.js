@@ -1,7 +1,7 @@
 import { React, useContext } from "react";
 import { DataContext } from "./AuctionPage";
 
-const MyAuctionsBar = () => {
+const MyFollowSort = () => {
   const provider = useContext(DataContext);
 
   const sortColumn = (e) => {
@@ -25,7 +25,7 @@ const MyAuctionsBar = () => {
           ...provider.myBidsProducts.sort(compareName),
         ]);
       }
-    } else if (e.target.value === "startPrice") {
+    } else if (e.target.value === "myBid") {
       if (provider.filteredView) {
         provider.setSearchResult([...provider.searchResult.sort(compareMyBid)]);
       } else {
@@ -59,35 +59,27 @@ const MyAuctionsBar = () => {
   return (
     <div className="sort-outer-container">
       <button className="image-bar">Image</button>
-      <button className="my-auction-bar" onClick={sortColumn} value="name">
+      <button className="name-bar" onClick={sortColumn} value="name">
         Name
       </button>
       <button
-        className="my-auction-bar"
+        className="description-bar"
         onClick={sortColumn}
         value="timeRemaining"
       >
         Time Remaining
       </button>
-      <button
-        className="my-auction-price-bar"
-        onClick={sortColumn}
-        value="startPrice"
-      >
-        Start price
+      <button className="myBid-price-bar" onClick={sortColumn} value="myBid">
+        Your bid
       </button>
       <button
-        className="my-auction-price-bar"
+        className="myBid-price-bar"
         onClick={sortColumn}
         value="highestBid"
       >
         Highest bid
       </button>
-      <button
-        className="my-auction-price-bar"
-        onClick={sortColumn}
-        value="buyout"
-      >
+      <button className="myBid-price-bar" onClick={sortColumn} value="buyout">
         Buyout
       </button>
     </div>
@@ -114,7 +106,7 @@ const MyAuctionsBar = () => {
   }
 
   function compareMyBid(a, b) {
-    return a.startPrice - b.startPrice;
+    return a.myBid - b.myBid;
   }
 
   function compareHighestBid(a, b) {
@@ -126,4 +118,4 @@ const MyAuctionsBar = () => {
   }
 };
 
-export default MyAuctionsBar;
+export default MyFollowSort;
