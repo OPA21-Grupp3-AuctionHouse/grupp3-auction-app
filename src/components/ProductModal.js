@@ -23,6 +23,10 @@ function ProductModal(props) {
             Price: {props.product.price}
             <br />
             Buyout: {props.product.buyout}
+            <br />
+            <p style={{ color: "red", marginLeft: "60vh" }}>
+              {props.product.timeRemaining}
+            </p>
           </p>
         </div>
       </Modal.Body>

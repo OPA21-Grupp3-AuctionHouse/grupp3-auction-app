@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import ProductModal from "./ProductModal";
 
 const MyBidsCard = ({ product }) => {
-  const currentDate = new Date().getTime();
+  const [modalShow, setModalShow] = useState(false);
+  const [currentDate, setCurrentDate] = useState(new Date().getTime());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date().getTime());
+    }, 1000);
 
+    return () => clearInterval(interval);
+  }, []);
   const msToTime = (s) => {
     const pad = (n, z) => {
       z = z || 2;
@@ -21,21 +29,26 @@ const MyBidsCard = ({ product }) => {
       pad(days) + "D " + pad(hrs) + "H " + pad(mins) + "M " + pad(secs) + "S"
     );
   };
-
+  product.timeRemaining = msToTime(Date.parse(product.endTime) - currentDate);
   return (
-    <div className="product-card">
-      <div className="product-image">image</div>
-      <div className="product-name">{product.name}</div>
-      <div className="product-endTime">
-        {msToTime(Date.parse(product.endTime) - currentDate)}
+    <>
+      <div className="product-card" onClick={() => setModalShow(true)}>
+        <div className="product-image">image</div>
+        <div className="product-name">{product.name}</div>
+        <div className="product-endTime">{product.timeRemaining}</div>
+        <div className="product-myBid">{product.myBid}</div>
+        <div className="product-myBid">{product.highestBid}</div>
+        <div className="product-myBid">
+          {product.buyout}
+          <button>BUY</button>
+        </div>
       </div>
-      <div className="product-myBid">{product.myBid}</div>
-      <div className="product-myBid">{product.highestBid}</div>
-      <div className="product-myBid">
-        {product.buyout}
-        <button>BUY</button>
-      </div>
-    </div>
+      <ProductModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        product={product}
+      />
+    </>
   );
 };
 

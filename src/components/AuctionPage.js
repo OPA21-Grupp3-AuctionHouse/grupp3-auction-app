@@ -16,7 +16,7 @@ import StartPage from "./StartPage";
 import MyBidsPage from "./MyBidsPage";
 import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
-import Myauctions from "./Myauctions";
+import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
 
@@ -130,7 +130,11 @@ function AuctionPage() {
             element={
               <>
                 <div>
-                  <DataContext.Provider value={products}>
+                  <DataContext.Provider
+                    value={
+                      {products, setProducts, myBidsProducts, setMyBidsProducts}
+                    }
+                  >
                     <UnderNav />
                     <NewAuctionPage />
                   </DataContext.Provider>
@@ -155,7 +159,7 @@ function AuctionPage() {
                   >
                     <UnderNav />
                     <MyAuctionsBar />
-                    <Myauctions />
+                    <MyAuctions />
                   </DataContext.Provider>
                 </div>
               </>

@@ -20,7 +20,7 @@ function MyBidsPage() {
   return (
     <div className="order-container">
       {loggedUserAuctions.map((product) => (
-        <MyBidsCard key={loggedUserAuctions.key} product={product} />
+        <MyBidsCard key={product.key} product={product} />
       ))}
     </div>
   );

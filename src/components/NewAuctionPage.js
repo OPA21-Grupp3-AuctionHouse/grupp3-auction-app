@@ -1,30 +1,35 @@
 import React from "react";
 import { useContext, useState } from "react";
-import Products from "./data/products.json";
+
 import { DataContext } from "./AuctionPage";
 
 const NewAuctionPage = () => {
-  const products = useContext(DataContext);
+  const provider = useContext(DataContext);
 
-  let allCategories = products.map((product) => product.category);
+  const loggedInUser = {
+    id: 1,
+  };
+
+  let allCategories = provider.products.map((product) => product.category);
   let categories = allCategories.filter(
     (item, i, arr) => arr.indexOf(item) === i
   );
 
-  const [auctionList, setAuctionList] = useState(products);
-  console.log(auctionList);
-  const [auction, setAuction] = useState([
-    {
-      image: "",
-      category: "",
-      name: "",
-      description: "",
-      bidPrice: "",
-      buyout: "",
-      endDate: "",
-      endTime: "",
-    },
-  ]);
+  const [auctionList, setAuctionList] = useState(provider.myBidsProducts);
+
+  const [auction, setAuction] = useState({
+    key: 15,
+    image: "",
+    category: "",
+    name: "",
+    description: "",
+    startPrice: "",
+    highestBid: 50,
+    endTime: "2022-03-24 20:30",
+    ownerId: loggedInUser.id,
+    orderStatus: "bidding",
+    myBid: 50,
+  });
 
   const handleChangeImage = (e) => {
     e.preventDefault();
@@ -33,10 +38,22 @@ const NewAuctionPage = () => {
   };
 
   const handleAuctionSubmit = (e) => {
-    alert("Auction posted!!");
-    setAuctionList([...auctionList, auction]);
+    e.preventDefault();
+    if (auction.category && auction.name && auction.description) {
+      provider.setMyBidsProducts([...provider.myBidsProducts, auction]);
+      setAuction({
+        name: "",
+        category: "",
+        description: "",
+        buyout: "",
+        startPrice: "",
+      });
+    } else {
+      alert("enter values");
+    }
   };
 
+  console.log(auction);
   const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -48,7 +65,6 @@ const NewAuctionPage = () => {
   return (
     <>
       <div className="new-auction-page-container">
-        <h1>Post new auction!!</h1>
         <form className="new-auction-page-form">
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
@@ -61,6 +77,7 @@ const NewAuctionPage = () => {
               aria-describedby="inputGroup-sizing-default"
               id="name"
               name="name"
+              value={auction.name}
               onChange={handleChange}
             />
           </div>
@@ -92,22 +109,22 @@ const NewAuctionPage = () => {
               aria-describedby="inputGroup-sizing-default"
               id="description"
               name="description"
-              defaultValue={auction.description}
+              value={auction.description}
               onChange={handleChange}
             />
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
-              Bid price:
+              Start price:
             </span>
             <input
               type="text"
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              id="bidPrice"
-              name="bidPrice"
-              defaultValue={auction.bidPrice}
+              id="startPrice"
+              name="startPrice"
+              value={auction.startPrice}
               onChange={handleChange}
             />
           </div>
@@ -122,24 +139,24 @@ const NewAuctionPage = () => {
               aria-describedby="inputGroup-sizing-default"
               id="buyout"
               name="buyout"
-              defaultValue={auction.buyout}
+              value={auction.buyout}
               onChange={handleChange}
             />
           </div>
         </form>
         <form className="new-auction-page-form">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               End Time:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="endTime"
               name="endTime"
-              defaultValue={auction.endTime}
+              value={auction.endTime}
               onChange={handleChange}
             />
           </div>
@@ -174,13 +191,12 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-      </div>
-      <div className="new-auction-picture-container">
-          <img
-            src={auction.image}
-            className="new-auction-page-picture"
-            alt="new-auction"
-          />
+
+        <img
+          src={auction.image}
+          className="new-auction-page-picture"
+          alt="new-auction"
+        />
       </div>
     </>
   );
