@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 function ProductModal(props) {
+  const [input, setInput] = useState(0);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+  };
+
+  const checkBid = (e) => {
+    e.preventDefault();
+    //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
+    //props.placeBid()
+    console.log(input);
+  };
+
   return (
     <Modal
       {...props}
@@ -34,15 +48,15 @@ function ProductModal(props) {
               <span>No bids</span>
             )}
           </p>
-          <form className="modal-bid-form">
+          <form className="modal-bid-form" onSubmit={checkBid}>
             <label>
               Place your bid{" "}
               <input
                 type="text"
                 //placeholder="Bid..."
                 name="bid"
-                //onChange={}
-                //value={}
+                onChange={handleChange}
+                value={input}
               />
               <button type="submit">BID</button>
             </label>

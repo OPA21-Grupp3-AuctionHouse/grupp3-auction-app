@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { DataContext } from "./AuctionPage";
 import ProductModal from "./ProductModal";
+import { v4 as uuidv4 } from 'uuid';
 
 const ProductCard = ({ product }) => {
   const provider = useContext(DataContext);
@@ -15,6 +16,10 @@ const ProductCard = ({ product }) => {
 
     setBids(bidAmount)
   };
+
+  const placeBid = (bid) => {
+    //provider.setBids(...bid)
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -66,6 +71,7 @@ const ProductCard = ({ product }) => {
         onHide={() => setModalShow(false)}
         product={product}
         bids={bids}
+        //placeBid={placeBid()}
       />
     </>
   );

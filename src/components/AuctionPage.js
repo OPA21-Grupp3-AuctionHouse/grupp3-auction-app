@@ -66,6 +66,10 @@ function AuctionPage() {
     }
   };
 
+  const placeBid = () => {
+    setBids()
+  }
+
   return (
     <div className="auction-outer-container">
       <AuctionHeader loadProducts={loadProducts} />
@@ -84,7 +88,8 @@ function AuctionPage() {
                     searchResult,
                     setSearchResult,
                     filteredView,
-                    bids
+                    bids,
+                    setBids
                   }}
                 >
                   <AuctionCategories sortBySearch={sortBySearch} />
