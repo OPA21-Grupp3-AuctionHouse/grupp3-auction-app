@@ -460,6 +460,11 @@ header {
   height: 200px;
   z-index: 10;
 }
+
+.under-nav-container {
+  width: 100%;
+}
+
 .my-auction-bar {
   width: 25%;
   display: flex;
