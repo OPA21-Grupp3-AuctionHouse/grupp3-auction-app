@@ -23,6 +23,8 @@ function ProductModal(props) {
             Price: {props.product.price}
             <br />
             Buyout: {props.product.buyout}
+            <br />
+            Time Remaining: {props.product.timeRemaining}
           </p>
         </div>
       </Modal.Body>
