@@ -14,6 +14,9 @@ function ProductModal(props) {
     e.preventDefault();
     //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
     //props.placeBid()
+    if (input < Math.max(...props.bids) + 10) {
+      console.log("Bid too low.")
+    }
     console.log(input);
   };
 
@@ -52,7 +55,8 @@ function ProductModal(props) {
             <label>
               Place your bid{" "}
               <input
-                type="text"
+                type="number"
+                min={Math.max(...props.bids) + 10}
                 //placeholder="Bid..."
                 name="bid"
                 onChange={handleChange}
