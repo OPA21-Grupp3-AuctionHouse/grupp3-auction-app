@@ -39,6 +39,14 @@
       "lastname": "t",
       "username": "t",
       "id": 5
+    },
+    {
+      "email": "123@hotmail.com",
+      "password": "$2a$10$kuWzBOxiBHRwjC0FWHBX8OpSYyoYjo81TQol12kfCRKx1A.56pITS",
+      "firstname": "axel",
+      "lastname": "pw",
+      "username": "axelpw",
+      "id": 6
     }
   ]
 }
