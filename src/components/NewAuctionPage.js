@@ -1,33 +1,59 @@
 import React from "react";
-import { useState } from "react";
-import AuctionHeader from "./AuctionHeader";
+import { useContext, useState } from "react";
+
+import { DataContext } from "./AuctionPage";
 
 const NewAuctionPage = () => {
-  const categories = [
-    "Pokemon",
-    "Hockeykort",
-    "Digimon",
-    "Magic, The Gathering",
-    "Fotbollskort",
-  ];
+  const provider = useContext(DataContext);
 
-  const [auctionList, setAuctionList] = useState([]);
+  const loggedInUser = {
+    id: 1,
+  };
+
+  let allCategories = provider.products.map((product) => product.category);
+  let categories = allCategories.filter(
+    (item, i, arr) => arr.indexOf(item) === i
+  );
+
+  const [auctionList, setAuctionList] = useState(provider.myBidsProducts);
 
   const [auction, setAuction] = useState({
+    key: 15,
     image: "",
     category: "",
     name: "",
     description: "",
-    bidPrice: "",
-    buyout: "",
-    endDate: "",
+    startPrice: "",
+    highestBid: 50,
+    endTime: "2022-03-24 20:30",
+    ownerId: loggedInUser.id,
+    orderStatus: "bidding",
+    myBid: 50,
   });
 
-  const handleAuctionSubmit = (e) => {
-
-    setAuctionList([...auctionList, auction]);
+  const handleChangeImage = (e) => {
+    e.preventDefault();
+    const tempImage = URL.createObjectURL(e.target.files[0]);
+    setAuction({ ...auction, image: tempImage });
   };
 
+  const handleAuctionSubmit = (e) => {
+    e.preventDefault();
+    if (auction.category && auction.name && auction.description) {
+      provider.setMyBidsProducts([...provider.myBidsProducts, auction]);
+      setAuction({
+        name: "",
+        category: "",
+        description: "",
+        buyout: "",
+        startPrice: "",
+      });
+    } else {
+      alert("enter values");
+    }
+  };
+
+  console.log(auction);
   const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -38,31 +64,31 @@ const NewAuctionPage = () => {
 
   return (
     <>
-      <h1>Post new auction!!</h1>
       <div className="new-auction-page-container">
         <form className="new-auction-page-form">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Name:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="name"
               name="name"
+              value={auction.name}
               onChange={handleChange}
             />
           </div>
 
-          <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className="input-group mb-3">
+            <label className="input-group-text" htmlFor="inputGroupSelect01">
               Category:
             </label>
             <select
               onClick={handleChange}
-              class="form-select"
+              className="form-select"
               id="category"
               name="category"
             >
@@ -72,79 +98,92 @@ const NewAuctionPage = () => {
               })}
             </select>
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Description:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="description"
               name="description"
-              defaultValue={auction.description}
+              value={auction.description}
               onChange={handleChange}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
-              Bid price:
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
+              Start price:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              id="bidPrice"
-              name="bidPrice"
-              defaultValue={auction.bidPrice}
+              id="startPrice"
+              name="startPrice"
+              value={auction.startPrice}
               onChange={handleChange}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Buyout:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="buyout"
               name="buyout"
-              defaultValue={auction.buyout}
+              value={auction.buyout}
+              onChange={handleChange}
+            />
+          </div>
+        </form>
+        <form className="new-auction-page-form">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
+              End Time:
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              id="endTime"
+              name="endTime"
+              value={auction.endTime}
               onChange={handleChange}
             />
           </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               End Date:
             </span>
             <input
               placeholder="Select date"
               type="date"
               id="example"
-              class="form-control"
+              className="form-control"
               name="endDate"
               onChange={handleChange}
             />
           </div>
 
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <input
-              onChange={handleChange}
+              onChange={handleChangeImage}
               type="file"
-              class="form-control"
+              className="form-control"
               id="inputGroupFile02"
               name="image"
             />
-            <label class="input-group-text" for="inputGroupFile02">
-              Upload
-            </label>
           </div>
-
           <button
             className="submit-button-profile"
             onClick={handleAuctionSubmit}
@@ -152,9 +191,12 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-        <div>
-          <img src={auction.image} className="new-auction-page-picture" />
-        </div>
+
+        <img
+          src={auction.image}
+          className="new-auction-page-picture"
+          alt="new-auction"
+        />
       </div>
     </>
   );

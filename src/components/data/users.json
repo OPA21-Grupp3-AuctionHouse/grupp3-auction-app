@@ -1,37 +1,28 @@
-[
+{
+  "users": [
     {
-        "firstName": "Test1",
-        "lastName": "Person1",
-        "username": "testperson1",
-        "email": "testperson1@gmail.com",
-        "password": "polkadot"
-      },
-      {
-        "firstName": "Test2",
-        "lastName": "Person2",
-        "username": "testperson2",
-        "email": "testperson2@gmail.com",
-        "password": "easter"
-      },
-      {
-        "firstName": "Test3",
-        "lastName": "Person3",
-        "username": "testperson3",
-        "email": "testperson3@gmail.com",
-        "password": "christmas"
-      },
-      {
-        "firstName": "Test4",
-        "lastName": "Person4",
-        "username": "testperson4",
-        "email": "testperson4@gmail.com",
-        "password": "midsommar"
-      },
-      {
-        "firstName": "Test5",
-        "lastName": "Person5",
-        "username": "testperson5",
-        "email": "testperson5@gmail.com",
-        "password": "halloween"
-      }
-]
+      "email": "tajianaodero@gmail.com",
+      "password": "$2a$10$/LVfw5067YNGcnTSR/WB2uqxF7eGAxckd0/flhC1SF/tKSwgcM.my",
+      "firstname": "Tajiana",
+      "lastname": "Odero",
+      "username": "taj",
+      "id": 1
+    },
+    {
+      "email": "testperson1@gmail.com",
+      "password": "$2a$10$p0Y/2Chppa4WAWpl/64XQe6eRuykNOjosZF53FsZxN/jIKD8xBQPy",
+      "firstname": "Test1",
+      "lastname": "Person1",
+      "username": "TP1",
+      "id": 2
+    },
+    {
+      "email": "emilmogensen@gmail.com",
+      "password": "$2a$10$yDgdoeahD23a5tiyOqs3i./M0tGHlA4pd0MyIfYJV256N6a/R6CHC",
+      "firstname": "Emil",
+      "lastname": "Mogensen",
+      "username": "EM",
+      "id": 3
+    }
+  ]
+}

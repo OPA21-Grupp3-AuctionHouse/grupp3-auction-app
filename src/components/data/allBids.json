@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "auctionId": 1,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 50
+  },
+  {
+    "id": 2,
+    "userId": 2,
+    "auctionId": 1,
+    "dateTime": "2022-03-24 21:30",
+    "amount": 40
+  },
+  {
+    "id": 3,
+    "userId": 3,
+    "auctionId": 2,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 70
+  },
+  {
+    "id": 4,
+    "userId": 5,
+    "auctionId": 2,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 80
+  },
+  {
+    "id": 5,
+    "userId": 1,
+    "auctionId": 3,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 70
+  },
+  {
+    "id": 6,
+    "userId": 5,
+    "auctionId": 4,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 60
+  },
+  {
+    "id": 7,
+    "userId": 2,
+    "auctionId": 4,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 70
+  },
+  {
+    "id": 8,
+    "userId": 4,
+    "auctionId": 5,
+    "dateTime": "2022-03-24 20:30",
+    "amount": 40
+  }
+]

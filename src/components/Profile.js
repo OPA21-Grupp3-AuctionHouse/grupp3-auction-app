@@ -67,26 +67,26 @@ const Profile = () => {
     <>
       <div className="profile-outer-div">
         <form>
-          <div class="col-auto">
-            <label for="staticEmail2" class="visually-hidden">
+          <div className="col-auto">
+            <label htmlFor="staticEmail2" class="visually-hidden">
               Username:
             </label>
             <input
               type="text"
-              readonly
+              readOnly
               class="form-control-plaintext"
               id="staticEmail2"
               value={user.username}
             />
           </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Name:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="name"
@@ -96,13 +96,13 @@ const Profile = () => {
             />
           </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Email:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="email"
@@ -111,12 +111,12 @@ const Profile = () => {
               onChange={handleChange}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Street:
             </span>
             <input
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               type="text"
@@ -126,13 +126,13 @@ const Profile = () => {
               onChange={handleChange}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Areacode:
             </span>
             <div>
               <input
-                class="form-control"
+                className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 type="text"
@@ -143,13 +143,13 @@ const Profile = () => {
               />
             </div>
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               City:
             </span>
 
             <input
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               type="text"
@@ -170,13 +170,13 @@ const Profile = () => {
         </form>
 
         <form style={{ marginTop: "8vh" }}>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Current Password:
             </span>
 
             <input
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               type="text"
@@ -185,13 +185,13 @@ const Profile = () => {
               onChange={handleChangePassword}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               New Password:
             </span>
 
             <input
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               type="text"
@@ -200,8 +200,8 @@ const Profile = () => {
               onChange={handleChangePassword}
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               Repeat Password:
             </span>
 
