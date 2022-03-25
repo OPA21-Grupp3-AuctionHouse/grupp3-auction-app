@@ -25,10 +25,19 @@ const Login = () => {
           display: error ? "" : "none",
         }}
       >
-        <p className="errorMessage">Please enter all the fields</p>
+        <p className="errorMessage">Incorrect email or password</p>
       </div>
     );
   };
+
+  function CheckError(response) {
+    if (response.status >= 200 && response.status <= 299) {
+      navigate("/startpage");
+      return response.json();
+    } else {
+      throw Error("Incorrect password");
+    }
+  }
 
   // Handling form submit
   const handleSubmit = (e) => {
@@ -44,10 +53,10 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
-        .then((res) => res.json())
-        .then((data) => console.log(data.user));
-
-      navigate("/startpage/*");
+        .then(CheckError)
+        // .then((res) => res.json())
+        // .then((data) => console.log(data.user))
+        .catch((error) => {console.log(error)});
     }
   };
 

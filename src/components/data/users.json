@@ -15,6 +15,14 @@
       "lastname": "Person1",
       "username": "TP1",
       "id": 2
+    },
+    {
+      "email": "emilmogensen@gmail.com",
+      "password": "$2a$10$yDgdoeahD23a5tiyOqs3i./M0tGHlA4pd0MyIfYJV256N6a/R6CHC",
+      "firstname": "Emil",
+      "lastname": "Mogensen",
+      "username": "EM",
+      "id": 3
     }
   ]
 }

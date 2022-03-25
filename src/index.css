@@ -1,10 +1,10 @@
-/* .App {
+.App {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #050933;
-} */
+}
 
 .new-auction-page-container {
   display: flex;
@@ -41,8 +41,14 @@ p {
   font-size: 20px;
 }
 
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 /* css for the header */
 header {
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,6 +58,7 @@ header {
 
 /* css for the welcomePage */
 .landing {
+  color: white;
   display: flex;
   margin-top: 50px;
   align-items: center;
@@ -65,7 +72,7 @@ header {
 }
 
 .welcomeText {
-  flex: 2;
+  flex: 3;
 }
 
 .welcomeLogin {
