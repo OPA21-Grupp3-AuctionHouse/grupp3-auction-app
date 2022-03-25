@@ -7,6 +7,8 @@ import Register from "./components/LoginRegister/Register";
 import WelcomePageHeader from "./components/WelcomePageHeader";
 import WelcomePage from "./components/WelcomePage";
 import AuctionPage from "./components/AuctionPage";
+import WelcomePageFooter from "./components/WelcomePageFooter";
+import Preview from "./components/Preview";
 
 function App() {
   return (
@@ -16,16 +18,22 @@ function App() {
           exact
           path="/"
           element={
-            <div className="welcomeContainer">
-              <WelcomePageHeader />
-              <Row className="landing">
-                <Col>
-                  <WelcomePage />
-                </Col>
-                <Col>
-                  <Login />
-                </Col>
-              </Row>
+            <div className="welcomePageStart">
+              <div>
+                <WelcomePageHeader />
+                <Row className="landing">
+                  <Col>
+                    <WelcomePage />{" "}
+                  </Col>
+                  <Col>
+                    <Login />
+                  </Col>
+                 </Row>
+                <WelcomePageFooter />
+              </div>
+              <div>
+                <Preview />
+              </div>
             </div>
           }
         />
