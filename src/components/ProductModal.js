@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { DataContext } from "./AuctionPage";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { v4 as uuidv4 } from 'uuid';
 
 function ProductModal(props) {
+  const provider = useContext(DataContext);
+
   const [input, setInput] = useState(0);
 
   const handleChange = (e) => {
@@ -16,8 +20,18 @@ function ProductModal(props) {
     //props.placeBid()
     if (input < Math.max(...props.bids) + 10) {
       console.log("Bid too low.")
+    } else {
+      const newBid = {
+        "id": uuidv4(),
+        "userId": 5,
+        "auctionId": props.product.key,
+        "dateTime": "2022-03-25 10:30",
+        "amount": input
+      }
+
+      provider.setBids([...provider.bids, newBid])
+      console.log(provider.bids)
     }
-    console.log(input);
   };
 
   return (

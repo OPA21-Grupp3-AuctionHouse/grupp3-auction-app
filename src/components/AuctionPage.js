@@ -32,9 +32,10 @@ function AuctionPage() {
   const [filteredView, setFilteredView] = useState(Boolean);
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
 
-  const loadProducts = () => {
-    setProducts(Products);
-    filteredView(false);
+  const loadProducts = (e) => {
+    e.preventDefault();
+
+    setFilteredView(false);
   };
 
   const sortBySearch = (searchInput) => {

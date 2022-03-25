@@ -17,10 +17,6 @@ const ProductCard = ({ product }) => {
     setBids(bidAmount)
   };
 
-  const placeBid = (bid) => {
-    //provider.setBids(...bid)
-  }
-
   const handleClick = (e) => {
     e.preventDefault();
 
@@ -71,7 +67,6 @@ const ProductCard = ({ product }) => {
         onHide={() => setModalShow(false)}
         product={product}
         bids={bids}
-        //placeBid={placeBid()}
       />
     </>
   );
