@@ -35,6 +35,7 @@ const Login = () => {
       navigate("/startpage");
       return response.json();
     } else {
+      setError(true);
       throw Error("Incorrect password");
     }
   }
@@ -42,22 +43,17 @@ const Login = () => {
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (formData.email === "" || formData.password === "") {
-      setError(true);
-    } else {
-      setSubmitted(true);
-      setError(false);
-      fetch("http://localhost:3333/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      })
-        .then(CheckError)
-        // .then((res) => res.json())
-        // .then((data) => console.log(data.user))
-        .catch((error) => {console.log(error)});
-    }
+    setSubmitted(true);
+    setError(false);
+    fetch("http://localhost:3333/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then(CheckError)
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // handling the input changes
@@ -69,15 +65,13 @@ const Login = () => {
   return (
     <>
       <Container>
-        <Row className="mt-5">
+        <Row>
           <Col>
             <Form onSubmit={(e) => handleSubmit(e)}>
               <h3 className="text-success p-3 text-center">Login</h3>
 
               {/* Calling to error message */}
-              <div className="messages">
-                {errorMessage()}
-              </div>
+              <div className="messages">{errorMessage()}</div>
 
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Email address</Form.Label>

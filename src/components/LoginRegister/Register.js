@@ -28,30 +28,38 @@ const Register = () => {
           display: error ? "" : "none",
         }}
       >
-        <p className="errorMessage">Please enter all the fields</p>
+        <p className="errorMessage">
+          Password is too short. Must be 4 characters or more
+        </p>
       </div>
     );
   };
 
+  function CheckError(response) {
+    if (response.status >= 200 && response.status <= 299) {
+      navigate("/startpage");
+      return response.json();
+    } else {
+      setError(true);
+      throw Error("Incorrect password");
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.email === "" || formData.password === "" || formData.username === "" || formData.firstname === "" || formData.lastname === "") {
-      setError(true);
-    } else {
-      setSubmitted(true);
-      setError(false);
-      fetch("http://localhost:3333/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-
-      navigate("/startpage");
-    }
-};
+    setSubmitted(true);
+    setError(false);
+    fetch("http://localhost:3333/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then(CheckError)
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,22 +71,30 @@ const Register = () => {
       <Container>
         <Row className="mt-5">
           <Col>
-            <Form onSubmit={e => handleSubmit(e)}>
+            <Form onSubmit={(e) => handleSubmit(e)}>
               <h3 className="text-success p-3 text-center">Register</h3>
-
-              {/* Calling to error message */}
-              <div className="messages">
-                {errorMessage()}
-              </div>
 
               <Form.Group className="mb-3" controlId="validationCustom01">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control required type="text" placeholder="First Name" name="firstname" onChange={e => handleChange(e)}/>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="First Name"
+                  name="firstname"
+                  onChange={(e) => handleChange(e)}
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="validationCustom02">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control required type="text" placeholder="Last Name" value={formData.lastname}  name="lastname" onChange={e => handleChange(e)}/>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Last Name"
+                  value={formData.lastname}
+                  name="lastname"
+                  onChange={(e) => handleChange(e)}
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="validationCustomUsername">
@@ -91,7 +107,7 @@ const Register = () => {
                     placeholder="Username"
                     value={formData.username}
                     name="username"
-                    onChange={e => handleChange(e)}
+                    onChange={(e) => handleChange(e)}
                     aria-describedby="inputGroupPrepend"
                   />
                 </InputGroup>
@@ -99,12 +115,29 @@ const Register = () => {
 
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control required type="email" placeholder="Email" value={formData.email} name="email" onChange={e => handleChange(e)} />
+                <Form.Control
+                  required
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  name="email"
+                  onChange={(e) => handleChange(e)}
+                />
               </Form.Group>
+
+              {/* Calling to error message */}
+              <div className="messages">{errorMessage()}</div>
 
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Password</Form.Label>
-                <Form.Control required type="password" placeholder="Password" value={formData.password} name="password" onChange={e => handleChange(e)}/>
+                <Form.Control
+                  required
+                  type="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  name="password"
+                  onChange={(e) => handleChange(e)}
+                />
               </Form.Group>
 
               <div className="d-grid gap-2">
@@ -116,7 +149,6 @@ const Register = () => {
               <p>
                 Already registered <Link to="/">log in?</Link>
               </p>
-
             </Form>
           </Col>
         </Row>

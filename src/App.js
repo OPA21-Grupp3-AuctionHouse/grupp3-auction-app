@@ -22,10 +22,10 @@ function App() {
               <div className="welcomeContainer">
                 <WelcomePageHeader />
                 <Row className="landing">
-                  <Col>
+                  <Col className="leftSide">
                     <WelcomePage />
                   </Col>
-                  <Col>
+                  <Col className="rightSide">
                     <Login />
                   </Col>
                 </Row>
