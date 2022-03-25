@@ -1,10 +1,8 @@
 const WelcomePageHeader = () => {
     return (
-        <div>
-            <header className="welcomePageHeader">
-                <h1>Card Bazaar</h1>
-            </header>
-        </div>
+        <header>
+            <h1 className="welcomePageHeader">Card Bazaar</h1>
+        </header>
     );
 };
 
