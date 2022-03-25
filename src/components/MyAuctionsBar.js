@@ -19,7 +19,7 @@ const MyAuctionsBar = () => {
       if (provider.filteredView) {
         provider.setSearchResult([...provider.searchResult.sort(compareName)]);
       } else {
-        provider.setProducts([...provider.myProducts.sort(compareName)]);
+        provider.setProducts([...provider.products.sort(compareName)]);
       }
     } else if (e.target.value === "startPrice") {
       if (provider.filteredView) {
@@ -100,7 +100,7 @@ const MyAuctionsBar = () => {
   }
 
   function compareMyBid(a, b) {
-    return a.startPrice - b.startPrice;
+    return a.price - b.price;
   }
 
   function compareHighestBid(a, b) {
