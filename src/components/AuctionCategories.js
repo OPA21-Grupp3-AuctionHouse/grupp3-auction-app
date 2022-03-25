@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 function AuctionCategories({ sortBySearch }) {
   const categories = [
@@ -36,7 +37,7 @@ function AuctionCategories({ sortBySearch }) {
   return (
     <div className="auction-categories-container">
       {categories.map((category) => (
-        <button onClick={handleClick} value={category}>
+        <button key={uuidv4()} onClick={handleClick} value={category}>
           {category}
         </button>
       ))}

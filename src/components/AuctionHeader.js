@@ -1,7 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function AuctionHeader({loadProducts}) {
+function AuctionHeader({ loadProducts }) {
   return (
     <div className="auction-header-container">
       <ul>
