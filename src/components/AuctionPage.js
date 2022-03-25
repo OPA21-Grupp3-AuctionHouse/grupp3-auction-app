@@ -18,8 +18,6 @@ import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import StartPage from "./StartPage";
 import Bids from "./data/allBids.json";
-import MyFollowSort from "./MyFollowSort";
-import MyFollowPage from "./MyFollowPage";
 import myBids from "./data/myBids.json";
 
 export const DataContext = createContext();
@@ -212,8 +210,6 @@ function AuctionPage() {
                   }}
                 >
                   <UnderNav />
-                  <MyFollowSort />
-                  <MyFollowPage />
                 </DataContext.Provider>
               </div>
             }
