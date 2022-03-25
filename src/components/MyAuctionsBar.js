@@ -73,11 +73,7 @@ const MyAuctionsBar = () => {
       >
         Highest bid
       </button>
-      <button
-        className="myBid-price-bar"
-        onClick={sortColumn}
-        value="buyout"
-      >
+      <button className="myBid-price-bar" onClick={sortColumn} value="buyout">
         Buyout
       </button>
     </div>

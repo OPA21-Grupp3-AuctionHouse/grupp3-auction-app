@@ -131,6 +131,8 @@ function AuctionPage() {
                     searchResult,
                     setSearchResult,
                     filteredView,
+                    bids,
+                    setBids,
                   }}
                 >
                   <UnderNav />
@@ -150,6 +152,8 @@ function AuctionPage() {
                     value={{
                       products,
                       setProducts,
+                      bids,
+                      setBids,
                     }}
                   >
                     <UnderNav />
@@ -172,6 +176,8 @@ function AuctionPage() {
                       searchResult,
                       setSearchResult,
                       filteredView,
+                      bids,
+                      setBids,
                     }}
                   >
                     <UnderNav />
@@ -203,6 +209,8 @@ function AuctionPage() {
                     value={{
                       orderProducts,
                       setOrderProducts,
+                      bids,
+                      setBids,
                     }}
                   >
                     <UnderNav />
