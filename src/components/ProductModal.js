@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { DataContext } from "./AuctionPage";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { v4 as uuidv4 } from 'uuid';
 
 function ProductModal(props) {
+  const provider = useContext(DataContext);
+
   const [input, setInput] = useState(0);
 
   const handleChange = (e) => {
@@ -14,7 +18,20 @@ function ProductModal(props) {
     e.preventDefault();
     //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
     //props.placeBid()
-    console.log(input);
+    if (input < Math.max(...props.bids) + 10) {
+      console.log("Bid too low.")
+    } else {
+      const newBid = {
+        "id": uuidv4(),
+        "userId": 5,
+        "auctionId": props.product.key,
+        "dateTime": "2022-03-25 10:30",
+        "amount": input
+      }
+
+      provider.setBids([...provider.bids, newBid])
+      console.log(provider.bids)
+    }
   };
 
   return (
@@ -52,7 +69,8 @@ function ProductModal(props) {
             <label>
               Place your bid{" "}
               <input
-                type="text"
+                type="number"
+                min={Math.max(...props.bids) + 10}
                 //placeholder="Bid..."
                 name="bid"
                 onChange={handleChange}

@@ -6,6 +6,22 @@ const ProductCard = ({ product, pageSource }) => {
   const [modalShow, setModalShow] = useState(false);
   const provider = useContext(DataContext);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
+  const [bids, setBids] = useState([]);
+
+  const loadBids = () => {
+    let productBids = provider.bids.filter(bid => bid.auctionId === product.key);
+    let bidAmount = productBids.map(bid => bid.amount)
+
+    setBids(bidAmount)
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    loadBids();
+    setModalShow(true);
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDate(new Date().getTime());
