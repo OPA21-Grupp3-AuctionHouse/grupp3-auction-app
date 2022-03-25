@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container, InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LoginRegister.css";
 
 const Register = () => {
+  // states for register
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -12,21 +13,49 @@ const Register = () => {
     password: "",
   });
 
+  // States for checking the errors
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+
+  let navigate = useNavigate();
+
+  // Showing error message if error is true
+  const errorMessage = () => {
+    return (
+      <div
+        className="error"
+        style={{
+          display: error ? "" : "none",
+        }}
+      >
+        <p className="errorMessage">Please enter all the fields</p>
+      </div>
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3333/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    if (formData.email === "" || formData.password === "" || formData.username === "" || formData.firstname === "" || formData.lastname === "") {
+      setError(true);
+    } else {
+      setSubmitted(true);
+      setError(false);
+      fetch("http://localhost:3333/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
 
+      navigate("/startpage/*");
+    }
 };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSubmitted(false);
   };
 
   return (
@@ -36,6 +65,11 @@ const Register = () => {
           <Col>
             <Form onSubmit={e => handleSubmit(e)}>
               <h3 className="text-success p-3 text-center">Register</h3>
+
+              {/* Calling to error message */}
+              <div className="messages">
+                {errorMessage()}
+              </div>
 
               <Form.Group className="mb-3" controlId="validationCustom01">
                 <Form.Label>First Name</Form.Label>
@@ -65,12 +99,12 @@ const Register = () => {
 
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Email" value={formData.email} name="email" onChange={e => handleChange(e)} />
+                <Form.Control required type="email" placeholder="Email" value={formData.email} name="email" onChange={e => handleChange(e)} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={formData.password} name="password" onChange={e => handleChange(e)}/>
+                <Form.Control required type="password" placeholder="Password" value={formData.password} name="password" onChange={e => handleChange(e)}/>
               </Form.Group>
 
               <div className="d-grid gap-2">

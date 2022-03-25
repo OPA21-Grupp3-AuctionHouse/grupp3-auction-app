@@ -4,37 +4,57 @@ import { Link, useNavigate } from "react-router-dom";
 import "./LoginRegister.css";
 
 const Login = () => {
+  //states for login
   const [formData, setFormData] = useState({
     email: "", // required
     password: "", // required
   });
+
+  // States for checking the errors
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+
   let navigate = useNavigate();
 
+  // Showing error message if error is true
+  const errorMessage = () => {
+    return (
+      <div
+        className="error"
+        style={{
+          display: error ? "" : "none",
+        }}
+      >
+        <p className="errorMessage">Please enter all the fields</p>
+      </div>
+    );
+  };
+
+  // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3333/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data.user));
+    if (formData.email === "" || formData.password === "") {
+      setError(true);
+    } else {
+      setSubmitted(true);
+      setError(false);
+      fetch("http://localhost:3333/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data.user));
 
-      navigate('/startpage/*')
-    /* .then((accessToken) => {
-        localStorage.setItem(
-          "login",
-          JSON.stringify({
-            userLogin: true,
-            token: accessToken
-          })
-        );
-      }) */
+      navigate("/startpage/*");
+    }
   };
 
+  // handling the input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSubmitted(false);
   };
 
   return (
@@ -44,9 +64,16 @@ const Login = () => {
           <Col>
             <Form onSubmit={(e) => handleSubmit(e)}>
               <h3 className="text-success p-3 text-center">Login</h3>
+
+              {/* Calling to error message */}
+              <div className="messages">
+                {errorMessage()}
+              </div>
+
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
+                  required
                   type="email"
                   placeholder="Email"
                   value={formData.email}
@@ -58,6 +85,7 @@ const Login = () => {
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   type="password"
                   placeholder="Password"
                   value={formData.password}
