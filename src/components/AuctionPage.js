@@ -76,6 +76,7 @@ function AuctionPage() {
   };
 
   return (
+    <div className="auction-outer-outer-container">
     <div className="auction-outer-container">
       <AuctionHeader />
 
@@ -237,6 +238,7 @@ function AuctionPage() {
           />
         </Routes>
       </div>
+    </div>
     </div>
   );
 }

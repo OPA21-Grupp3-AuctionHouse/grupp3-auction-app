@@ -4,6 +4,13 @@
   align-items: center;
   background-color: #050933;
 }
+.auction-outer-outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #050933;
+  height: 100vh;
+}
 
 .new-auction-page-container {
   display: flex;
@@ -46,9 +53,10 @@ p {
   height: 100vh;
 }
 
-.welcomeOuter{
+.welcomeOuter {
   display: flex;
   flex-direction: column;
+  height: 200vh;
 }
 
 /* css for the header */
@@ -62,12 +70,12 @@ header {
 }
 
 /* css for the welcomePage */
-.WelcomePageStart{
+.WelcomePageStart {
   display: flex;
   flex-direction: column;
 }
 
-.WelcomePageStart>div{
+.WelcomePageStart > div {
   height: 100vh;
 }
 
@@ -511,11 +519,11 @@ header {
   justify-content: center;
 }
 
-.welcomePageHeader{
+.welcomePageHeader {
   margin: 0%;
 }
 
-.arrow-down{
+.arrow-down {
   color: white;
   display: flex;
   justify-content: center;
