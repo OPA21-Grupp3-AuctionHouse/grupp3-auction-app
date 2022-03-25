@@ -24,7 +24,6 @@ import AllBids from "./data/allBids.json";
 export const DataContext = createContext();
 
 function AuctionPage() {
-  const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
   const [bids, setBids] = useState(AllBids);
   const [orderProducts, setOrderProducts] = useState(OrderData);

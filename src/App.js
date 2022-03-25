@@ -16,23 +16,23 @@ function App() {
           exact
           path="/"
           element={
-            <>
+            <div className="welcomeContainer">
               <WelcomePageHeader />
               <Row className="landing">
                 <Col>
-                  <WelcomePage />{" "}
+                  <WelcomePage />
                 </Col>
                 <Col>
                   <Login />
                 </Col>
               </Row>
-            </>
+            </div>
           }
         />
         <Route
           path="/register"
           element={
-            <>
+            <div className="welcomeContainer">
               <WelcomePageHeader />
               <Row className="landing">
                 <Col>
@@ -42,7 +42,7 @@ function App() {
                   <Register />
                 </Col>
               </Row>
-            </>
+            </div>
           }
         />
         <Route path="/startpage/*" element={<AuctionPage />} />
