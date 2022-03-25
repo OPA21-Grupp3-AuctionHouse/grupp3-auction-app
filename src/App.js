@@ -18,7 +18,7 @@ function App() {
           exact
           path="/"
           element={
-            <>
+            <div className="welcomeOuter">
               <div className="welcomeContainer">
                 <WelcomePageHeader />
                 <Row className="landing">
@@ -34,7 +34,7 @@ function App() {
               <div>
                 <Preview />
               </div>
-            </>
+            </div>
           }
         />
         <Route

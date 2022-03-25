@@ -43,6 +43,12 @@ p {
 .welcomeContainer {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+
+.welcomeOuter{
+  display: flex;
+  flex-direction: column;
 }
 
 /* css for the header */
