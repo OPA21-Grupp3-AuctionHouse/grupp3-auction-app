@@ -69,9 +69,9 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="product-image">
             <img className="Card-image-css" src={product.image}></img>
           </div>
-          <div className="product-name">{product.name}</div>
-          <div className="product-endTime">{product.timeRemaining}</div>
-          <div className="product-myBid">{product.myBid}</div>
+          <div className="mybid-name">{product.name}</div>
+          <div className="mybid-endTime">{product.timeRemaining}</div>
+          <div className="product-myBid">{}</div>
           <div className="product-myBid">{product.price}</div>
           <div className="product-myBid">
             {product.buyout}
@@ -93,11 +93,11 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="product-image">
             <img className="Card-image-css" src={product.image}></img>
           </div>
-          <div className="product-name">{product.name}</div>
-          <div className="product-endTime">{product.timeRemaining}</div>
-          <div className="product-myAuctionBid">{product.startPrice}</div>
-          <div className="product-myAuctionBid">{product.price}</div>
-          <div className="product-myAuctionBid">
+          <div className="mybid-name">{product.name}</div>
+          <div className="mybid-endTime">{product.timeRemaining}</div>
+          <div className="product-myBid">{product.price}</div>
+          <div className="product-myBid">{product.price}</div>
+          <div className="product-myBid">
             {product.buyout}
             <button>BUY</button>
             <button value={product.key} onClick={delAuction}>

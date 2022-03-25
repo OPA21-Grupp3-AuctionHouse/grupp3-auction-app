@@ -174,6 +174,16 @@ header {
   width: 100%;
 }
 
+.mybid-name-bar,
+.mybid-description-bar,
+.mybid-image-bar,
+.mybid-name,
+.mybid-endTime {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+
 .search-form {
   width: 100%;
   height: 100%;
