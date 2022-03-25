@@ -23,22 +23,16 @@ const NewAuctionPage = () => {
     Onemonth: 2592000000,
   };
 
-  const [auctionList, setAuctionList] = useState(provider.myBidsProducts);
-  console.log(auctionList);
-  console.log(provider.myBidsProducts);
-
   const [auction, setAuction] = useState({
     key: 15,
     image: "",
     category: "",
     name: "",
     description: "",
-    startPrice: "",
-    highestBid: 50,
+    price: "",
     endTime: "2022-03-24 20:30",
     ownerId: loggedInUser.id,
     orderStatus: "bidding",
-    myBid: 50,
     buyout: "",
   });
 
@@ -50,14 +44,8 @@ const NewAuctionPage = () => {
 
   const handleAuctionSubmit = (e) => {
     e.preventDefault();
-    if (
-      auction.category &&
-      auction.name &&
-      auction.description &&
-      auction.endTime &&
-      auction.startPrice >= 50
-    ) {
-      provider.setMyBidsProducts([...provider.myBidsProducts, auction]);
+    if (auction.category && auction.name && auction.description) {
+      provider.setProducts([...provider.products, auction]);
       setAuction({
         name: "",
         category: "",
@@ -139,9 +127,9 @@ const NewAuctionPage = () => {
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              id="startPrice"
-              name="startPrice"
-              value={auction.startPrice}
+              id="price"
+              name="price"
+              value={auction.price}
               onChange={handleChange}
             />
           </div>

@@ -42,9 +42,9 @@ function AuctionPage() {
     password: "hej",
   });
 
-  const loadProducts = () => {
-    setProducts(Products);
-    filteredView(false);
+  const loadProducts = (e) => {
+    e.preventDefault();
+    setFilteredView(false);
   };
 
   const sortBySearch = (searchInput) => {
@@ -78,7 +78,7 @@ function AuctionPage() {
 
   return (
     <div className="auction-outer-container">
-      <AuctionHeader loadProducts={loadProducts} />
+      <AuctionHeader />
 
       <div className="auction-inner-container">
         {/* <Route exact path="/" element={<WelcomePage />} /> */}
@@ -130,8 +130,8 @@ function AuctionPage() {
               <div className="order-inner-inner-container">
                 <DataContext.Provider
                   value={{
-                    myBidsProducts,
-                    setMyBidsProducts,
+                    products,
+                    setProducts,
                     searchResult,
                     setSearchResult,
                     filteredView,
@@ -154,8 +154,6 @@ function AuctionPage() {
                     value={{
                       products,
                       setProducts,
-                      myBidsProducts,
-                      setMyBidsProducts,
                     }}
                   >
                     <UnderNav />
@@ -173,8 +171,8 @@ function AuctionPage() {
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
-                      myBidsProducts,
-                      setMyBidsProducts,
+                      products,
+                      setProducts,
                       searchResult,
                       setSearchResult,
                       filteredView,

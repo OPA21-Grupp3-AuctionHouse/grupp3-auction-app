@@ -13,25 +13,19 @@ const MyBidsSortBar = () => {
           ...provider.searchResult.sort(compareTimeRemaining),
         ]);
       } else {
-        provider.setMyBidsProducts([
-          ...provider.myBidsProducts.sort(compareTimeRemaining),
-        ]);
+        provider.setProducts([...provider.products.sort(compareTimeRemaining)]);
       }
     } else if (e.target.value === "name") {
       if (provider.filteredView) {
         provider.setSearchResult([...provider.searchResult.sort(compareName)]);
       } else {
-        provider.setMyBidsProducts([
-          ...provider.myBidsProducts.sort(compareName),
-        ]);
+        provider.setProducts([...provider.products.sort(compareName)]);
       }
     } else if (e.target.value === "myBid") {
       if (provider.filteredView) {
         provider.setSearchResult([...provider.searchResult.sort(compareMyBid)]);
       } else {
-        provider.setMyBidsProducts([
-          ...provider.myBidsProducts.sort(compareMyBid),
-        ]);
+        provider.setProducts([...provider.products.sort(compareMyBid)]);
       }
     } else if (e.target.value === "highestBid") {
       if (provider.filteredView) {
@@ -39,9 +33,7 @@ const MyBidsSortBar = () => {
           ...provider.searchResult.sort(compareHighestBid),
         ]);
       } else {
-        provider.setMyBidsProducts([
-          ...provider.myBidsProducts.sort(compareHighestBid),
-        ]);
+        provider.setProducts([...provider.products.sort(compareHighestBid)]);
       }
     } else if (e.target.value === "buyout") {
       if (provider.filteredView) {
@@ -49,9 +41,7 @@ const MyBidsSortBar = () => {
           ...provider.searchResult.sort(compareBuyout),
         ]);
       } else {
-        provider.setMyBidsProducts([
-          ...provider.myBidsProducts.sort(compareBuyout),
-        ]);
+        provider.setProducts([...provider.products.sort(compareBuyout)]);
       }
     }
   };
@@ -110,7 +100,7 @@ const MyBidsSortBar = () => {
   }
 
   function compareHighestBid(a, b) {
-    return a.highestBid - b.highestBid;
+    return a.price - b.price;
   }
 
   function compareBuyout(a, b) {
