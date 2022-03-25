@@ -405,7 +405,7 @@ header {
 }
 .images-head,
 .order-images {
-  width: 10%;
+  width: 20%;
   display: flex;
   justify-content: center;
 }
@@ -414,16 +414,22 @@ header {
 .status-head,
 .order-names,
 .order-status {
-  width: 25%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+.type-head,
+.order-type {
+  width: 13%;
   display: flex;
   justify-content: center;
 }
 
 .prices-head,
 .date-head,
-.order-prices,
+.order-price,
 .order-date {
-  width: 25%;
+  width: 20%;
   display: flex;
   justify-content: center;
 }
@@ -439,6 +445,9 @@ header {
   display: flex;
   align-items: center;
   border: 1px solid black;
+}
+.order-card:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 .orderSort-outer-container {
   width: 100%;
@@ -475,10 +484,6 @@ header {
 .Card-image-css:hover {
   height: 200px;
   z-index: 10;
-}
-
-.under-nav-container {
-  width: 100%;
 }
 
 .my-auction-bar {

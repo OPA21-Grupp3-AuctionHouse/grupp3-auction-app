@@ -18,6 +18,8 @@ import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import StartPage from "./StartPage";
 import Bids from "./data/allBids.json";
+import MyFollowSort from "./MyFollowSort";
+import MyFollowPage from "./MyFollowPage";
 
 export const DataContext = createContext();
 
@@ -192,11 +194,21 @@ function AuctionPage() {
             exact
             path="follow"
             element={
-              <>
-                <div>
+              <div className="order-inner-inner-container">
+                <DataContext.Provider
+                  value={{
+                    myBidsProducts,
+                    setMyBidsProducts,
+                    searchResult,
+                    setSearchResult,
+                    filteredView,
+                  }}
+                >
                   <UnderNav />
-                </div>
-              </>
+                  <MyFollowSort />
+                  <MyFollowPage />
+                </DataContext.Provider>
+              </div>
             }
           />
           <Route
