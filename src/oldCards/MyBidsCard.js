@@ -1,11 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
-import { DataContext } from "./AuctionPage";
-import ProductModal from "./ProductModal";
+import React, { useState, useEffect } from "react";
+import ProductModal from "../components/ProductModal";
 
-const MyAuctionsCard = ({ product }) => {
+const MyBidsCard = ({ product }) => {
   const [modalShow, setModalShow] = useState(false);
-  const provider = useContext(DataContext);
-
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,18 +11,6 @@ const MyAuctionsCard = ({ product }) => {
 
     return () => clearInterval(interval);
   }, []);
-
-  const delAuction = (e) => {
-    const toId = e.target.value;
-    if (window.confirm("Are you sure?")) {
-      const tempTestList = provider.myBidsProducts.filter(
-        (product) => product.key != toId
-      );
-      console.log(tempTestList);
-      provider.setMyBidsProducts(tempTestList);
-    }
-  };
-
   const msToTime = (s) => {
     const pad = (n, z) => {
       z = z || 2;
@@ -48,19 +33,14 @@ const MyAuctionsCard = ({ product }) => {
   return (
     <>
       <div className="product-card" onClick={() => setModalShow(true)}>
-        <div className="product-image">
-          <img className="Card-image-css" src={product.image}></img>
-        </div>
+        <div className="product-image">image</div>
         <div className="product-name">{product.name}</div>
         <div className="product-endTime">{product.timeRemaining}</div>
-        <div className="product-myAuctionBid">{product.startPrice}</div>
-        <div className="product-myAuctionBid">{product.highestBid}</div>
-        <div className="product-myAuctionBid">
+        <div className="product-myBid">{product.myBid}</div>
+        <div className="product-myBid">{product.highestBid}</div>
+        <div className="product-myBid">
           {product.buyout}
           <button>BUY</button>
-          <button value={product.key} onClick={delAuction}>
-            Delete
-          </button>
         </div>
       </div>
       <ProductModal
@@ -72,4 +52,4 @@ const MyAuctionsCard = ({ product }) => {
   );
 };
 
-export default MyAuctionsCard;
+export default MyBidsCard;

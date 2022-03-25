@@ -12,14 +12,14 @@ import OrderData from "./data/OrderData.json";
 import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
-import StartPage from "./StartPage";
 import MyBidsPage from "./MyBidsPage";
 import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
 import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
-import Bids from "./data/allBids.json"
+import StartPage from "./StartPage";
+import AllBids from "./data/allBids.json";
 
 export const DataContext = createContext();
 
@@ -31,10 +31,20 @@ function AuctionPage() {
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
+  const [allBids, setAllBids] = useState(AllBids);
+  const [user, setUser] = useState({
+    name: "blabla",
+    email: "blabla@bla.com",
+    username: "MyUsername",
+    street: "astreet",
+    areacode: "2121",
+    city: "acity",
+    password: "hej",
+  });
 
-  const loadProducts = () => {
-    setProducts(Products);
-    filteredView(false);
+  const loadProducts = (e) => {
+    e.preventDefault();
+    setFilteredView(false);
   };
 
   const sortBySearch = (searchInput) => {
@@ -72,7 +82,7 @@ function AuctionPage() {
 
   return (
     <div className="auction-outer-container">
-      <AuctionHeader loadProducts={loadProducts} />
+      <AuctionHeader />
 
       <div className="auction-inner-container">
         <Routes>
@@ -107,7 +117,14 @@ function AuctionPage() {
             path="profile"
             element={
               <>
-                <Profile />
+                <DataContext.Provider
+                  value={{
+                    user,
+                    setUser,
+                  }}
+                >
+                  <Profile />
+                </DataContext.Provider>
               </>
             }
           />
@@ -118,8 +135,8 @@ function AuctionPage() {
               <div className="order-inner-inner-container">
                 <DataContext.Provider
                   value={{
-                    myBidsProducts,
-                    setMyBidsProducts,
+                    products,
+                    setProducts,
                     searchResult,
                     setSearchResult,
                     filteredView,
@@ -142,8 +159,6 @@ function AuctionPage() {
                     value={{
                       products,
                       setProducts,
-                      myBidsProducts,
-                      setMyBidsProducts,
                     }}
                   >
                     <UnderNav />
@@ -161,8 +176,8 @@ function AuctionPage() {
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
-                      myBidsProducts,
-                      setMyBidsProducts,
+                      products,
+                      setProducts,
                       searchResult,
                       setSearchResult,
                       filteredView,

@@ -1,33 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { DataContext } from "./AuctionPage";
 import ProductModal from "./ProductModal";
-import { v4 as uuidv4 } from 'uuid';
+import { DataContext } from "../components/AuctionPage";
 
-const ProductCard = ({ product }) => {
-  const provider = useContext(DataContext);
-
+const ProductCard = ({ product, pageSource }) => {
   const [modalShow, setModalShow] = useState(false);
+  const provider = useContext(DataContext);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
-  const [bids, setBids] = useState([]);
-
-  const loadBids = () => {
-    let productBids = provider.bids.filter(bid => bid.auctionId === product.key);
-    let bidAmount = productBids.map(bid => bid.amount)
-
-    setBids(bidAmount)
-  };
-
-  const placeBid = (bid) => {
-    //provider.setBids(...bid)
-  }
-
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    loadBids();
-    setModalShow(true);
-  }
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDate(new Date().getTime());
@@ -55,26 +33,85 @@ const ProductCard = ({ product }) => {
   };
   product.timeRemaining = msToTime(Date.parse(product.endTime) - currentDate);
 
-  return (
-    <>
-      <div className="product-card" onClick={handleClick}>
-        <div className="product-image">image</div>
-        <div className="product-category">{product.category}</div>
-        <div className="product-name">{product.name}</div>
-        <div className="product-description">{product.description}</div>
-        <div className="product-time">{product.endTime}</div>
-        <div className="product-price">{product.price}</div>
-        <div className="product-buyout">{product.buyout}</div>
-      </div>
-      <ProductModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        product={product}
-        bids={bids}
-        //placeBid={placeBid()}
-      />
-    </>
-  );
+  const delAuction = (e) => {
+    const toId = e.target.value;
+    if (window.confirm("Are you sure?")) {
+      const tempTestList = provider.myBidsProducts.filter(
+        (product) => product.key != toId
+      );
+      console.log(tempTestList);
+      provider.setMyBidsProducts(tempTestList);
+    }
+  };
+
+  if (pageSource === "mybids") {
+    return (
+      <>
+        <div className="product-card" onClick={() => setModalShow(true)}>
+          <div className="product-image">
+            <img className="Card-image-css" src={product.image}></img>
+          </div>
+          <div className="product-name">{product.name}</div>
+          <div className="product-endTime">{product.timeRemaining}</div>
+          <div className="product-myBid">{product.myBid}</div>
+          <div className="product-myBid">{product.price}</div>
+          <div className="product-myBid">
+            {product.buyout}
+            <button>BUY</button>
+          </div>
+        </div>
+        <ProductModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          product={product}
+        />
+      </>
+    );
+  } else if (pageSource === "myauctions") {
+    return (
+      <>
+        <div className="product-card" onClick={() => setModalShow(true)}>
+          <div className="product-image">
+            <img className="Card-image-css" src={product.image}></img>
+          </div>
+          <div className="product-name">{product.name}</div>
+          <div className="product-endTime">{product.timeRemaining}</div>
+          <div className="product-myAuctionBid">{product.startPrice}</div>
+          <div className="product-myAuctionBid">{product.price}</div>
+          <div className="product-myAuctionBid">
+            {product.buyout}
+            <button>BUY</button>
+            <button value={product.key} onClick={delAuction}>
+              Delete
+            </button>
+          </div>
+        </div>
+        <ProductModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          product={product}
+        />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="product-card" onClick={() => setModalShow(true)}>
+          <div className="product-image">image</div>
+          <div className="product-category">{product.category}</div>
+          <div className="product-name">{product.name}</div>
+          <div className="product-description">{product.description}</div>
+          <div className="product-price">{product.price}</div>
+          <div className="product-buyout">{product.buyout}</div>
+        </div>
+        <ProductModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          product={product}
+        />
+      </>
+    );
+  }
 };
 
 export default ProductCard;
