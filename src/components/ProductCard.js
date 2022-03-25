@@ -9,10 +9,12 @@ const ProductCard = ({ product, pageSource }) => {
   const [bids, setBids] = useState([]);
 
   const loadBids = () => {
-    let productBids = provider.bids.filter(bid => bid.auctionId === product.key);
-    let bidAmount = productBids.map(bid => bid.amount)
+    let productBids = provider.bids.filter(
+      (bid) => bid.auctionId === product.key
+    );
+    let bidAmount = productBids.map((bid) => bid.amount);
 
-    setBids(bidAmount)
+    setBids(bidAmount);
   };
 
   const handleClick = (e) => {
@@ -20,7 +22,7 @@ const ProductCard = ({ product, pageSource }) => {
 
     loadBids();
     setModalShow(true);
-  }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,7 +65,7 @@ const ProductCard = ({ product, pageSource }) => {
   if (pageSource === "mybids") {
     return (
       <>
-        <div className="product-card" onClick={() => setModalShow(true)}>
+        <div className="product-card" onClick={handleClick}>
           <div className="product-image">
             <img className="Card-image-css" src={product.image}></img>
           </div>
@@ -80,13 +82,14 @@ const ProductCard = ({ product, pageSource }) => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           product={product}
+          bids={bids}
         />
       </>
     );
   } else if (pageSource === "myauctions") {
     return (
       <>
-        <div className="product-card" onClick={() => setModalShow(true)}>
+        <div className="product-card" onClick={handleClick}>
           <div className="product-image">
             <img className="Card-image-css" src={product.image}></img>
           </div>
@@ -106,17 +109,19 @@ const ProductCard = ({ product, pageSource }) => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           product={product}
+          bids={bids}
         />
       </>
     );
   } else {
     return (
       <>
-        <div className="product-card" onClick={() => setModalShow(true)}>
+        <div className="product-card" onClick={handleClick}>
           <div className="product-image">image</div>
           <div className="product-category">{product.category}</div>
           <div className="product-name">{product.name}</div>
           <div className="product-description">{product.description}</div>
+          <div className="product-time">{product.endTime}</div>
           <div className="product-price">{product.price}</div>
           <div className="product-buyout">{product.buyout}</div>
         </div>
@@ -124,6 +129,8 @@ const ProductCard = ({ product, pageSource }) => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           product={product}
+          bids={bids}
+          //placeBid={placeBid()}
         />
       </>
     );

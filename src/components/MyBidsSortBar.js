@@ -48,12 +48,12 @@ const MyBidsSortBar = () => {
 
   return (
     <div className="sort-outer-container">
-      <button className="image-bar">Image</button>
-      <button className="name-bar" onClick={sortColumn} value="name">
+      <button className="mybid-image-bar">Image</button>
+      <button className="mybid-name-bar" onClick={sortColumn} value="name">
         Name
       </button>
       <button
-        className="description-bar"
+        className="my-bid-description-bar"
         onClick={sortColumn}
         value="timeRemaining"
       >

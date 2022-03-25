@@ -26,7 +26,7 @@ export const DataContext = createContext();
 function AuctionPage() {
   const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
-  const [bids, setBids] = useState(Bids);
+  const [bids, setBids] = useState(AllBids);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
