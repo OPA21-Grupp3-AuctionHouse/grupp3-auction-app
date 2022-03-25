@@ -20,6 +20,7 @@ import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
 import StartPage from "./StartPage";
+import AllBids from "./data/allBids.json";
 
 export const DataContext = createContext();
 
@@ -30,6 +31,16 @@ function AuctionPage() {
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
+  const [allBids, setAllBids] = useState(AllBids);
+  const [user, setUser] = useState({
+    name: "blabla",
+    email: "blabla@bla.com",
+    username: "MyUsername",
+    street: "astreet",
+    areacode: "2121",
+    city: "acity",
+    password: "hej",
+  });
 
   const loadProducts = () => {
     setProducts(Products);
@@ -101,7 +112,14 @@ function AuctionPage() {
             path="profile"
             element={
               <>
-                <Profile />
+                <DataContext.Provider
+                  value={{
+                    user,
+                    setUser,
+                  }}
+                >
+                  <Profile />
+                </DataContext.Provider>
               </>
             }
           />
@@ -133,9 +151,12 @@ function AuctionPage() {
               <>
                 <div>
                   <DataContext.Provider
-                    value={
-                      {products, setProducts, myBidsProducts, setMyBidsProducts}
-                    }
+                    value={{
+                      products,
+                      setProducts,
+                      myBidsProducts,
+                      setMyBidsProducts,
+                    }}
                   >
                     <UnderNav />
                     <NewAuctionPage />

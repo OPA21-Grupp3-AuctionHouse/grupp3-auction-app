@@ -15,6 +15,14 @@ const NewAuctionPage = () => {
     (item, i, arr) => arr.indexOf(item) === i
   );
 
+  const timeCategoriesValues = {
+    Oneday: 86400000,
+    Twodays: 172800000,
+    Oneweek: 604800000,
+    Twoweeks: 1209600000,
+    Onemonth: 2592000000,
+  };
+
   const [auctionList, setAuctionList] = useState(provider.myBidsProducts);
   console.log(auctionList);
   console.log(provider.myBidsProducts);
@@ -31,6 +39,7 @@ const NewAuctionPage = () => {
     ownerId: loggedInUser.id,
     orderStatus: "bidding",
     myBid: 50,
+    buyout: "",
   });
 
   const handleChangeImage = (e) => {
@@ -41,7 +50,13 @@ const NewAuctionPage = () => {
 
   const handleAuctionSubmit = (e) => {
     e.preventDefault();
-    if (auction.category && auction.name && auction.description) {
+    if (
+      auction.category &&
+      auction.name &&
+      auction.description &&
+      auction.endTime &&
+      auction.startPrice >= 50
+    ) {
       provider.setMyBidsProducts([...provider.myBidsProducts, auction]);
       setAuction({
         name: "",
@@ -130,6 +145,8 @@ const NewAuctionPage = () => {
               onChange={handleChange}
             />
           </div>
+        </form>
+        <form className="new-auction-page-form">
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
               Buyout:
@@ -145,36 +162,32 @@ const NewAuctionPage = () => {
               onChange={handleChange}
             />
           </div>
-        </form>
-        <form className="new-auction-page-form">
           <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              End Time:
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
+            <label className="input-group-text" htmlFor="inputGroupSelect01">
+              Auction time:
+            </label>
+            <select
+              onClick={handleChange}
+              className="form-select"
               id="endTime"
               name="endTime"
-              value={auction.endTime}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              End Date:
-            </span>
-            <input
-              placeholder="Select date"
-              type="date"
-              id="example"
-              className="form-control"
-              name="endDate"
-              onChange={handleChange}
-            />
+            >
+              <option>Choose...</option>
+              {Object.keys(timeCategoriesValues).map((category, i) => {
+                return (
+                  <option
+                    key={i}
+                    value={
+                      new Date(
+                        new Date().getTime() + timeCategoriesValues[category]
+                      )
+                    }
+                  >
+                    {category.substring(0, 3) + " " + category.substring(3)}
+                  </option>
+                );
+              })}
+            </select>
           </div>
 
           <div className="input-group mb-3">
@@ -194,15 +207,40 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-
-        <img
-          src={auction.image}
-          className="new-auction-page-picture"
-          alt="new-auction"
-        />
+        {auction.image !== "" ? (
+          <img
+            src={auction.image}
+            className="new-auction-page-picture"
+            alt="Preview av bild"
+            type="image/*"
+          />
+        ) : (
+          <img
+            src="https://preyash2047.github.io/assets/img/no-preview-available.png?h=824917b166935ea4772542bec6e8f636"
+            className="new-auction-page-picture"
+            alt="Preview av bild"
+            type="image/*"
+          />
+        )}
       </div>
     </>
   );
 };
 
 export default NewAuctionPage;
+
+/*
+<div className="input-group mb-3">
+<span className="input-group-text" id="inputGroup-sizing-default">
+  End Date:
+</span>
+<input
+  placeholder="Select date"
+  type="date"
+  id="example"
+  className="form-control"
+  name="endDate"
+  onChange={handleChange}
+/>
+</div>
+*/
