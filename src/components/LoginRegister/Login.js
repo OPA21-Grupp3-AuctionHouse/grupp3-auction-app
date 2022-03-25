@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -8,6 +8,7 @@ const Login = () => {
     email: "", // required
     password: "", // required
   });
+  let navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +19,18 @@ const Login = () => {
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then((data) => console.log("successful login", data.user));
+      .then((data) => console.log(data.user));
+
+      navigate('/startpage/*')
+    /* .then((accessToken) => {
+        localStorage.setItem(
+          "login",
+          JSON.stringify({
+            userLogin: true,
+            token: accessToken
+          })
+        );
+      }) */
   };
 
   const handleChange = (e) => {
@@ -30,25 +42,36 @@ const Login = () => {
       <Container>
         <Row className="mt-5">
           <Col>
-            <Form onSubmit={e => handleSubmit(e)}>
+            <Form onSubmit={(e) => handleSubmit(e)}>
               <h3 className="text-success p-3 text-center">Login</h3>
-
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Email" value={formData.email} name="email" onChange={e => handleChange(e)} />
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  name="email"
+                  onChange={(e) => handleChange(e)}
+                />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={formData.password} name='password' onChange={e => handleChange(e)}/>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  name="password"
+                  onChange={(e) => handleChange(e)}
+                />
               </Form.Group>
 
               {/* <Link to="/startpage"> */}
-                <div className="d-grid gap-2 mt-3">
-                  <Button variant="success" size="sm" type="submit">
-                    Login
-                  </Button>
-                </div>
+              <div className="d-grid gap-2 mt-3">
+                <Button variant="success" size="sm" type="submit">
+                  Login
+                </Button>
+              </div>
               {/* </Link> */}
               <Link to="/register">
                 <div className="d-grid gap-2 mt-3">
