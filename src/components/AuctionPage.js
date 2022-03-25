@@ -32,6 +32,7 @@ function AuctionPage() {
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState({
+    id: 1,
     name: "blabla",
     email: "blabla@bla.com",
     username: "MyUsername",
@@ -131,6 +132,7 @@ function AuctionPage() {
               <div className="order-inner-inner-container">
                 <DataContext.Provider
                   value={{
+                    user,
                     products,
                     setProducts,
                     searchResult,
@@ -155,6 +157,7 @@ function AuctionPage() {
                 <div>
                   <DataContext.Provider
                     value={{
+                      user,
                       products,
                       setProducts,
                       bids,
@@ -176,6 +179,7 @@ function AuctionPage() {
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
+                      user,
                       products,
                       setProducts,
                       searchResult,
