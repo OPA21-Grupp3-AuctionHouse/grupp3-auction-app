@@ -12,30 +12,41 @@ import OrderData from "./data/OrderData.json";
 import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
-import WelcomePage from "./WelcomePage";
 import MyBidsPage from "./MyBidsPage";
 import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
-import MyAuctions from "./Myauctions";
+import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import MyFollowSort from "./MyFollowSort";
 import MyFollowPage from "./MyFollowPage";
 import Users from "./data/users.json";
 import StartPage from "./StartPage";
+import AllBids from "./data/allBids.json";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
   const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
+  const [bids, setBids] = useState(Bids);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
+  const [allBids, setAllBids] = useState(AllBids);
+  const [user, setUser] = useState({
+    name: "blabla",
+    email: "blabla@bla.com",
+    username: "MyUsername",
+    street: "astreet",
+    areacode: "2121",
+    city: "acity",
+    password: "hej",
+  });
 
-  const loadProducts = () => {
-    setProducts(Products);
-    filteredView(false);
+  const loadProducts = (e) => {
+    e.preventDefault();
+    setFilteredView(false);
   };
 
   
@@ -68,12 +79,15 @@ function AuctionPage() {
     }
   };
 
+  const placeBid = () => {
+    setBids()
+  }
+
   return (
     <div className="auction-outer-container">
-      <AuctionHeader loadProducts={loadProducts} />
+      <AuctionHeader />
 
       <div className="auction-inner-container">
-        {/* <Route exact path="/" element={<WelcomePage />} /> */}
         <Routes>
           <Route exact path="/" element={<StartPage />} />
           <Route
@@ -87,6 +101,8 @@ function AuctionPage() {
                     searchResult,
                     setSearchResult,
                     filteredView,
+                    bids,
+                    setBids
                   }}
                 >
                   <AuctionCategories sortBySearch={sortBySearch} />
@@ -104,7 +120,14 @@ function AuctionPage() {
             path="profile"
             element={
               <>
-                <Profile />
+                <DataContext.Provider
+                  value={{
+                    user,
+                    setUser,
+                  }}
+                >
+                  <Profile />
+                </DataContext.Provider>
               </>
             }
           />
@@ -115,8 +138,8 @@ function AuctionPage() {
               <div className="order-inner-inner-container">
                 <DataContext.Provider
                   value={{
-                    myBidsProducts,
-                    setMyBidsProducts,
+                    products,
+                    setProducts,
                     searchResult,
                     setSearchResult,
                     filteredView,
@@ -136,9 +159,10 @@ function AuctionPage() {
               <>
                 <div>
                   <DataContext.Provider
-                    value={
-                      {products, setProducts, myBidsProducts, setMyBidsProducts}
-                    }
+                    value={{
+                      products,
+                      setProducts,
+                    }}
                   >
                     <UnderNav />
                     <NewAuctionPage />
@@ -155,8 +179,8 @@ function AuctionPage() {
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
-                      myBidsProducts,
-                      setMyBidsProducts,
+                      products,
+                      setProducts,
                       searchResult,
                       setSearchResult,
                       filteredView,

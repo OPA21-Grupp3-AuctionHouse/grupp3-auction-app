@@ -1,7 +1,7 @@
 import { useContext, React } from "react";
 import { DataContext } from "./AuctionPage";
-import MyBidsCard from "./MyBidsCard";
 import allBids from "./data/allBids.json";
+import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
   const loggedinuser = {
@@ -13,14 +13,14 @@ function MyBidsPage() {
   );
 
   let allAuctionId = loggedUserBids.map((product) => product.auctionId);
-  const loggedUserAuctions = provider.myBidsProducts.filter((product) =>
+  const loggedUserAuctions = provider.products.filter((product) =>
     allAuctionId.includes(product.key)
   );
-  console.log(loggedUserAuctions);
+
   return (
     <div className="order-container">
       {loggedUserAuctions.map((product) => (
-        <MyBidsCard key={product.key} product={product} />
+        <ProductCard key={product.key} product={product} pageSource="mybids" />
       ))}
     </div>
   );

@@ -1,19 +1,25 @@
 import { useContext, React } from "react";
 import { DataContext } from "./AuctionPage";
-import MyAuctionsCard from "./MyAuctionsCard";
+
+import ProductCard from "./ProductCard";
 
 const MyAuctions = () => {
   const loggedinuser = {
     id: 1,
   };
   const provider = useContext(DataContext);
-  const userAuctionList = provider.myBidsProducts.filter(
+
+  const userAuctionList = provider.products.filter(
     (product) => product.ownerId === loggedinuser.id
   );
   return (
     <div className="order-container">
       {userAuctionList.map((product) => (
-        <MyAuctionsCard key={product.key} product={product} />
+        <ProductCard
+          key={product.key}
+          product={product}
+          pageSource="myauctions"
+        />
       ))}
     </div>
   );

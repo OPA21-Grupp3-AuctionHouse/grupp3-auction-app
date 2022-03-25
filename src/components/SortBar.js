@@ -29,6 +29,14 @@ const SortBar = () => {
       } else {
         provider.setProducts([...provider.products.sort(compareDescription)]);
       }
+    } else if (e.target.value === "time") {
+      if (provider.filteredView) {
+        provider.setSearchResult([
+          ...provider.searchResult.sort(compareTime),
+        ]);
+      } else {
+        provider.setProducts([...provider.products.sort(compareTime)]);
+      }
     } else if (e.target.value === "price") {
       if (provider.filteredView) {
         provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
@@ -61,6 +69,9 @@ const SortBar = () => {
         value="description"
       >
         Description
+      </button>
+      <button className="time-bar" onClick={sortColumn} value="time">
+        End Time
       </button>
       <button className="price-bar" onClick={sortColumn} value="price">
         Price
@@ -99,6 +110,10 @@ const SortBar = () => {
       return 1;
     }
     return 0;
+  }
+
+  function compareTime(a, b) {
+    return new Date(a.endTime) - new Date(b.endTime);
   }
 
   function comparePrice(a, b) {

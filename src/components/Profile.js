@@ -1,26 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
+import { DataContext } from "./AuctionPage";
 
 const Profile = () => {
-  const [user, setUser] = useState({
-    name: "blabla",
-    email: "blabla@bla",
-    username: "MyUsername",
-    street: "astreet",
-    areacode: "2121",
-    city: "acity",
-    password: "hej",
-  });
+  const provider = useContext(DataContext);
 
-  const [tempUser, setTempUser] = useState({
-    name: user.name,
-    email: user.email,
-    username: user.username,
-    street: user.street,
-    areacode: user.areacode,
-    city: user.city,
-    password: user.password,
-  });
+  const [tempUser, setTempUser] = useState(provider.user);
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
     password: "",
@@ -35,10 +20,22 @@ const Profile = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUser(tempUser);
+    if (
+      tempUser.email &&
+      tempUser.name &&
+      tempUser.street &&
+      tempUser.areacode &&
+      tempUser.city
+    )
+      if (tempUser.email.includes("@" && ".")) {
+        provider.setUser(tempUser);
+      } else {
+        alert("enter real email");
+      }
+    else {
+      alert("Fill in all Fields");
+    }
   };
-  console.log(user);
-
   const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -50,12 +47,15 @@ const Profile = () => {
   const updatePassword = (e) => {
     e.preventDefault();
     if (
-      user.password === tempPassword.password &&
+      provider.user.password === tempPassword.password &&
       tempPassword.newPassword === tempPassword.repeatPassword
     ) {
-      setUser({ ...user, password: tempPassword.newPassword });
+      provider.setUser({
+        ...provider.user,
+        password: tempPassword.newPassword,
+      });
       alert("Password changed!");
-    } else if (user.password !== tempPassword.password) {
+    } else if (provider.user.password !== tempPassword.password) {
       alert("Wrong current password");
     } else {
       //document.querySelector("#repeatPassword").
@@ -68,15 +68,15 @@ const Profile = () => {
       <div className="profile-outer-div">
         <form>
           <div className="col-auto">
-            <label htmlFor="staticEmail2" class="visually-hidden">
+            <label htmlFor="staticEmail2" className="visually-hidden">
               Username:
             </label>
             <input
               type="text"
               readOnly
-              class="form-control-plaintext"
+              className="form-control-plaintext"
               id="staticEmail2"
-              value={user.username}
+              value={provider.user.username}
             />
           </div>
 
@@ -91,7 +91,7 @@ const Profile = () => {
               aria-describedby="inputGroup-sizing-default"
               id="name"
               name="name"
-              defaultValue={user.name}
+              defaultValue={provider.user.name}
               onChange={handleChange}
             />
           </div>
@@ -107,7 +107,7 @@ const Profile = () => {
               aria-describedby="inputGroup-sizing-default"
               id="email"
               name="email"
-              defaultValue={user.email}
+              defaultValue={provider.user.email}
               onChange={handleChange}
             />
           </div>
@@ -122,7 +122,7 @@ const Profile = () => {
               type="text"
               id="street"
               name="street"
-              defaultValue={user.street}
+              defaultValue={provider.user.street}
               onChange={handleChange}
             />
           </div>
@@ -138,7 +138,7 @@ const Profile = () => {
                 type="text"
                 id="areaCode"
                 name="areaCode"
-                defaultValue={user.areacode}
+                defaultValue={provider.user.areacode}
                 onChange={handleChange}
               />
             </div>
@@ -155,7 +155,7 @@ const Profile = () => {
               type="text"
               id="city"
               name="city"
-              defaultValue={user.city}
+              defaultValue={provider.user.city}
               onChange={handleChange}
             />
           </div>

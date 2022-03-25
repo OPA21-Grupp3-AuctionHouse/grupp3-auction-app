@@ -220,31 +220,27 @@ header {
 }
 
 .category-bar,
-.product-category {
+.name-bar,
+.product-category,
+.product-name {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+
+.time-bar,
+.description-bar,
+.product-description,
+.product-time {
   width: 20%;
   display: flex;
   justify-content: center;
 }
 
 .image-bar,
-.product-image {
-  width: 10%;
-  display: flex;
-  justify-content: center;
-}
-
-.name-bar,
-.description-bar,
-.product-name,
-.product-description,
-.product-endTime {
-  width: 25%;
-  display: flex;
-  justify-content: center;
-}
-
 .price-bar,
 .buyout-bar,
+.product-image,
 .product-price,
 .product-buyout {
   width: 10%;
@@ -359,6 +355,9 @@ header {
   padding-right: 50px;
 }
 /*Under nav css */
+.under-nav-container {
+  width: 100%;
+}
 
 .under-nav-container ul {
   width: 100%;

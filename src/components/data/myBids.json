@@ -140,6 +140,20 @@
     "orderStatus": "bidding"
   },
   {
+    "key": 11,
+    "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_42.png",
+    "category": "Baseball Cards",
+    "name": "Verreaux's sifaka",
+    "description": "Adaptive 6th generation array",
+    "startPrice": 10,
+    "myBid": 50,
+    "highestBid": 90,
+    "buyout": 150,
+    "endTime": "2022-03-24 20:30",
+    "ownerId": 1,
+    "orderStatus": "bidding"
+  },
+  {
     "key": 12,
     "image": "https://assets.pokemon.com//assets/cms2/img/cards/site_search/CEL/CEL_EN_11.png",
     "category": "Baseball Cards",
@@ -169,6 +183,20 @@
   },
   {
     "key": 14,
+    "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_42.png",
+    "category": "Baseball Cards",
+    "name": "Verreaux's sifaka",
+    "description": "Adaptive 6th generation array",
+    "startPrice": 10,
+    "myBid": 50,
+    "highestBid": 90,
+    "buyout": 150,
+    "endTime": "2022-03-24 20:30",
+    "ownerId": 1,
+    "orderStatus": "bidding"
+  },
+  {
+    "key": 15,
     "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_42.png",
     "category": "Baseball Cards",
     "name": "Verreaux's sifaka",
