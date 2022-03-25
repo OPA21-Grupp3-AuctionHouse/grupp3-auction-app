@@ -1,9 +1,15 @@
 .App {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #050933;
+}
+.auction-outer-outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #050933;
+  height: 100vh;
 }
 
 .new-auction-page-container {
@@ -41,8 +47,21 @@ p {
   font-size: 20px;
 }
 
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.welcomeOuter {
+  display: flex;
+  flex-direction: column;
+  height: 200vh;
+}
+
 /* css for the header */
 header {
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,11 +70,22 @@ header {
 }
 
 /* css for the welcomePage */
+.WelcomePageStart {
+  display: flex;
+  flex-direction: column;
+}
+
+.WelcomePageStart > div {
+  height: 100vh;
+}
+
 .landing {
+  color: white;
   display: flex;
   margin-top: 50px;
   align-items: center;
   font-size: 40%;
+  justify-content: center;
 }
 
 .welcomeText,
@@ -64,11 +94,11 @@ header {
   padding-right: 50px;
 }
 
-.welcomeText {
-  flex: 2;
+.leftSide {
+  flex: 3;
 }
 
-.welcomeLogin {
+.rightSide {
   flex: 1;
 }
 
@@ -107,7 +137,7 @@ header {
   background-color: white;
 }
 
- .auction-inner-container {
+.auction-inner-container {
   height: 100%;
   width: 100%;
   display: flex;
@@ -115,7 +145,7 @@ header {
   flex-direction: row;
   overflow: hidden;
   justify-content: center;
-} 
+}
 
 .auction-inner-inner-container {
   height: 100%;
@@ -172,6 +202,16 @@ header {
 .search-container {
   height: 3vh;
   width: 100%;
+}
+
+.mybid-name-bar,
+.mybid-description-bar,
+.mybid-image-bar,
+.mybid-name,
+.mybid-endTime {
+  width: 25%;
+  display: flex;
+  justify-content: center;
 }
 
 .search-form {
@@ -282,7 +322,6 @@ header {
   flex-grow: 0.2;
   flex-direction: row;
 }
-
 
 .submit-button-profile {
   display: flex;
@@ -403,7 +442,7 @@ header {
   justify-content: center;
 }
 .type-head,
-.order-type{
+.order-type {
   width: 13%;
   display: flex;
   justify-content: center;
@@ -469,6 +508,7 @@ header {
   height: 200px;
   z-index: 10;
 }
+
 .my-auction-bar {
   width: 25%;
   display: flex;
@@ -478,4 +518,21 @@ header {
   width: 21%;
   display: flex;
   justify-content: center;
+}
+
+.welcomePageHeader {
+  margin: 0%;
+}
+
+.arrow-down {
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 15vh;
+  margin-bottom: 10vh;
+}
+
+.preview {
+  height: auto;
+  width: max-content;
 }

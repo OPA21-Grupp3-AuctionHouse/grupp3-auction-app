@@ -13,27 +13,24 @@ import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
-import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
 import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
+import StartPage from "./StartPage";
+import Bids from "./data/allBids.json";
 import MyFollowSort from "./MyFollowSort";
 import MyFollowPage from "./MyFollowPage";
-import Users from "./data/users.json";
-import StartPage from "./StartPage";
-import AllBids from "./data/allBids.json";
+import myBids from "./data/myBids.json";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
-  const [users, setUsers] = useState(Users);
   const [products, setProducts] = useState(Products);
   const [bids, setBids] = useState(Bids);
+  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
-  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
-  const [allBids, setAllBids] = useState(AllBids);
   const [user, setUser] = useState({
     name: "blabla",
     email: "blabla@bla.com",
@@ -49,7 +46,6 @@ function AuctionPage() {
     setFilteredView(false);
   };
 
-  
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
       if (!searchInput) {
@@ -79,11 +75,8 @@ function AuctionPage() {
     }
   };
 
-  const placeBid = () => {
-    setBids()
-  }
-
   return (
+    <div className="auction-outer-outer-container">
     <div className="auction-outer-container">
       <AuctionHeader />
 
@@ -102,7 +95,7 @@ function AuctionPage() {
                     setSearchResult,
                     filteredView,
                     bids,
-                    setBids
+                    setBids,
                   }}
                 >
                   <AuctionCategories sortBySearch={sortBySearch} />
@@ -143,6 +136,8 @@ function AuctionPage() {
                     searchResult,
                     setSearchResult,
                     filteredView,
+                    bids,
+                    setBids,
                   }}
                 >
                   <UnderNav />
@@ -162,6 +157,8 @@ function AuctionPage() {
                     value={{
                       products,
                       setProducts,
+                      bids,
+                      setBids,
                     }}
                   >
                     <UnderNav />
@@ -184,6 +181,8 @@ function AuctionPage() {
                       searchResult,
                       setSearchResult,
                       filteredView,
+                      bids,
+                      setBids,
                     }}
                   >
                     <UnderNav />
@@ -195,26 +194,26 @@ function AuctionPage() {
             }
           />
           <Route
-             exact
-             path="follow"
-             element={
-               <div className="order-inner-inner-container">
-                 <DataContext.Provider
-                   value={{
-                     myBidsProducts,
-                     setMyBidsProducts,
-                     searchResult,
-                     setSearchResult,
-                     filteredView,
-                   }}
-                 >
-                   <UnderNav />
-                   <MyFollowSort />
-                   <MyFollowPage />
-                 </DataContext.Provider>
-               </div>
-             }
-           />
+            exact
+            path="follow"
+            element={
+              <div className="order-inner-inner-container">
+                <DataContext.Provider
+                  value={{
+                    myBidsProducts,
+                    setMyBidsProducts,
+                    searchResult,
+                    setSearchResult,
+                    filteredView,
+                  }}
+                >
+                  <UnderNav />
+                  <MyFollowSort />
+                  <MyFollowPage />
+                </DataContext.Provider>
+              </div>
+            }
+          />
           <Route
             exact
             path="history"
@@ -225,6 +224,8 @@ function AuctionPage() {
                     value={{
                       orderProducts,
                       setOrderProducts,
+                      bids,
+                      setBids,
                     }}
                   >
                     <UnderNav />
@@ -237,6 +238,7 @@ function AuctionPage() {
           />
         </Routes>
       </div>
+    </div>
     </div>
   );
 }

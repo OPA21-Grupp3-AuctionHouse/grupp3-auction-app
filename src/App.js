@@ -7,6 +7,8 @@ import Register from "./components/LoginRegister/Register";
 import WelcomePageHeader from "./components/WelcomePageHeader";
 import WelcomePage from "./components/WelcomePage";
 import AuctionPage from "./components/AuctionPage";
+import WelcomePageFooter from "./components/WelcomePageFooter";
+import Preview from "./components/Preview";
 
 function App() {
   return (
@@ -16,23 +18,29 @@ function App() {
           exact
           path="/"
           element={
-            <>
-              <WelcomePageHeader />
-              <Row className="landing">
-                <Col>
-                  <WelcomePage />{" "}
-                </Col>
-                <Col>
-                  <Login />
-                </Col>
-              </Row>
-            </>
+            <div className="welcomeOuter">
+              <div className="welcomeContainer">
+                <WelcomePageHeader />
+                <Row className="landing">
+                  <Col className="leftSide">
+                    <WelcomePage />
+                  </Col>
+                  <Col className="rightSide">
+                    <Login />
+                  </Col>
+                </Row>
+                <WelcomePageFooter />
+              </div>
+              <div>
+                <Preview />
+              </div>
+            </div>
           }
         />
         <Route
           path="/register"
           element={
-            <>
+            <div className="welcomeContainer">
               <WelcomePageHeader />
               <Row className="landing">
                 <Col>
@@ -42,7 +50,7 @@ function App() {
                   <Register />
                 </Col>
               </Row>
-            </>
+            </div>
           }
         />
         <Route path="/startpage/*" element={<AuctionPage />} />

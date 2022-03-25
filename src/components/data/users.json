@@ -1,42 +1,60 @@
-[
-  {
-    "id": 1,
-    "firstName": "Test1",
-    "lastName": "Person1",
-    "username": "testperson1",
-    "email": "testperson1@gmail.com",
-    "password": "polkadot"
-  },
-  {
-    "id": 2,
-    "firstName": "Test2",
-    "lastName": "Person2",
-    "username": "testperson2",
-    "email": "testperson2@gmail.com",
-    "password": "easter"
-  },
-  {
-    "id": 3,
-    "firstName": "Test3",
-    "lastName": "Person3",
-    "username": "testperson3",
-    "email": "testperson3@gmail.com",
-    "password": "christmas"
-  },
-  {
-    "id": 4,
-    "firstName": "Test4",
-    "lastName": "Person4",
-    "username": "testperson4",
-    "email": "testperson4@gmail.com",
-    "password": "midsommar"
-  },
-  {
-    "id": 5,
-    "firstName": "Test5",
-    "lastName": "Person5",
-    "username": "testperson5",
-    "email": "testperson5@gmail.com",
-    "password": "halloween"
-  }
-]
+{
+  "users": [
+    {
+      "email": "tajianaodero@gmail.com",
+      "password": "$2a$10$/LVfw5067YNGcnTSR/WB2uqxF7eGAxckd0/flhC1SF/tKSwgcM.my",
+      "firstname": "Tajiana",
+      "lastname": "Odero",
+      "username": "taj",
+      "id": 1
+    },
+    {
+      "email": "testperson1@gmail.com",
+      "password": "$2a$10$p0Y/2Chppa4WAWpl/64XQe6eRuykNOjosZF53FsZxN/jIKD8xBQPy",
+      "firstname": "Test1",
+      "lastname": "Person1",
+      "username": "TP1",
+      "id": 2
+    },
+    {
+      "email": "emilmogensen@gmail.com",
+      "password": "$2a$10$yDgdoeahD23a5tiyOqs3i./M0tGHlA4pd0MyIfYJV256N6a/R6CHC",
+      "firstname": "Emil",
+      "lastname": "Mogensen",
+      "username": "EM",
+      "id": 3
+    },
+    {
+      "email": "tp2@gmail.com",
+      "password": "$2a$10$miQN1/YrOKz8qxgo7tcMgunEfA7t8Sgc4g/JAyOL0nIU2gt2KBjKq",
+      "firstname": "test2",
+      "lastname": "person2",
+      "username": "tp2",
+      "id": 4
+    },
+    {
+      "email": "t@gmail.com",
+      "password": "$2a$10$YId/FkVbnxqrVpFCaTMMo.qO2CFxMr3ALRIn3kNMuHw9PGC3eBJHO",
+      "firstname": "t",
+      "lastname": "t",
+      "username": "t",
+      "id": 5
+    },
+    {
+      "email": "123@hotmail.com",
+      "password": "$2a$10$kuWzBOxiBHRwjC0FWHBX8OpSYyoYjo81TQol12kfCRKx1A.56pITS",
+      "firstname": "axel",
+      "lastname": "pw",
+      "username": "axelpw",
+      "id": 6
+    },
+    {
+      "email": "zhu1@live.se",
+      "password": "$2a$10$g.a.lrpvz79GlC3IkOgWLOpMKVXAVeL2I.yz1O7/XXyr9iGP9sZ3K",
+      "firstname": "mikael",
+      "lastname": "z",
+      "username": "mikaelz",
+      "id": 7
+    }
+  ]
+}

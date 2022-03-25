@@ -1,19 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function AuctionHeader({ loadProducts }) {
+function AuctionHeader() {
   return (
     <div className="auction-header-container">
       <ul>
-        <Link to="bazaar" onClick={loadProducts}>
-          Card Bazaar
-        </Link>
-        <Link to="auctions" onClick={loadProducts}>
-          My Auctions
-        </Link>
-        <Link to="profile" onClick={loadProducts}>
-          Profile
-        </Link>
+        <Link to="bazaar">Card Bazaar</Link>
+        <Link to="auctions">My Auctions</Link>
+        <Link to="profile">Profile</Link>
       </ul>
     </div>
   );
