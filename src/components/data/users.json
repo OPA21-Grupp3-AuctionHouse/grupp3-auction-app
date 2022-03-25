@@ -23,6 +23,22 @@
       "lastname": "Mogensen",
       "username": "EM",
       "id": 3
+    },
+    {
+      "email": "tp2@gmail.com",
+      "password": "$2a$10$miQN1/YrOKz8qxgo7tcMgunEfA7t8Sgc4g/JAyOL0nIU2gt2KBjKq",
+      "firstname": "test2",
+      "lastname": "person2",
+      "username": "tp2",
+      "id": 4
+    },
+    {
+      "email": "t@gmail.com",
+      "password": "$2a$10$YId/FkVbnxqrVpFCaTMMo.qO2CFxMr3ALRIn3kNMuHw9PGC3eBJHO",
+      "firstname": "t",
+      "lastname": "t",
+      "username": "t",
+      "id": 5
     }
   ]
 }
