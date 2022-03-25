@@ -13,24 +13,20 @@ import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
-import myBids from "./data/myBids.json";
 import MyBidsSortBar from "./MyBidsSortBar";
 import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
-import Users from "./data/users.json";
 import StartPage from "./StartPage";
-import AllBids from "./data/allBids.json";
+import Bids from "./data/allBids.json";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
   const [products, setProducts] = useState(Products);
-  const [bids, setBids] = useState(AllBids);
+  const [bids, setBids] = useState(Bids);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
-  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
-  const [allBids, setAllBids] = useState(AllBids);
   const [user, setUser] = useState({
     name: "blabla",
     email: "blabla@bla.com",
@@ -75,10 +71,6 @@ function AuctionPage() {
     }
   };
 
-  const placeBid = () => {
-    setBids()
-  }
-
   return (
     <div className="auction-outer-container">
       <AuctionHeader />
@@ -98,7 +90,7 @@ function AuctionPage() {
                     setSearchResult,
                     filteredView,
                     bids,
-                    setBids
+                    setBids,
                   }}
                 >
                   <AuctionCategories sortBySearch={sortBySearch} />
