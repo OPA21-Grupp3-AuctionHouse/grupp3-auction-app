@@ -20,12 +20,14 @@ import StartPage from "./StartPage";
 import Bids from "./data/allBids.json";
 import MyFollowSort from "./MyFollowSort";
 import MyFollowPage from "./MyFollowPage";
+import myBids from "./data/myBids.json";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
   const [products, setProducts] = useState(Products);
   const [bids, setBids] = useState(Bids);
+  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
