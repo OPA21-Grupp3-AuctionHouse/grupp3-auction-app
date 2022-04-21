@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import AuctionHeader from "./AuctionHeader";
 import UnderNav from "./UnderNav";
@@ -20,18 +20,21 @@ import MyAuctionsBar from "./MyAuctionsBar";
 import Users from "./data/users.json";
 import StartPage from "./StartPage";
 import AllBids from "./data/allBids.json";
+import ProductService from "../services/ProductService";
+import BidService from "../services/BidService";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
-  const [products, setProducts] = useState(Products);
-  const [bids, setBids] = useState(AllBids);
+  const [products, setProducts] = useState([]);
+  const [bids, setBids] = useState([]);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
   const [allBids, setAllBids] = useState(AllBids);
   const [user, setUser] = useState({
+    id: "1",
     name: "blabla",
     email: "blabla@bla.com",
     username: "MyUsername",
@@ -41,10 +44,32 @@ function AuctionPage() {
     password: "hej",
   });
 
+  useEffect(() => {
+
+    getProducts();
+    getBids();
+  }, []);
+
   const loadProducts = (e) => {
     e.preventDefault();
     setFilteredView(false);
   };
+
+  const getProducts = () => {
+    ProductService.getProducts().then((res) => {
+      setProducts(res.data);
+      console.log(res.data);
+    });
+  };
+
+  const getBids = () => {
+    BidService.getBids().then((res) => {
+      setBids(res.data)
+      console.log(res.data)
+    })
+  }
+
+
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -139,6 +164,8 @@ function AuctionPage() {
                     searchResult,
                     setSearchResult,
                     filteredView,
+                    bids,
+                    setBids
                   }}
                 >
                   <UnderNav />
@@ -180,6 +207,8 @@ function AuctionPage() {
                       searchResult,
                       setSearchResult,
                       filteredView,
+                      bids,
+                      setBids
                     }}
                   >
                     <UnderNav />

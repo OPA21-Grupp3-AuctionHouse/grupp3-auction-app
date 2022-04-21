@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 
 const MyAuctions = () => {
   const loggedinuser = {
-    id: 1,
+    id: "2",
   };
   const provider = useContext(DataContext);
 
@@ -16,7 +16,7 @@ const MyAuctions = () => {
     <div className="order-container">
       {userAuctionList.map((product) => (
         <ProductCard
-          key={product.key}
+          key={product.id}
           product={product}
           pageSource="myauctions"
         />

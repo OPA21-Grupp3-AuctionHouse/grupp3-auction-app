@@ -10,8 +10,9 @@ const ProductCard = ({ product, pageSource }) => {
 
   const loadBids = () => {
     let productBids = provider.bids.filter(
-      (bid) => bid.auctionId === product.key
+      (bid) => bid.auctionId === product.id
     );
+
     let bidAmount = productBids.map((bid) => bid.amount);
 
     setBids(bidAmount);
@@ -19,7 +20,9 @@ const ProductCard = ({ product, pageSource }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-
+    console.log(provider.bids)
+    console.log(product)
+    console.log(bids.bidAmount)
     loadBids();
     setModalShow(true);
   };
@@ -67,11 +70,11 @@ const ProductCard = ({ product, pageSource }) => {
       <>
         <div className="product-card" onClick={handleClick}>
           <div className="product-image">
-            <img className="Card-image-css" src={product.image}></img>
+            <img className="Card-image-css" src={product.imageURL}></img>
           </div>
           <div className="mybid-name">{product.name}</div>
           <div className="mybid-endTime">{product.timeRemaining}</div>
-          <div className="product-myBid">{}</div>
+          <div className="product-myBid">{product.myBid}</div>
           <div className="product-myBid">{product.price}</div>
           <div className="product-myBid">
             {product.buyout}
@@ -91,7 +94,7 @@ const ProductCard = ({ product, pageSource }) => {
       <>
         <div className="product-card" onClick={handleClick}>
           <div className="product-image">
-            <img className="Card-image-css" src={product.image}></img>
+          <img className="Card-image-css" src={product.imageURL}></img>
           </div>
           <div className="mybid-name">{product.name}</div>
           <div className="mybid-endTime">{product.timeRemaining}</div>

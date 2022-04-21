@@ -5,22 +5,29 @@ import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
   const loggedinuser = {
-    id: 1,
+    id: "2",
   };
   const provider = useContext(DataContext);
-  const loggedUserBids = allBids.filter(
+  const loggedUserBids = provider.bids.filter(
     (bids) => bids.userId === loggedinuser.id
   );
 
-  let allAuctionId = loggedUserBids.map((product) => product.auctionId);
-  const loggedUserAuctions = provider.products.filter((product) =>
-    allAuctionId.includes(product.key)
+  const highestBid = provider.bids.filter(
+    (bids) => 
   );
+  console.log(loggedUserBids);
+
+  let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);
+  console.log(allAuctionId);
+  const loggedUserAuctions = provider.products.filter(
+    (product) => allAuctionId.includes(product.id)
+  );
+  console.log(loggedUserAuctions);
 
   return (
     <div className="order-container">
       {loggedUserAuctions.map((product) => (
-        <ProductCard key={product.key} product={product} pageSource="mybids" />
+        <ProductCard key={product.id} product={product} pageSource="mybids" />
       ))}
     </div>
   );
