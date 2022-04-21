@@ -49,7 +49,11 @@ const ProductCard = ({ product, pageSource }) => {
       pad(days) + "D " + pad(hrs) + "H " + pad(mins) + "M " + pad(secs) + "S"
     );
   };
-  product.timeRemaining = msToTime(Date.parse(product.endTime) - currentDate);
+  if (Date.parse(product.endTime) - currentDate > 0) {
+    product.timeRemaining = msToTime(Date.parse(product.endTime) - currentDate);
+  } else {
+    product.timeRemaining = "Auction ended";
+  }
 
   const delAuction = (e) => {
     const toId = e.target.value;
