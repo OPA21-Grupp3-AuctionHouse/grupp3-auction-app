@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import AuctionHeader from "./AuctionHeader";
 import UnderNav from "./UnderNav";
@@ -17,21 +17,21 @@ import MyBidsSortBar from "./MyBidsSortBar";
 import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import StartPage from "./StartPage";
-import Bids from "./data/allBids.json";
-import MyFollowSort from "./MyFollowSort";
-import MyFollowPage from "./MyFollowPage";
-import myBids from "./data/myBids.json";
+import AllBids from "./data/allBids.json";
+import ProductService from "../services/ProductService";
+import BidService from "../services/BidService";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
-  const [products, setProducts] = useState(Products);
-  const [bids, setBids] = useState(Bids);
-  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
+  const [products, setProducts] = useState([]);
+  const [bids, setBids] = useState([]);
+  const [highestBid, setHighestBid] = useState([])
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState({
+    id: "2",
     name: "blabla",
     email: "blabla@bla.com",
     username: "MyUsername",
@@ -41,10 +41,36 @@ function AuctionPage() {
     password: "hej",
   });
 
+  useEffect(() => {
+
+    getProducts();
+    getBids();
+  }, []);
+
   const loadProducts = (e) => {
     e.preventDefault();
     setFilteredView(false);
   };
+
+  const getProducts = () => {
+    ProductService.getProducts().then((res) => {
+      setProducts(res.data);
+    });
+  };
+
+  const getBids = () => {
+    BidService.getBids().then((res) => {
+      setBids(res.data)
+    })
+  }
+
+  const getHighestBid = () => {
+    BidService.getHighestBid().then((res) => {
+      setHighestBid(res.data)
+    })
+  }
+
+
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -96,6 +122,8 @@ function AuctionPage() {
                     filteredView,
                     bids,
                     setBids,
+                    user,
+                    setUser
                   }}
                 >
                   <AuctionCategories sortBySearch={sortBySearch} />
@@ -138,6 +166,10 @@ function AuctionPage() {
                     filteredView,
                     bids,
                     setBids,
+                    highestBid,
+                    setHighestBid,
+                    user,
+                    setUser
                   }}
                 >
                   <UnderNav />
@@ -183,6 +215,8 @@ function AuctionPage() {
                       filteredView,
                       bids,
                       setBids,
+                      user,
+                      setUser
                     }}
                   >
                     <UnderNav />

@@ -58,14 +58,14 @@
   {
     "id": 9,
     "userId": 2,
-    "auctionId": 1,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-02-12 11:04:20",
     "amount": 81
   },
   {
     "id": 10,
     "userId": 2,
-    "auctionId": 2,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-03-21 22:36:30",
     "amount": 123
   },
@@ -86,7 +86,7 @@
   {
     "id": 13,
     "userId": 2,
-    "auctionId": 6,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-02-08 15:10:58",
     "amount": 121
   },
@@ -107,7 +107,7 @@
   {
     "id": 16,
     "userId": 2,
-    "auctionId": 7,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-03-04 09:36:35",
     "amount": 77
   },
@@ -135,14 +135,14 @@
   {
     "id": 20,
     "userId": 2,
-    "auctionId": 9,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-02-27 22:10:39",
     "amount": 76
   },
   {
     "id": 21,
     "userId": 2,
-    "auctionId": 14,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-03-13 01:50:09",
     "amount": 74
   },
@@ -156,7 +156,7 @@
   {
     "id": 23,
     "userId": 2,
-    "auctionId": 8,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-01-27 04:18:20",
     "amount": 90
   },
@@ -198,7 +198,7 @@
   {
     "id": 29,
     "userId": 2,
-    "auctionId": 7,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-03-11 04:48:30",
     "amount": 166
   },
@@ -254,21 +254,21 @@
   {
     "id": 37,
     "userId": 2,
-    "auctionId": 6,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-01-28 14:40:20",
     "amount": 87
   },
   {
     "id": 38,
     "userId": 2,
-    "auctionId": 14,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-01-30 07:24:49",
     "amount": 67
   },
   {
     "id": 39,
     "userId": 2,
-    "auctionId": 4,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-03-22 06:31:11",
     "amount": 174
   },
@@ -296,14 +296,14 @@
   {
     "id": 43,
     "userId": 2,
-    "auctionId": 12,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-02-27 08:37:16",
     "amount": 200
   },
   {
     "id": 44,
     "userId": 2,
-    "auctionId": 2,
+    "auctionId": "62607c9b223dcefd46d57237",
     "bidTime": "2022-03-11 17:23:26",
     "amount": 132
   },

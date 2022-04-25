@@ -1,14 +1,13 @@
 import React from "react";
 import { useContext, useState } from "react";
+import ProductService from "../services/ProductService";
 
-import { DataContext } from "./AuctionPage";
+import AuctionPage, { DataContext, getProducts } from "./AuctionPage";
 
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);
 
-  const loggedInUser = {
-    id: 1,
-  };
+
 
   let allCategories = provider.products.map((product) => product.category);
   let categories = allCategories.filter(
@@ -24,36 +23,39 @@ const NewAuctionPage = () => {
   };
 
   const [auction, setAuction] = useState({
-    key: 15,
-    image: "",
+    imageURL: "",
     category: "",
     name: "",
     description: "",
     price: "",
     endTime: "2022-03-24 20:30",
-    ownerId: loggedInUser.id,
+    ownerId: provider.user.id,
     orderStatus: "bidding",
-    buyout: "",
+    buyout: ""
   });
 
   const handleChangeImage = (e) => {
     e.preventDefault();
     const tempImage = URL.createObjectURL(e.target.files[0]);
-    setAuction({ ...auction, image: tempImage });
+    setAuction({ ...auction, imageURL: tempImage });
   };
 
   const handleAuctionSubmit = (e) => {
     e.preventDefault();
     if (auction.category && auction.name && auction.description) {
-      provider.setProducts([...provider.products, auction]);
+      ProductService.createProduct(auction).then((res) => {
       setAuction({
         name: "",
         category: "",
         description: "",
         buyout: "",
         startPrice: "",
-      });
-    } else {
+      })
+      ProductService.getProducts().then((res) => {
+        provider.setProducts(res.data);
+        console.log(res.data)
+      })
+    })} else {
       alert("enter values");
     }
   };
@@ -66,6 +68,7 @@ const NewAuctionPage = () => {
 
     setAuction({ ...auction, [name]: value });
   };
+
 
   return (
     <>
@@ -194,9 +197,9 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-        {auction.image !== "" ? (
+        {auction.imageURL !== "" ? (
           <img
-            src={auction.image}
+            src={auction.imageURL}
             className="new-auction-page-picture"
             alt="Preview av bild"
             type="image/*"
