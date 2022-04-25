@@ -9,7 +9,7 @@ function ProductList() {
     return (
       <div className="product-container">
         {provider.products.map((product) => (
-          <ProductCard key={product.key} product={product} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     );
@@ -21,12 +21,12 @@ function ProductList() {
       <div className="product-container">
         <h2>No results found</h2>
       </div>
-    );  
+    );
   } else {
     return (
       <div className="product-container">
         {provider.searchResult.map((product) => (
-          <ProductCard key={product.key} product={product} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     );

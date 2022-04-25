@@ -28,13 +28,14 @@ export const DataContext = createContext();
 function AuctionPage() {
   const [products, setProducts] = useState([]);
   const [bids, setBids] = useState([]);
+  const [highestBid, setHighestBid] = useState([])
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
   const [allBids, setAllBids] = useState(AllBids);
   const [user, setUser] = useState({
-    id: "1",
+    id: "2",
     name: "blabla",
     email: "blabla@bla.com",
     username: "MyUsername",
@@ -58,14 +59,18 @@ function AuctionPage() {
   const getProducts = () => {
     ProductService.getProducts().then((res) => {
       setProducts(res.data);
-      console.log(res.data);
     });
   };
 
   const getBids = () => {
     BidService.getBids().then((res) => {
       setBids(res.data)
-      console.log(res.data)
+    })
+  }
+
+  const getHighestBid = () => {
+    BidService.getHighestBid().then((res) => {
+      setHighestBid(res.data)
     })
   }
 
@@ -123,7 +128,9 @@ function AuctionPage() {
                     setSearchResult,
                     filteredView,
                     bids,
-                    setBids
+                    setBids,
+                    user,
+                    setUser
                   }}
                 >
                   <AuctionCategories sortBySearch={sortBySearch} />
@@ -165,7 +172,11 @@ function AuctionPage() {
                     setSearchResult,
                     filteredView,
                     bids,
-                    setBids
+                    setBids,
+                    highestBid,
+                    setHighestBid,
+                    user,
+                    setUser
                   }}
                 >
                   <UnderNav />
@@ -208,7 +219,9 @@ function AuctionPage() {
                       setSearchResult,
                       filteredView,
                       bids,
-                      setBids
+                      setBids,
+                      user,
+                      setUser
                     }}
                   >
                     <UnderNav />

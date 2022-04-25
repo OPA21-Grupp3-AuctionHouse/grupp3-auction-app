@@ -12,9 +12,9 @@ function MyBidsPage() {
     (bids) => bids.userId === loggedinuser.id
   );
 
-  const highestBid = provider.bids.filter(
-    (bids) => 
-  );
+  //const highestBid = provider.bids.filter(
+    //(bids) =>
+  //);
   console.log(loggedUserBids);
 
   let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);

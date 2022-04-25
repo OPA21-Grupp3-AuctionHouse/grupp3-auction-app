@@ -10,6 +10,14 @@ class BidService {
   createBid(bid) {
 	  return axios.post(`${API_URL_TEST}/create`, bid)
   }
+
+  getHighestBid(id) {
+    return axios.get(`${API_URL_TEST}/highestBid/${id}`)
+  }
+
+  getMyHighestBid(auctionId, userId) {
+    return axios.get(`${API_URL_TEST}/myHighestBid/${auctionId}/${userId}`)
+  }
 }
 
 export default new BidService();
