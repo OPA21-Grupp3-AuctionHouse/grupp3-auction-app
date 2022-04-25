@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { DataContext } from "./AuctionPage";
+import axios from "axios";
+import UserService from "../service/UserService";
 
 const Profile = () => {
   const provider = useContext(DataContext);
@@ -18,6 +20,7 @@ const Profile = () => {
 
     setTempPassword({ ...tempPassword, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -44,6 +47,41 @@ const Profile = () => {
     setTempUser({ ...tempUser, [name]: value });
   };
 
+    useEffect(()=>{
+      getUserById();
+    },[])
+  const [user, setUser] = useState({
+      firstName:"",
+      lastName:"",
+      streetAdress:"",
+      city:"",
+      postCode:""        
+  });
+  const { firstName, lastName, streetAdress, city, postCode} = user;
+  const onInputChange = e =>{
+      setUser({...user,[e.target.name]:e.target.value})
+  }
+
+  const FormHandle = e =>{
+      e.preventDefault();
+      updateDataToServer(user)      
+  }
+  const updateDataToServer=(data) =>{
+      axios.put(UserService.updateInfo(),data).then(
+        (response) => {
+                alert("Your information updated Successfully");
+          }, (error)=>{
+                  alert("Operation failed");
+          }
+      );
+  }
+
+  const getUserById = async e =>{
+      
+      const usersInfo = await axios.get(UserService.updateInfo());
+      setUser(usersInfo.data);       
+  }
+ 
   const updatePassword = (e) => {
     e.preventDefault();
     if (
@@ -91,8 +129,9 @@ const Profile = () => {
               aria-describedby="inputGroup-sizing-default"
               id="name"
               name="name"
+              Value={firstName}
               defaultValue={provider.user.name}
-              onChange={handleChange}
+              onChange={onInputChange}
             />
           </div>
 
@@ -162,7 +201,7 @@ const Profile = () => {
           <button
             className="submit-button-profile"
             type="submit"
-            onClick={handleSubmit}
+            onSubmit={e => FormHandle(e)}
             style={{ marginLeft: "1vh" }}
           >
             Update profile
