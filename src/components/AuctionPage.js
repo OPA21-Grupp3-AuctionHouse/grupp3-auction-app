@@ -20,6 +20,9 @@ import StartPage from "./StartPage";
 import AllBids from "./data/allBids.json";
 import ProductService from "../services/ProductService";
 import BidService from "../services/BidService";
+import UserService from "../service/UserService";
+import MyFollowPage from "./MyFollowPage";
+import MyFollowSort from "./MyFollowSort";
 
 export const DataContext = createContext();
 
@@ -31,20 +34,14 @@ function AuctionPage() {
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState({
-    id: "2",
-    name: "blabla",
-    email: "blabla@bla.com",
-    username: "MyUsername",
-    street: "astreet",
-    areacode: "2121",
-    city: "acity",
-    password: "hej",
+
   });
 
   useEffect(() => {
-
     getProducts();
     getBids();
+    getUserById();
+    console.log(user);
   }, []);
 
   const loadProducts = (e) => {
@@ -70,7 +67,12 @@ function AuctionPage() {
     })
   }
 
-
+  const getUserById = () =>{
+    UserService.getUserById("626290ae11ce330a8bb347ca").then((res) => {
+      setUser(res.data)
+      console.log(res.data);
+    })
+  }
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -234,8 +236,8 @@ function AuctionPage() {
               <div className="order-inner-inner-container">
                 <DataContext.Provider
                   value={{
-                    myBidsProducts,
-                    setMyBidsProducts,
+                    products,
+                    setProducts,
                     searchResult,
                     setSearchResult,
                     filteredView,

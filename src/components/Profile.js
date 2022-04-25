@@ -1,37 +1,44 @@
 import React, { useContext } from "react";
 import { useState, useEffect} from "react";
 import { DataContext } from "./AuctionPage";
-import axios from "axios";
 import UserService from "../service/UserService";
 
 const Profile = () => {
   const provider = useContext(DataContext);
-
   const [tempUser, setTempUser] = useState(provider.user);
+
+  useEffect(() => {
+    setTempUser(provider.user);
+
+  }, []);
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
     password: "",
     repeatPassword: "",
   });
+
   const handleChangePassword = (e) => {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
 
-    setTempPassword({ ...tempPassword, [name]: value });
+    setTempPassword({...tempPassword, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
       tempUser.email &&
-      tempUser.name &&
-      tempUser.street &&
-      tempUser.areacode &&
+      tempUser.firstName &&
+      tempUser.streetAddress &&
+      tempUser.postCode &&
       tempUser.city
     )
-      if (tempUser.email.includes("@" && ".")) {
+      if (tempUser.email.includes("@", ".")) {
         provider.setUser(tempUser);
+        UserService.updateInfo(provider.user.id, tempUser).then(() => {
+
+        })
       } else {
         alert("enter real email");
       }
@@ -45,43 +52,9 @@ const Profile = () => {
     const value = e.target.value;
 
     setTempUser({ ...tempUser, [name]: value });
+    console.log(tempUser);
   };
-
-    useEffect(()=>{
-      getUserById();
-    },[])
-  const [user, setUser] = useState({
-      firstName:"",
-      lastName:"",
-      streetAdress:"",
-      city:"",
-      postCode:""        
-  });
-  const { firstName, lastName, streetAdress, city, postCode} = user;
-  const onInputChange = e =>{
-      setUser({...user,[e.target.name]:e.target.value})
-  }
-
-  const FormHandle = e =>{
-      e.preventDefault();
-      updateDataToServer(user)      
-  }
-  const updateDataToServer=(data) =>{
-      axios.put(UserService.updateInfo(),data).then(
-        (response) => {
-                alert("Your information updated Successfully");
-          }, (error)=>{
-                  alert("Operation failed");
-          }
-      );
-  }
-
-  const getUserById = async e =>{
-      
-      const usersInfo = await axios.get(UserService.updateInfo());
-      setUser(usersInfo.data);       
-  }
- 
+  
   const updatePassword = (e) => {
     e.preventDefault();
     if (
@@ -120,7 +93,7 @@ const Profile = () => {
 
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
-              Name:
+              First Name:
             </span>
             <input
               type="text"
@@ -128,10 +101,25 @@ const Profile = () => {
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="name"
-              name="name"
-              Value={firstName}
-              defaultValue={provider.user.name}
-              onChange={onInputChange}
+              name="firstName"
+              defaultValue={provider.user.firstName}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
+              Last Name:
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              id="name"
+              name="lastName"
+              defaultValue={provider.user.lastName}
+              onChange={handleChange}
             />
           </div>
 
@@ -160,8 +148,8 @@ const Profile = () => {
               aria-describedby="inputGroup-sizing-default"
               type="text"
               id="street"
-              name="street"
-              defaultValue={provider.user.street}
+              name="streetAddress"
+              defaultValue={provider.user.streetAddress}
               onChange={handleChange}
             />
           </div>
@@ -176,8 +164,8 @@ const Profile = () => {
                 aria-describedby="inputGroup-sizing-default"
                 type="text"
                 id="areaCode"
-                name="areaCode"
-                defaultValue={provider.user.areacode}
+                name="postCode"
+                defaultValue={provider.user.postCode}
                 onChange={handleChange}
               />
             </div>
@@ -201,7 +189,7 @@ const Profile = () => {
           <button
             className="submit-button-profile"
             type="submit"
-            onSubmit={e => FormHandle(e)}
+            onClick={handleSubmit}
             style={{ marginLeft: "1vh" }}
           >
             Update profile
