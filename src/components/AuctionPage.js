@@ -20,7 +20,7 @@ import StartPage from "./StartPage";
 import AllBids from "./data/allBids.json";
 import ProductService from "../services/ProductService";
 import BidService from "../services/BidService";
-import UserService from "../service/UserService";
+import UserService from "../services/UserService";
 import MyFollowPage from "./MyFollowPage";
 import MyFollowSort from "./MyFollowSort";
 

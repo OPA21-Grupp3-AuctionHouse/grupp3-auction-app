@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { DataContext } from "./AuctionPage";
-import UserService from "../service/UserService";
+import UserService from "../services/UserService";
 
 const Profile = () => {
   const provider = useContext(DataContext);
@@ -9,7 +9,6 @@ const Profile = () => {
 
   useEffect(() => {
     setTempUser(provider.user);
-
   }, []);
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
@@ -22,7 +21,7 @@ const Profile = () => {
     const name = e.target.name;
     const value = e.target.value;
 
-    setTempPassword({...tempPassword, [name]: value });
+    setTempPassword({ ...tempPassword, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -36,9 +35,7 @@ const Profile = () => {
     )
       if (tempUser.email.includes("@", ".")) {
         provider.setUser(tempUser);
-        UserService.updateInfo(provider.user.id, tempUser).then(() => {
-
-        })
+        UserService.updateInfo(provider.user.id, tempUser).then(() => {});
       } else {
         alert("enter real email");
       }
@@ -54,7 +51,7 @@ const Profile = () => {
     setTempUser({ ...tempUser, [name]: value });
     console.log(tempUser);
   };
-  
+
   const updatePassword = (e) => {
     e.preventDefault();
     if (
