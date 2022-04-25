@@ -4,23 +4,20 @@ import allBids from "./data/allBids.json";
 import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
-  const loggedinuser = {
-    id: "2",
-  };
   const provider = useContext(DataContext);
   const loggedUserBids = provider.bids.filter(
-    (bids) => bids.userId === loggedinuser.id
+    (bids) => bids.userId === provider.user.id
   );
 
   //const highestBid = provider.bids.filter(
-    //(bids) =>
+  //(bids) =>
   //);
   console.log(loggedUserBids);
 
   let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);
   console.log(allAuctionId);
-  const loggedUserAuctions = provider.products.filter(
-    (product) => allAuctionId.includes(product.id)
+  const loggedUserAuctions = provider.products.filter((product) =>
+    allAuctionId.includes(product.id)
   );
   console.log(loggedUserAuctions);
 
