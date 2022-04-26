@@ -7,8 +7,6 @@ import AuctionPage, { DataContext, getProducts } from "./AuctionPage";
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);
 
-
-
   let allCategories = provider.products.map((product) => product.category);
   let categories = allCategories.filter(
     (item, i, arr) => arr.indexOf(item) === i
@@ -28,10 +26,10 @@ const NewAuctionPage = () => {
     name: "",
     description: "",
     price: "",
-    endTime: "2022-03-24 20:30",
+    endTime: "",
     ownerId: provider.user.id,
     orderStatus: "bidding",
-    buyout: ""
+    buyout: "",
   });
 
   const handleChangeImage = (e) => {
@@ -44,18 +42,19 @@ const NewAuctionPage = () => {
     e.preventDefault();
     if (auction.category && auction.name && auction.description) {
       ProductService.createProduct(auction).then((res) => {
-      setAuction({
-        name: "",
-        category: "",
-        description: "",
-        buyout: "",
-        startPrice: "",
-      })
-      ProductService.getProducts().then((res) => {
-        provider.setProducts(res.data);
-        console.log(res.data)
-      })
-    })} else {
+        setAuction({
+          name: "",
+          category: "",
+          description: "",
+          buyout: "",
+          startPrice: "",
+        });
+        ProductService.getProducts().then((res) => {
+          provider.setProducts(res.data);
+          console.log(res.data);
+        });
+      });
+    } else {
       alert("enter values");
     }
   };
@@ -68,7 +67,6 @@ const NewAuctionPage = () => {
 
     setAuction({ ...auction, [name]: value });
   };
-
 
   return (
     <>

@@ -9,7 +9,7 @@ const Profile = () => {
 
   useEffect(() => {
     setTempUser(provider.user);
-  }, []);
+  }, [provider.user]);
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
     password: "",
@@ -36,6 +36,7 @@ const Profile = () => {
       if (tempUser.email.includes("@", ".")) {
         provider.setUser(tempUser);
         UserService.updateInfo(provider.user.id, tempUser).then(() => {});
+        alert("User updated!");
       } else {
         alert("enter real email");
       }

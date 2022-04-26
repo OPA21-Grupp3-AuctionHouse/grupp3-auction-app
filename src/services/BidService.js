@@ -4,19 +4,19 @@ const API_URL_TEST = "http://localhost:8080/api";
 
 class BidService {
   getBids() {
-    return axios.get(`${API_URL_TEST}/all`);
+    return axios.get(`${API_URL_TEST}/allBids`);
   }
 
   createBid(bid) {
-	  return axios.post(`${API_URL_TEST}/create`, bid)
+    return axios.post(`${API_URL_TEST}/create`, bid);
   }
 
   getHighestBid(id) {
-    return axios.get(`${API_URL_TEST}/highestBid/${id}`)
+    return axios.get(`${API_URL_TEST}/highestBid/${id}`);
   }
 
   getMyHighestBid(auctionId, userId) {
-    return axios.get(`${API_URL_TEST}/myHighestBid/${auctionId}/${userId}`)
+    return axios.get(`${API_URL_TEST}/myHighestBid/${auctionId}/${userId}`);
   }
 }
 

@@ -5,13 +5,11 @@ import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
   const provider = useContext(DataContext);
-  const loggedUserBids = provider.bids.filter(
+  const loggedUserBids = provider.bids.filter(  
     (bids) => bids.userId === provider.user.id
   );
 
-  //const highestBid = provider.bids.filter(
-  //(bids) =>
-  //);
+
   console.log(loggedUserBids);
 
   let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);

@@ -8,8 +8,9 @@ const ProductCard = ({ product, pageSource }) => {
   const provider = useContext(DataContext);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
-  const [highestBid, setHighestBid] = useState(product.highestBid)
-  const [myHighestBid, setMyHighestBid] = useState()
+  const [highestBid, setHighestBid] = useState(product.highestBid);
+  const [myHighestBid, setMyHighestBid] = useState();
+  const [currentBid, setCurrentBid] = useState();
 
   const loadBids = () => {
     let productBids = provider.bids.filter(
@@ -23,9 +24,11 @@ const ProductCard = ({ product, pageSource }) => {
   const loadHighestBids = () => {
     BidService.getHighestBid(product.id).then((res) => {
       if (res.data.bidAmount) {
-        setHighestBid(res.data.bidAmount)
+        setHighestBid(res.data.bidAmount);
+        setCurrentBid(res.data.bidAmount);
       } else {
         setHighestBid(0);
+        setCurrentBid(product.price);
       }
     });
   };
@@ -109,10 +112,12 @@ const ProductCard = ({ product, pageSource }) => {
           onHide={() => setModalShow(false)}
           product={product}
           bids={bids}
-          highestbid={highestBid}
-          sethighestbid={setHighestBid}
+          highestBid={highestBid}
+          setHighestBid={setHighestBid}
           myHighestBid={myHighestBid}
           setMyHighestBid={setMyHighestBid}
+          currentBid={currentBid}
+          setCurrentBid={setCurrentBid}
         />
       </>
     );
@@ -130,9 +135,6 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="product-myBid">
             {product.buyout}
             <button>BUY</button>
-            <button value={product.key} onClick={delAuction}>
-              Delete
-            </button>
           </div>
         </div>
         <ProductModal
@@ -140,8 +142,10 @@ const ProductCard = ({ product, pageSource }) => {
           onHide={() => setModalShow(false)}
           product={product}
           bids={bids}
-          highestbid={highestBid}
-          sethighestbid={setHighestBid}
+          highestBid={highestBid}
+          setHighestBid={setHighestBid}
+          currentBid={currentBid}
+          setCurrentBid={setCurrentBid}
         />
       </>
     );
@@ -153,8 +157,8 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="product-category">{product.category}</div>
           <div className="product-name">{product.name}</div>
           <div className="product-description">{product.description}</div>
-          <div className="product-time">{product.endTime}</div>
-          <div className="product-price">{highestBid}</div>
+          <div className="product-time">{product.timeRemaining}</div>
+          <div className="product-price">{currentBid}</div>
           <div className="product-buyout">{product.buyout}</div>
         </div>
         <ProductModal
@@ -164,6 +168,8 @@ const ProductCard = ({ product, pageSource }) => {
           bids={bids}
           highestBid={highestBid}
           setHighestBid={setHighestBid}
+          currentBid={currentBid}
+          setCurrentBid={setCurrentBid}
         />
       </>
     );
