@@ -7,9 +7,6 @@ const Profile = () => {
   const provider = useContext(DataContext);
   const [tempUser, setTempUser] = useState(provider.user);
 
-  useEffect(() => {
-    setTempUser(provider.user);
-  }, [provider.user]);
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
     password: "",
