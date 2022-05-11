@@ -4,12 +4,9 @@ import allBids from "./data/allBids.json";
 import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
-  const loggedinuser = {
-    id: 1,
-  };
   const provider = useContext(DataContext);
   const loggedUserBids = allBids.filter(
-    (bids) => bids.userId === loggedinuser.id
+    (bids) => bids.userId === provider.user.id
   );
 
   let allAuctionId = loggedUserBids.map((product) => product.auctionId);

@@ -97,13 +97,12 @@ const Login = () => {
                 />
               </Form.Group>
 
-              {/* <Link to="/startpage"> */}
               <div className="d-grid gap-2 mt-3">
                 <Button variant="success" size="sm" type="submit">
                   Login
                 </Button>
               </div>
-              {/* </Link> */}
+
               <Link to="/register">
                 <div className="d-grid gap-2 mt-3">
                   <Button variant="secondary" size="sm" type="submit">
@@ -111,6 +110,7 @@ const Login = () => {
                   </Button>
                 </div>
               </Link>
+              
             </Form>
           </Col>
         </Row>

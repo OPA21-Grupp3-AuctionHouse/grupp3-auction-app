@@ -6,10 +6,6 @@ import { DataContext } from "./AuctionPage";
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);
 
-  const loggedInUser = {
-    id: 1,
-  };
-
   let allCategories = provider.products.map((product) => product.category);
   let categories = allCategories.filter(
     (item, i, arr) => arr.indexOf(item) === i
@@ -31,7 +27,7 @@ const NewAuctionPage = () => {
     description: "",
     price: "",
     endTime: "2022-03-24 20:30",
-    ownerId: loggedInUser.id,
+    ownerId: provider.user.id,
     orderStatus: "bidding",
     buyout: "",
   });
