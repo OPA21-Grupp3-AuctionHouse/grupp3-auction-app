@@ -9,7 +9,6 @@ import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
 import OrderData from "./data/OrderData.json";
-import Products from "./data/products.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
@@ -17,7 +16,6 @@ import MyBidsSortBar from "./MyBidsSortBar";
 import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 import StartPage from "./StartPage";
-import Bids from "./data/allBids.json";
 import MyFollowSort from "./MyFollowSort";
 import MyFollowPage from "./MyFollowPage";
 import myBids from "./data/myBids.json";
@@ -25,8 +23,8 @@ import myBids from "./data/myBids.json";
 export const DataContext = createContext();
 
 function AuctionPage() {
-  const [products, setProducts] = useState(Products);
-  const [bids, setBids] = useState(Bids);
+  const [products, setProducts] = useState();
+  const [bids, setBids] = useState();
   const [myBidsProducts, setMyBidsProducts] = useState(myBids);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
@@ -41,10 +39,24 @@ function AuctionPage() {
     password: "hej",
   });
 
-  const loadProducts = (e) => {
-    e.preventDefault();
-    setFilteredView(false);
-  };
+  useEffect(() => {
+    async function getProducts() {
+      ProductService.getProducts().then((res) => {
+        setProducts(res.data);
+        console.log(res.data);
+      });
+    }
+
+    async function getBids() {
+      BidService.getBids().then((res) => {
+        setBids(res.data);
+        console.log(res.data);
+      });
+    }
+
+    getProducts();
+    getBids();
+  }, []);
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -77,102 +89,57 @@ function AuctionPage() {
 
   return (
     <div className="auction-outer-outer-container">
-    <div className="auction-outer-container">
-      <AuctionHeader />
+      <div className="auction-outer-container">
+        <AuctionHeader />
 
-      <div className="auction-inner-container">
-        <Routes>
-          <Route exact path="/" element={<StartPage />} />
-          <Route
-            path="bazaar"
-            element={
-              <>
-                <DataContext.Provider
-                  value={{
-                    products,
-                    setProducts,
-                    searchResult,
-                    setSearchResult,
-                    filteredView,
-                    bids,
-                    setBids,
-                  }}
-                >
-                  <AuctionCategories sortBySearch={sortBySearch} />
-                  <div className="auction-inner-inner-container">
-                    <SearchBar sortBySearch={sortBySearch} />
-                    <SortBar />
-                    <ProductList setFilteredView={setFilteredView} />
-                  </div>
-                </DataContext.Provider>
-              </>
-            }
-          />
-          <Route
-            exact
-            path="profile"
-            element={
-              <>
-                <DataContext.Provider
-                  value={{
-                    user,
-                    setUser,
-                  }}
-                >
-                  <Profile />
-                </DataContext.Provider>
-              </>
-            }
-          />
-          <Route
-            exact
-            path="auctions"
-            element={
-              <div className="order-inner-inner-container">
-                <DataContext.Provider
-                  value={{
-                    products,
-                    setProducts,
-                    searchResult,
-                    setSearchResult,
-                    filteredView,
-                    bids,
-                    setBids,
-                  }}
-                >
-                  <UnderNav />
-                  <MyBidsSortBar />
-                  <MyBidsPage />
-                </DataContext.Provider>
-              </div>
-            }
-          />
-          <Route
-            exact
-            path="newauction"
-            element={
-              <>
-                <div>
+        <div className="auction-inner-container">
+          <Routes>
+            <Route exact path="/" element={<StartPage />} />
+            <Route
+              path="bazaar"
+              element={
+                <>
                   <DataContext.Provider
                     value={{
                       products,
                       setProducts,
+                      searchResult,
+                      setSearchResult,
+                      filteredView,
                       bids,
                       setBids,
                     }}
                   >
-                    <UnderNav />
-                    <NewAuctionPage />
+                    <AuctionCategories sortBySearch={sortBySearch} />
+                    <div className="auction-inner-inner-container">
+                      <SearchBar sortBySearch={sortBySearch} />
+                      <SortBar />
+                      <ProductList setFilteredView={setFilteredView} />
+                    </div>
                   </DataContext.Provider>
-                </div>
-              </>
-            }
-          />
-          <Route
-            exact
-            path="myAuction"
-            element={
-              <>
+                </>
+              }
+            />
+            <Route
+              exact
+              path="profile"
+              element={
+                <>
+                  <DataContext.Provider
+                    value={{
+                      user,
+                      setUser,
+                    }}
+                  >
+                    <Profile />
+                  </DataContext.Provider>
+                </>
+              }
+            />
+            <Route
+              exact
+              path="auctions"
+              element={
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
@@ -186,59 +153,104 @@ function AuctionPage() {
                     }}
                   >
                     <UnderNav />
-                    <MyAuctionsBar />
-                    <MyAuctions />
+                    <MyBidsSortBar />
+                    <MyBidsPage />
                   </DataContext.Provider>
                 </div>
-              </>
-            }
-          />
-          <Route
-            exact
-            path="follow"
-            element={
-              <div className="order-inner-inner-container">
-                <DataContext.Provider
-                  value={{
-                    myBidsProducts,
-                    setMyBidsProducts,
-                    searchResult,
-                    setSearchResult,
-                    filteredView,
-                  }}
-                >
-                  <UnderNav />
-                  <MyFollowSort />
-                  <MyFollowPage />
-                </DataContext.Provider>
-              </div>
-            }
-          />
-          <Route
-            exact
-            path="history"
-            element={
-              <>
+              }
+            />
+            <Route
+              exact
+              path="newauction"
+              element={
+                <>
+                  <div>
+                    <DataContext.Provider
+                      value={{
+                        products,
+                        setProducts,
+                        bids,
+                        setBids,
+                      }}
+                    >
+                      <UnderNav />
+                      <NewAuctionPage />
+                    </DataContext.Provider>
+                  </div>
+                </>
+              }
+            />
+            <Route
+              exact
+              path="myAuction"
+              element={
+                <>
+                  <div className="order-inner-inner-container">
+                    <DataContext.Provider
+                      value={{
+                        products,
+                        setProducts,
+                        searchResult,
+                        setSearchResult,
+                        filteredView,
+                        bids,
+                        setBids,
+                      }}
+                    >
+                      <UnderNav />
+                      <MyAuctionsBar />
+                      <MyAuctions />
+                    </DataContext.Provider>
+                  </div>
+                </>
+              }
+            />
+            <Route
+              exact
+              path="follow"
+              element={
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
-                      orderProducts,
-                      setOrderProducts,
-                      bids,
-                      setBids,
+                      myBidsProducts,
+                      setMyBidsProducts,
+                      searchResult,
+                      setSearchResult,
+                      filteredView,
                     }}
                   >
                     <UnderNav />
-                    <OrderSort />
-                    <OrderList />
+                    <MyFollowSort />
+                    <MyFollowPage />
                   </DataContext.Provider>
                 </div>
-              </>
-            }
-          />
-        </Routes>
+              }
+            />
+            <Route
+              exact
+              path="history"
+              element={
+                <>
+                  <div className="order-inner-inner-container">
+                    <DataContext.Provider
+                      value={{
+                        orderProducts,
+                        setOrderProducts,
+                        bids,
+                        setBids,
+                      }}
+                    >
+                      <UnderNav />
+                      <OrderSort />
+                      <OrderList />
+                    </DataContext.Provider>
+                  </div>
+                </>
+              }
+            />
+          </Routes>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
