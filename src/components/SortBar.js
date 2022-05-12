@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "./AuctionPage";
 
 const SortBar = () => {
@@ -31,9 +31,7 @@ const SortBar = () => {
       }
     } else if (e.target.value === "time") {
       if (provider.filteredView) {
-        provider.setSearchResult([
-          ...provider.searchResult.sort(compareTime),
-        ]);
+        provider.setSearchResult([...provider.searchResult.sort(compareTime)]);
       } else {
         provider.setProducts([...provider.products.sort(compareTime)]);
       }

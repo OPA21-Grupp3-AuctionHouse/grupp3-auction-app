@@ -4,7 +4,7 @@ const API_URL_TEST = "http://localhost:8080/api";
 
 class BidService {
   getBids() {
-    return axios.get(`${API_URL_TEST}/all`);
+    return axios.get(`${API_URL_TEST}/allBids`);
   }
 
   createBid(bid) {

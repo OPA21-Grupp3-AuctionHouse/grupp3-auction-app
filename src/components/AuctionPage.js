@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import AuctionHeader from "./AuctionHeader";
 import UnderNav from "./UnderNav";
@@ -9,17 +9,15 @@ import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
 import OrderData from "./data/OrderData.json";
-import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
-import MyAuctions from "./MyAuctions";
-import MyAuctionsBar from "./MyAuctionsBar";
 import StartPage from "./StartPage";
-import MyFollowSort from "./MyFollowSort";
-import MyFollowPage from "./MyFollowPage";
-import Bids from "./data/allBids.json";
+import MyFollowSort from "../unusedComponents/MyFollowSort";
+import MyFollowPage from "../unusedComponents/MyFollowPage";
 import myBids from "./data/myBids.json";
+import BidService from "../services/BidService";
+import ProductService from "../services/ProductService";
 
 export const DataContext = createContext();
 

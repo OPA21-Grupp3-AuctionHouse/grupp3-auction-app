@@ -1,22 +1,22 @@
 import React, { useContext, useState } from "react";
-import { DataContext } from "./AuctionPage";
-import ProductModal from "./ProductModal";
-
+import { DataContext } from "../components/AuctionPage";
+import ProductModal from "../components/ProductModal";
 
 const MyBidsCard = ({ product }) => {
   const [modalShow, setModalShow] = useState(false);
   const currentDate = new Date().getTime();
   const provider = useContext(DataContext);
 
-  const Unfollow =(e) => {
-      const toId = e.target.value;
-      if(window.confirm("Are you sure?")){
-        const toDelete = provider.myBidsProducts.filter((product) => product.key != toId);
-        console.log(product.name, "was removed");
-        provider.setMyBidsProducts(toDelete);
-      }
-      
-    };
+  const Unfollow = (e) => {
+    const toId = e.target.value;
+    if (window.confirm("Are you sure?")) {
+      const toDelete = provider.myBidsProducts.filter(
+        (product) => product.key !== toId
+      );
+      console.log(product.name, "was removed");
+      provider.setMyBidsProducts(toDelete);
+    }
+  };
 
   const msToTime = (s) => {
     const pad = (n, z) => {
@@ -39,26 +39,28 @@ const MyBidsCard = ({ product }) => {
 
   return (
     <>
-    <div className="product-card" onClick={() => setModalShow(true)}>
-      <div className="product-image">image</div>
-      <div className="product-name">{product.name}</div>
-      <div className="product-endTime">
-        {msToTime(Date.parse(product.endTime) - currentDate)}
+      <div className="product-card" onClick={() => setModalShow(true)}>
+        <div className="product-image">image</div>
+        <div className="product-name">{product.name}</div>
+        <div className="product-endTime">
+          {msToTime(Date.parse(product.endTime) - currentDate)}
+        </div>
+        <div className="product-myBid">{product.myBid}</div>
+        <div className="product-myBid">{product.highestBid}</div>
+        <div className="product-myBid">
+          {product.buyout}
+          <button>BUY</button>
+          <button onClick={Unfollow} value={product.key}>
+            Unfollow
+          </button>
+        </div>
       </div>
-      <div className="product-myBid">{product.myBid}</div>
-      <div className="product-myBid">{product.highestBid}</div>
-      <div className="product-myBid">
-        {product.buyout}
-        <button>BUY</button>
-        <button onClick={Unfollow} value = {product.key}>Unfollow</button>
-      </div>
-    </div>
-          <ProductModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          product={product}
-        />
-        </>
+      <ProductModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        product={product}
+      />
+    </>
   );
 };
 
