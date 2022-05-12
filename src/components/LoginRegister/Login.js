@@ -12,7 +12,7 @@ const Login = () => {
   });
 
   // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
+  //const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
   let navigate = useNavigate();
@@ -38,7 +38,7 @@ const Login = () => {
       return response.json();
     } else {
       setError(true);
-      setSubmitted(false);
+      //setSubmitted(false);
       throw Error("Incorrect password");
     }
   }
@@ -46,7 +46,7 @@ const Login = () => {
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    //setSubmitted(true);
     setError(false);
 
     AuthService.login(formData.username, formData.password)
@@ -69,7 +69,7 @@ const Login = () => {
   // handling the input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setSubmitted(false);
+    //setSubmitted(false);
   };
 
   return (
