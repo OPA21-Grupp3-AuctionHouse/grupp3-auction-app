@@ -185,7 +185,7 @@ const Register = () => {
               </Form.Group>
             </Col>
 
-            <Col className="md-4">
+            <Col>
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>City</Form.Label>
                 <Form.Control
