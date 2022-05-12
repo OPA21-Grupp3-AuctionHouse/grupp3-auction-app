@@ -59,7 +59,7 @@ const ProductCard = ({ product, pageSource }) => {
     const toId = e.target.value;
     if (window.confirm("Are you sure?")) {
       const tempTestList = provider.myBidsProducts.filter(
-        (product) => product.key != toId
+        (product) => product.key !== toId
       );
       console.log(tempTestList);
       provider.setMyBidsProducts(tempTestList);
@@ -71,7 +71,11 @@ const ProductCard = ({ product, pageSource }) => {
       <>
         <div className="product-card" onClick={handleClick}>
           <div className="product-image">
-            <img className="Card-image-css" src={product.image}></img>
+            <img
+              className="Card-image-css"
+              src={product.image}
+              alt="product"
+            ></img>
           </div>
           <div className="mybid-name">{product.name}</div>
           <div className="mybid-endTime">{product.timeRemaining}</div>
@@ -95,7 +99,11 @@ const ProductCard = ({ product, pageSource }) => {
       <>
         <div className="product-card" onClick={handleClick}>
           <div className="product-image">
-            <img className="Card-image-css" src={product.image}></img>
+            <img
+              className="Card-image-css"
+              src={product.image}
+              alt="product"
+            ></img>
           </div>
           <div className="mybid-name">{product.name}</div>
           <div className="mybid-endTime">{product.timeRemaining}</div>

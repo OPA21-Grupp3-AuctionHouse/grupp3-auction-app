@@ -14,7 +14,7 @@ const Register = () => {
   });
 
   // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
+  //const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
   let navigate = useNavigate();
@@ -48,7 +48,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setSubmitted(true);
+    //setSubmitted(true);
     setError(false);
     fetch("http://localhost:3333/users", {
       method: "POST",
@@ -63,7 +63,7 @@ const Register = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setSubmitted(false);
+    //setSubmitted(false);
   };
 
   return (

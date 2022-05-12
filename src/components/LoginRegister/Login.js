@@ -6,12 +6,12 @@ import "./LoginRegister.css";
 const Login = () => {
   //states for login
   const [formData, setFormData] = useState({
-    email: "", // required
+    username: "", // required
     password: "", // required
   });
 
   // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
+  //const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
   let navigate = useNavigate();
@@ -25,7 +25,7 @@ const Login = () => {
           display: error ? "" : "none",
         }}
       >
-        <p className="errorMessage">Incorrect email or password</p>
+        <p className="errorMessage">Incorrect username or password</p>
       </div>
     );
   };
@@ -43,9 +43,9 @@ const Login = () => {
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    //setSubmitted(true);
     setError(false);
-    fetch("http://localhost:3333/login", {
+    fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -59,7 +59,7 @@ const Login = () => {
   // handling the input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setSubmitted(false);
+    //setSubmitted(false);
   };
 
   return (
@@ -74,13 +74,13 @@ const Login = () => {
               <div className="messages">{errorMessage()}</div>
 
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Username</Form.Label>
                 <Form.Control
                   required
-                  type="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  name="email"
+                  type="username"
+                  placeholder="username"
+                  value={formData.username}
+                  name="username"
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
@@ -97,13 +97,12 @@ const Login = () => {
                 />
               </Form.Group>
 
-              {/* <Link to="/startpage"> */}
               <div className="d-grid gap-2 mt-3">
                 <Button variant="success" size="sm" type="submit">
                   Login
                 </Button>
               </div>
-              {/* </Link> */}
+
               <Link to="/register">
                 <div className="d-grid gap-2 mt-3">
                   <Button variant="secondary" size="sm" type="submit">
