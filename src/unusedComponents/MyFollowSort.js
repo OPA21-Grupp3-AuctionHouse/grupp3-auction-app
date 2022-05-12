@@ -1,5 +1,5 @@
 import { React, useContext } from "react";
-import { DataContext } from "./AuctionPage";
+import { DataContext } from "../components/AuctionPage";
 
 const MyFollowSort = () => {
   const provider = useContext(DataContext);

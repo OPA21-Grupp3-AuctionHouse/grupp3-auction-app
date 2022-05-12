@@ -1,7 +1,7 @@
 import { useContext, React } from "react";
-import { DataContext } from "./AuctionPage";
+import { DataContext } from "../components/AuctionPage";
 import MyFollowCard from "./MyFollowCard";
-import myBids from "./data/myBids.json";
+import myBids from "../components/data/myBids.json";
 
 function MyFollowPage() {
   const loggedinuser = {

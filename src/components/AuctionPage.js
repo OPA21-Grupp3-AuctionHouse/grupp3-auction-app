@@ -9,13 +9,9 @@ import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
 import OrderData from "./data/OrderData.json";
-import Products from "./data/products.json";
-import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
-import MyAuctions from "./MyAuctions";
-import MyAuctionsBar from "./MyAuctionsBar";
 import StartPage from "./StartPage";
 import AllBids from "./data/allBids.json";
 import ProductService from "../services/ProductService";
@@ -41,10 +37,24 @@ function AuctionPage() {
     getUserById();
   }, []);
 
-  const loadProducts = (e) => {
-    e.preventDefault();
-    setFilteredView(false);
-  };
+  useEffect(() => {
+    async function getProducts() {
+      ProductService.getProducts().then((res) => {
+        setProducts(res.data);
+        console.log(res.data);
+      });
+    }
+
+    async function getBids() {
+      BidService.getBids().then((res) => {
+        setBids(res.data);
+        console.log(res.data);
+      });
+    }
+
+    getProducts();
+    getBids();
+  }, []);
 
   const getProducts = () => {
     ProductService.getProducts().then((res) => {
@@ -104,7 +114,6 @@ function AuctionPage() {
     <div className="auction-outer-outer-container">
       <div className="auction-outer-container">
         <AuctionHeader />
-
         <div className="auction-inner-container">
           <Routes>
             <Route exact path="/" element={<StartPage />} />

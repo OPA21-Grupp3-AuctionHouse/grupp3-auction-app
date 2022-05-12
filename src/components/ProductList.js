@@ -5,7 +5,7 @@ import { DataContext } from "./AuctionPage";
 function ProductList() {
   const provider = useContext(DataContext);
 
-  if (provider.filteredView === false) {
+  if (provider.filteredView === false && provider.products) {
     return (
       <div className="product-container">
         {provider.products.map((product) => (

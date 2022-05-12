@@ -15,16 +15,13 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
-    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "json-server --watch -p 3333  src/components/data/users.json -m ./node_modules/json-server-auth",
-    "dev": "concurrently \"npm run server\" \"npm start\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
