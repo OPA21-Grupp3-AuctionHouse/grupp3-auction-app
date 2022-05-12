@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container, InputGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 import "./LoginRegister.css";
 
 const Register = () => {
@@ -11,6 +12,9 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    streetaddress: "",
+    postcode: "",
+    city: "",
   });
 
   // States for checking the errors
@@ -41,24 +45,40 @@ const Register = () => {
       return response.json();
     } else {
       setError(true);
+      setSubmitted(false);
       throw Error("Incorrect password");
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setSubmitted(true);
     setError(false);
-    fetch("http://localhost:3333/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
+
+    AuthService.register(
+      formData.firstname,
+      formData.lastname,
+      formData.username,
+      formData.email,
+      formData.password,
+      formData.streetaddress,
+      formData.postcode,
+      formData.city
+    )
       .then(CheckError)
       .catch((error) => {
         console.log(error);
       });
+
+    // fetch("http://localhost:3333/users", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(formData),
+    // })
+    //   .then(CheckError)
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   const handleChange = (e) => {
@@ -68,12 +88,11 @@ const Register = () => {
 
   return (
     <>
-      <Container>
-        <Row className="mt-5">
-          <Col>
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <h3 className="text-success p-3 text-center">Register</h3>
-
+      <Container className="mt-5">
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <h3 className="text-success p-3 text-center">Register</h3>
+          <Row>
+            <Col>
               <Form.Group className="mb-3" controlId="validationCustom01">
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
@@ -84,7 +103,9 @@ const Register = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
+            </Col>
 
+            <Col>
               <Form.Group className="mb-3" controlId="validationCustom02">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
@@ -96,7 +117,10 @@ const Register = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
-
+            </Col>
+          </Row>
+          <Row>
+            <Col>
               <Form.Group className="mb-3" controlId="validationCustomUsername">
                 <Form.Label>Username</Form.Label>
                 <InputGroup hasValidation>
@@ -124,7 +148,11 @@ const Register = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
+            </Col>
+          </Row>
 
+          <Row>
+            <Col>
               {/* Calling to error message */}
               <div className="messages">{errorMessage()}</div>
 
@@ -139,19 +167,63 @@ const Register = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
+            </Col>
+          </Row>
 
-              <div className="d-grid gap-2">
-                <Button variant="secondary" size="lg" type="submit">
-                  Register
-                </Button>
-              </div>
+          <Row>
+            <Col className="md-6">
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Street Address</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Street Address"
+                  value={formData.streetaddress}
+                  name="streetaddress"
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+            </Col>
 
-              <p>
-                Already registered <Link to="/">log in?</Link>
-              </p>
-            </Form>
-          </Col>
-        </Row>
+            <Col className="md-4">
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>City</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="City"
+                  value={formData.city}
+                  name="city"
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+            </Col>
+
+            <Col className="md-2">
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Post Code</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Post Code"
+                  value={formData.postcode}
+                  name="postcode"
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <div className="d-grid gap-2">
+            <Button variant="secondary" size="lg" type="submit">
+              Register
+            </Button>
+          </div>
+
+          <p>
+            Already registered <Link to="/">log in?</Link>
+          </p>
+        </Form>
       </Container>
     </>
   );

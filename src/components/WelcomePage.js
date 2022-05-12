@@ -1,8 +1,27 @@
-import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import UserService from "../services/user.service.js";
 import Login from "./LoginRegister/Login.js";
 import Register from "./LoginRegister/Register.js";
 
+//Public Page. No need for log in to view this page
 const WelcomePage = () => {
+  const [content, setContent] = useState("");
+  useEffect(() => {
+    UserService.getPublicContent().then(
+      (response) => {
+        setContent(response.data);
+      },
+      (error) => {
+        const _content =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+        setContent(_content);
+      }
+    );
+  }, []);
+
   return (
     <div className="welcomePage">
       <article className="welcomeText">
