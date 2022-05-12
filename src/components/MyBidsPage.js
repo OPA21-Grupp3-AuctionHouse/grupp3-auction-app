@@ -1,11 +1,10 @@
 import { useContext, React } from "react";
 import { DataContext } from "./AuctionPage";
-import allBids from "./data/allBids.json";
 import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
   const provider = useContext(DataContext);
-  const loggedUserBids = allBids.filter(
+  const loggedUserBids = provider.bids.filter(
     (bids) => bids.userId === provider.user.id
   );
 
