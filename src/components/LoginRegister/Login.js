@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
   });
 
   // States for checking the errors
-  //const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
   let navigate = useNavigate();
@@ -33,9 +34,11 @@ const Login = () => {
   function CheckError(response) {
     if (response.status >= 200 && response.status <= 299) {
       navigate("/startpage");
+      window.location.reload();
       return response.json();
     } else {
       setError(true);
+      setSubmitted(false);
       throw Error("Incorrect password");
     }
   }
@@ -43,23 +46,30 @@ const Login = () => {
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    //setSubmitted(true);
+    setSubmitted(true);
     setError(false);
-    fetch("http://localhost:8080/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
+
+    AuthService.login(formData.username, formData.password)
       .then(CheckError)
       .catch((error) => {
         console.log(error);
       });
+
+    // fetch("http://localhost:3333/login", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(formData),
+    // })
+    //   .then(CheckError)
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   // handling the input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    //setSubmitted(false);
+    setSubmitted(false);
   };
 
   return (
@@ -77,8 +87,8 @@ const Login = () => {
                 <Form.Label>Username</Form.Label>
                 <Form.Control
                   required
-                  type="username"
-                  placeholder="username"
+                  type="username "
+                  placeholder="Username"
                   value={formData.username}
                   name="username"
                   onChange={(e) => handleChange(e)}
