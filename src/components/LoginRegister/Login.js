@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import UserService from "../../services/UserService";
 import "./LoginRegister.css";
 
 const Login = () => {
   //states for login
   const [formData, setFormData] = useState({
-    email: "", // required
+    username: "", // required
     password: "", // required
   });
 
@@ -25,15 +26,15 @@ const Login = () => {
           display: error ? "" : "none",
         }}
       >
-        <p className="errorMessage">Incorrect email or password</p>
+        <p className="errorMessage">Incorrect username or password</p>
       </div>
     );
   };
 
   function CheckError(response) {
     if (response.status >= 200 && response.status <= 299) {
+      console.log(response);
       navigate("/startpage");
-      return response.json();
     } else {
       setError(true);
       throw Error("Incorrect password");
@@ -45,12 +46,10 @@ const Login = () => {
     e.preventDefault();
     setSubmitted(true);
     setError(false);
-    fetch("http://localhost:3333/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then(CheckError)
+    UserService.loginUser(formData)
+      .then((res) => {
+        CheckError(res);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -74,13 +73,13 @@ const Login = () => {
               <div className="messages">{errorMessage()}</div>
 
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>USERNAME</Form.Label>
                 <Form.Control
                   required
-                  type="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  name="email"
+                  type="username"
+                  placeholder="username"
+                  value={formData.username}
+                  name="username"
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>

@@ -9,6 +9,16 @@ class UserService {
   getUserById(id) {
     return axios.get(`${API_URL_TEST}/getById/${id}`);
   }
+
+  getUser() {
+    return axios.get(`${API_URL_TEST}/get`, { withCredentials: true });
+  }
+
+  loginUser(formData) {
+    return axios.post(`http://localhost:8080/login`, formData, {
+      withCredentials: true,
+    });
+  }
 }
 
 export default new UserService();

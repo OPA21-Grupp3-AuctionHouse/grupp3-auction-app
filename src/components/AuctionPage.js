@@ -38,7 +38,7 @@ function AuctionPage() {
   useEffect(() => {
     getProducts();
     getBids();
-    getUserById();
+    getUser();
   }, []);
 
   const loadProducts = (e) => {
@@ -64,6 +64,12 @@ function AuctionPage() {
     });
   };
 
+  const getUser = () => {
+    UserService.getUser().then((res) => {
+      setUser(res.data);
+      console.log(res.data);
+    });
+  };
   const getUserById = () => {
     UserService.getUserById("626736e362a4c438443c45c3").then((res) => {
       setUser(res.data);
@@ -107,7 +113,7 @@ function AuctionPage() {
 
         <div className="auction-inner-container">
           <Routes>
-            <Route exact path="/" element={<StartPage />} />
+            <Route exact path="/" element={<StartPage value={user} />} />
             <Route
               path="bazaar"
               element={
