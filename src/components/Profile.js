@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DataContext } from "./AuctionPage";
+import UserService from "../services/UserService";
 
 const Profile = () => {
   const provider = useContext(DataContext);
-
   const [tempUser, setTempUser] = useState(provider.user);
+
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
     password: "",
     repeatPassword: "",
   });
+
   const handleChangePassword = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -18,17 +20,20 @@ const Profile = () => {
 
     setTempPassword({ ...tempPassword, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
       tempUser.email &&
-      tempUser.name &&
-      tempUser.street &&
-      tempUser.areacode &&
+      tempUser.firstName &&
+      tempUser.streetAddress &&
+      tempUser.postCode &&
       tempUser.city
     )
-      if (tempUser.email.includes("@" && ".")) {
+      if (tempUser.email.includes("@", ".")) {
         provider.setUser(tempUser);
+        UserService.updateInfo(provider.user.id, tempUser).then(() => {});
+        alert("User updated!");
       } else {
         alert("enter real email");
       }
@@ -42,6 +47,7 @@ const Profile = () => {
     const value = e.target.value;
 
     setTempUser({ ...tempUser, [name]: value });
+    console.log(tempUser);
   };
 
   const updatePassword = (e) => {
@@ -82,7 +88,7 @@ const Profile = () => {
 
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
-              Name:
+              First Name:
             </span>
             <input
               type="text"
@@ -90,8 +96,24 @@ const Profile = () => {
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               id="name"
-              name="name"
-              defaultValue={provider.user.name}
+              name="firstName"
+              defaultValue={provider.user.firstName}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
+              Last Name:
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              id="name"
+              name="lastName"
+              defaultValue={provider.user.lastName}
               onChange={handleChange}
             />
           </div>
@@ -121,8 +143,8 @@ const Profile = () => {
               aria-describedby="inputGroup-sizing-default"
               type="text"
               id="street"
-              name="street"
-              defaultValue={provider.user.street}
+              name="streetAddress"
+              defaultValue={provider.user.streetAddress}
               onChange={handleChange}
             />
           </div>
@@ -137,8 +159,8 @@ const Profile = () => {
                 aria-describedby="inputGroup-sizing-default"
                 type="text"
                 id="areaCode"
-                name="areaCode"
-                defaultValue={provider.user.areacode}
+                name="postCode"
+                defaultValue={provider.user.postCode}
                 onChange={handleChange}
               />
             </div>

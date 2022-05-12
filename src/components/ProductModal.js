@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { DataContext } from "./AuctionPage";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { v4 as uuidv4 } from 'uuid';
+
+import BidService from "../services/BidService";
 
 function ProductModal(props) {
   const provider = useContext(DataContext);
@@ -18,20 +19,27 @@ function ProductModal(props) {
     e.preventDefault();
     //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
     //props.placeBid()
-    if (input < Math.max(...props.bids) + 10) {
-      console.log("Bid too low.")
+    if (input < props.currentBid + 10) {
+      console.log("Bid too low.");
     } else {
       const newBid = {
-        "id": uuidv4(),
-        "userId": 5,
-        "auctionId": props.product.key,
-        "dateTime": "2022-03-25 10:30",
-        "amount": input
-      }
+        userId: provider.user.id,
+        auctionId: props.product.id,
+        bidTime: new Date(),
+        bidAmount: input,
+      };
 
-      provider.setBids([...provider.bids, newBid])
-      console.log(provider.bids)
+      createBid(newBid);
+      provider.setBids([...provider.bids, newBid]);
+      console.log(provider.bids);
     }
+  };
+
+  const createBid = (newBid) => {
+    BidService.createBid(newBid).then((res) => {
+      props.setHighestBid(newBid.bidAmount);
+      props.setCurrentBid(newBid.bidAmount);
+    });
   };
 
   return (
@@ -59,10 +67,10 @@ function ProductModal(props) {
             Starting price: {props.product.price}
             <br />
             Highest bid:{" "}
-            {props.bids.length !== 0 ? (
-              <span>{Math.max(...props.bids)}</span>
+            {props.highestBid ? (
+              <span>{props.highestBid}</span>
             ) : (
-              <span>No bids</span>
+              <span>no bids</span>
             )}
           </p>
           <form className="modal-bid-form" onSubmit={checkBid}>
@@ -70,7 +78,7 @@ function ProductModal(props) {
               Place your bid{" "}
               <input
                 type="number"
-                min={Math.max(...props.bids) + 10}
+                min={Math.max(props.currentBid) + 10}
                 //placeholder="Bid..."
                 name="bid"
                 onChange={handleChange}

@@ -72,7 +72,7 @@ const SortBar = () => {
         End Time
       </button>
       <button className="price-bar" onClick={sortColumn} value="price">
-        Price
+        Current Price
       </button>
       <button className="buyout-bar" onClick={sortColumn} value="buyout">
         Buyout

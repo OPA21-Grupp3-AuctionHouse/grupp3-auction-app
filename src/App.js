@@ -18,8 +18,8 @@ function App() {
           exact
           path="/"
           element={
-            <div className="welcomeOuter">
-              <div className="welcomeContainer">
+            <div className="welcomePageStart">
+              <div>
                 <WelcomePageHeader />
                 <Row className="landing">
                   <Col className="leftSide">

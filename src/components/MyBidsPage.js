@@ -8,15 +8,19 @@ function MyBidsPage() {
     (bids) => bids.userId === provider.user.id
   );
 
-  let allAuctionId = loggedUserBids.map((product) => product.auctionId);
+  console.log(loggedUserBids);
+
+  let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);
+  console.log(allAuctionId);
   const loggedUserAuctions = provider.products.filter((product) =>
-    allAuctionId.includes(product.key)
+    allAuctionId.includes(product.id)
   );
+  console.log(loggedUserAuctions);
 
   return (
     <div className="order-container">
       {loggedUserAuctions.map((product) => (
-        <ProductCard key={product.key} product={product} pageSource="mybids" />
+        <ProductCard key={product.id} product={product} pageSource="mybids" />
       ))}
     </div>
   );

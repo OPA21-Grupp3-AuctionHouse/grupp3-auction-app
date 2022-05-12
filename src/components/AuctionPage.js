@@ -13,31 +13,28 @@ import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
 import StartPage from "./StartPage";
-import MyFollowSort from "../unusedComponents/MyFollowSort";
-import MyFollowPage from "../unusedComponents/MyFollowPage";
-import myBids from "./data/myBids.json";
-import BidService from "../services/BidService";
 import ProductService from "../services/ProductService";
+import BidService from "../services/BidService";
+import UserService from "../services/UserService";
+import MyFollowPage from "./MyFollowPage";
+import MyFollowSort from "./MyFollowSort";
 
 export const DataContext = createContext();
 
 function AuctionPage() {
-  const [products, setProducts] = useState();
-  const [bids, setBids] = useState();
-  const [myBidsProducts, setMyBidsProducts] = useState(myBids);
+  const [products, setProducts] = useState([]);
+  const [bids, setBids] = useState([]);
+  const [highestBid, setHighestBid] = useState([]);
   const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
-  const [user, setUser] = useState({
-    id: 1,
-    name: "blabla",
-    email: "blabla@bla.com",
-    username: "MyUsername",
-    street: "astreet",
-    areacode: "2121",
-    city: "acity",
-    password: "hej",
-  });
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    getProducts();
+    getBids();
+    getUserById();
+  }, []);
 
   useEffect(() => {
     async function getProducts() {
@@ -57,6 +54,31 @@ function AuctionPage() {
     getProducts();
     getBids();
   }, []);
+
+  const getProducts = () => {
+    ProductService.getProducts().then((res) => {
+      setProducts(res.data);
+    });
+  };
+
+  const getBids = () => {
+    BidService.getBids().then((res) => {
+      setBids(res.data);
+    });
+  };
+
+  const getHighestBid = () => {
+    BidService.getHighestBid().then((res) => {
+      setHighestBid(res.data);
+    });
+  };
+
+  const getUserById = () => {
+    UserService.getUserById("626736e362a4c438443c45c3").then((res) => {
+      setUser(res.data);
+      console.log(res.data);
+    });
+  };
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -91,6 +113,7 @@ function AuctionPage() {
     <div className="auction-outer-outer-container">
       <div className="auction-outer-container">
         <AuctionHeader />
+
         <div className="auction-inner-container">
           <Routes>
             <Route exact path="/" element={<StartPage />} />
@@ -107,6 +130,8 @@ function AuctionPage() {
                       filteredView,
                       bids,
                       setBids,
+                      user,
+                      setUser,
                     }}
                   >
                     <AuctionCategories sortBySearch={sortBySearch} />
@@ -142,7 +167,6 @@ function AuctionPage() {
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
-                      user,
                       products,
                       setProducts,
                       searchResult,
@@ -150,6 +174,10 @@ function AuctionPage() {
                       filteredView,
                       bids,
                       setBids,
+                      highestBid,
+                      setHighestBid,
+                      user,
+                      setUser,
                     }}
                   >
                     <UnderNav />
@@ -163,67 +191,50 @@ function AuctionPage() {
               exact
               path="newauction"
               element={
-                <div>
-                  <DataContext.Provider
-                    value={{
-                      user,
-                      products,
-                      setProducts,
-                      searchResult,
-                      setSearchResult,
-                      filteredView,
-                      bids,
-                      setBids,
-                    }}
-                  >
-                    <AuctionCategories sortBySearch={sortBySearch} />
-                    <div className="auction-inner-inner-container">
-                      <SearchBar sortBySearch={sortBySearch} />
-                      <SortBar />
-                      <ProductList setFilteredView={setFilteredView} />
-                    </div>
-                  </DataContext.Provider>
-                </div>
-              }
-            />
-            <Route
-              exact
-              path="profile"
-              element={
                 <>
-                  <DataContext.Provider
-                    value={{
-                      user,
-                      setUser,
-                    }}
-                  >
-                    <Profile />
-                  </DataContext.Provider>
+                  <div className="order-inner-inner-container">
+                    <DataContext.Provider
+                      value={{
+                        products,
+                        setProducts,
+                        bids,
+                        setBids,
+                        user,
+                        setUser,
+                      }}
+                    >
+                      <UnderNav />
+                      <NewAuctionPage />
+                    </DataContext.Provider>
+                  </div>
                 </>
               }
             />
             <Route
               exact
-              path="auctions"
+              path="myAuction"
               element={
-                <div className="order-inner-inner-container">
-                  <DataContext.Provider
-                    value={{
-                      user,
-                      products,
-                      setProducts,
-                      searchResult,
-                      setSearchResult,
-                      filteredView,
-                      bids,
-                      setBids,
-                    }}
-                  >
-                    <UnderNav />
-                    <MyBidsSortBar />
-                    <MyBidsPage />
-                  </DataContext.Provider>
-                </div>
+                <>
+                  <div className="order-inner-inner-container">
+                    <DataContext.Provider
+                      value={{
+                        products,
+                        setProducts,
+                        searchResult,
+                        setSearchResult,
+                        filteredView,
+                        bids,
+                        setBids,
+                        user,
+                        setUser,
+                      }}
+                    >
+                      <UnderNav />
+                      <MyAuctionsBar />
+                      <MyAuctions />
+                    </DataContext.Provider>
+                  </div>
+                </>
               }
             />
             <Route
@@ -233,27 +244,8 @@ function AuctionPage() {
                 <div className="order-inner-inner-container">
                   <DataContext.Provider
                     value={{
-                      myBidsProducts,
-                      setMyBidsProducts,
-                      searchResult,
-                      setSearchResult,
-                      filteredView,
-                    }}
-                  >
-                    <UnderNav />
-                  </DataContext.Provider>
-                </div>
-              }
-            />
-            <Route
-              exact
-              path="history"
-              element={
-                <div className="order-inner-inner-container">
-                  <DataContext.Provider
-                    value={{
-                      myBidsProducts,
-                      setMyBidsProducts,
+                      products,
+                      setProducts,
                       searchResult,
                       setSearchResult,
                       filteredView,
