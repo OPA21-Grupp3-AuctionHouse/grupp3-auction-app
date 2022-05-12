@@ -18,7 +18,7 @@ const Register = () => {
   });
 
   // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
+  //const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
   let navigate = useNavigate();
@@ -45,14 +45,14 @@ const Register = () => {
       return response.json();
     } else {
       setError(true);
-      setSubmitted(false);
+      //setSubmitted(false);
       throw Error("Incorrect password");
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    //setSubmitted(true);
     setError(false);
 
     AuthService.register(
@@ -83,7 +83,7 @@ const Register = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setSubmitted(false);
+    //setSubmitted(false);
   };
 
   return (

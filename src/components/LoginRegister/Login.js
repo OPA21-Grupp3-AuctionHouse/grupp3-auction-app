@@ -49,21 +49,21 @@ const Login = () => {
     //setSubmitted(true);
     setError(false);
 
-    AuthService.login(formData.username, formData.password)
-      .then(CheckError)
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // fetch("http://localhost:3333/login", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(formData),
-    // })
+    // AuthService.login(formData.username, formData.password)
     //   .then(CheckError)
     //   .catch((error) => {
     //     console.log(error);
     //   });
+
+    fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then(CheckError)
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // handling the input changes
