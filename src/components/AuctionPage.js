@@ -111,7 +111,20 @@ function AuctionPage() {
 
         <div className="auction-inner-container">
           <Routes>
-            <Route exact path="/" element={<StartPage value={user} />} />
+            <Route
+              exact
+              path="/"
+              element={
+                <DataContext.Provider
+                  value={{
+                    user,
+                  }}
+                >
+                  <StartPage />{" "}
+                </DataContext.Provider>
+              }
+            />
+
             <Route
               path="bazaar"
               element={
