@@ -5,10 +5,9 @@ import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
   const provider = useContext(DataContext);
-  const loggedUserBids = provider.bids.filter(  
-    (bids) => bids.userId === provider.user.id
+  const loggedUserBids = provider.bids.filter(
+    (bids) => bids.userId === provider.user
   );
-
 
   console.log(loggedUserBids);
 
