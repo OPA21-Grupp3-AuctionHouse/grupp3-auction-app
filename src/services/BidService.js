@@ -8,15 +8,19 @@ class BidService {
   }
 
   createBid(bid) {
-    return axios.post(`${API_URL_TEST}/create`, bid);
+    return axios.post(`${API_URL_TEST}/create`, bid, { withCredentials: true });
   }
 
   getHighestBid(id) {
-    return axios.get(`${API_URL_TEST}/highestBid/${id}`);
+    return axios.get(`${API_URL_TEST}/highestBid/${id}`, {
+      withCredentials: true,
+    });
   }
 
   getMyHighestBid(auctionId, userId) {
-    return axios.get(`${API_URL_TEST}/myHighestBid/${auctionId}/${userId}`);
+    return axios.get(`${API_URL_TEST}/myHighestBid/${auctionId}/${userId}`, {
+      withCredentials: true,
+    });
   }
 }
 

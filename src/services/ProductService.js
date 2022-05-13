@@ -8,7 +8,9 @@ class ProductService {
   }
 
   createProduct(auction) {
-	  return axios.post(`${API_URL_TEST}/createauction`, auction)
+    return axios.post(`${API_URL_TEST}/createauction`, auction, {
+      withCredentials: true,
+    });
   }
 }
 

@@ -34,7 +34,7 @@ const ProductCard = ({ product, pageSource }) => {
   };
 
   const loadMyHighestBid = () => {
-    BidService.getMyHighestBid(product.id, provider.user.id).then((res) => {
+    BidService.getMyHighestBid(product.id, provider.user).then((res) => {
       setMyHighestBid(res.data.bidAmount);
     });
   };

@@ -23,7 +23,7 @@ function ProductModal(props) {
       console.log("Bid too low.");
     } else {
       const newBid = {
-        userId: provider.user.id,
+        userId: provider.user,
         auctionId: props.product.id,
         bidTime: new Date(),
         bidAmount: input,

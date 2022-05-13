@@ -1,23 +1,9 @@
-import React, { useState, useEffect } from "react";
-import UserService from "../services/UserService";
+import React from "react";
 
 function StartPage() {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  const getUser = () => {
-    UserService.getUser().then((res) => {
-      console.log(res.data);
-      setUser(res.data);
-    });
-  };
-
   return (
     <div className="auction-start-container">
-      <h2>Welcome, User!</h2>
+      <h2>Welcome, user!</h2>
     </div>
   );
 }

@@ -33,7 +33,7 @@ const Login = () => {
 
   function CheckError(response) {
     if (response.status >= 200 && response.status <= 299) {
-      console.log(response);
+      console.log(response.data);
       navigate("/startpage");
     } else {
       setError(true);
