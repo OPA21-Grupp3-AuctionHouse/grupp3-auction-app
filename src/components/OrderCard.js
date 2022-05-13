@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import OrderModal from "./OrderModal";
 
-const OrderCard = ({ order }) => {
+const OrderCard = ({ product }) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
     <div className="order-card" onClick={() => setModalShow(true)}>
       <div className="order-images">Image</div>
-      <div className="order-names">{order.Name}</div>
-      <div className="order-status">{order.Status}</div>
-      <div className="order-date">{order.Date}</div>
-      <div className="order-type">{order.Type}</div>
-      <div className="order-price">{order.Price}</div>
+      <div className="order-names">{product.name}</div>
+      <div className="order-status">{product.status}</div>
+      <div className="order-date">{product.date}</div>
+      <div className="order-type">{product.type}</div>
+      <div className="order-price">{product.rice}</div>
     </div>
       <OrderModal
       show={modalShow}
       onHide={() => setModalShow(false)}
-      order={order}
+      product={product}
     />
   </>
   );
 };
 
 export default OrderCard;
+*/

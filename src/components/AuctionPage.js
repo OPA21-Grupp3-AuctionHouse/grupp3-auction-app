@@ -17,8 +17,10 @@ import StartPage from "./StartPage";
 import ProductService from "../services/ProductService";
 import BidService from "../services/BidService";
 import UserService from "../services/UserService";
-import MyFollowPage from "./MyFollowPage";
-import MyFollowSort from "./MyFollowSort";
+import MyFollowPage from "../unusedComponents/MyFollowPage";
+import MyFollowSort from "../unusedComponents/MyFollowSort";
+import MyAuctions from "./Myauctions";
+import MyAuctionsBar from "./MyAuctionsBar";
 
 export const DataContext = createContext();
 
@@ -26,7 +28,6 @@ function AuctionPage() {
   const [products, setProducts] = useState([]);
   const [bids, setBids] = useState([]);
   const [highestBid, setHighestBid] = useState([]);
-  const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState();
@@ -272,10 +273,12 @@ function AuctionPage() {
                   <div className="order-inner-inner-container">
                     <DataContext.Provider
                       value={{
-                        orderProducts,
-                        setOrderProducts,
+                        products,
+                        setProducts,
                         bids,
                         setBids,
+                        user,
+                        setUser
                       }}
                     >
                       <UnderNav />

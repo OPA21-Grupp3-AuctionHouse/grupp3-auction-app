@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import ProductModal from "./ProductModal";
 import { DataContext } from "../components/AuctionPage";
 import BidService from "../services/BidService";
+import OrderModal from "./OrderModal";
+
 
 const ProductCard = ({ product, pageSource }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -156,6 +158,22 @@ const ProductCard = ({ product, pageSource }) => {
           setCurrentBid={setCurrentBid}
         />
       </>
+    );
+  } else if (pageSource === "myhistory") {
+    return (    <>
+      <div className="order-card" onClick={() => setModalShow(true)}>
+        <div className="order-images">Image</div>
+        <div className="order-names">{product.name}</div>
+        <div className="order-status">{product.orderStatus}</div>
+        <div className="order-date">{product.date}</div>
+        <div className="order-price">{product.price}</div>
+      </div>
+        <OrderModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        product={product}
+      />
+    </>
     );
   } else {
     return (

@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
-import OrderCard from "./OrderCard";
+//import OrderCard from "./OrderCard";
 import { DataContext } from "./AuctionPage";
+import ProductCard from "./ProductCard";
 
 function OrderList() {
-  const OrderData = useContext(DataContext);
+  const provider = useContext(DataContext);
   return (
     <div className="order-container">
-      {OrderData.orderProducts.map((order) => (
-        <OrderCard key={order.key} order={order} />
+      {provider.products.map((product) => (
+        <ProductCard key={product.id} product={product} pageSource = "myhistory"/>
       ))}
     </div>
   );
