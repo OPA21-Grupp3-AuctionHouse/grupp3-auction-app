@@ -39,7 +39,7 @@ const Login = () => {
     } else {
       setError(true);
       //setSubmitted(false);
-      throw Error("Incorrect password");
+      throw Error("Incorrect password" + response.status);
     }
   }
 
@@ -49,13 +49,22 @@ const Login = () => {
     //setSubmitted(true);
     setError(false);
 
-    // AuthService.login(formData.username, formData.password)
-    //   .then(CheckError)
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    fetch("http://localhost:8080/login", {
+    AuthService.login(formData.username, formData.password).then(
+      () => {
+        navigate("/startpage");
+        window.location.reload();
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
+     
+    /* fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -63,7 +72,7 @@ const Login = () => {
       .then(CheckError)
       .catch((error) => {
         console.log(error);
-      });
+      }); */
   };
 
   // handling the input changes
@@ -126,6 +135,6 @@ const Login = () => {
       </Container>
     </>
   );
-};
+};;
 
 export default Login;

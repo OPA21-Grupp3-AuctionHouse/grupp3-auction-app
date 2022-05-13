@@ -6,13 +6,18 @@ const getPublicContent = () => {
   return axios.get(API_URL + "welcomepage");
 };
 
-const getUserContent = () => {
+const getStartPageContent = () => {
   return axios.get(API_URL + "startpage");
+};
+
+const getCardBazaarContent = () => {
+  return axios.get(API_URL + "/api");
 };
 
 const UserService = {
   getPublicContent,
-  getUserContent,
+  getCardBazaarContent,
+  getStartPageContent,
 };
 
 export default UserService;
