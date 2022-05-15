@@ -5,31 +5,33 @@ import { DataContext } from "./AuctionPage";
 function ProductList() {
   const provider = useContext(DataContext);
 
-  if (provider.filteredView === false && provider.products) {
-    return (
-      <div className="product-container">
-        {provider.products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    );
-  } else if (
-    typeof provider.searchResult === "string" &&
-    provider.searchResult !== ""
-  ) {
-    return (
-      <div className="product-container">
-        <h2>No results found</h2>
-      </div>
-    );
-  } else {
-    return (
-      <div className="product-container">
-        {provider.searchResult.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    );
+  if (provider.products) {
+    if (provider.filteredView === false) {
+      return (
+        <div className="product-container">
+          {provider.products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      );
+    } else if (
+      typeof provider.searchResult === "string" &&
+      provider.searchResult !== ""
+    ) {
+      return (
+        <div className="product-container">
+          <h2>No results found</h2>
+        </div>
+      );
+    } else {
+      return (
+        <div className="product-container">
+          {provider.searchResult.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      );
+    }
   }
 }
 

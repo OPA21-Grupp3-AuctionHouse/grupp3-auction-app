@@ -2,7 +2,7 @@ import React from "react";
 import { useContext, useState } from "react";
 import ProductService from "../services/ProductService";
 
-import AuctionPage, { DataContext, getProducts } from "./AuctionPage";
+import { DataContext } from "./AuctionPage";
 
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);

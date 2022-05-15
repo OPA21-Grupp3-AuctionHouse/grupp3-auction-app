@@ -13,11 +13,14 @@ import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
 import StartPage from "./StartPage";
+import NewAuctionPage from "./NewAuctionPage";
+import MyAuctionsBar from "./MyAuctionsBar";
+import MyAuctions from "./MyAuctions";
 import ProductService from "../services/ProductService";
 import BidService from "../services/BidService";
 import UserService from "../services/UserService";
-import MyFollowPage from "./MyFollowPage";
-import MyFollowSort from "./MyFollowSort";
+import MyFollowPage from "../unusedComponents/MyFollowPage";
+import MyFollowSort from "../unusedComponents/MyFollowSort";
 
 export const DataContext = createContext();
 
@@ -74,7 +77,7 @@ function AuctionPage() {
   };
 
   const getUserById = () => {
-    UserService.getUserById("626736e362a4c438443c45c3").then((res) => {
+    UserService.getUserById("6267aa5c9ee2f57ca7dd1d3f").then((res) => {
       setUser(res.data);
       console.log(res.data);
     });

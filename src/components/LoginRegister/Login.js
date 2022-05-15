@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../../services/AuthService";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -45,6 +46,16 @@ const Login = () => {
     e.preventDefault();
     //setSubmitted(true);
     setError(false);
+
+    console.log(formData);
+
+    AuthService.login(formData.username, formData.password)
+      .then(CheckError)
+      .catch((error) => {
+        console.log(error);
+      });
+
+    /*
     fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -54,6 +65,7 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
       });
+      */
   };
 
   // handling the input changes
