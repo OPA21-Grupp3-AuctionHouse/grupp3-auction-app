@@ -3,6 +3,8 @@ import { useState } from "react";
 import { DataContext } from "./AuctionPage";
 import UserService from "../services/UserService";
 
+
+
 const Profile = () => {
   const provider = useContext(DataContext);
   const [tempUser, setTempUser] = useState(provider.user);
@@ -41,6 +43,9 @@ const Profile = () => {
       alert("Fill in all Fields");
     }
   };
+
+
+
   const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;

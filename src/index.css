@@ -336,6 +336,19 @@ header {
   align-items: center;
 }
 
+.logout-button-profile {
+  display: flex;
+  background-color: #4f97db;
+  border: none;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  align-items: center;
+}
+
 .new-auction-page-container {
   display: flex;
   flex-grow: 0.1;

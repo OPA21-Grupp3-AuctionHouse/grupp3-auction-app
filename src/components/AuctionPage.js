@@ -9,6 +9,7 @@ import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
 import OrderData from "./data/OrderData.json";
+import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
@@ -36,7 +37,7 @@ function AuctionPage() {
   useEffect(() => {
     getProducts();
     getBids();
-    getUserById();
+    getUser();
   }, []);
 
   useEffect(() => {
@@ -76,6 +77,12 @@ function AuctionPage() {
     });
   };
 
+  const getUser = () => {
+    UserService.getUser().then((res) => {
+      setUser(res.data);
+      console.log(res.data);
+    });
+  };
   const getUserById = () => {
     UserService.getUserById("6267aa5c9ee2f57ca7dd1d3f").then((res) => {
       setUser(res.data);
@@ -119,7 +126,20 @@ function AuctionPage() {
 
         <div className="auction-inner-container">
           <Routes>
-            <Route exact path="/" element={<StartPage />} />
+            <Route
+              exact
+              path="/"
+              element={
+                <DataContext.Provider
+                  value={{
+                    user,
+                  }}
+                >
+                  <StartPage />{" "}
+                </DataContext.Provider>
+              }
+            />
+
             <Route
               path="bazaar"
               element={

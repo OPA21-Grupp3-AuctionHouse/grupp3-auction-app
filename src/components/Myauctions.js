@@ -7,7 +7,7 @@ const MyAuctions = () => {
   const provider = useContext(DataContext);
 
   const userAuctionList = provider.products.filter(
-    (product) => product.ownerId === provider.user.id
+    (product) => product.ownerId === provider.user
   );
   return (
     <div className="order-container">
