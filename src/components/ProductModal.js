@@ -72,6 +72,13 @@ function ProductModal(props) {
             ) : (
               <span>no bids</span>
             )}
+            <br />
+            My bid:{" "}
+            {props.myHighestBid ? (
+              <span>{props.myHighestBid}</span>
+            ) : (
+              <span>no bid</span>
+            )}
           </p>
           <form className="modal-bid-form" onSubmit={checkBid}>
             {!props.pageSource ? (

@@ -5,7 +5,15 @@ import UserService from "../services/UserService";
 
 const Profile = () => {
   const provider = useContext(DataContext);
-  const [tempUser, setTempUser] = useState();
+  const [tempUser, setTempUser] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    streetAddress: "",
+    postCode: "",
+    city: "",
+  });
 
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
@@ -14,14 +22,13 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    async function setUser() {
+    async function loadUser() {
       UserService.getUserById(provider.user).then((res) => {
-        console.log(res);
-        setTempUser("hej");
+        setTempUser(res.data);
       });
     }
 
-    setUser();
+    loadUser();
   }, []);
 
   const handleChangePassword = (e) => {
@@ -34,22 +41,23 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(tempUser);
     if (
-      tempUser.email &&
       tempUser.firstName &&
+      tempUser.lastName &&
+      tempUser.email &&
       tempUser.streetAddress &&
       tempUser.postCode &&
       tempUser.city
     )
       if (tempUser.email.includes("@", ".")) {
-        provider.setUser(tempUser);
-        UserService.updateInfo(provider.user.id, tempUser).then(() => {});
+        UserService.updateInfo(provider.user, tempUser);
         alert("User updated!");
       } else {
-        alert("enter real email");
+        alert("Enter valid email");
       }
     else {
-      alert("Fill in all Fields");
+      alert("Fill in all fields");
     }
   };
 
@@ -95,7 +103,7 @@ const Profile = () => {
                 readOnly
                 className="form-control-plaintext"
                 id="staticEmail2"
-                value={provider.user.username}
+                value={tempUser.username}
               />
             </div>
 
@@ -110,7 +118,7 @@ const Profile = () => {
                 aria-describedby="inputGroup-sizing-default"
                 id="name"
                 name="firstName"
-                defaultValue={provider.user.firstName}
+                defaultValue={tempUser.firstName}
                 onChange={handleChange}
               />
             </div>
@@ -126,7 +134,7 @@ const Profile = () => {
                 aria-describedby="inputGroup-sizing-default"
                 id="name"
                 name="lastName"
-                defaultValue={provider.user.lastName}
+                defaultValue={tempUser.lastName}
                 onChange={handleChange}
               />
             </div>
@@ -142,7 +150,7 @@ const Profile = () => {
                 aria-describedby="inputGroup-sizing-default"
                 id="email"
                 name="email"
-                defaultValue={provider.user.email}
+                defaultValue={tempUser.email}
                 onChange={handleChange}
               />
             </div>
@@ -157,7 +165,7 @@ const Profile = () => {
                 type="text"
                 id="street"
                 name="streetAddress"
-                defaultValue={provider.user.streetAddress}
+                defaultValue={tempUser.streetAddress}
                 onChange={handleChange}
               />
             </div>
@@ -173,7 +181,7 @@ const Profile = () => {
                   type="text"
                   id="areaCode"
                   name="postCode"
-                  defaultValue={provider.user.postCode}
+                  defaultValue={tempUser.postCode}
                   onChange={handleChange}
                 />
               </div>
@@ -190,7 +198,7 @@ const Profile = () => {
                 type="text"
                 id="city"
                 name="city"
-                defaultValue={provider.user.city}
+                defaultValue={tempUser.city}
                 onChange={handleChange}
               />
             </div>

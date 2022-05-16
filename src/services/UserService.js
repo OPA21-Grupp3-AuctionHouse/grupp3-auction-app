@@ -11,7 +11,6 @@ class UserService {
   }
   getUserById(id) {
     return axios.get(`${API_URL_TEST}/getById/${id}`, {
-      headers: AuthHeader(),
       withCredentials: true,
     });
   }

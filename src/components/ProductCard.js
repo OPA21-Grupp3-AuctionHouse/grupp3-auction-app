@@ -96,21 +96,18 @@ const ProductCard = ({ product, pageSource }) => {
     return (
       <>
         <div className="product-card" onClick={handleClick}>
-          <div className="product-image">
+          <div className="my-bid-image">
             <img
               className="Card-image-css"
               src={product.imageURL}
               alt="jaja"
             ></img>
           </div>
-          <div className="mybid-name">{product.name}</div>
-          <div className="mybid-endTime">{product.timeRemaining}</div>
-          <div className="product-myBid">{myHighestBid}</div>
-          <div className="product-myBid">{highestBid}</div>
-          <div className="product-myBid">
-            {product.buyout}
-            <button>BUY</button>
-          </div>
+          <div className="my-bid-name">{product.name}</div>
+          <div className="my-bid-endtime">{product.timeRemaining}</div>
+          <div className="my-bid-price">{myHighestBid}</div>
+          <div className="my-bid-price">{highestBid}</div>
+          <div className="my-bid-price">{product.buyout}</div>
         </div>
         <ProductModal
           show={modalShow}
@@ -130,21 +127,17 @@ const ProductCard = ({ product, pageSource }) => {
     return (
       <>
         <div className="product-card" onClick={handleClick}>
-          <div className="product-image">
+          <div className="my-auction-image">
             <img
               className="Card-image-css"
               src={product.imageURL}
               alt="jaja"
             ></img>
           </div>
-          <div className="mybid-name">{product.name}</div>
-          <div className="mybid-endTime">{product.timeRemaining}</div>
-          <div className="product-myBid">{product.price}</div>
-          <div className="product-myBid">{highestBid}</div>
-          <div className="product-myBid">
-            {product.buyout}
-            <button>BUY</button>
-          </div>
+          <div className="my-auction-name">{product.name}</div>
+          <div className="my-auction-endtime">{product.timeRemaining}</div>
+          <div className="my-auction-price">{product.price}</div>
+          <div className="my-auction-price">{highestBid}</div>
         </div>
         <ProductModal
           show={modalShow}

@@ -34,12 +34,13 @@ function AuctionPage() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    getProducts();
-    getBids();
-    getUser();
-  }, []);
+    async function getUser() {
+      UserService.getUser().then((res) => {
+        setUser(res.data);
+        console.log("User id: " + res.data);
+      });
+    }
 
-  useEffect(() => {
     async function getProducts() {
       ProductService.getProducts().then((res) => {
         setProducts(res.data);
@@ -53,40 +54,18 @@ function AuctionPage() {
       });
     }
 
+    getUser();
     getProducts();
     getBids();
   }, []);
 
-  const getProducts = () => {
-    ProductService.getProducts().then((res) => {
-      setProducts(res.data);
-    });
-  };
-
-  const getBids = () => {
-    BidService.getBids().then((res) => {
-      setBids(res.data);
-    });
-  };
-
+  /*
   const getHighestBid = () => {
     BidService.getHighestBid().then((res) => {
       setHighestBid(res.data);
     });
   };
-
-  const getUser = () => {
-    UserService.getUser().then((res) => {
-      setUser(res.data);
-      console.log("User id: " + user);
-    });
-  };
-  const getUserById = () => {
-    UserService.getUserById("6267aa5c9ee2f57ca7dd1d3f").then((res) => {
-      setUser(res.data);
-      console.log(res.data);
-    });
-  };
+  */
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {

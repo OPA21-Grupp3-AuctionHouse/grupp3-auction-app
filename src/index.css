@@ -240,16 +240,6 @@ header {
   width: 100%;
 }
 
-.mybid-name-bar,
-.mybid-description-bar,
-.mybid-image-bar,
-.mybid-name,
-.mybid-endTime {
-  width: 25%;
-  display: flex;
-  justify-content: center;
-}
-
 .search-form {
   height: 100%;
   margin: 0;
@@ -298,7 +288,7 @@ header {
 .product-container {
   height: 90%;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   flex-grow: 1;
   text-align: center;
   justify-content: center;
@@ -339,12 +329,6 @@ header {
 
 .product-myAuctionBid {
   width: 20%;
-  display: flex;
-  justify-content: center;
-}
-
-.product-myBid {
-  width: 14%;
   display: flex;
   justify-content: center;
 }
@@ -431,6 +415,7 @@ header {
   padding-bottom: 5px;
   background-color: white;
 }
+
 .order-sort la {
   border: 0.5px solid black;
   margin-right: 100px;
@@ -482,10 +467,11 @@ header {
   height: inherit;
   width: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   flex-grow: 1;
   text-align: center;
 }
+
 .images-head,
 .order-images {
   width: 20%;
@@ -501,6 +487,7 @@ header {
   display: flex;
   justify-content: center;
 }
+
 .type-head,
 .order-type {
   width: 13%;
@@ -516,8 +503,39 @@ header {
   display: flex;
   justify-content: center;
 }
-.myBid-price-bar {
+
+.my-bid-price-bar,
+.my-bid-image-bar,
+.my-bid-price,
+.my-bid-image {
   width: 14%;
+  display: flex;
+  justify-content: center;
+}
+
+.my-bid-name-bar,
+.my-bid-endtime-bar,
+.my-bid-name,
+.my-bid-endtime {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+
+.my-auction-price-bar,
+.my-auction-image-bar,
+.my-auction-price,
+.my-auction-image {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+
+.my-auction-name-bar,
+.my-auction-endtime-bar,
+.my-auction-name,
+.my-auction-endtime {
+  width: 27.5%;
   display: flex;
   justify-content: center;
 }
@@ -529,9 +547,11 @@ header {
   align-items: center;
   border: 0.5px solid black;
 }
+
 .order-card:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
+
 .orderSort-outer-container {
   width: 100%;
   display: flex;
@@ -580,6 +600,7 @@ header {
 .Card-image-css {
   height: 44px;
 }
+
 .Card-image-css:hover {
   height: 200px;
   z-index: 10;
@@ -587,11 +608,6 @@ header {
 
 .my-auction-bar {
   width: 25%;
-  display: flex;
-  justify-content: center;
-}
-.my-auction-price-bar {
-  width: 21%;
   display: flex;
   justify-content: center;
 }
