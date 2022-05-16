@@ -134,7 +134,6 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="product-myBid">{highestBid}</div>
           <div className="product-myBid">
             {product.buyout}
-            <button>BUY</button>
           </div>
         </div>
         <ProductModal
