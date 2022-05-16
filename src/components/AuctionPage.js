@@ -14,7 +14,6 @@ import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
 import StartPage from "./StartPage";
-import NewAuctionPage from "./NewAuctionPage";
 import MyAuctionsBar from "./MyAuctionsBar";
 import MyAuctions from "./MyAuctions";
 import ProductService from "../services/ProductService";
@@ -44,7 +43,6 @@ function AuctionPage() {
     async function getProducts() {
       ProductService.getProducts().then((res) => {
         setProducts(res.data);
-        console.log(res.data);
       });
     }
 
@@ -80,7 +78,7 @@ function AuctionPage() {
   const getUser = () => {
     UserService.getUser().then((res) => {
       setUser(res.data);
-      console.log(res.data);
+      console.log("User id: " + user);
     });
   };
   const getUserById = () => {

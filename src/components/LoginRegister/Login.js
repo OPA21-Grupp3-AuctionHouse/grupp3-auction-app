@@ -34,7 +34,6 @@ const Login = () => {
 
   function CheckError(response) {
     if (response.status >= 200 && response.status <= 299) {
-      console.log(response.data);
       navigate("/startpage");
     } else {
       setError(true);
@@ -48,9 +47,7 @@ const Login = () => {
     //setSubmitted(true);
     setError(false);
 
-    console.log(formData);
-
-    AuthService.login(formData.username, formData.password)
+    AuthService.login(formData)
       .then(CheckError)
       .catch((error) => {
         console.log(error);

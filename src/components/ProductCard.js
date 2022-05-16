@@ -7,8 +7,8 @@ const ProductCard = ({ product, pageSource }) => {
   const [modalShow, setModalShow] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
-  //const [highestBid, setHighestBid] = useState(product.highestBid);
-  //const [myHighestBid, setMyHighestBid] = useState();
+  const [highestBid, setHighestBid] = useState();
+  const [myHighestBid, setMyHighestBid] = useState();
   const [currentBid, setCurrentBid] = useState();
   const provider = useContext(DataContext);
 
@@ -17,12 +17,11 @@ const ProductCard = ({ product, pageSource }) => {
       (bid) => bid.auctionId === product.id
     );
 
-    let bidAmount = productBids.map((bid) => bid.amount);
+    let bidAmount = productBids.map((bid) => bid.bidAmount);
 
     setBids(bidAmount);
   };
 
-  /*
   const loadHighestBids = () => {
     BidService.getHighestBid(product.id).then((res) => {
       if (res.data.bidAmount) {
@@ -34,17 +33,12 @@ const ProductCard = ({ product, pageSource }) => {
       }
     });
   };
-  */
 
-  /*
   const loadMyHighestBid = () => {
-    console.log(product);
-    console.log(provider.user);
     BidService.getMyHighestBid(product.id, provider.user).then((res) => {
       setMyHighestBid(res.data.bidAmount);
     });
   };
-  */
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -52,12 +46,10 @@ const ProductCard = ({ product, pageSource }) => {
     setModalShow(true);
   };
 
-  /*
   useEffect(() => {
     loadHighestBids();
     loadMyHighestBid();
-  }, []);
-  */
+  }, [bids]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -113,8 +105,8 @@ const ProductCard = ({ product, pageSource }) => {
           </div>
           <div className="mybid-name">{product.name}</div>
           <div className="mybid-endTime">{product.timeRemaining}</div>
-          {/*<div className="product-myBid">{myHighestBid}</div>
-          <div className="product-myBid">{highestBid}</div>*/}
+          <div className="product-myBid">{myHighestBid}</div>
+          <div className="product-myBid">{highestBid}</div>
           <div className="product-myBid">
             {product.buyout}
             <button>BUY</button>
@@ -125,9 +117,9 @@ const ProductCard = ({ product, pageSource }) => {
           onHide={() => setModalShow(false)}
           product={product}
           bids={bids}
-          //highestBid={highestBid}
-          //setHighestBid={setHighestBid}
-          //myHighestBid={myHighestBid}
+          highestBid={highestBid}
+          setHighestBid={setHighestBid}
+          myHighestBid={myHighestBid}
           //setMyHighestBid={setMyHighestBid}
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
@@ -148,7 +140,7 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="mybid-name">{product.name}</div>
           <div className="mybid-endTime">{product.timeRemaining}</div>
           <div className="product-myBid">{product.price}</div>
-          {/*<div className="product-myBid">{highestBid}</div>*/}
+          <div className="product-myBid">{highestBid}</div>
           <div className="product-myBid">
             {product.buyout}
             <button>BUY</button>
@@ -159,10 +151,11 @@ const ProductCard = ({ product, pageSource }) => {
           onHide={() => setModalShow(false)}
           product={product}
           bids={bids}
-          //highestBid={highestBid}
-          //setHighestBid={setHighestBid}
+          highestBid={highestBid}
+          setHighestBid={setHighestBid}
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
+          pageSource={pageSource}
         />
       </>
     );
@@ -183,8 +176,8 @@ const ProductCard = ({ product, pageSource }) => {
           onHide={() => setModalShow(false)}
           product={product}
           bids={bids}
-          //highestBid={highestBid}
-          //setHighestBid={setHighestBid}
+          highestBid={highestBid}
+          setHighestBid={setHighestBid}
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
         />

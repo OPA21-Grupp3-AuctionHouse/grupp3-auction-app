@@ -10,7 +10,11 @@ function ProductList() {
       return (
         <div className="product-container">
           {provider.products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              pageSource="bazaar"
+            />
           ))}
         </div>
       );
@@ -27,7 +31,11 @@ function ProductList() {
       return (
         <div className="product-container">
           {provider.searchResult.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              pageSource="bazaar"
+            />
           ))}
         </div>
       );

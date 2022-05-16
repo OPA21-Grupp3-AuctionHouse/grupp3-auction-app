@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Col, Row, Form, Button, Container, InputGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginRegister.css";
+import AuthService from "../../services/AuthService";
 
 const Register = () => {
   // states for register
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     username: "",
     email: "",
     password: "",
@@ -36,9 +37,10 @@ const Register = () => {
   };
 
   function CheckError(response) {
+    console.log(response.status);
     if (response.status >= 200 && response.status <= 299) {
       navigate("/startpage");
-      return response.json();
+      return response;
     } else {
       setError(true);
       throw Error("Incorrect password");
@@ -50,7 +52,16 @@ const Register = () => {
 
     //setSubmitted(true);
     setError(false);
-    fetch("http://localhost:3333/users", {
+
+    console.log(formData);
+    AuthService.register(formData)
+      .then(CheckError)
+      .catch((error) => {
+        console.log(error);
+      });
+
+    /*
+    fetch("http://localhost:8080/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -59,6 +70,7 @@ const Register = () => {
       .catch((error) => {
         console.log(error);
       });
+    */
   };
 
   const handleChange = (e) => {
@@ -80,7 +92,8 @@ const Register = () => {
                   required
                   type="text"
                   placeholder="First Name"
-                  name="firstname"
+                  value={formData.firstName}
+                  name="firstName"
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
@@ -91,8 +104,8 @@ const Register = () => {
                   required
                   type="text"
                   placeholder="Last Name"
-                  value={formData.lastname}
-                  name="lastname"
+                  value={formData.lastName}
+                  name="lastName"
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
@@ -113,7 +126,7 @@ const Register = () => {
                 </InputGroup>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="">
+              <Form.Group className="mb-3" controlId="validationCustomeEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                   required
@@ -128,7 +141,7 @@ const Register = () => {
               {/* Calling to error message */}
               <div className="messages">{errorMessage()}</div>
 
-              <Form.Group className="mb-3" controlId="">
+              <Form.Group className="mb-3" controlId="validationCustomPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   required

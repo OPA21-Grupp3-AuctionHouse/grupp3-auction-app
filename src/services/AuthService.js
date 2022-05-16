@@ -3,6 +3,13 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/";
 
 class AuthService {
+  login(formData) {
+    return axios.post(API_URL + "login", formData, {
+      withCredentials: true,
+    });
+  }
+
+  /*
   login(username, password) {
     return axios
       .post(
@@ -21,19 +28,23 @@ class AuthService {
         return response;
       });
   }
+  */
+
   logout() {
     localStorage.removeItem("user");
   }
-  register(username, email, password) {
-    return axios.post(API_URL + "register", {
-      username,
-      email,
-      password,
+
+  register(formData) {
+    return axios.post(API_URL + "register", formData, {
+      withCredentials: true,
     });
   }
+
+  /*
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
   }
+  */
 }
 
 export default new AuthService();

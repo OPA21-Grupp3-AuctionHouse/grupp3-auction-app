@@ -19,7 +19,7 @@ function ProductModal(props) {
     e.preventDefault();
     //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
     //props.placeBid()
-    if (input < props.currentBid + 10) {
+    if (input < props.currentBid + 5) {
       console.log("Bid too low.");
     } else {
       const newBid = {
@@ -74,23 +74,33 @@ function ProductModal(props) {
             )}
           </p>
           <form className="modal-bid-form" onSubmit={checkBid}>
-            <label>
-              Place your bid{" "}
-              <input
-                type="number"
-                min={Math.max(props.currentBid) + 10}
-                //placeholder="Bid..."
-                name="bid"
-                onChange={handleChange}
-                value={input}
-              />
-              <button type="submit">BID</button>
-            </label>
+            {!props.pageSource ? (
+              <label>
+                Place your bid{" "}
+                <input
+                  type="number"
+                  min={props.product.price}
+                  //placeholder="Bid..."
+                  name="bid"
+                  onChange={handleChange}
+                  value={input}
+                />
+                <button type="submit">BID</button>
+              </label>
+            ) : (
+              <></>
+            )}
           </form>
-          <br />
-          <label>
-            Buyout price: {props.product.buyout} <button>BUYOUT</button>
-          </label>
+          {!props.pageSource ? (
+            <>
+              <br />
+              <label>
+                Buyout price: {props.product.buyout} <button>BUYOUT</button>
+              </label>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </Modal.Body>
       <Modal.Footer>
