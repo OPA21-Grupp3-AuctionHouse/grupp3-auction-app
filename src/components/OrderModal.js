@@ -12,19 +12,19 @@ function OrderModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.order.Name}
+          {props.product.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div>
           <p>
-            Status: {props.order.Status}
+            Status: {props.product.orderStatus}
             <br />
-            Date aquired: {props.order.Date}
+            Date aquired: {props.product.endTime}
             <br />
-            Type: {props.order.Type}
-            <br />
-            Price: {props.order.Price}
+{/*             Type: {props.product.Type}
+            <br /> */}
+            Price: {props.product.price}
             <br />
           </p>
         </div>

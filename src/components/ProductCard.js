@@ -82,7 +82,7 @@ const ProductCard = ({ product, pageSource }) => {
   } else {
     product.timeRemaining = "0";
   }
-
+  
   const delAuction = (e) => {
     const toId = e.target.value;
     if (window.confirm("Are you sure?")) {
@@ -160,13 +160,23 @@ const ProductCard = ({ product, pageSource }) => {
       </>
     );
   } else if (pageSource === "myhistory") {
-    return (    <>
+    return (    
+    <>
+            <div className="product-card" onClick={handleClick}>
+          <div className="product-image">
+            <img
+              className="Card-image-css"
+              src={product.image}
+              alt="product"
+            ></img>
+          </div>
       <div className="order-card" onClick={() => setModalShow(true)}>
-        <div className="order-images">Image</div>
+        <div className="order-images"></div>
         <div className="order-names">{product.name}</div>
         <div className="order-status">{product.orderStatus}</div>
-        <div className="order-date">{product.date}</div>
+        <div className="order-date">{product.endTime}</div>
         <div className="order-price">{product.price}</div>
+      </div>
       </div>
         <OrderModal
         show={modalShow}

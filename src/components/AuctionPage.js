@@ -8,7 +8,7 @@ import SortBar from "./SortBar";
 import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
-import OrderData from "./data/OrderData.json";
+//import OrderData from "./data/OrderData.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
@@ -19,7 +19,7 @@ import BidService from "../services/BidService";
 import UserService from "../services/UserService";
 import MyFollowPage from "../unusedComponents/MyFollowPage";
 import MyFollowSort from "../unusedComponents/MyFollowSort";
-import MyAuctions from "./Myauctions";
+import MyAuctions from "./MyAuctions";
 import MyAuctionsBar from "./MyAuctionsBar";
 
 export const DataContext = createContext();
