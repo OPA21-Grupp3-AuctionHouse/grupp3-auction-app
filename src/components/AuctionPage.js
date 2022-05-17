@@ -33,12 +33,20 @@ function AuctionPage() {
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState();
+  const [address, setAddress] = useState();
   const [deliveries, setDeliveries] = useState();
 
   useEffect(() => {
     async function getUser() {
       UserService.getUser().then((res) => {
         setUser(res.data);
+      });
+    }
+
+    async function getAddress() {
+      UserService.getAddress().then((res) => {
+        console.log(res);
+        setAddress(res.data);
       });
     }
 
@@ -54,7 +62,7 @@ function AuctionPage() {
       });
     }
 
-    const getAllDeliveriesModal = () => {
+    async function getAllDeliveriesModal() {
       DeliveryService.getAllDeliveries().then((res) => {
         console.log(res);
         let companyNames = [];
@@ -64,9 +72,10 @@ function AuctionPage() {
         setDeliveries(companyNames);
         console.log(companyNames);
       });
-    };
+    }
     getAllDeliveriesModal();
     getUser();
+    getAddress();
     getProducts();
     getBids();
   }, []);
@@ -149,7 +158,7 @@ function AuctionPage() {
                     <div className="auction-inner-inner-container">
                       <SearchBar sortBySearch={sortBySearch} />
                       <SortBar />
-                      <ProductList setFilteredView={setFilteredView} />
+                      <ProductList />
                     </div>
                   </DataContext.Provider>
                 </>
@@ -217,6 +226,7 @@ function AuctionPage() {
                       setHighestBid,
                       user,
                       setUser,
+                      address,
                       deliveries,
                     }}
                   >

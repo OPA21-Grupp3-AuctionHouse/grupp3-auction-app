@@ -15,7 +15,8 @@ class DeliveryService {
     return axios.get(`${API_URL_TEST}/Delivery/${id}`);
   }
 
-  postDelivery(auction) {
+  postAuction(auction) {
+    console.log(auction);
     return axios.post(`${API_URL_TEST}/Finished/addAuction`, auction);
   }
 }

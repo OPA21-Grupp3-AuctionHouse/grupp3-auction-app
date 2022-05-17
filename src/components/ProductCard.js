@@ -6,7 +6,7 @@ import OrderModal from "./OrderModal";
 
 import ProductService from "../services/ProductService";
 
-const ProductCard = ({ product, pageSource, deliveries }) => {
+const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [modalShow, setModalShow] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
@@ -68,6 +68,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
             product.winner = res.data.userId;
           }
         });
+        product.endTime = "Auction over";
         console.log(product);
         ProductService.updateProduct(product);
       }
@@ -113,20 +114,12 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
     return (
       <>
         <div className="product-card" onClick={handleClick}>
-          <div className="product-image">
+          <div className="my-bid-image">
             <img
               className="Card-image-css"
               src={product.imageURL}
               alt="jaja"
             ></img>
-          </div>
-          <div className="mybid-name">{product.name}</div>
-          <div className="mybid-endTime">{product.timeRemaining}</div>
-          <div className="product-myBid">{myHighestBid}</div>
-          <div className="product-myBid">{highestBid}</div>
-          <div className="product-myBid">
-            {product.buyout}
-            <button>BUY</button>
           </div>
           <div className="my-bid-name">{product.name}</div>
           <div className="my-bid-endtime">{product.timeRemaining}</div>
@@ -214,7 +207,11 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
           </div>
           <div className="my-auction-name">{product.name}</div>
           <div className="my-auction-name">{product.description}</div>
-          <div className="my-auction-endtime">Choose a shipping method</div>
+          {product.orderStatus === "In transit" ? (
+            <div className="my-auction-endtime">Sit back and relax</div>
+          ) : (
+            <div className="my-auction-endtime">Choose a shipping method</div>
+          )}
 
           <div className="my-auction-price">Price paid: {myHighestBid}</div>
         </div>
@@ -223,11 +220,13 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
           onHide={() => setModalShow(false)}
           product={product}
           bids={bids}
+          myHighestBid={myHighestBid}
           highestBid={highestBid}
           setHighestBid={setHighestBid}
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
           pageSource={pageSource}
+          address={address}
           deliveries={deliveries}
         />
       </>
