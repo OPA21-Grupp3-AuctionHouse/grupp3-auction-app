@@ -17,6 +17,7 @@ const OrderCard = ({ product }) => {
       show={modalShow}
       onHide={() => setModalShow(false)}
       product={product}
+          deliveries={product.deliveries}
     />
   </>
   );

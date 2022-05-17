@@ -73,24 +73,30 @@ function ProductModal(props) {
               <span>no bids</span>
             )}
           </p>
-          <form className="modal-bid-form" onSubmit={checkBid}>
-            <label>
-              Place your bid{" "}
-              <input
-                type="number"
-                min={Math.max(props.currentBid) + 10}
-                //placeholder="Bid..."
-                name="bid"
-                onChange={handleChange}
-                value={input}
-              />
-              <button type="submit">BID</button>
-            </label>
-          </form>
-          <br />
-          <label>
-            Buyout price: {props.product.buyout} <button>BUYOUT</button>
-          </label>
+          {props.product.ownerId === provider.user ? (
+            <p>"Cannot bid on your auction"</p>
+          ) : (
+            <>
+              <form className="modal-bid-form" onSubmit={checkBid}>
+                <label>
+                  Place your bid{" "}
+                  <input
+                    type="number"
+                    min={Math.max(props.currentBid) + 10}
+                    //placeholder="Bid..."
+                    name="bid"
+                    onChange={handleChange}
+                    value={input}
+                  />
+                  <button type="submit">BID</button>
+                </label>
+              </form>
+              <br />
+              <label>
+                Buyout price: {props.product.buyout} <button>BUYOUT</button>
+              </label>
+            </>
+          )}
         </div>
       </Modal.Body>
       <Modal.Footer>

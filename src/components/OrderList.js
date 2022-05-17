@@ -3,6 +3,7 @@ import React, { useContext,useState } from "react";
 import { DataContext } from "./AuctionPage";
 import ProductCard from "./ProductCard";
 import BidService from "../services/BidService";
+import { ThemeProvider } from "react-bootstrap";
 
 function OrderList() {
   const provider = useContext(DataContext);
@@ -14,7 +15,7 @@ function OrderList() {
   return (
     <div className="order-container">
       {userAuctionList.map((product) => (
-        <ProductCard key={product.id} product={product} pageSource = "myhistory"/>
+        <ProductCard key={product.id} product={product} pageSource = "myhistory" deliveries={provider.deliveries}/>
       ))}
     </div>
   );
