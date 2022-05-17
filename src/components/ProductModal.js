@@ -110,8 +110,7 @@ function ProductModal(props) {
               <span>no bid</span>
             )}
           </p>
-
-          <form className="modal-bid-form" onSubmit={checkBid}>
+<form className="modal-bid-form" onSubmit={checkBid}>
             {!props.pageSource ? (
               <label>
                 Place your bid{" "}
@@ -172,7 +171,7 @@ function ProductModal(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        {props.pageSource === "mywonauctions" ? (
+{props.pageSource === "mywonauctions" ? (
           <Button onClick={handleSubmit}>Choose this delivery method</Button>
         ) : (
           <></>
