@@ -30,6 +30,9 @@ const MyBidsSortBar = () => {
       <button className="my-bid-name-bar" onClick={sortColumn} value="name">
         Name
       </button>
+      <button className="my-bid-name-bar" onClick={sortColumn} value="name">
+        Description
+      </button>
       <button
         className="my-bid-endtime-bar"
         onClick={sortColumn}

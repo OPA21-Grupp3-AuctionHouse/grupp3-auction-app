@@ -179,6 +179,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
             ></img>
           </div>
           <div className="my-auction-name">{product.name}</div>
+          <div className="my-auction-name">{product.description}</div>
           <div className="my-auction-endtime">Choose a shipping method</div>
 
           <div className="my-auction-price">Price paid: {myHighestBid}</div>
