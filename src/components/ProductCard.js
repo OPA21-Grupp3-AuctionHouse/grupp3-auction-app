@@ -7,22 +7,23 @@ import OrderModal from "./OrderModal";
 
 const ProductCard = ({ product, pageSource }) => {
   const [modalShow, setModalShow] = useState(false);
-  const provider = useContext(DataContext);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
-  const [highestBid, setHighestBid] = useState(product.highestBid);
+  const [highestBid, setHighestBid] = useState();
   const [myHighestBid, setMyHighestBid] = useState();
   const [currentBid, setCurrentBid] = useState();
+  const provider = useContext(DataContext);
 
   const loadBids = () => {
     let productBids = provider.bids.filter(
       (bid) => bid.auctionId === product.id
     );
 
-    let bidAmount = productBids.map((bid) => bid.amount);
+    let bidAmount = productBids.map((bid) => bid.bidAmount);
 
     setBids(bidAmount);
   };
+
   const loadHighestBids = () => {
     BidService.getHighestBid(product.id).then((res) => {
       if (res.data.bidAmount) {
@@ -50,7 +51,7 @@ const ProductCard = ({ product, pageSource }) => {
   useEffect(() => {
     loadHighestBids();
     loadMyHighestBid();
-  }, []);
+  }, [bids]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -100,8 +101,8 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="product-image">
             <img
               className="Card-image-css"
-              src={product.image}
-              alt="product"
+              src={product.imageURL}
+              alt="jaja"
             ></img>
           </div>
           <div className="mybid-name">{product.name}</div>
@@ -112,6 +113,11 @@ const ProductCard = ({ product, pageSource }) => {
             {product.buyout}
             <button>BUY</button>
           </div>
+          <div className="my-bid-name">{product.name}</div>
+          <div className="my-bid-endtime">{product.timeRemaining}</div>
+          <div className="my-bid-price">{myHighestBid}</div>
+          <div className="my-bid-price">{highestBid}</div>
+          <div className="my-bid-price">{product.buyout}</div>
         </div>
         <ProductModal
           show={modalShow}
@@ -134,17 +140,14 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="product-image">
             <img
               className="Card-image-css"
-              src={product.image}
-              alt="product"
+              src={product.imageURL}
+              alt="jaja"
             ></img>
           </div>
-          <div className="mybid-name">{product.name}</div>
-          <div className="mybid-endTime">{product.timeRemaining}</div>
-          <div className="product-myBid">{product.price}</div>
-          <div className="product-myBid">{highestBid}</div>
-          <div className="product-myBid">
-            {product.buyout}
-          </div>
+          <div className="my-auction-name">{product.name}</div>
+          <div className="my-auction-endtime">{product.timeRemaining}</div>
+          <div className="my-auction-price">{product.price}</div>
+          <div className="my-auction-price">{highestBid}</div>
         </div>
         <ProductModal
           show={modalShow}
@@ -155,6 +158,7 @@ const ProductCard = ({ product, pageSource }) => {
           setHighestBid={setHighestBid}
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
+          pageSource={pageSource}
         />
       </>
     );
@@ -203,7 +207,9 @@ const ProductCard = ({ product, pageSource }) => {
           bids={bids}
           highestBid={highestBid}
           setHighestBid={setHighestBid}
+          setMyHighestBid={setMyHighestBid}
           currentBid={currentBid}
+          myHighestBid={myHighestBid}
           setCurrentBid={setCurrentBid}
           deliveries={product.deliveries}
         />

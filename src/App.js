@@ -19,7 +19,7 @@ function App() {
           path="/"
           element={
             <div className="welcomePageStart">
-              <div>
+              <div className="welcomepage-upper">
                 <WelcomePageHeader />
                 <Row className="landing">
                   <Col className="leftSide">
@@ -31,7 +31,7 @@ function App() {
                 </Row>
                 <WelcomePageFooter />
               </div>
-              <div>
+              <div className="welcomepage-lower">
                 <Preview />
               </div>
             </div>

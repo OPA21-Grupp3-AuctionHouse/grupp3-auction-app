@@ -14,13 +14,13 @@ import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
 import StartPage from "./StartPage";
+import MyAuctionsBar from "./MyAuctionsBar";
+import MyAuctions from "./MyAuctions";
 import ProductService from "../services/ProductService";
 import BidService from "../services/BidService";
 import UserService from "../services/UserService";
 import MyFollowPage from "../unusedComponents/MyFollowPage";
 import MyFollowSort from "../unusedComponents/MyFollowSort";
-import MyAuctions from "./MyAuctions";
-import MyAuctionsBar from "./MyAuctionsBar";
 import DeliveryService from "../services/DeliveryService";
 
 export const DataContext = createContext();
@@ -35,17 +35,20 @@ function AuctionPage() {
   const [deliveries, setDeliveries] = useState();
 
   useEffect(() => {
-    getProducts();
-    getBids();
-    getUser();
+
+
     getAllDeliveriesModal();
   }, []);
+    async function getUser() {
+      UserService.getUser().then((res) => {
+        setUser(res.data);
+        console.log("User id: " + res.data);
+      });
+    }
 
-  useEffect(() => {
     async function getProducts() {
       ProductService.getProducts().then((res) => {
         setProducts(res.data);
-        console.log(res.data);
       });
     }
 
@@ -56,40 +59,18 @@ function AuctionPage() {
       });
     }
 
+    getUser();
     getProducts();
     getBids();
   }, []);
 
-  const getProducts = () => {
-    ProductService.getProducts().then((res) => {
-      setProducts(res.data);
-    });
-  };
-
-  const getBids = () => {
-    BidService.getBids().then((res) => {
-      setBids(res.data);
-    });
-  };
-
+  /*
   const getHighestBid = () => {
     BidService.getHighestBid().then((res) => {
       setHighestBid(res.data);
     });
   };
-
-  const getUser = () => {
-    UserService.getUser().then((res) => {
-      setUser(res.data);
-      console.log(res.data);
-    });
-  };
-  const getUserById = () => {
-    UserService.getUserById("626736e362a4c438443c45c3").then((res) => {
-      setUser(res.data);
-      console.log(res.data);
-    });
-  };
+  */
 
   const getAllDeliveriesModal = () => {
     DeliveryService.getAllDeliveries().then((res) => {
@@ -122,7 +103,9 @@ function AuctionPage() {
       setFilteredView(false);
     } else if (result.length > 0 && result.length !== products.length) {
       setFilteredView(true);
-      setSearchResult(result);
+      setSearchResult(
+        result.filter((res) => Date.parse(res.endTime) > Date.now())
+      );
     } else if (searchInput.length > 0) {
       setFilteredView(true);
       setSearchResult(searchInput);

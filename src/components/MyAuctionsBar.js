@@ -48,33 +48,30 @@ const MyAuctionsBar = () => {
 
   return (
     <div className="sort-outer-container">
-      <button className="image-bar">Image</button>
-      <button className="mybid-name-bar" onClick={sortColumn} value="name">
+      <button className="my-auction-image-bar">Image</button>
+      <button className="my-auction-name-bar" onClick={sortColumn} value="name">
         Name
       </button>
       <button
-        className="mybid-description-bar"
+        className="my-auction-endtime-bar"
         onClick={sortColumn}
         value="timeRemaining"
       >
         Time Remaining
       </button>
       <button
-        className="myBid-price-bar"
+        className="my-auction-price-bar"
         onClick={sortColumn}
         value="startPrice"
       >
         Start price
       </button>
       <button
-        className="myBid-price-bar"
+        className="my-auction-price-bar"
         onClick={sortColumn}
         value="highestBid"
       >
         Highest bid
-      </button>
-      <button className="myBid-price-bar" onClick={sortColumn} value="buyout">
-        Buyout
       </button>
     </div>
   );

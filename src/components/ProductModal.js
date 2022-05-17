@@ -19,8 +19,8 @@ function ProductModal(props) {
     e.preventDefault();
     //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
     //props.placeBid()
-    if (input < props.currentBid + 10) {
-      console.log("Bid too low.");
+    if (input < props.currentBid + 5) {
+      alert("Bid too low!");
     } else {
       const newBid = {
         userId: provider.user,
@@ -38,6 +38,7 @@ function ProductModal(props) {
   const createBid = (newBid) => {
     BidService.createBid(newBid).then((res) => {
       props.setHighestBid(newBid.bidAmount);
+      props.setMyHighestBid(newBid.bidAmount);
       props.setCurrentBid(newBid.bidAmount);
     });
   };
@@ -71,6 +72,13 @@ function ProductModal(props) {
               <span>{props.highestBid}</span>
             ) : (
               <span>no bids</span>
+            )}
+            <br />
+            My bid:{" "}
+            {props.myHighestBid ? (
+              <span>{props.myHighestBid}</span>
+            ) : (
+              <span>no bid</span>
             )}
           </p>
           {props.product.ownerId === provider.user ? (

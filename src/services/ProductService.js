@@ -12,9 +12,6 @@ class ProductService {
       withCredentials: true,
     });
   }
-  getOrders() {
-    return axios.get(`${API_URL_TEST}/orders`)
-  }
 }
 
 export default new ProductService();

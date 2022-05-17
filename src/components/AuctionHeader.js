@@ -20,7 +20,6 @@ function AuctionHeader() {
           className="logout-button-profile"
           type="submit"
           onClick={logout}
-          style={{ marginLeft: "1vh" }}
         >
           Logout
         </button>

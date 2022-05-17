@@ -1,22 +1,22 @@
 import { useContext, React } from "react";
 import { DataContext } from "./AuctionPage";
-import allBids from "./data/allBids.json";
 import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
   const provider = useContext(DataContext);
-  const loggedUserBids = provider.bids.filter(
-    (bids) => bids.userId === provider.user
-  );
 
-  console.log(loggedUserBids);
+  const activeProducts = provider.products.filter(
+    (product) => Date.parse(product.endTime) > Date.now()
+  );
+  const loggedUserBids = provider.bids.filter(
+    (bid) => bid.userId === provider.user
+  );
 
   let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);
-  console.log(allAuctionId);
-  const loggedUserAuctions = provider.products.filter((product) =>
+
+  const loggedUserAuctions = activeProducts.filter((product) =>
     allAuctionId.includes(product.id)
   );
-  console.log(loggedUserAuctions);
 
   return (
     <div className="order-container">
