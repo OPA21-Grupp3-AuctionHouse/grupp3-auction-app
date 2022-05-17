@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 
 import BidService from "../services/BidService";
 import ProductService from "../services/ProductService";
-import DeliveryService from "../services/DeliveryService";
 
 function ProductModal(props) {
   const provider = useContext(DataContext);
@@ -19,20 +18,8 @@ function ProductModal(props) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     setDelivery(input);
-    props.product.orderStatus = "Sent";
-    console.log(props.product);
-    ProductService.updateProduct(props.product);
-    let deliveryAuction = {
-      auctionId: props.product.id,
-      userId: provider.user,
-      deliveryMethod: input,
-    };
-    console.log(deliveryAuction);
-    DeliveryService.postDelivery(deliveryAuction);
-    // DeliveryService.postAuction()
-    props.onHide();
+    e.preventDefault();
   };
 
   const checkBid = (e) => {
@@ -51,6 +38,7 @@ function ProductModal(props) {
 
       createBid(newBid);
       provider.setBids([...provider.bids, newBid]);
+      console.log(provider.bids);
     }
   };
 
@@ -58,7 +46,7 @@ function ProductModal(props) {
     e.preventDefault();
     props.product.orderStatus = "Completed";
     props.product.winner = provider.user;
-    props.product.endTime = new Date();
+    console.log(props.product);
     ProductService.updateProduct(props.product);
     const newBid = {
       userId: provider.user,
@@ -152,8 +140,8 @@ function ProductModal(props) {
                       <option>Choose...</option>
                       {props.deliveries?.map((object, i) => {
                         return (
-                          <option key={i} value={object.deliveryMethod}>
-                            {object.deliveryMethod}
+                          <option key={i} value={object.companyName}>
+                            {object.companyName}
                           </option>
                         );
                       })}
