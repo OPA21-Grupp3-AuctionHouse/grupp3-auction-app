@@ -205,6 +205,7 @@ const ProductCard = ({ product, pageSource }) => {
           setHighestBid={setHighestBid}
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
+          deliveries={product.deliveries}
         />
       </>
     );
