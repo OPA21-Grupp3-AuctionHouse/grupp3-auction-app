@@ -87,7 +87,7 @@ function ProductModal(props) {
                 Place your bid{" "}
                 <input
                   type="number"
-                  min={props.currentBid}
+                  min={props.currentBid + 5}
                   //placeholder="Bid..."
                   name="bid"
                   onChange={handleChange}
