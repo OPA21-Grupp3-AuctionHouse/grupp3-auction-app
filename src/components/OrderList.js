@@ -8,14 +8,14 @@ import { ThemeProvider } from "react-bootstrap";
 function OrderList() {
   const provider = useContext(DataContext);
 
-  const userAuctionList = provider.products.filter(
-    (product) => Date.parse(product.endTime) < Date.now() 
+  const myBoughtHistory = provider.products.filter(
+    (product) => product.orderStatus === "Sent" && product.winner === provider.user
   )
 
   return (
     <div className="order-container">
-      {userAuctionList.map((product) => (
-        <ProductCard key={product.id} product={product} pageSource = "myhistory" deliveries={provider.deliveries}/>
+      {myBoughtHistory.map((product) => (
+        <ProductCard key={product.id} product={product} pageSource = "myhistory"/>
       ))}
     </div>
   );

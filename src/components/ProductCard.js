@@ -202,6 +202,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
         product={product}
       />
     </>
+    );
   } else if (pageSource === "mywonauctions") {
     return (
       <>

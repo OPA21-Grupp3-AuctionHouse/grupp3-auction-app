@@ -53,35 +53,11 @@ function OrderModal(props) {
             Price: {props.product.price}
             <br />
             <div className="input-group mb-3">
-            <label className="input-group-text" htmlFor="inputGroupSelect01">
-              Delivery Options:
-            </label>
-            <select
-              onChange={handleChange}
-              className="form-select"
-              id="endTime"
-              name="endTime"
-            >
-              <option>Choose...</option>
-              {props.deliveries?.map((object, i) => {
-                return (
-                  <option
-                    key={i}
-                    value={
-                      object.companyName
-                    }
-                  >
-                    {object.companyName}
-                  </option>
-                );
-              })}
-            </select>
           </div>
           </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={handleSubmit}>Ok</Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

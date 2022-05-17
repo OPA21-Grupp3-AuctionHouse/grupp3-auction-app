@@ -110,11 +110,7 @@ function ProductModal(props) {
               <span>no bid</span>
             )}
           </p>
-          {props.product.ownerId === provider.user ? (
-            <p>"Cannot bid on your auction"</p>
-          ) : (
-
-          <form className="modal-bid-form" onSubmit={checkBid}>
+<form className="modal-bid-form" onSubmit={checkBid}>
             {!props.pageSource ? (
               <label>
                 Place your bid{" "}
@@ -163,31 +159,19 @@ function ProductModal(props) {
           </form>
           {!props.pageSource ? (
             <>
-              <form className="modal-bid-form" onSubmit={checkBid}>
-                <label>
-                  Place your bid{" "}
-                  <input
-                    type="number"
-                    min={Math.max(props.currentBid) + 10}
-                    //placeholder="Bid..."
-                    name="bid"
-                    onChange={handleChange}
-                    value={input}
-                  />
-                  <button type="submit">BID</button>
-                </label>
-              </form>
               <br />
               <label>
                 Buyout price: {props.product.buyout}{" "}
                 <button onClick={handleBuyout}>BUYOUT</button>
               </label>
             </>
+          ) : (
+            <></>
           )}
         </div>
       </Modal.Body>
       <Modal.Footer>
-        {props.pageSource === "mywonauctions" ? (
+{props.pageSource === "mywonauctions" ? (
           <Button onClick={handleSubmit}>Choose this delivery method</Button>
         ) : (
           <></>

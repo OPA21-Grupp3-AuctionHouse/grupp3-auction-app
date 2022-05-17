@@ -8,13 +8,14 @@ import SortBar from "./SortBar";
 import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
-//import OrderData from "./data/OrderData.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
 import StartPage from "./StartPage";
 import ProductService from "../services/ProductService";
+import MyAuctionsBar from "./MyAuctionsBar";
+import MyAuctions from "./MyAuctions";
 import BidService from "../services/BidService";
 import UserService from "../services/UserService";
 import MyFollowPage from "../unusedComponents/MyFollowPage";
@@ -35,10 +36,6 @@ function AuctionPage() {
   const [deliveries, setDeliveries] = useState();
 
   useEffect(() => {
-
-
-    getAllDeliveriesModal();
-  }, []);
     async function getUser() {
       UserService.getUser().then((res) => {
         setUser(res.data);
@@ -68,7 +65,6 @@ function AuctionPage() {
         console.log(companyNames);
       });
     };
-
     getAllDeliveriesModal();
     getUser();
     getProducts();
@@ -83,17 +79,6 @@ function AuctionPage() {
   };
   */
 
-  const getAllDeliveriesModal = () => {
-    DeliveryService.getAllDeliveries().then((res) => {
-      console.log(res);
-      let companyNames = []
-      res.data.map((companyname) => {
-        companyNames.push(companyname)
-      })
-      setDeliveries(companyNames);
-      console.log(companyNames);
-    });
-  };
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
