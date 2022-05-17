@@ -2,25 +2,17 @@ import { useContext, React } from "react";
 import { DataContext } from "./AuctionPage";
 import ProductCard from "./ProductCard";
 
-function MyBidsPage() {
+function MyWonAuctions() {
   const provider = useContext(DataContext);
 
   const completedProducts = provider.products.filter(
-    (product) => product.orderStatus === "Completed"
-  );
-  const loggedUserBids = provider.bids.filter(
-    (bid) => bid.userId === provider.user
-  );
-
-  let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);
-
-  const loggedUserAuctions = completedProducts.filter((product) =>
-    allAuctionId.includes(product.id)
+    (product) =>
+      product.orderStatus === "Completed" && product.winner === provider.user
   );
 
   return (
     <div className="order-container">
-      {loggedUserAuctions.map((product) => (
+      {completedProducts.map((product) => (
         <ProductCard
           key={product.id}
           product={product}
@@ -31,4 +23,4 @@ function MyBidsPage() {
   );
 }
 
-export default MyBidsPage;
+export default MyWonAuctions;

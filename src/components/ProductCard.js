@@ -55,12 +55,20 @@ const ProductCard = ({ product, pageSource }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDate(new Date().getTime());
-      provider.product.map((product) => {
-      if ((Date.parse(product.endTime) < Date.now()) {
+
+      if (
+        Date.parse(product.endTime) < Date.now() &&
+        product.orderStatus === "Active"
+      ) {
         product.orderStatus = "Completed";
+        BidService.getHighestBid(product.id).then((res) => {
+          if (res.data) {
+            product.winner = res.data.userId;
+          }
+        });
         console.log(product);
-        ProductService.updateProduct(props.product);
-      }}
+        ProductService.updateProduct(product);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
@@ -87,7 +95,6 @@ const ProductCard = ({ product, pageSource }) => {
     product.timeRemaining = msToTime(Date.parse(product.endTime) - currentDate);
   } else {
     product.timeRemaining = "Auction ended";
-    
   }
 
   const delAuction = (e) => {

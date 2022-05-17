@@ -39,6 +39,7 @@ function ProductModal(props) {
   const handleBuyout = (e) => {
     e.preventDefault();
     props.product.orderStatus = "Completed";
+    props.product.winner = provider.user;
     console.log(props.product);
     ProductService.updateProduct(props.product);
     const newBid = {

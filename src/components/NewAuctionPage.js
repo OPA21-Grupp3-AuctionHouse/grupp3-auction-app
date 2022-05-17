@@ -30,6 +30,7 @@ const NewAuctionPage = () => {
     ownerId: provider.user,
     orderStatus: "Active",
     buyout: "",
+    winner: "",
   });
 
   const handleChangeImage = (e) => {
