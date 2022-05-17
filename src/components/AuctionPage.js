@@ -8,15 +8,14 @@ import SortBar from "./SortBar";
 import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
-import OrderData from "./data/OrderData.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
 import StartPage from "./StartPage";
+import ProductService from "../services/ProductService";
 import MyAuctionsBar from "./MyAuctionsBar";
 import MyAuctions from "./MyAuctions";
-import ProductService from "../services/ProductService";
 import BidService from "../services/BidService";
 import UserService from "../services/UserService";
 import MyFollowPage from "../unusedComponents/MyFollowPage";
@@ -31,7 +30,6 @@ function AuctionPage() {
   const [products, setProducts] = useState([]);
   const [bids, setBids] = useState([]);
   const [highestBid, setHighestBid] = useState([]);
-  const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState();
@@ -67,7 +65,6 @@ function AuctionPage() {
         console.log(companyNames);
       });
     };
-
     getAllDeliveriesModal();
     getUser();
     getProducts();
@@ -115,7 +112,6 @@ function AuctionPage() {
     <div className="auction-outer-outer-container">
       <div className="auction-outer-container">
         <AuctionHeader />
-
         <div className="auction-inner-container">
           <Routes>
             <Route
@@ -311,10 +307,13 @@ function AuctionPage() {
                   <div className="order-inner-inner-container">
                     <DataContext.Provider
                       value={{
-                        orderProducts,
-                        setOrderProducts,
+                        products,
+                        setProducts,
                         bids,
                         setBids,
+                        user,
+                        setUser,
+                        deliveries,
                       }}
                     >
                       <UnderNav />

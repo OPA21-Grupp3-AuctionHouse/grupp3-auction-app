@@ -2,105 +2,103 @@ import React, { useContext } from "react";
 import { DataContext } from "./AuctionPage";
 
 const OrderSort = () => {
-  const orderProvider = useContext(DataContext);
+  const provider = useContext(DataContext);
 
   const sortOrderColumn = (e) => {
     e.preventDefault();
 
-    if (e.target.value === "Name") {
-      if (orderProvider.filteredView) {
-        orderProvider.setSearchResult([
-          ...orderProvider.searchResult.sort(compareName),
-        ]);
+    if (e.target.value === "name") {
+      if (provider.filteredView) {
+        provider.setSearchResult([...provider.searchResult.sort(compareName)]);
       } else {
-        orderProvider.setOrderProducts([
-          ...orderProvider.orderProducts.sort(compareName),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(compareName)]);
       }
-    } else if (e.target.value === "Status") {
-      if (orderProvider.filteredView) {
-        orderProvider.setSearchResult([
-          ...orderProvider.searchResult.sort(compareStatus),
+    } else if (e.target.value === "orderStatus") {
+      if (provider.filteredView) {
+        provider.setSearchResult([
+          ...provider.searchResult.sort(compareStatus),
         ]);
       } else {
-        orderProvider.setOrderProducts([
-          ...orderProvider.orderProducts.sort(compareStatus),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(compareStatus)]);
       }
-    } else if (e.target.value === "Date") {
-      if (orderProvider.filteredView) {
-        orderProvider.setSearchResult([
-          ...orderProvider.searchResult.sort(compareDate),
-        ]);
+    } else if (e.target.value === "endTime") {
+      if (provider.filteredView) {
+        provider.setSearchResult([...provider.searchResult.sort(compareDate)]);
       } else {
-        orderProvider.setOrderProducts([
-          ...orderProvider.orderProducts.sort(compareDate),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(compareDate)]);
       }
-    } else if (e.target.value === "Type") {
-      if (orderProvider.filteredView) {
-        orderProvider.setSearchResult([
-          ...orderProvider.searchResult.sort(compareType),
+      /*    } else if (e.target.value === "Type") {
+      if (provider.filteredView) {
+        provider.setSearchResult([
+          ...provider.searchResult.sort(compareType),
         ]);
       } else {
-        orderProvider.setOrderProducts([
-          ...orderProvider.orderProducts.sort(compareType),
+        provider.setOrderProducts([
+          ...provider.orderProducts.sort(compareType),
         ]);
-      }
-    } else if (e.target.value === "Price") {
-      if (orderProvider.filteredView) {
-        orderProvider.setSearchResult([
-          ...orderProvider.searchResult.sort(comparePrice),
-        ]);
+      }*/
+    } else if (e.target.value === "price") {
+      if (provider.filteredView) {
+        provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
       } else {
-        orderProvider.setOrderProducts([
-          ...orderProvider.orderProducts.sort(comparePrice),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(comparePrice)]);
       }
     }
   };
 
   return (
     <div className="orderSort-outer-container">
-      <button className="images-head">Image</button>
-      <button className="names-head" onClick={sortOrderColumn} value="Name">
+      <button className="my-bid-image-bar">Image</button>
+      <button
+        className="my-bid-name-bar"
+        onClick={sortOrderColumn}
+        value="name"
+      >
         Name
       </button>
-      <button className="status-head" onClick={sortOrderColumn} value="Status">
+      <button
+        className="status-head"
+        onClick={sortOrderColumn}
+        value="orderStatus"
+      >
         Status
       </button>
-      <button className="date-head" onClick={sortOrderColumn} value="Date">
+      <button
+        className="my-bid-endtime-bar"
+        onClick={sortOrderColumn}
+        value="endTime"
+      >
         Date
       </button>
-      <button className="type-head" onClick={sortOrderColumn} value="Type">
+      {/*       <button className="type-head" onClick={sortOrderColumn} value="Type">
         Type
-      </button>
-      <button className="prices-head" onClick={sortOrderColumn} value="Price">
+      </button> */}
+      <button className="prices-head" onClick={sortOrderColumn} value="price">
         Price
       </button>
     </div>
   );
 
   function compareName(a, b) {
-    if (a.Name.toLowerCase()  < b.Name.toLowerCase()) {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
       return -1;
     }
-    if (a.Name.toLowerCase() > b.Name.toLowerCase()) {
+    if (a.name.toLowerCase() > b.name.toLowerCase()) {
       return 1;
     }
     return 0;
   }
 
   function compareStatus(a, b) {
-    if (a.Status.toLowerCase() < b.Status.toLowerCase()) {
+    if (a.orderStatus.toLowerCase() < b.orderStatus.toLowerCase()) {
       return -1;
     }
-    if (a.Status.toLowerCase() > b.Status.toLowerCase()) {
+    if (a.orderStatus.toLowerCase() > b.orderStatus.toLowerCase()) {
       return 1;
     }
     return 0;
   }
-  function compareType(a, b) {
+  /*   function compareType(a, b) {
     if (a.Type.toLowerCase() < b.Type.toLowerCase()) {
       return -1;
     }
@@ -108,20 +106,20 @@ const OrderSort = () => {
       return 1;
     }
     return 0;
-  }
+  } */
 
   function compareDate(a, b) {
-    if (a.Date < b.Date) {
+    if (a.endTime < b.endTime) {
       return -1;
     }
-    if (a.Date > b.Date) {
+    if (a.endTime > b.endTime) {
       return 1;
     }
     return 0;
   }
 
   function comparePrice(a, b) {
-    return a.Price - b.Price;
+    return a.price - b.price;
   }
 };
 export default OrderSort;
