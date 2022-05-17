@@ -5,11 +5,15 @@ import { DataContext } from "./AuctionPage";
 function ProductList() {
   const provider = useContext(DataContext);
 
-  if (provider.products) {
+  const activeProducts = provider.products.filter(
+    (product) => Date.parse(product.endTime) > Date.now()
+  );
+
+  if (activeProducts) {
     if (provider.filteredView === false) {
       return (
         <div className="product-container">
-          {provider.products.map((product) => (
+          {activeProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

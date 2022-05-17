@@ -93,7 +93,7 @@ const Login = () => {
                 <Form.Control
                   required
                   type="username"
-                  placeholder="username"
+                  placeholder="Username"
                   value={formData.username}
                   name="username"
                   onChange={(e) => handleChange(e)}

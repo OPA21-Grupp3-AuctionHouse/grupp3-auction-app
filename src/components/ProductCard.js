@@ -117,7 +117,7 @@ const ProductCard = ({ product, pageSource }) => {
           highestBid={highestBid}
           setHighestBid={setHighestBid}
           myHighestBid={myHighestBid}
-          //setMyHighestBid={setMyHighestBid}
+          setMyHighestBid={setMyHighestBid}
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
         />
@@ -171,7 +171,9 @@ const ProductCard = ({ product, pageSource }) => {
           bids={bids}
           highestBid={highestBid}
           setHighestBid={setHighestBid}
+          setMyHighestBid={setMyHighestBid}
           currentBid={currentBid}
+          myHighestBid={myHighestBid}
           setCurrentBid={setCurrentBid}
         />
       </>

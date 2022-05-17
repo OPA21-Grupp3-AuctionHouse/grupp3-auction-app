@@ -86,7 +86,9 @@ function AuctionPage() {
       setFilteredView(false);
     } else if (result.length > 0 && result.length !== products.length) {
       setFilteredView(true);
-      setSearchResult(result);
+      setSearchResult(
+        result.filter((res) => Date.parse(res.endTime) > Date.now())
+      );
     } else if (searchInput.length > 0) {
       setFilteredView(true);
       setSearchResult(searchInput);

@@ -4,13 +4,17 @@ import ProductCard from "./ProductCard";
 
 function MyBidsPage() {
   const provider = useContext(DataContext);
+
+  const activeProducts = provider.products.filter(
+    (product) => Date.parse(product.endTime) > Date.now()
+  );
   const loggedUserBids = provider.bids.filter(
     (bid) => bid.userId === provider.user
   );
 
   let allAuctionId = loggedUserBids.map((bid) => bid.auctionId);
 
-  const loggedUserAuctions = provider.products.filter((product) =>
+  const loggedUserAuctions = activeProducts.filter((product) =>
     allAuctionId.includes(product.id)
   );
 
