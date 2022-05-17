@@ -12,6 +12,12 @@ class ProductService {
       withCredentials: true,
     });
   }
+
+  updateProduct(product) {
+    return axios.put(`${API_URL_TEST}/updateauction/`, product, {
+      withCredentials: true,
+    });
+  }
 }
 
 export default new ProductService();

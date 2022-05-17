@@ -6,7 +6,7 @@ function MyBidsPage() {
   const provider = useContext(DataContext);
 
   const activeProducts = provider.products.filter(
-    (product) => Date.parse(product.endTime) > Date.now()
+    (product) => product.orderStatus === "Active"
   );
   const loggedUserBids = provider.bids.filter(
     (bid) => bid.userId === provider.user
