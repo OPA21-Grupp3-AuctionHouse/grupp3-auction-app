@@ -6,7 +6,7 @@ function ProductList() {
   const provider = useContext(DataContext);
 
   const activeProducts = provider.products.filter(
-    (product) => Date.parse(product.endTime) > Date.now()
+    (product) => product.orderStatus === "Active"
   );
 
   if (activeProducts) {

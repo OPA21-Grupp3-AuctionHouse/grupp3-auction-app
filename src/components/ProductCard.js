@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ProductModal from "./ProductModal";
 import { DataContext } from "../components/AuctionPage";
 import BidService from "../services/BidService";
+import ProductService from "../services/ProductService";
 
 const ProductCard = ({ product, pageSource }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -54,6 +55,12 @@ const ProductCard = ({ product, pageSource }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDate(new Date().getTime());
+      provider.product.map((product) => {
+      if ((Date.parse(product.endTime) < Date.now()) {
+        product.orderStatus = "Completed";
+        console.log(product);
+        ProductService.updateProduct(props.product);
+      }}
     }, 1000);
 
     return () => clearInterval(interval);
@@ -80,6 +87,7 @@ const ProductCard = ({ product, pageSource }) => {
     product.timeRemaining = msToTime(Date.parse(product.endTime) - currentDate);
   } else {
     product.timeRemaining = "Auction ended";
+    
   }
 
   const delAuction = (e) => {
@@ -138,6 +146,35 @@ const ProductCard = ({ product, pageSource }) => {
           <div className="my-auction-endtime">{product.timeRemaining}</div>
           <div className="my-auction-price">{product.price}</div>
           <div className="my-auction-price">{highestBid}</div>
+        </div>
+        <ProductModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          product={product}
+          bids={bids}
+          highestBid={highestBid}
+          setHighestBid={setHighestBid}
+          currentBid={currentBid}
+          setCurrentBid={setCurrentBid}
+          pageSource={pageSource}
+        />
+      </>
+    );
+  } else if (pageSource === "mywonauctions") {
+    return (
+      <>
+        <div className="product-card" onClick={handleClick}>
+          <div className="my-auction-image">
+            <img
+              className="Card-image-css"
+              src={product.imageURL}
+              alt="jaja"
+            ></img>
+          </div>
+          <div className="my-auction-name">{product.name}</div>
+          <div className="my-auction-endtime">Choose a shipping method</div>
+
+          <div className="my-auction-price">Price paid: {myHighestBid}</div>
         </div>
         <ProductModal
           show={modalShow}

@@ -21,6 +21,8 @@ import BidService from "../services/BidService";
 import UserService from "../services/UserService";
 import MyFollowPage from "../unusedComponents/MyFollowPage";
 import MyFollowSort from "../unusedComponents/MyFollowSort";
+import MyWonAuctions from "./MyWonAuctions";
+import MyWonAuctionsSortBar from "./MyWonAuctionSortBar";
 
 export const DataContext = createContext();
 
@@ -86,9 +88,7 @@ function AuctionPage() {
       setFilteredView(false);
     } else if (result.length > 0 && result.length !== products.length) {
       setFilteredView(true);
-      setSearchResult(
-        result.filter((res) => Date.parse(res.endTime) > Date.now())
-      );
+      setSearchResult(result.filter((res) => res.orderStatus === "Active"));
     } else if (searchInput.length > 0) {
       setFilteredView(true);
       setSearchResult(searchInput);
@@ -189,6 +189,35 @@ function AuctionPage() {
                 </div>
               }
             />
+
+            <Route
+              exact
+              path="mywonauctions"
+              element={
+                <div className="order-inner-inner-container">
+                  <DataContext.Provider
+                    value={{
+                      products,
+                      setProducts,
+                      searchResult,
+                      setSearchResult,
+                      filteredView,
+                      bids,
+                      setBids,
+                      highestBid,
+                      setHighestBid,
+                      user,
+                      setUser,
+                    }}
+                  >
+                    <UnderNav />
+                    <MyWonAuctionsSortBar />
+                    <MyWonAuctions />
+                  </DataContext.Provider>
+                </div>
+              }
+            />
+
             <Route
               exact
               path="newauction"

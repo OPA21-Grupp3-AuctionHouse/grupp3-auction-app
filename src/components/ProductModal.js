@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 import BidService from "../services/BidService";
+import ProductService from "../services/ProductService";
 
 function ProductModal(props) {
   const provider = useContext(DataContext);
@@ -33,6 +34,23 @@ function ProductModal(props) {
       provider.setBids([...provider.bids, newBid]);
       console.log(provider.bids);
     }
+  };
+
+  const handleBuyout = (e) => {
+    e.preventDefault();
+    props.product.orderStatus = "Completed";
+    console.log(props.product);
+    ProductService.updateProduct(props.product);
+    const newBid = {
+      userId: provider.user,
+      auctionId: props.product.id,
+      bidTime: new Date(),
+      bidAmount: props.product.buyout,
+    };
+
+    createBid(newBid);
+    provider.setBids([...provider.bids, newBid]);
+    props.onHide();
   };
 
   const createBid = (newBid) => {
@@ -88,6 +106,7 @@ function ProductModal(props) {
                 <input
                   type="number"
                   min={props.currentBid}
+                  max={props.product.buyout}
                   //placeholder="Bid..."
                   name="bid"
                   onChange={handleChange}
@@ -103,7 +122,8 @@ function ProductModal(props) {
             <>
               <br />
               <label>
-                Buyout price: {props.product.buyout} <button>BUYOUT</button>
+                Buyout price: {props.product.buyout}{" "}
+                <button onClick={handleBuyout}>BUYOUT</button>
               </label>
             </>
           ) : (

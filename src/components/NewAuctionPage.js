@@ -28,7 +28,7 @@ const NewAuctionPage = () => {
     price: "",
     endTime: "",
     ownerId: provider.user,
-    orderStatus: "bidding",
+    orderStatus: "Active",
     buyout: "",
   });
 
