@@ -8,19 +8,21 @@ import SortBar from "./SortBar";
 import OrderSort from "./OrderSort";
 import ProductList from "./ProductList";
 import OrderList from "./OrderList";
-import OrderData from "./data/OrderData.json";
 import NewAuctionPage from "./NewAuctionPage";
 import Profile from "./Profile";
 import MyBidsPage from "./MyBidsPage";
 import MyBidsSortBar from "./MyBidsSortBar";
 import StartPage from "./StartPage";
+import ProductService from "../services/ProductService";
 import MyAuctionsBar from "./MyAuctionsBar";
 import MyAuctions from "./MyAuctions";
-import ProductService from "../services/ProductService";
 import BidService from "../services/BidService";
 import UserService from "../services/UserService";
 import MyFollowPage from "../unusedComponents/MyFollowPage";
 import MyFollowSort from "../unusedComponents/MyFollowSort";
+import MyWonAuctions from "./MyWonAuctions";
+import MyWonAuctionsSortBar from "./MyWonAuctionSortBar";
+import DeliveryService from "../services/DeliveryService";
 
 export const DataContext = createContext();
 
@@ -28,16 +30,15 @@ function AuctionPage() {
   const [products, setProducts] = useState([]);
   const [bids, setBids] = useState([]);
   const [highestBid, setHighestBid] = useState([]);
-  const [orderProducts, setOrderProducts] = useState(OrderData);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState();
+  const [deliveries, setDeliveries] = useState();
 
   useEffect(() => {
     async function getUser() {
       UserService.getUser().then((res) => {
         setUser(res.data);
-        console.log("User id: " + res.data);
       });
     }
 
@@ -50,10 +51,21 @@ function AuctionPage() {
     async function getBids() {
       BidService.getBids().then((res) => {
         setBids(res.data);
-        console.log(res.data);
       });
     }
 
+    const getAllDeliveriesModal = () => {
+      DeliveryService.getAllDeliveries().then((res) => {
+        console.log(res);
+        let companyNames = [];
+        res.data.map((companyname) => {
+          companyNames.push(companyname);
+        });
+        setDeliveries(companyNames);
+        console.log(companyNames);
+      });
+    };
+    getAllDeliveriesModal();
     getUser();
     getProducts();
     getBids();
@@ -66,6 +78,7 @@ function AuctionPage() {
     });
   };
   */
+
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -86,9 +99,7 @@ function AuctionPage() {
       setFilteredView(false);
     } else if (result.length > 0 && result.length !== products.length) {
       setFilteredView(true);
-      setSearchResult(
-        result.filter((res) => Date.parse(res.endTime) > Date.now())
-      );
+      setSearchResult(result.filter((res) => res.orderStatus === "Active"));
     } else if (searchInput.length > 0) {
       setFilteredView(true);
       setSearchResult(searchInput);
@@ -102,7 +113,6 @@ function AuctionPage() {
     <div className="auction-outer-outer-container">
       <div className="auction-outer-container">
         <AuctionHeader />
-
         <div className="auction-inner-container">
           <Routes>
             <Route
@@ -189,6 +199,36 @@ function AuctionPage() {
                 </div>
               }
             />
+
+            <Route
+              exact
+              path="mywonauctions"
+              element={
+                <div className="order-inner-inner-container">
+                  <DataContext.Provider
+                    value={{
+                      products,
+                      setProducts,
+                      searchResult,
+                      setSearchResult,
+                      filteredView,
+                      bids,
+                      setBids,
+                      highestBid,
+                      setHighestBid,
+                      user,
+                      setUser,
+                      deliveries,
+                    }}
+                  >
+                    <UnderNav />
+                    <MyWonAuctionsSortBar />
+                    <MyWonAuctions />
+                  </DataContext.Provider>
+                </div>
+              }
+            />
+
             <Route
               exact
               path="newauction"
@@ -268,10 +308,13 @@ function AuctionPage() {
                   <div className="order-inner-inner-container">
                     <DataContext.Provider
                       value={{
-                        orderProducts,
-                        setOrderProducts,
+                        products,
+                        setProducts,
                         bids,
                         setBids,
+                        user,
+                        setUser,
+                        deliveries
                       }}
                     >
                       <UnderNav />

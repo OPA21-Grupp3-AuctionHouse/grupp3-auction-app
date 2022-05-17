@@ -28,8 +28,9 @@ const NewAuctionPage = () => {
     price: "",
     endTime: "",
     ownerId: provider.user,
-    orderStatus: "bidding",
+    orderStatus: "Active",
     buyout: "",
+    winner: "",
   });
 
   const handleChangeImage = (e) => {
@@ -40,7 +41,9 @@ const NewAuctionPage = () => {
 
   const handleAuctionSubmit = (e) => {
     e.preventDefault();
-    if (auction.category && auction.name && auction.description) {
+    if (parseInt(auction.price) > parseInt(auction.buyout)) {
+      alert("Buyout must be higher than price");
+    } else if (auction.category && auction.name && auction.description) {
       ProductService.createProduct(auction).then((res) => {
         setAuction({
           name: "",
@@ -48,6 +51,7 @@ const NewAuctionPage = () => {
           description: "",
           buyout: "",
           startPrice: "",
+          price: "",
         });
         ProductService.getProducts().then((res) => {
           provider.setProducts(res.data);
@@ -124,7 +128,7 @@ const NewAuctionPage = () => {
               Start price:
             </span>
             <input
-              type="text"
+              type="number"
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
@@ -141,7 +145,8 @@ const NewAuctionPage = () => {
               Buyout:
             </span>
             <input
-              type="text"
+              type="number"
+              min={parseInt(auction.price) + 1}
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"

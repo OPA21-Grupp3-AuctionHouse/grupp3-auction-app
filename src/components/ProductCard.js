@@ -2,8 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import ProductModal from "./ProductModal";
 import { DataContext } from "../components/AuctionPage";
 import BidService from "../services/BidService";
+import OrderModal from "./OrderModal";
 
-const ProductCard = ({ product, pageSource }) => {
+import ProductService from "../services/ProductService";
+
+const ProductCard = ({ product, pageSource, deliveries }) => {
   const [modalShow, setModalShow] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
@@ -54,6 +57,20 @@ const ProductCard = ({ product, pageSource }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDate(new Date().getTime());
+
+      if (
+        Date.parse(product.endTime) < Date.now() &&
+        product.orderStatus === "Active"
+      ) {
+        product.orderStatus = "Completed";
+        BidService.getHighestBid(product.id).then((res) => {
+          if (res.data) {
+            product.winner = res.data.userId;
+          }
+        });
+        console.log(product);
+        ProductService.updateProduct(product);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
@@ -79,9 +96,9 @@ const ProductCard = ({ product, pageSource }) => {
   if (Date.parse(product.endTime) - currentDate > 0) {
     product.timeRemaining = msToTime(Date.parse(product.endTime) - currentDate);
   } else {
-    product.timeRemaining = "0";
+    product.timeRemaining = "Auction ended";
   }
-
+  
   const delAuction = (e) => {
     const toId = e.target.value;
     if (window.confirm("Are you sure?")) {
@@ -96,12 +113,20 @@ const ProductCard = ({ product, pageSource }) => {
     return (
       <>
         <div className="product-card" onClick={handleClick}>
-          <div className="my-bid-image">
+          <div className="product-image">
             <img
               className="Card-image-css"
               src={product.imageURL}
               alt="jaja"
             ></img>
+          </div>
+          <div className="mybid-name">{product.name}</div>
+          <div className="mybid-endTime">{product.timeRemaining}</div>
+          <div className="product-myBid">{myHighestBid}</div>
+          <div className="product-myBid">{highestBid}</div>
+          <div className="product-myBid">
+            {product.buyout}
+            <button>BUY</button>
           </div>
           <div className="my-bid-name">{product.name}</div>
           <div className="my-bid-endtime">{product.timeRemaining}</div>
@@ -127,7 +152,7 @@ const ProductCard = ({ product, pageSource }) => {
     return (
       <>
         <div className="product-card" onClick={handleClick}>
-          <div className="my-auction-image">
+          <div className="product-image">
             <img
               className="Card-image-css"
               src={product.imageURL}
@@ -149,6 +174,63 @@ const ProductCard = ({ product, pageSource }) => {
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
           pageSource={pageSource}
+        />
+      </>
+    );
+  } else if (pageSource === "myhistory") {
+    return (    
+    <>
+            <div className="product-card" onClick={handleClick}>
+          <div className="product-image">
+            <img
+              className="Card-image-css"
+              src={product.image}
+              alt="product"
+            ></img>
+          </div>
+      <div className="order-card" onClick={() => setModalShow(true)}>
+        <div className="order-images"></div>
+        <div className="order-names">{product.name}</div>
+        <div className="order-status">{product.orderStatus}</div>
+        <div className="order-date">{product.endTime}</div>
+        <div className="order-price">{product.price}</div>
+      </div>
+      </div>
+        <OrderModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        product={product}
+      />
+    </>
+    );
+  } else if (pageSource === "mywonauctions") {
+    return (
+      <>
+        <div className="product-card" onClick={handleClick}>
+          <div className="my-auction-image">
+            <img
+              className="Card-image-css"
+              src={product.imageURL}
+              alt="jaja"
+            ></img>
+          </div>
+          <div className="my-auction-name">{product.name}</div>
+          <div className="my-auction-name">{product.description}</div>
+          <div className="my-auction-endtime">Choose a shipping method</div>
+
+          <div className="my-auction-price">Price paid: {myHighestBid}</div>
+        </div>
+        <ProductModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          product={product}
+          bids={bids}
+          highestBid={highestBid}
+          setHighestBid={setHighestBid}
+          currentBid={currentBid}
+          setCurrentBid={setCurrentBid}
+          pageSource={pageSource}
+          deliveries={deliveries}
         />
       </>
     );
@@ -175,6 +257,7 @@ const ProductCard = ({ product, pageSource }) => {
           currentBid={currentBid}
           myHighestBid={myHighestBid}
           setCurrentBid={setCurrentBid}
+          deliveries={product.deliveries}
         />
       </>
     );

@@ -94,19 +94,6 @@ const Profile = () => {
         <div className="profile-form-div">
           <h3>Edit profile info</h3>
           <form>
-            <div className="col-auto" style={{ height: "0" }}>
-              <label htmlFor="staticEmail2" className="visually-hidden">
-                Username:
-              </label>
-              <input
-                type="text"
-                readOnly
-                className="form-control-plaintext"
-                id="staticEmail2"
-                value={tempUser.username}
-              />
-            </div>
-
             <div className="input-group mb-3">
               <span className="input-group-text" id="inputGroup-sizing-default">
                 First Name:
