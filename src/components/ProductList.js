@@ -6,7 +6,8 @@ function ProductList() {
   const provider = useContext(DataContext);
 
   const activeProducts = provider.products.filter(
-    (product) => product.orderStatus === "Active"
+    (product) =>
+      product.orderStatus === "Active" && product.ownerId !== provider.user
   );
 
   if (activeProducts) {
