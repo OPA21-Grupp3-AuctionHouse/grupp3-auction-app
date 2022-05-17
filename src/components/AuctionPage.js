@@ -79,7 +79,6 @@ function AuctionPage() {
   };
   */
 
-
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
       if (!searchInput) {
@@ -314,7 +313,7 @@ function AuctionPage() {
                         setBids,
                         user,
                         setUser,
-                        deliveries
+                        deliveries,
                       }}
                     >
                       <UnderNav />

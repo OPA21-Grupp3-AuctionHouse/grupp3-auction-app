@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 
 import BidService from "../services/BidService";
 import ProductService from "../services/ProductService";
+import DeliveryService from "../services/DeliveryService";
 
 function ProductModal(props) {
   const provider = useContext(DataContext);
@@ -23,6 +24,13 @@ function ProductModal(props) {
     props.product.orderStatus = "Sent";
     console.log(props.product);
     ProductService.updateProduct(props.product);
+    let deliveryAuction = {
+      auctionId: props.product.id,
+      userId: provider.user,
+      deliveryMethod: input,
+    };
+    console.log(deliveryAuction);
+    DeliveryService.postDelivery(deliveryAuction);
     // DeliveryService.postAuction()
     props.onHide();
   };
@@ -110,7 +118,7 @@ function ProductModal(props) {
               <span>no bid</span>
             )}
           </p>
-<form className="modal-bid-form" onSubmit={checkBid}>
+          <form className="modal-bid-form" onSubmit={checkBid}>
             {!props.pageSource ? (
               <label>
                 Place your bid{" "}
@@ -144,8 +152,8 @@ function ProductModal(props) {
                       <option>Choose...</option>
                       {props.deliveries?.map((object, i) => {
                         return (
-                          <option key={i} value={object.companyName}>
-                            {object.companyName}
+                          <option key={i} value={object.deliveryMethod}>
+                            {object.deliveryMethod}
                           </option>
                         );
                       })}
@@ -171,7 +179,7 @@ function ProductModal(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-{props.pageSource === "mywonauctions" ? (
+        {props.pageSource === "mywonauctions" ? (
           <Button onClick={handleSubmit}>Choose this delivery method</Button>
         ) : (
           <></>

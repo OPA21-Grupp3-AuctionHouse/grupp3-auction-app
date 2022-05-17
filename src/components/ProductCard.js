@@ -98,7 +98,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
   } else {
     product.timeRemaining = "Auction ended";
   }
-  
+
   const delAuction = (e) => {
     const toId = e.target.value;
     if (window.confirm("Are you sure?")) {
@@ -178,9 +178,9 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
       </>
     );
   } else if (pageSource === "myhistory") {
-    return (    
-    <>
-            <div className="product-card" onClick={handleClick}>
+    return (
+      <>
+        <div className="product-card" onClick={handleClick}>
           <div className="product-image">
             <img
               className="Card-image-css"
@@ -188,20 +188,18 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
               alt="product"
             ></img>
           </div>
-      <div className="order-card" onClick={() => setModalShow(true)}>
-        <div className="order-images"></div>
-        <div className="order-names">{product.name}</div>
-        <div className="order-status">{product.orderStatus}</div>
-        <div className="order-date">{product.endTime}</div>
-        <div className="order-price">{product.price}</div>
-      </div>
-      </div>
+
+          <div className="order-names">{product.name}</div>
+          <div className="order-status">{product.orderStatus}</div>
+          <div className="order-date">{product.endTime}</div>
+          <div className="order-price">{product.price}</div>
+        </div>
         <OrderModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        product={product}
-      />
-    </>
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          product={product}
+        />
+      </>
     );
   } else if (pageSource === "mywonauctions") {
     return (

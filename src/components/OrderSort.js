@@ -9,13 +9,9 @@ const OrderSort = () => {
 
     if (e.target.value === "name") {
       if (provider.filteredView) {
-        provider.setSearchResult([
-          ...provider.searchResult.sort(compareName),
-        ]);
+        provider.setSearchResult([...provider.searchResult.sort(compareName)]);
       } else {
-        provider.setOrderProducts([
-          ...provider.products.sort(compareName),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(compareName)]);
       }
     } else if (e.target.value === "orderStatus") {
       if (provider.filteredView) {
@@ -23,21 +19,15 @@ const OrderSort = () => {
           ...provider.searchResult.sort(compareStatus),
         ]);
       } else {
-        provider.setOrderProducts([
-          ...provider.products.sort(compareStatus),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(compareStatus)]);
       }
     } else if (e.target.value === "endTime") {
       if (provider.filteredView) {
-        provider.setSearchResult([
-          ...provider.searchResult.sort(compareDate),
-        ]);
+        provider.setSearchResult([...provider.searchResult.sort(compareDate)]);
       } else {
-        provider.setOrderProducts([
-          ...provider.products.sort(compareDate),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(compareDate)]);
       }
-/*    } else if (e.target.value === "Type") {
+      /*    } else if (e.target.value === "Type") {
       if (provider.filteredView) {
         provider.setSearchResult([
           ...provider.searchResult.sort(compareType),
@@ -47,33 +37,40 @@ const OrderSort = () => {
           ...provider.orderProducts.sort(compareType),
         ]);
       }*/
-
     } else if (e.target.value === "price") {
       if (provider.filteredView) {
-        provider.setSearchResult([
-          ...provider.searchResult.sort(comparePrice),
-        ]);
+        provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
       } else {
-        provider.setOrderProducts([
-          ...provider.products.sort(comparePrice),
-        ]);
+        provider.setOrderProducts([...provider.products.sort(comparePrice)]);
       }
     }
   };
 
   return (
     <div className="orderSort-outer-container">
-      <button className="images-head">Image</button>
-      <button className="names-head" onClick={sortOrderColumn} value="name">
+      <button className="my-bid-image-bar">Image</button>
+      <button
+        className="my-bid-name-bar"
+        onClick={sortOrderColumn}
+        value="name"
+      >
         Name
       </button>
-      <button className="status-head" onClick={sortOrderColumn} value="orderStatus">
+      <button
+        className="status-head"
+        onClick={sortOrderColumn}
+        value="orderStatus"
+      >
         Status
       </button>
-      <button className="date-head" onClick={sortOrderColumn} value="endTime">
+      <button
+        className="my-bid-endtime-bar"
+        onClick={sortOrderColumn}
+        value="endTime"
+      >
         Date
       </button>
-{/*       <button className="type-head" onClick={sortOrderColumn} value="Type">
+      {/*       <button className="type-head" onClick={sortOrderColumn} value="Type">
         Type
       </button> */}
       <button className="prices-head" onClick={sortOrderColumn} value="price">
@@ -83,7 +80,7 @@ const OrderSort = () => {
   );
 
   function compareName(a, b) {
-    if (a.name.toLowerCase()  < b.name.toLowerCase()) {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
       return -1;
     }
     if (a.name.toLowerCase() > b.name.toLowerCase()) {
@@ -101,7 +98,7 @@ const OrderSort = () => {
     }
     return 0;
   }
-/*   function compareType(a, b) {
+  /*   function compareType(a, b) {
     if (a.Type.toLowerCase() < b.Type.toLowerCase()) {
       return -1;
     }
