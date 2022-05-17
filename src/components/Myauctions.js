@@ -7,13 +7,13 @@ const MyAuctions = () => {
   const provider = useContext(DataContext);
 
   const userAuctionList = provider.products.filter(
-    (product) => product.ownerId === provider.user.id
+    (product) => product.ownerId === provider.user
   );
   return (
     <div className="order-container">
       {userAuctionList.map((product) => (
         <ProductCard
-          key={product.key}
+          key={product.id}
           product={product}
           pageSource="myauctions"
         />

@@ -47,6 +47,14 @@
       "lastname": "pw",
       "username": "axelpw",
       "id": 6
+    },
+    {
+      "email": "zhu1@live.se",
+      "password": "$2a$10$ldjxtf/8cWtc.Pusl1HUrOGURwSLwjTENybxjEEgnczYkXPHTky8.",
+      "firstname": "mikael",
+      "lastname": "z",
+      "username": "mkzz98",
+      "id": 7
     }
   ]
 }

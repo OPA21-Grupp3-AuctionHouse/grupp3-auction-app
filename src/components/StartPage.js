@@ -1,47 +1,23 @@
-import React, { useEffect, useState } from "react";
-import UserService from "../services/user.service";
-import AuthService from "../services/auth.service";
+import { React, useState, useEffect } from "react";
+import UserService from "../services/UserService";
 
-const StartPage = () => {
-  const currentUser = AuthService.getCurrentUser();
-  const [content, setContent] = useState("");
+function StartPage() {
+  const [user, setUser] = useState();
   useEffect(() => {
-    UserService.getStartPageContent().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        setContent(_content);
-      }
-    );
+    getUser();
   }, []);
 
+  const getUser = () => {
+    UserService.getUserName().then((res) => {
+      setUser(res.data);
+    });
+  };
+
   return (
-    <div>
-      <div className="auction-start-container">
-        <h2>Welcome, user!</h2>
-      </div>
-      <div className="container">
-        <header className="jumbotron">
-          <h3>
-            <strong>{currentUser.username}</strong> Profile
-          </h3>
-        </header>
-        <p>
-          <strong>Id:</strong> {currentUser.id}
-        </p>
-        <p>
-          <strong>Email:</strong> {currentUser.email}
-        </p>
-      </div>
+    <div className="auction-start-container">
+      <h2>Welcome, {user}!</h2>
     </div>
   );
-};
+}
 
 export default StartPage;
