@@ -18,8 +18,13 @@ function ProductModal(props) {
   };
 
   const handleSubmit = (e) => {
-    setDelivery(input);
     e.preventDefault();
+    setDelivery(input);
+    props.product.orderStatus = "Sent";
+    console.log(props.product);
+    ProductService.updateProduct(props.product);
+    // DeliveryService.postAuction()
+    props.onHide();
   };
 
   const checkBid = (e) => {
@@ -38,7 +43,6 @@ function ProductModal(props) {
 
       createBid(newBid);
       provider.setBids([...provider.bids, newBid]);
-      console.log(provider.bids);
     }
   };
 
@@ -46,7 +50,7 @@ function ProductModal(props) {
     e.preventDefault();
     props.product.orderStatus = "Completed";
     props.product.winner = provider.user;
-    console.log(props.product);
+    props.product.endTime = new Date();
     ProductService.updateProduct(props.product);
     const newBid = {
       userId: provider.user,
