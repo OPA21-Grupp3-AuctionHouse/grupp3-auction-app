@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext, useState } from "react";
+import ProductService from "../services/ProductService";
 
 import { DataContext } from "./AuctionPage";
 
@@ -20,14 +21,13 @@ const NewAuctionPage = () => {
   };
 
   const [auction, setAuction] = useState({
-    key: 15,
-    image: "",
+    imageURL: "",
     category: "",
     name: "",
     description: "",
     price: "",
-    endTime: "2022-03-24 20:30",
-    ownerId: provider.user.id,
+    endTime: "",
+    ownerId: provider.user,
     orderStatus: "bidding",
     buyout: "",
   });
@@ -35,19 +35,24 @@ const NewAuctionPage = () => {
   const handleChangeImage = (e) => {
     e.preventDefault();
     const tempImage = URL.createObjectURL(e.target.files[0]);
-    setAuction({ ...auction, image: tempImage });
+    setAuction({ ...auction, imageURL: tempImage });
   };
 
   const handleAuctionSubmit = (e) => {
     e.preventDefault();
     if (auction.category && auction.name && auction.description) {
-      provider.setProducts([...provider.products, auction]);
-      setAuction({
-        name: "",
-        category: "",
-        description: "",
-        buyout: "",
-        startPrice: "",
+      ProductService.createProduct(auction).then((res) => {
+        setAuction({
+          name: "",
+          category: "",
+          description: "",
+          buyout: "",
+          startPrice: "",
+        });
+        ProductService.getProducts().then((res) => {
+          provider.setProducts(res.data);
+          console.log(res.data);
+        });
       });
     } else {
       alert("enter values");
@@ -190,9 +195,9 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-        {auction.image !== "" ? (
+        {auction.imageURL !== "" ? (
           <img
-            src={auction.image}
+            src={auction.imageURL}
             className="new-auction-page-picture"
             alt="Preview av bild"
             type="image/*"

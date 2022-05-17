@@ -8,47 +8,27 @@ const SortBar = () => {
     e.preventDefault();
 
     if (e.target.value === "category") {
-      if (provider.filteredView) {
-        provider.setSearchResult([
-          ...provider.searchResult.sort(compareCategory),
-        ]);
-      } else {
-        provider.setProducts([...provider.products.sort(compareCategory)]);
-      }
+      provider.setSearchResult([
+        ...provider.searchResult.sort(compareCategory),
+      ]);
+      provider.setProducts([...provider.products.sort(compareCategory)]);
     } else if (e.target.value === "name") {
-      if (provider.filteredView) {
-        provider.setSearchResult([...provider.searchResult.sort(compareName)]);
-      } else {
-        provider.setProducts([...provider.products.sort(compareName)]);
-      }
+      provider.setSearchResult([...provider.searchResult.sort(compareName)]);
+      provider.setProducts([...provider.products.sort(compareName)]);
     } else if (e.target.value === "description") {
-      if (provider.filteredView) {
-        provider.setSearchResult([
-          ...provider.searchResult.sort(compareDescription),
-        ]);
-      } else {
-        provider.setProducts([...provider.products.sort(compareDescription)]);
-      }
+      provider.setSearchResult([
+        ...provider.searchResult.sort(compareDescription),
+      ]);
+      provider.setProducts([...provider.products.sort(compareDescription)]);
     } else if (e.target.value === "time") {
-      if (provider.filteredView) {
-        provider.setSearchResult([...provider.searchResult.sort(compareTime)]);
-      } else {
-        provider.setProducts([...provider.products.sort(compareTime)]);
-      }
+      provider.setSearchResult([...provider.searchResult.sort(compareTime)]);
+      provider.setProducts([...provider.products.sort(compareTime)]);
     } else if (e.target.value === "price") {
-      if (provider.filteredView) {
-        provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
-      } else {
-        provider.setProducts([...provider.products.sort(comparePrice)]);
-      }
+      provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
+      provider.setProducts([...provider.products.sort(comparePrice)]);
     } else if (e.target.value === "buyout") {
-      if (provider.filteredView) {
-        provider.setSearchResult([
-          ...provider.searchResult.sort(compareBuyout),
-        ]);
-      } else {
-        provider.setProducts([...provider.products.sort(compareBuyout)]);
-      }
+      provider.setSearchResult([...provider.searchResult.sort(compareBuyout)]);
+      provider.setProducts([...provider.products.sort(compareBuyout)]);
     }
   };
 
@@ -72,7 +52,7 @@ const SortBar = () => {
         End Time
       </button>
       <button className="price-bar" onClick={sortColumn} value="price">
-        Price
+        Current Price
       </button>
       <button className="buyout-bar" onClick={sortColumn} value="buyout">
         Buyout

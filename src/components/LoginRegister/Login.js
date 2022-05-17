@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../../services/AuthService";
+import UserService from "../../services/UserService";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -33,7 +35,6 @@ const Login = () => {
   function CheckError(response) {
     if (response.status >= 200 && response.status <= 299) {
       navigate("/startpage");
-      return response.json();
     } else {
       setError(true);
       throw Error("Incorrect password");
@@ -45,15 +46,29 @@ const Login = () => {
     e.preventDefault();
     //setSubmitted(true);
     setError(false);
+
+    AuthService.login(formData)
+      .then(CheckError)
+      .catch((error) => {
+        console.log(error);
+      });
+
+    /*
     fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
       .then(CheckError)
+
+    UserService.loginUser(formData)
+      .then((res) => {
+        CheckError(res);
+      })
       .catch((error) => {
         console.log(error);
       });
+      */
   };
 
   // handling the input changes
@@ -74,11 +89,11 @@ const Login = () => {
               <div className="messages">{errorMessage()}</div>
 
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>USERNAME</Form.Label>
                 <Form.Control
                   required
                   type="username"
-                  placeholder="username"
+                  placeholder="Username"
                   value={formData.username}
                   name="username"
                   onChange={(e) => handleChange(e)}

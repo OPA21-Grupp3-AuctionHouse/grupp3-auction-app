@@ -18,8 +18,8 @@ function App() {
           exact
           path="/"
           element={
-            <div className="welcomeOuter">
-              <div className="welcomeContainer">
+            <div className="welcomePageStart">
+              <div className="welcomepage-upper">
                 <WelcomePageHeader />
                 <Row className="landing">
                   <Col className="leftSide">
@@ -31,7 +31,7 @@ function App() {
                 </Row>
                 <WelcomePageFooter />
               </div>
-              <div>
+              <div className="welcomepage-lower">
                 <Preview />
               </div>
             </div>

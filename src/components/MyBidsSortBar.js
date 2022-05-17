@@ -48,28 +48,28 @@ const MyBidsSortBar = () => {
 
   return (
     <div className="sort-outer-container">
-      <button className="image-bar">Image</button>
-      <button className="mybid-name-bar" onClick={sortColumn} value="name">
+      <button className="my-bid-image-bar">Image</button>
+      <button className="my-bid-name-bar" onClick={sortColumn} value="name">
         Name
       </button>
       <button
-        className="mybid-description-bar"
+        className="my-bid-endtime-bar"
         onClick={sortColumn}
         value="timeRemaining"
       >
         Time Remaining
       </button>
-      <button className="myBid-price-bar" onClick={sortColumn} value="myBid">
+      <button className="my-bid-price-bar" onClick={sortColumn} value="myBid">
         Your bid
       </button>
       <button
-        className="myBid-price-bar"
+        className="my-bid-price-bar"
         onClick={sortColumn}
         value="highestBid"
       >
         Highest bid
       </button>
-      <button className="myBid-price-bar" onClick={sortColumn} value="buyout">
+      <button className="my-bid-price-bar" onClick={sortColumn} value="buyout">
         Buyout
       </button>
     </div>

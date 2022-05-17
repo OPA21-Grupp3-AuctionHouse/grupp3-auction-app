@@ -1,16 +1,36 @@
 import React, { useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DataContext } from "./AuctionPage";
+import UserService from "../services/UserService";
 
 const Profile = () => {
   const provider = useContext(DataContext);
+  const [tempUser, setTempUser] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    streetAddress: "",
+    postCode: "",
+    city: "",
+  });
 
-  const [tempUser, setTempUser] = useState(provider.user);
   const [tempPassword, setTempPassword] = useState({
     newPassword: "",
     password: "",
     repeatPassword: "",
   });
+
+  useEffect(() => {
+    async function loadUser() {
+      UserService.getUserById(provider.user).then((res) => {
+        setTempUser(res.data);
+      });
+    }
+
+    loadUser();
+  }, []);
+
   const handleChangePassword = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -18,24 +38,29 @@ const Profile = () => {
 
     setTempPassword({ ...tempPassword, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(tempUser);
     if (
+      tempUser.firstName &&
+      tempUser.lastName &&
       tempUser.email &&
-      tempUser.name &&
-      tempUser.street &&
-      tempUser.areacode &&
+      tempUser.streetAddress &&
+      tempUser.postCode &&
       tempUser.city
     )
-      if (tempUser.email.includes("@" && ".")) {
-        provider.setUser(tempUser);
+      if (tempUser.email.includes("@", ".")) {
+        UserService.updateInfo(provider.user, tempUser);
+        alert("User updated!");
       } else {
-        alert("enter real email");
+        alert("Enter valid email");
       }
     else {
-      alert("Fill in all Fields");
+      alert("Fill in all fields");
     }
   };
+
   const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -66,164 +91,186 @@ const Profile = () => {
   return (
     <>
       <div className="profile-outer-div">
-        <form>
-          <div className="col-auto">
-            <label htmlFor="staticEmail2" className="visually-hidden">
-              Username:
-            </label>
-            <input
-              type="text"
-              readOnly
-              className="form-control-plaintext"
-              id="staticEmail2"
-              value={provider.user.username}
-            />
-          </div>
+        <div className="profile-form-div">
+          <h3>Edit profile info</h3>
+          <form>
+            <div className="col-auto" style={{ height: "0" }}>
+              <label htmlFor="staticEmail2" className="visually-hidden">
+                Username:
+              </label>
+              <input
+                type="text"
+                readOnly
+                className="form-control-plaintext"
+                id="staticEmail2"
+                value={tempUser.username}
+              />
+            </div>
 
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Name:
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              id="name"
-              name="name"
-              defaultValue={provider.user.name}
-              onChange={handleChange}
-            />
-          </div>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                First Name:
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                id="name"
+                name="firstName"
+                defaultValue={tempUser.firstName}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Email:
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              id="email"
-              name="email"
-              defaultValue={provider.user.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Street:
-            </span>
-            <input
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="street"
-              name="street"
-              defaultValue={provider.user.street}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Areacode:
-            </span>
-            <div>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                Last Name:
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                id="name"
+                name="lastName"
+                defaultValue={tempUser.lastName}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                Email:
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                id="email"
+                name="email"
+                defaultValue={tempUser.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                Street:
+              </span>
               <input
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 type="text"
-                id="areaCode"
-                name="areaCode"
-                defaultValue={provider.user.areacode}
+                id="street"
+                name="streetAddress"
+                defaultValue={tempUser.streetAddress}
                 onChange={handleChange}
               />
             </div>
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              City:
-            </span>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                Areacode:
+              </span>
+              <div>
+                <input
+                  className="form-control"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                  type="text"
+                  id="areaCode"
+                  name="postCode"
+                  defaultValue={tempUser.postCode}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                City:
+              </span>
 
-            <input
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="city"
-              name="city"
-              defaultValue={provider.user.city}
-              onChange={handleChange}
-            />
-          </div>
-          <button
-            className="submit-button-profile"
-            type="submit"
-            onClick={handleSubmit}
-            style={{ marginLeft: "1vh" }}
-          >
-            Update profile
-          </button>
-        </form>
+              <input
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                type="text"
+                id="city"
+                name="city"
+                defaultValue={tempUser.city}
+                onChange={handleChange}
+              />
+            </div>
+            <button
+              className="submit-button-profile"
+              type="submit"
+              onClick={handleSubmit}
+              style={{ marginLeft: "1vh" }}
+            >
+              Update profile
+            </button>
+          </form>
+        </div>
 
-        <form style={{ marginTop: "8vh" }}>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Current Password:
-            </span>
+        <div className="profile-form-div">
+          <h3>Change password</h3>
+          <form>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                Current Password:
+              </span>
 
-            <input
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="password"
-              name="password"
-              onChange={handleChangePassword}
-            />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              New Password:
-            </span>
+              <input
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                type="text"
+                id="password"
+                name="password"
+                onChange={handleChangePassword}
+              />
+            </div>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                New Password:
+              </span>
 
-            <input
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="newPassword"
-              name="newPassword"
-              onChange={handleChangePassword}
-            />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Repeat Password:
-            </span>
+              <input
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                type="text"
+                id="newPassword"
+                name="newPassword"
+                onChange={handleChangePassword}
+              />
+            </div>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                Repeat Password:
+              </span>
 
-            <input
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              type="text"
-              id="repeatPassword"
-              name="repeatPassword"
-              onChange={handleChangePassword}
-            />
-          </div>
-          <button
-            className="submit-button-profile"
-            type="submit"
-            onClick={updatePassword}
-            style={{ marginLeft: "1vh" }}
-          >
-            Change password
-          </button>
-        </form>
+              <input
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                type="text"
+                id="repeatPassword"
+                name="repeatPassword"
+                onChange={handleChangePassword}
+              />
+            </div>
+            <button
+              className="submit-button-profile"
+              type="submit"
+              onClick={updatePassword}
+              style={{ marginLeft: "1vh" }}
+            >
+              Change password
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );
