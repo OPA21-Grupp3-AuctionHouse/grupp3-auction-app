@@ -23,6 +23,7 @@ import MyFollowPage from "../unusedComponents/MyFollowPage";
 import MyFollowSort from "../unusedComponents/MyFollowSort";
 import MyWonAuctions from "./MyWonAuctions";
 import MyWonAuctionsSortBar from "./MyWonAuctionSortBar";
+import DeliveryService from "../services/DeliveryService";
 
 export const DataContext = createContext();
 
@@ -34,12 +35,12 @@ function AuctionPage() {
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState();
+  const [deliveries, setDeliveries] = useState();
 
   useEffect(() => {
     async function getUser() {
       UserService.getUser().then((res) => {
         setUser(res.data);
-        console.log("User id: " + res.data);
       });
     }
 
@@ -52,10 +53,22 @@ function AuctionPage() {
     async function getBids() {
       BidService.getBids().then((res) => {
         setBids(res.data);
-        console.log(res.data);
       });
     }
 
+    const getAllDeliveriesModal = () => {
+      DeliveryService.getAllDeliveries().then((res) => {
+        console.log(res);
+        let companyNames = [];
+        res.data.map((companyname) => {
+          companyNames.push(companyname);
+        });
+        setDeliveries(companyNames);
+        console.log(companyNames);
+      });
+    };
+
+    getAllDeliveriesModal();
     getUser();
     getProducts();
     getBids();
@@ -208,6 +221,7 @@ function AuctionPage() {
                       setHighestBid,
                       user,
                       setUser,
+                      deliveries,
                     }}
                   >
                     <UnderNav />

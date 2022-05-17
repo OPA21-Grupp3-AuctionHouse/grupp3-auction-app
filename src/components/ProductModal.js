@@ -10,10 +10,16 @@ function ProductModal(props) {
   const provider = useContext(DataContext);
 
   const [input, setInput] = useState(0);
+  const [delivery, setDelivery] = useState();
 
   const handleChange = (e) => {
     e.preventDefault();
     setInput(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    setDelivery(input);
+    e.preventDefault();
   };
 
   const checkBid = (e) => {
@@ -100,6 +106,7 @@ function ProductModal(props) {
               <span>no bid</span>
             )}
           </p>
+
           <form className="modal-bid-form" onSubmit={checkBid}>
             {!props.pageSource ? (
               <label>
@@ -116,7 +123,35 @@ function ProductModal(props) {
                 <button type="submit">BID</button>
               </label>
             ) : (
-              <></>
+              <>
+                {props.pageSource === "mywonauctions" ? (
+                  <div className="input-group mb-3">
+                    <label
+                      className="input-group-text"
+                      htmlFor="inputGroupSelect01"
+                    >
+                      Delivery Options:
+                    </label>
+                    <select
+                      onChange={handleChange}
+                      className="form-select"
+                      id="endTime"
+                      name="endTime"
+                    >
+                      <option>Choose...</option>
+                      {props.deliveries?.map((object, i) => {
+                        return (
+                          <option key={i} value={object.companyName}>
+                            {object.companyName}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </>
             )}
           </form>
           {!props.pageSource ? (
@@ -133,6 +168,11 @@ function ProductModal(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
+        {props.pageSource === "mywonauctions" ? (
+          <Button onClick={handleSubmit}>Choose this delivery method</Button>
+        ) : (
+          <></>
+        )}
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

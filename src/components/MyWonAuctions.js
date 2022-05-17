@@ -16,6 +16,7 @@ function MyWonAuctions() {
         <ProductCard
           key={product.id}
           product={product}
+          deliveries={provider.deliveries}
           pageSource="mywonauctions"
         />
       ))}

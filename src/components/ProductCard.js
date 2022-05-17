@@ -4,7 +4,7 @@ import { DataContext } from "../components/AuctionPage";
 import BidService from "../services/BidService";
 import ProductService from "../services/ProductService";
 
-const ProductCard = ({ product, pageSource }) => {
+const ProductCard = ({ product, pageSource, deliveries }) => {
   const [modalShow, setModalShow] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
@@ -193,6 +193,7 @@ const ProductCard = ({ product, pageSource }) => {
           currentBid={currentBid}
           setCurrentBid={setCurrentBid}
           pageSource={pageSource}
+          deliveries={deliveries}
         />
       </>
     );
