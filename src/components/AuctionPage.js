@@ -310,6 +310,7 @@ function AuctionPage() {
                         setBids,
                         user,
                         setUser,
+                        address,
                         deliveries,
                       }}
                     >
