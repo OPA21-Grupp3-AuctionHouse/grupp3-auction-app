@@ -16,6 +16,9 @@ const Login = () => {
   //const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
+  //Authenticated state
+  // const [authenticated, setAuthenticated] = useState(false);
+
   let navigate = useNavigate();
 
   // Showing error message if error is true

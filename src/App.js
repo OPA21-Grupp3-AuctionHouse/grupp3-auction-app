@@ -9,6 +9,7 @@ import WelcomePage from "./components/WelcomePage";
 import AuctionPage from "./components/AuctionPage";
 import WelcomePageFooter from "./components/WelcomePageFooter";
 import Preview from "./components/Preview";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -53,7 +54,15 @@ function App() {
             </div>
           }
         />
-        <Route path="/startpage/*" element={<AuctionPage />} />
+        <Route
+          path="/startpage/*"
+          element={
+            <PrivateRoute>
+              {" "}
+              <AuctionPage />{" "}
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
