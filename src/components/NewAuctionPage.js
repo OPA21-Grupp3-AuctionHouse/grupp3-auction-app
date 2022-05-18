@@ -7,10 +7,28 @@ import { DataContext } from "./AuctionPage";
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);
 
+  const categories = [
+    "Baseball Cards",
+    "Football Cards",
+    "Hockey Cards",
+    "Pokémon",
+    "Magic: The Gathering",
+    "Sorcerer",
+    "Final Fantasy",
+    "Star Realms/Hero Realms",
+    "Skyforge",
+    "Yu-Gi-Oh!",
+    "Android: Netrunner",
+    "MetaZoo",
+    "Other",
+  ];
+
+  /*
   let allCategories = provider.products.map((product) => product.category);
   let categories = allCategories.filter(
     (item, i, arr) => arr.indexOf(item) === i
   );
+  */
 
   const timeCategoriesValues = {
     Oneday: 86400000,

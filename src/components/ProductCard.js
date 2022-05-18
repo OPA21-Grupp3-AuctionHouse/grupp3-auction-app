@@ -145,7 +145,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
     return (
       <>
         <div className="product-card" onClick={handleClick}>
-          <div className="product-image">
+          <div className="my-auction-image">
             <img
               className="Card-image-css"
               src={product.imageURL}

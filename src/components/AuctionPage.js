@@ -29,7 +29,6 @@ export const DataContext = createContext();
 function AuctionPage() {
   const [products, setProducts] = useState([]);
   const [bids, setBids] = useState([]);
-  const [highestBid, setHighestBid] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState();
@@ -79,14 +78,6 @@ function AuctionPage() {
     getProducts();
     getBids();
   }, []);
-
-  /*
-  const getHighestBid = () => {
-    BidService.getHighestBid().then((res) => {
-      setHighestBid(res.data);
-    });
-  };
-  */
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -194,8 +185,6 @@ function AuctionPage() {
                       filteredView,
                       bids,
                       setBids,
-                      highestBid,
-                      setHighestBid,
                       user,
                       setUser,
                     }}
@@ -222,8 +211,6 @@ function AuctionPage() {
                       filteredView,
                       bids,
                       setBids,
-                      highestBid,
-                      setHighestBid,
                       user,
                       setUser,
                       address,

@@ -121,7 +121,7 @@ function ProductModal(props) {
               <span>no bid</span>
             )}
           </p>
-          {!props.pageSource ? (
+          {!props.pageSource && props.product.ownerId !== provider.user ? (
             <>
               <form className="modal-bid-form" onSubmit={checkBid}>
                 <label>
