@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../services/AuthService";
-import UserService from "../../services/UserService";
 import "./LoginRegister.css";
 
 const Login = () => {

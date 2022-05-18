@@ -9,16 +9,8 @@ import WelcomePage from "./components/WelcomePage";
 import AuctionPage from "./components/AuctionPage";
 import WelcomePageFooter from "./components/WelcomePageFooter";
 import Preview from "./components/Preview";
-import AuthService from "./services/auth.service";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(undefined);
-
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-    setCurrentUser(user);
-  }, []);
-
   return (
     <div className="App">
       <Routes>

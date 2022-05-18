@@ -1,24 +1,7 @@
 import { useEffect, useState } from "react";
-import UserService from "../services/user.service.js";
 
 //Public Page. No need for log in to view this page
 const WelcomePage = () => {
-  const [content, setContent] = useState("");
-  useEffect(() => {
-    UserService.getPublicContent().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-        setContent(_content);
-      }
-    );
-  }, []);
-
   return (
     <div className="welcomePage">
       <article className="welcomeText">
