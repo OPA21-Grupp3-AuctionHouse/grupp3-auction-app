@@ -1,10 +1,13 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useState, useEffect} from "react";
-function OrderModal(props) {
-  const [delivery, setDelivery] = useState();
+import { useState, useContext, useEffect } from "react";
+import { ProductContext } from "./ProductCard";
 
+function OrderModal(props) {
+  const productProvider = useContext(ProductContext);
+
+  const [delivery, setDelivery] = useState();
 
   /*const getAllDeliveriesModal = () => {
     DeliveryService.getAllDeliveries().then((res) => {
@@ -19,13 +22,12 @@ function OrderModal(props) {
     const value = e.target.value;
 
     setDelivery(value);
-    console.log(value)
+    console.log(value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-  }
+  };
 
   return (
     <Modal
@@ -36,24 +38,21 @@ function OrderModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.product.name}
+          {productProvider.product.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div>
-        
-
           <div>
-          Status: {props.product.orderStatus}
+            Status: {productProvider.product.orderStatus}
             <br />
-            Date aquired: {props.product.endTime}
+            Date aquired: {productProvider.product.endTime}
             <br />
-{/*             Type: {props.product.Type}
+            {/*             Type: {props.product.Type}
             <br /> */}
-            Price: {props.product.price}
+            Price: {productProvider.product.price}
             <br />
-            <div className="input-group mb-3">
-          </div>
+            <div className="input-group mb-3"></div>
           </div>
         </div>
       </Modal.Body>

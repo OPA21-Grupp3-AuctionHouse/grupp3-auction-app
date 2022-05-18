@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import ProductModal from "./ProductModal";
 import { DataContext } from "../components/AuctionPage";
 import BidService from "../services/BidService";
 import OrderModal from "./OrderModal";
-
 import ProductService from "../services/ProductService";
+
+export const ProductContext = createContext();
 
 const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -13,6 +14,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [highestBid, setHighestBid] = useState();
   const [myHighestBid, setMyHighestBid] = useState();
   const [currentBid, setCurrentBid] = useState();
+
   const provider = useContext(DataContext);
 
   const loadBids = () => {
@@ -112,151 +114,164 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
 
   if (pageSource === "mybids") {
     return (
-      <>
-        <div className="product-card" onClick={handleClick}>
-          <div className="my-bid-image">
-            <img
-              className="Card-image-css"
-              src={product.imageURL}
-              alt="jaja"
-            ></img>
+      <ProductContext.Provider
+        value={{
+          product,
+          bids,
+          highestBid,
+          setHighestBid,
+          myHighestBid,
+          setMyHighestBid,
+          currentBid,
+          setCurrentBid,
+        }}
+      >
+        <>
+          <div className="product-card" onClick={handleClick}>
+            <div className="my-bid-image">
+              <img
+                className="Card-image-css"
+                src={product.imageURL}
+                alt="jaja"
+              ></img>
+            </div>
+            <div className="my-bid-name">{product.name}</div>
+            <div className="my-bid-endtime">{product.timeRemaining}</div>
+            <div className="my-bid-price">{myHighestBid}</div>
+            <div className="my-bid-price">{highestBid}</div>
+            <div className="my-bid-price">{product.buyout}</div>
           </div>
-          <div className="my-bid-name">{product.name}</div>
-          <div className="my-bid-endtime">{product.timeRemaining}</div>
-          <div className="my-bid-price">{myHighestBid}</div>
-          <div className="my-bid-price">{highestBid}</div>
-          <div className="my-bid-price">{product.buyout}</div>
-        </div>
-        <ProductModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          product={product}
-          bids={bids}
-          highestBid={highestBid}
-          setHighestBid={setHighestBid}
-          myHighestBid={myHighestBid}
-          setMyHighestBid={setMyHighestBid}
-          currentBid={currentBid}
-          setCurrentBid={setCurrentBid}
-        />
-      </>
+          <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
+        </>
+      </ProductContext.Provider>
     );
   } else if (pageSource === "myauctions") {
     return (
-      <>
-        <div className="product-card" onClick={handleClick}>
-          <div className="my-auction-image">
-            <img
-              className="Card-image-css"
-              src={product.imageURL}
-              alt="jaja"
-            ></img>
+      <ProductContext.Provider
+        value={{
+          product,
+          bids,
+          highestBid,
+          setHighestBid,
+          myHighestBid,
+          setMyHighestBid,
+          currentBid,
+          setCurrentBid,
+          pageSource,
+        }}
+      >
+        <>
+          <div className="product-card" onClick={handleClick}>
+            <div className="my-auction-image">
+              <img
+                className="Card-image-css"
+                src={product.imageURL}
+                alt="jaja"
+              ></img>
+            </div>
+            <div className="my-auction-name">{product.name}</div>
+            <div className="my-auction-endtime">{product.timeRemaining}</div>
+            <div className="my-auction-price">{product.price}</div>
+            <div className="my-auction-price">{highestBid}</div>
           </div>
-          <div className="my-auction-name">{product.name}</div>
-          <div className="my-auction-endtime">{product.timeRemaining}</div>
-          <div className="my-auction-price">{product.price}</div>
-          <div className="my-auction-price">{highestBid}</div>
-        </div>
-        <ProductModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          product={product}
-          bids={bids}
-          highestBid={highestBid}
-          setHighestBid={setHighestBid}
-          currentBid={currentBid}
-          setCurrentBid={setCurrentBid}
-          pageSource={pageSource}
-        />
-      </>
+          <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
+        </>
+      </ProductContext.Provider>
     );
   } else if (pageSource === "myhistory") {
     return (
-      <>
-        <div className="product-card" onClick={handleClick}>
-          <div className="product-image">
-            <img
-              className="Card-image-css"
-              src={product.image}
-              alt="product"
-            ></img>
-          </div>
+      <ProductContext.Provider
+        value={{
+          product,
+        }}
+      >
+        <>
+          <div className="product-card" onClick={handleClick}>
+            <div className="history-image">
+              <img
+                className="Card-image-css"
+                src={product.image}
+                alt="product"
+              ></img>
+            </div>
 
-          <div className="order-names">{product.name}</div>
-          <div className="order-status">{product.orderStatus}</div>
-          <div className="order-date">{product.endTime}</div>
-          <div className="order-price">{product.price}</div>
-        </div>
-        <OrderModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          product={product}
-        />
-      </>
+            <div className="history-name">{product.name}</div>
+            <div className="history-status">{product.orderStatus}</div>
+            <div className="history-date">{product.endTime}</div>
+            <div className="history-price">{product.price}</div>
+          </div>
+          <OrderModal show={modalShow} onHide={() => setModalShow(false)} />
+        </>
+      </ProductContext.Provider>
     );
   } else if (pageSource === "mywonauctions") {
     return (
-      <>
-        <div className="product-card" onClick={handleClick}>
-          <div className="my-auction-image">
-            <img
-              className="Card-image-css"
-              src={product.imageURL}
-              alt="jaja"
-            ></img>
-          </div>
-          <div className="my-auction-name">{product.name}</div>
-          <div className="my-auction-name">{product.description}</div>
-          {product.orderStatus === "In transit" ? (
-            <div className="my-auction-endtime">Sit back and relax</div>
-          ) : (
-            <div className="my-auction-endtime">Choose a shipping method</div>
-          )}
+      <ProductContext.Provider
+        value={{
+          product,
+          bids,
+          highestBid,
+          setHighestBid,
+          myHighestBid,
+          setMyHighestBid,
+          currentBid,
+          setCurrentBid,
+          address,
+          deliveries,
+          pageSource,
+        }}
+      >
+        <>
+          <div className="product-card" onClick={handleClick}>
+            <div className="my-auction-image">
+              <img
+                className="Card-image-css"
+                src={product.imageURL}
+                alt="jaja"
+              ></img>
+            </div>
+            <div className="my-auction-name">{product.name}</div>
+            <div className="my-auction-name">{product.description}</div>
+            {product.orderStatus === "In transit" ? (
+              <div className="my-auction-endtime">Sit back and relax</div>
+            ) : (
+              <div className="my-auction-endtime">Choose a shipping method</div>
+            )}
 
-          <div className="my-auction-price">Price paid: {myHighestBid}</div>
-        </div>
-        <ProductModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          product={product}
-          bids={bids}
-          myHighestBid={myHighestBid}
-          highestBid={highestBid}
-          setHighestBid={setHighestBid}
-          currentBid={currentBid}
-          setCurrentBid={setCurrentBid}
-          pageSource={pageSource}
-          address={address}
-          deliveries={deliveries}
-        />
-      </>
+            <div className="my-auction-price">Price paid: {myHighestBid}</div>
+          </div>
+          <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
+        </>
+      </ProductContext.Provider>
     );
   } else {
     return (
-      <>
-        <div className="product-card" onClick={handleClick}>
-          <div className="product-image">image</div>
-          <div className="product-category">{product.category}</div>
-          <div className="product-name">{product.name}</div>
-          <div className="product-description">{product.description}</div>
-          <div className="product-time">{product.timeRemaining}</div>
-          <div className="product-price">{currentBid}</div>
-          <div className="product-buyout">{product.buyout}</div>
-        </div>
-        <ProductModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          product={product}
-          bids={bids}
-          highestBid={highestBid}
-          setHighestBid={setHighestBid}
-          setMyHighestBid={setMyHighestBid}
-          currentBid={currentBid}
-          myHighestBid={myHighestBid}
-          setCurrentBid={setCurrentBid}
-          deliveries={product.deliveries}
-        />
-      </>
+      <ProductContext.Provider
+        value={{
+          product,
+          bids,
+          highestBid,
+          setHighestBid,
+          myHighestBid,
+          setMyHighestBid,
+          currentBid,
+          setCurrentBid,
+          deliveries,
+        }}
+      >
+        <>
+          <div className="product-card" onClick={handleClick}>
+            <div className="product-image">image</div>
+            <div className="product-category">{product.category}</div>
+            <div className="product-name">{product.name}</div>
+            <div className="product-description">{product.description}</div>
+            <div className="product-time">{product.timeRemaining}</div>
+            <div className="product-price">{currentBid}</div>
+            <div className="product-buyout">{product.buyout}</div>
+          </div>
+          <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
+        </>
+      </ProductContext.Provider>
     );
   }
 };

@@ -541,6 +541,26 @@ header {
   justify-content: center;
 }
 
+.history-price-bar,
+.history-image-bar,
+.history-status-bar,
+.history-price,
+.history-image,
+.history-status {
+  width: 16%;
+  display: flex;
+  justify-content: center;
+}
+
+.history-name-bar,
+.history-date-bar,
+.history-name,
+.history-date {
+  width: 26%;
+  display: flex;
+  justify-content: center;
+}
+
 .order-card {
   height: 5vh;
   width: 100%;
@@ -564,7 +584,8 @@ header {
   width: 100%;
 }
 
-.new-auction-page-form {
+.new-auction-page-form,
+.new-auction-page-form-secondary {
   display: flex;
   flex-direction: column;
   flex-grow: 0.1;
