@@ -1,4 +1,4 @@
-import React from "react";
+import { React, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,7 +11,21 @@ import WelcomePageFooter from "./components/WelcomePageFooter";
 import Preview from "./components/Preview";
 import PrivateRoute from "./components/PrivateRoute";
 
+// export const UserContext = createContext();
+
 function App() {
+  /*  const [user, setUser] = useState();
+
+  useEffect(() => {
+    async function getUser() {
+      UserService.getUser().then((res) => {
+        setUser(res.data);
+      });
+    }
+
+    getUser();
+  }, []); */
+
   return (
     <div className="App">
       <Routes>
@@ -58,8 +72,7 @@ function App() {
           path="/startpage/*"
           element={
             <PrivateRoute>
-              {" "}
-              <AuctionPage />{" "}
+              <AuctionPage />
             </PrivateRoute>
           }
         />

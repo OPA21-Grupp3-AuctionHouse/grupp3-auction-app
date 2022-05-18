@@ -1,23 +1,20 @@
-import UserService from "../services/UserService";
 import { React, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import UserService from "../services/UserService";
 
 function PrivateRoute({ redirectPath = "/", children }) {
   const [user, setUser] = useState();
-  useEffect(() => {
-    getUser();
-  }, []);
+  const [userChecked, setUserChecked] = useState(false);
 
-  const getUser = () => {
-    UserService.getUserName().then((res) => {
-      setUser(res.data);
-    });
-  };
+  let currentUser = localStorage.getItem("user");
 
-  if (!user) {
-    return <Navigate to={redirectPath} replace />;
+  if (currentUser && !userChecked) {
+    console.log(currentUser);
+    setUser(currentUser);
+    setUserChecked(true);
+    return <Navigate to={children} />;
   } else {
-    return children;
+    return <Navigate to={redirectPath} />;
   }
 }
 
