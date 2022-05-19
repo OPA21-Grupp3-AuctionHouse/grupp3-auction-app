@@ -46,11 +46,11 @@ function OrderModal(props) {
           <div className="modal-body-left">
             Status: {productProvider.product.orderStatus}
             <br />
-            Date aquired: {productProvider.product.endTime}
+            Date aquired: {productProvider.datetime}
             <br />
             {/*             Type: {props.product.Type}
             <br /> */}
-            Price: {productProvider.product.price}
+            Price: {productProvider.highestBid}
             <br />
             <div className="input-group mb-3"></div>
           </div>

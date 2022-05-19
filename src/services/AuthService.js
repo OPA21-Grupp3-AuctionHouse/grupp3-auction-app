@@ -9,7 +9,6 @@ class AuthService {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("user", res.data.username);
         return res;
       });
