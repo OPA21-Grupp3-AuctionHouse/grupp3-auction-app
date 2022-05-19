@@ -41,6 +41,12 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
     });
   };
 
+  useEffect(() => {
+    if (pageSource === "myhistory") {
+      getTime();
+    }
+  }, []);
+
   const loadMyHighestBid = () => {
     BidService.getMyHighestBid(product.id, provider.user).then((res) => {
       setMyHighestBid(res.data.bidAmount);
@@ -54,7 +60,6 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   };
 
   useEffect(() => {
-    getTime();
     loadHighestBids();
     loadMyHighestBid();
   }, [bids]);
@@ -119,13 +124,20 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
     }
   };
 
-  const getTime = () =>{
+  const getTime = () => {
     DeliveryService.getAllAuctions().then((res) => {
-      console.log(res.data);
-      const currntAuctionTime = res.data.filter((auction) => auction.auctionId === product.id)
-      setDatetime(currntAuctionTime[0].date);
+      const currntAuctionTime = res.data.filter(
+        (auction) => auction.auctionId === product.id
+      );
+      if (currntAuctionTime) {
+        setDatetime(
+          currntAuctionTime[0].date.slice(0, 10) +
+            " " +
+            currntAuctionTime[0].date.slice(11, 19)
+        );
+      }
     });
-  }
+  };
 
   if (pageSource === "mybids") {
     return (
@@ -206,6 +218,9 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       <ProductContext.Provider
         value={{
           product,
+          datetime,
+          address,
+          highestBid,
         }}
       >
         <>
@@ -225,9 +240,13 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-name">{product.name}</div>
             <div className="history-status">{product.orderStatus}</div>
             <div className="history-date">{datetime}</div>
-            <div className="history-price">{product.price}</div>
+            <div className="history-price">{highestBid}</div>
           </div>
-          <OrderModal show={modalShow} onHide={() => setModalShow(false)} />
+          <OrderModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            address={address}
+          />
         </>
       </ProductContext.Provider>
     );
@@ -276,7 +295,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
               <div className="my-auction-endtime">Choose a shipping method</div>
             )}
 
-            <div className="my-auction-price">Price paid: {myHighestBid}</div>
+            <div className="my-auction-price">Price paid: {highestBid}</div>
           </div>
           <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
         </>

@@ -17,6 +17,7 @@ function ProductList() {
             <ProductCard
               key={product.id}
               product={product}
+              address={provider.address}
               pageSource="bazaar"
             />
           ))}
@@ -38,6 +39,7 @@ function ProductList() {
             <ProductCard
               key={product.id}
               product={product}
+              address={provider.address}
               pageSource="bazaar"
             />
           ))}

@@ -34,7 +34,7 @@ function ProductModal(props) {
         auctionId: productProvider.product.id,
         userId: provider.user,
         deliveryMethod: delivery,
-        address: provider.address[0]
+        address: provider.address[0],
       });
       productProvider.product.orderStatus = "In transit";
       ProductService.updateProduct(productProvider.product);
@@ -193,66 +193,19 @@ function ProductModal(props) {
               <></>
             )}
 
-            {/*
-          <form className="modal-bid-form" onSubmit={checkBid}>
-            {!props.pageSource ? (
-              <label>
-                Place your bid{" "}
-                <input
-                  type="number"
-                  min={props.currentBid}
-                  max={props.product.buyout}
-                  //placeholder="Bid..."
-                  name="bid"
-                  onChange={handleChange}
-                  value={input}
-                />
-                <button type="submit">BID</button>
-              </label>
+            {finished ? (
+              <div>
+                <p>
+                  You have chosen: {delivery} delivery.
+                  <br />
+                  Your package will be delivered to:{" "}
+                  {productProvider.address[0]}, {productProvider.address[1]}{" "}
+                  {productProvider.address[2]}.
+                </p>
+              </div>
             ) : (
-              <>
-                {props.pageSource === "mywonauctions" ? (
-                  <div className="input-group mb-3">
-                    <label
-                      className="input-group-text"
-                      htmlFor="inputGroupSelect01"
-                    >
-                      Delivery Options:
-                    </label>
-                    <select
-                      onChange={handleChange}
-                      className="form-select"
-                      id="endTime"
-                      name="endTime"
-                    >
-                      <option>Choose...</option>
-                      {props.deliveries?.map((object, i) => {
-                        return (
-                          <option key={i} value={object.deliveryMethod}>
-                            {object.deliveryMethod}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </>
+              <></>
             )}
-          </form>
-          {!props.pageSource ? (
-            <>
-              <br />
-              <label>
-                Buyout price: {props.product.buyout}{" "}
-                <button onClick={handleBuyout}>BUYOUT</button>
-              </label>
-            </>
-          ) : (
-            <></>
-          )}
-          */}
           </div>
           <div className="modal-body-right">
             {productProvider.product.image ? (
@@ -265,19 +218,6 @@ function ProductModal(props) {
               <></>
             )}
           </div>
-          {finished ? (
-            <div>
-              <p>
-                You have chosen {delivery} delivery.
-                <br />
-                Your package will be delivered to {
-                  productProvider.address[0]
-                }, {productProvider.address[1]} {productProvider.address[2]}.
-              </p>
-            </div>
-          ) : (
-            <></>
-          )}
         </div>
       </Modal.Body>
       <Modal.Footer>
