@@ -120,14 +120,6 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
               alt="jaja"
             ></img>
           </div>
-          <div className="mybid-name">{product.name}</div>
-          <div className="mybid-endTime">{product.timeRemaining}</div>
-          <div className="product-myBid">{myHighestBid}</div>
-          <div className="product-myBid">{highestBid}</div>
-          <div className="product-myBid">
-            {product.buyout}
-            <button>BUY</button>
-          </div>
           <div className="my-bid-name">{product.name}</div>
           <div className="my-bid-endtime">{product.timeRemaining}</div>
           <div className="my-bid-price">{myHighestBid}</div>

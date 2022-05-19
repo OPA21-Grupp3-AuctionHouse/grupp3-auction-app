@@ -1,11 +1,14 @@
 import React from "react";
 import { useContext, useState } from "react";
+import PhotoService from "../services/PhotoService";
 import ProductService from "../services/ProductService";
 
 import { DataContext } from "./AuctionPage";
 
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);
+  const [formData, setFormData] = useState();
+  const [imagePreview, setImagePreview] = useState();
 
   let allCategories = provider.products.map((product) => product.category);
   let categories = allCategories.filter(
@@ -21,7 +24,7 @@ const NewAuctionPage = () => {
   };
 
   const [auction, setAuction] = useState({
-    imageURL: "",
+    image: "",
     category: "",
     name: "",
     description: "",
@@ -35,8 +38,16 @@ const NewAuctionPage = () => {
 
   const handleChangeImage = (e) => {
     e.preventDefault();
-    const tempImage = URL.createObjectURL(e.target.files[0]);
-    setAuction({ ...auction, imageURL: tempImage });
+    let tempImage = e.target.files[0];
+    setImagePreview(URL.createObjectURL(tempImage));
+
+    console.log(tempImage);
+    setFormData(tempImage);
+    console.log(formData);
+  };
+
+  const imageSubmit = (e) => {
+    e.preventDefault();
   };
 
   const handleAuctionSubmit = (e) => {
@@ -44,18 +55,31 @@ const NewAuctionPage = () => {
     if (parseInt(auction.price) > parseInt(auction.buyout)) {
       alert("Buyout must be higher than price");
     } else if (auction.category && auction.name && auction.description) {
-      ProductService.createProduct(auction).then((res) => {
-        setAuction({
-          name: "",
-          category: "",
-          description: "",
-          buyout: "",
-          startPrice: "",
-          price: "",
-        });
-        ProductService.getProducts().then((res) => {
-          provider.setProducts(res.data);
-          console.log(res.data);
+      var bodyFormData = new FormData();
+      bodyFormData.append("image", formData);
+      console.log(bodyFormData);
+      PhotoService.addPhoto(bodyFormData).then((res) => {
+        auction.image = res.data;
+        console.log(res);
+        console.log(res.data);
+
+        console.log(auction);
+        setImagePreview("");
+        ProductService.createProduct(auction).then((res) => {
+          setAuction({
+            name: "",
+            category: "",
+            description: "",
+            buyout: "",
+            startPrice: "",
+            price: "",
+            image: "",
+          });
+
+          ProductService.getProducts().then((res) => {
+            provider.setProducts(res.data);
+            console.log(res.data);
+          });
         });
       });
     } else {
@@ -193,6 +217,7 @@ const NewAuctionPage = () => {
               name="image"
             />
           </div>
+
           <button
             className="submit-button-profile"
             onClick={handleAuctionSubmit}
@@ -200,9 +225,9 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-        {auction.imageURL !== "" ? (
+        {imagePreview !== "" ? (
           <img
-            src={auction.imageURL}
+            src={imagePreview}
             className="new-auction-page-picture"
             alt="Preview av bild"
             type="image/*"
