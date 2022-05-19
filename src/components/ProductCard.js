@@ -130,7 +130,11 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         (auction) => auction.auctionId === product.id
       );
       if (currntAuctionTime) {
-        setDatetime(currntAuctionTime[0].date);
+        setDatetime(
+          currntAuctionTime[0].date.slice(0, 10) +
+            " " +
+            currntAuctionTime[0].date.slice(11, 19)
+        );
       }
     });
   };
@@ -216,6 +220,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
           product,
           datetime,
           address,
+          highestBid,
         }}
       >
         <>
@@ -237,7 +242,11 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-date">{datetime}</div>
             <div className="history-price">{highestBid}</div>
           </div>
-          <OrderModal show={modalShow} onHide={() => setModalShow(false)} address={address}/>
+          <OrderModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            address={address}
+          />
         </>
       </ProductContext.Provider>
     );

@@ -9,18 +9,15 @@ function OrderModal(props) {
   const productProvider = useContext(ProductContext);
   const [choosenDelivery, setChoosenDelivery] = useState([]);
 
-  
-    useEffect(() => {
+  useEffect(() => {
     async function getAuction() {
-      console.log(productProvider.product.id);
       DeliveryService.getAuctionById(productProvider.product.id).then((res) => {
-        console.log(res.data);
         setChoosenDelivery(res.data.deliveryMethod);
       });
     }
     getAuction();
   }, []);
-  
+
   return (
     <Modal
       {...props}
@@ -36,21 +33,22 @@ function OrderModal(props) {
       <Modal.Body>
         <div className="modal-outer-body">
           <div className="modal-body-left">
-            Status: {productProvider.product.orderStatus}
+            <p>Status: {productProvider.product.orderStatus}</p>
             <br />
-            Date aquired: {productProvider.datetime}
+            <p>Date aquired: {productProvider.datetime}</p>
             <br />
-            <p>Date aquired: {productProvider.product.endTime}</p>
-            <br />
+            <p>Your price: {productProvider.highestBid}</p>
             <p>Description: {productProvider.product.description}</p>
             <br />
-            <p>Delivery adress: {productProvider.address[0]
-              }, {productProvider.address[1]} {productProvider.address[2]}.</p>
-            {choosenDelivery ? <p>Delivery method: {choosenDelivery}</p> : <p>Delivery method:</p>}
-
-            {/*             Type: {props.product.Type}
-            <br /> */}
-            Price: {productProvider.highestBid}
+            <p>
+              Delivery adress: {productProvider.address[0]},{" "}
+              {productProvider.address[1]} {productProvider.address[2]}.
+            </p>
+            {choosenDelivery ? (
+              <p>Delivery method: {choosenDelivery}</p>
+            ) : (
+              <p>Delivery method:</p>
+            )}
             <br />
             <div className="input-group mb-3"></div>
           </div>
