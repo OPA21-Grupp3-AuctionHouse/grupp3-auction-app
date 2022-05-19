@@ -37,7 +37,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         setCurrentBid(res.data.bidAmount);
       } else {
         setHighestBid(0);
-        setCurrentBid(product.price);
+        setCurrentBid(0);
       }
     });
   };
@@ -147,7 +147,8 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       const currntAuctionTime = res.data.filter(
         (auction) => auction.auctionId === product.id
       );
-      if (currntAuctionTime) {
+      if (currntAuctionTime === 0) {
+        console.log(currntAuctionTime);
         setDatetime(
           currntAuctionTime[0].date.slice(0, 10) +
             " " +

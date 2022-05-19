@@ -56,6 +56,11 @@ const Profile = () => {
     )
       if (tempUser.email.includes("@", ".")) {
         UserService.updateInfo(provider.user, tempUser);
+        provider.setAddress([
+          tempUser.streetAddress,
+          tempUser.postCode,
+          tempUser.city,
+        ]);
         alert("User updated!");
       } else {
         alert("Enter valid email");

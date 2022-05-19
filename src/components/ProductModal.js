@@ -48,26 +48,36 @@ function ProductModal(props) {
     e.preventDefault();
     //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
     //props.placeBid()
-    if (input < productProvider.currentBid + 5) {
-      alert("Bid too low!");
-    } else {
-      const newBid = {
-        userId: provider.user,
-        auctionId: productProvider.product.id,
-        bidTime: new Date(),
-        bidAmount: input,
-      };
+    if (input >= productProvider.product.price) {
+      console.log(productProvider.currentBid);
+      console.log(productProvider.highestBid);
+      console.log("input: " + input);
       if (
-        Date.parse(productProvider.product.endTime) - new Date().getTime() <
-        300000
+        productProvider.currentBid === 0 ||
+        input >= productProvider.currentBid + 5
       ) {
-        let newEndTime = new Date(new Date().getTime() + 300000);
-        productProvider.product.endTime = newEndTime;
-        ProductService.updateProduct(productProvider.product);
+        const newBid = {
+          userId: provider.user,
+          auctionId: productProvider.product.id,
+          bidTime: new Date(),
+          bidAmount: input,
+        };
+
+        if (
+          Date.parse(productProvider.product.endTime) - new Date().getTime() <
+          300000
+        ) {
+          let newEndTime = new Date(new Date().getTime() + 300000);
+          productProvider.product.endTime = newEndTime;
+          ProductService.updateProduct(productProvider.product);
+        }
+        createBid(newBid);
+        provider.setBids([...provider.bids, newBid]);
+      } else {
+        alert("Bid too low!");
       }
-      createBid(newBid);
-      provider.setBids([...provider.bids, newBid]);
-      console.log(provider.bids);
+    } else {
+      alert("Bid too low!");
     }
   };
 
@@ -92,9 +102,9 @@ function ProductModal(props) {
 
   const createBid = (newBid) => {
     BidService.createBid(newBid).then((res) => {
-      productProvider.setHighestBid(newBid.bidAmount);
-      productProvider.setMyHighestBid(newBid.bidAmount);
-      productProvider.setCurrentBid(newBid.bidAmount);
+      productProvider.setHighestBid(res.data.bidAmount);
+      productProvider.setMyHighestBid(res.data.bidAmount);
+      productProvider.setCurrentBid(res.data.bidAmount);
     });
   };
 
@@ -145,15 +155,28 @@ function ProductModal(props) {
                 <form className="modal-bid-form" onSubmit={checkBid}>
                   <label>
                     Place your bid{" "}
-                    <input
-                      type="number"
-                      min={productProvider.currentBid}
-                      max={productProvider.product.buyout}
-                      //placeholder="Bid..."
-                      name="bid"
-                      onChange={handleChange}
-                      value={input}
-                    />
+                    {productProvider.currentBid >
+                    productProvider.product.price ? (
+                      <input
+                        type="number"
+                        min={productProvider.currentBid}
+                        max={productProvider.product.buyout}
+                        //placeholder="Bid..."
+                        name="bid"
+                        onChange={handleChange}
+                        value={input}
+                      />
+                    ) : (
+                      <input
+                        type="number"
+                        min={productProvider.product.price}
+                        max={productProvider.product.buyout}
+                        //placeholder="Bid..."
+                        name="bid"
+                        onChange={handleChange}
+                        value={input}
+                      />
+                    )}
                     <button type="submit">BID</button>
                   </label>
                 </form>
@@ -198,7 +221,7 @@ function ProductModal(props) {
             <div className="modal-image-container">
               <img
                 className="modal-image"
-                src={productProvider.product.image}
+                src={`http://localhost:8080/api/download/${productProvider.product.image}`}
                 alt="image"
               ></img>
             </div>

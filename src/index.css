@@ -31,8 +31,8 @@
 }
 
 .new-auction-page-picture {
-  width: 300px;
-  margin-bottom: 10vh;
+  max-height: 20rem;
+  max-width: auto;
 }
 
 p {
@@ -361,6 +361,7 @@ header {
 .modal-image {
   margin-left: 4rem;
   margin-right: 2rem;
+  margin-bottom: 1rem;
   max-height: 20rem;
   width: auto;
 }
