@@ -215,6 +215,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         value={{
           product,
           datetime,
+          address,
         }}
       >
         <>
@@ -236,7 +237,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-date">{datetime}</div>
             <div className="history-price">{highestBid}</div>
           </div>
-          <OrderModal show={modalShow} onHide={() => setModalShow(false)} />
+          <OrderModal show={modalShow} onHide={() => setModalShow(false)} address={address}/>
         </>
       </ProductContext.Provider>
     );
