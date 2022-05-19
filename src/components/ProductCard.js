@@ -115,13 +115,15 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
     }
   };
 
-  const getTime = () =>{
+  const getTime = () => {
     DeliveryService.getAllAuctions().then((res) => {
       console.log(res.data);
-      const currntAuctionTime = res.data.filter((auction) => auction.auctionId === product.id)
+      const currntAuctionTime = res.data.filter(
+        (auction) => auction.auctionId === product.id
+      );
       setDatetime(currntAuctionTime[0].date);
     });
-  }
+  };
 
   if (pageSource === "mybids") {
     return (
@@ -194,6 +196,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       <ProductContext.Provider
         value={{
           product,
+          address,
         }}
       >
         <>
@@ -201,8 +204,8 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-image">
               <img
                 className="Card-image-css"
-                src={product.image}
-                alt="product"
+                src={product.imageURL}
+                alt="image"
               ></img>
             </div>
 
@@ -211,7 +214,11 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-date">{datetime}</div>
             <div className="history-price">{product.price}</div>
           </div>
-          <OrderModal show={modalShow} onHide={() => setModalShow(false)} />
+          <OrderModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            address={address}
+          />
         </>
       </ProductContext.Provider>
     );

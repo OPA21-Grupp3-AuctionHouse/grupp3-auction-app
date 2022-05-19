@@ -1,34 +1,26 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "./ProductCard";
+import DeliveryService from "../services/DeliveryService";
 
 function OrderModal(props) {
   const productProvider = useContext(ProductContext);
+  const [choosenDelivery, setChoosenDelivery] = useState([]);
 
-  const [delivery, setDelivery] = useState();
-
-  /*const getAllDeliveriesModal = () => {
-    DeliveryService.getAllDeliveries().then((res) => {
-      console.log(res)
-      setDeliveries(res.data.CompanyName)
-      console.log(deliveries)
-    })
-  }*/
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    const value = e.target.value;
-
-    setDelivery(value);
-    console.log(value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
+  
+    useEffect(() => {
+    async function getAuction() {
+      console.log(productProvider.product.id);
+      DeliveryService.getAuctionById(productProvider.product.id).then((res) => {
+        console.log(res.data);
+        setChoosenDelivery(res.data.deliveryMethod);
+      });
+    }
+    getAuction();
+  }, []);
+  
   return (
     <Modal
       {...props}
@@ -44,15 +36,21 @@ function OrderModal(props) {
       <Modal.Body>
         <div>
           <div>
-            Status: {productProvider.product.orderStatus}
+            <p>Status: {productProvider.product.orderStatus}</p>
             <br />
-            Date aquired: {productProvider.product.endTime}
+            <p>Your price: {productProvider.product.price}</p>
+            <p>Buyout was {productProvider.product.buyout}</p>
             <br />
+            <p>Date aquired: {productProvider.product.endTime}</p>
+            <br />
+            <p>Description: {productProvider.product.description}</p>
+            <br />
+            <p>Delivery adress: {productProvider.address[0]
+              }, {productProvider.address[1]} {productProvider.address[2]}.</p>
+            {choosenDelivery ? <p>Delivery method: {choosenDelivery}</p> : <p>Delivery method:</p>}
+
             {/*             Type: {props.product.Type}
             <br /> */}
-            Price: {productProvider.product.price}
-            <br />
-            <div className="input-group mb-3"></div>
           </div>
         </div>
       </Modal.Body>

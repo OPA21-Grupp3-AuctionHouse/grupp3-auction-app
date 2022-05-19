@@ -34,7 +34,6 @@ function AuctionPage() {
   const [user, setUser] = useState();
   const [address, setAddress] = useState();
   const [deliveries, setDeliveries] = useState();
-
   useEffect(() => {
     async function getUser() {
       UserService.getUser().then((res) => {
@@ -307,6 +306,7 @@ function AuctionPage() {
                         setBids,
                         user,
                         setUser,
+                        address,
                         deliveries,
                       }}
                     >
