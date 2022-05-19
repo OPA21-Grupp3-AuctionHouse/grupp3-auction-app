@@ -129,11 +129,15 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="product-image">
-              <img
-                className="Card-image-css"
-                src={`http://localhost:8080/api/download/${product.image}`}
-                alt="no pic"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="my-bid-name">{product.name}</div>
             <div className="my-bid-endtime">{product.timeRemaining}</div>
@@ -163,11 +167,15 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="my-auction-image">
-              <img
-                className="Card-image-css"
-                src={`http://localhost:8080/api/download/${product.image}`}
-                alt="no pic"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="my-auction-name">{product.name}</div>
             <div className="my-auction-endtime">{product.timeRemaining}</div>
@@ -188,11 +196,15 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="history-image">
-              <img
-                className="Card-image-css"
-                src={`http://localhost:8080/api/download/${product.image}`}
-                alt="no pic"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="history-name">{product.name}</div>
@@ -224,11 +236,15 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="my-auction-image">
-              <img
-                className="Card-image-css"
-                src={`http://localhost:8080/api/download/${product.image}`}
-                alt="no pic"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="my-auction-name">{product.name}</div>
             <div className="my-auction-name">{product.description}</div>
@@ -261,11 +277,17 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       >
         <>
           <div className="product-card" onClick={handleClick}>
-            <img
-              className="Card-image-css"
-              src={`http://localhost:8080/api/download/${product.image}`}
-              alt="no pic"
-            ></img>
+            <div className="product-image">
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
+            </div>
             <div className="product-category">{product.category}</div>
             <div className="product-name">{product.name}</div>
             <div className="product-description">{product.description}</div>
