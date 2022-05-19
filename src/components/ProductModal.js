@@ -34,6 +34,11 @@ function ProductModal(props) {
         auctionId: productProvider.product.id,
         userId: provider.user,
         deliveryMethod: delivery,
+        address: provider.address[0]
+      });
+      DeliveryService.getAuction(productProvider.product.id).then((res) => {
+        productProvider.setDatetime(res.data.date);
+        console.log(res.data.date)
       });
       productProvider.product.orderStatus = "In transit";
       ProductService.updateProduct(productProvider.product);
