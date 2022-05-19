@@ -10,12 +10,13 @@ export const ProductContext = createContext();
 
 const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [modalShow, setModalShow] = useState(false);
+  //const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
   const [highestBid, setHighestBid] = useState();
   const [myHighestBid, setMyHighestBid] = useState();
   const [currentBid, setCurrentBid] = useState();
-  const [datetime, setDatetime] = useState();
+  const [datetime, setDateTime] = useState();
 
   const provider = useContext(DataContext);
 
@@ -54,7 +55,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   };
 
   useEffect(() => {
-    getTime();
+    getFinishedAuctionTime();
     loadHighestBids();
     loadMyHighestBid();
   }, [bids]);
@@ -115,13 +116,19 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
     }
   };
 
-  const getTime = () => {
+  const getFinishedAuctionTime = () => {
+    /*
     DeliveryService.getAllAuctions().then((res) => {
       console.log(res.data);
       const currntAuctionTime = res.data.filter(
         (auction) => auction.auctionId === product.id
       );
-      setDatetime(currntAuctionTime[0].date);
+    
+      //setDatetime(currntAuctionTime[0].date);
+    });
+    */
+    DeliveryService.getAuctionById(product.id).then((res) => {
+      setDateTime(res.data.date);
     });
   };
 
@@ -144,7 +151,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="my-bid-image">
               <img
                 className="Card-image-css"
-                src={product.imageURL}
+                src={product.image}
                 alt="jaja"
               ></img>
             </div>
@@ -178,7 +185,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="my-auction-image">
               <img
                 className="Card-image-css"
-                src={product.imageURL}
+                src={product.image}
                 alt="jaja"
               ></img>
             </div>
@@ -204,7 +211,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-image">
               <img
                 className="Card-image-css"
-                src={product.imageURL}
+                src={product.image}
                 alt="image"
               ></img>
             </div>
@@ -237,7 +244,6 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
           address,
           deliveries,
           pageSource,
-          setDatetime,
         }}
       >
         <>
@@ -245,7 +251,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="my-auction-image">
               <img
                 className="Card-image-css"
-                src={product.imageURL}
+                src={product.image}
                 alt="jaja"
               ></img>
             </div>
@@ -280,7 +286,13 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       >
         <>
           <div className="product-card" onClick={handleClick}>
-            <div className="product-image">image</div>
+            <div className="product-image">
+              <img
+                className="Card-image-css"
+                src={product.image}
+                alt="jaja"
+              ></img>
+            </div>
             <div className="product-category">{product.category}</div>
             <div className="product-name">{product.name}</div>
             <div className="product-description">{product.description}</div>

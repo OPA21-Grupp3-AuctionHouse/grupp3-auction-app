@@ -348,6 +348,23 @@ header {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 
+.modal-outer-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-image-container {
+  display: flex;
+  align-items: center;
+}
+
+.modal-image {
+  margin-left: 4rem;
+  margin-right: 2rem;
+  max-height: 20rem;
+  width: auto;
+}
+
 .App h2 {
   font-size: 500%;
 }

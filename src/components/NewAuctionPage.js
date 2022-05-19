@@ -39,7 +39,7 @@ const NewAuctionPage = () => {
   };
 
   const [auction, setAuction] = useState({
-    imageURL: "",
+    image: "",
     category: "",
     name: "",
     description: "",
@@ -54,7 +54,7 @@ const NewAuctionPage = () => {
   const handleChangeImage = (e) => {
     e.preventDefault();
     const tempImage = URL.createObjectURL(e.target.files[0]);
-    setAuction({ ...auction, imageURL: tempImage });
+    setAuction({ ...auction, image: tempImage });
   };
 
   const handleAuctionSubmit = (e) => {
@@ -65,7 +65,7 @@ const NewAuctionPage = () => {
     } else if (auction.category && auction.name && auction.description) {
       ProductService.createProduct(auction).then(() => {
         setAuction({
-          imageURL: "",
+          image: "",
           category: "",
           name: "",
           description: "",
@@ -231,9 +231,9 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-        {auction.imageURL !== "" ? (
+        {auction.image !== "" ? (
           <img
-            src={auction.imageURL}
+            src={auction.image}
             className="new-auction-page-picture"
             alt="Preview av bild"
             type="image/*"

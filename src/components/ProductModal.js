@@ -34,7 +34,8 @@ function ProductModal(props) {
         auctionId: productProvider.product.id,
         userId: provider.user,
         deliveryMethod: delivery,
-        address: provider.address[0]
+        date: new Date(),
+        address: provider.address[0],
       });
       productProvider.product.orderStatus = "In transit";
       ProductService.updateProduct(productProvider.product);
@@ -103,148 +104,100 @@ function ProductModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
-          <p className="modal-description">
-            Description: {productProvider.product.description}
-          </p>
-          <p className="modal-time">
-            Time remaining:{" "}
-            <span style={{ color: "red" }}>
-              {productProvider.product.timeRemaining}
-            </span>
-          </p>
-          <p>
-            Starting price: {productProvider.product.price}
-            <br />
-            Highest bid:{" "}
-            {productProvider.highestBid ? (
-              <span>{productProvider.highestBid}</span>
-            ) : (
-              <span>no bids</span>
-            )}
-            <br />
-            My bid:{" "}
-            {productProvider.myHighestBid ? (
-              <span>{productProvider.myHighestBid}</span>
-            ) : (
-              <span>no bid</span>
-            )}
-          </p>
-          {!productProvider.pageSource &&
-          productProvider.product.ownerId !== provider.user ? (
-            <>
-              <form className="modal-bid-form" onSubmit={checkBid}>
-                <label>
-                  Place your bid{" "}
-                  <input
-                    type="number"
-                    min={productProvider.currentBid}
-                    max={productProvider.product.buyout}
-                    //placeholder="Bid..."
-                    name="bid"
-                    onChange={handleChange}
-                    value={input}
-                  />
-                  <button type="submit">BID</button>
-                </label>
-              </form>
+        <div className="modal-outer-container">
+          <div className="modal-inner-left-container">
+            <p className="modal-description">
+              Description: {productProvider.product.description}
+            </p>
+            <p className="modal-time">
+              Time remaining:{" "}
+              <span style={{ color: "red" }}>
+                {productProvider.product.timeRemaining}
+              </span>
+            </p>
+            <p>
+              Starting price: {productProvider.product.price}
               <br />
-              <label>
-                Buyout price: {productProvider.product.buyout}{" "}
-                <button onClick={handleBuyout}>BUYOUT</button>
-              </label>
-            </>
-          ) : productProvider.pageSource === "mywonauctions" && !finished ? (
-            <form className="modal-delivery-form">
-              <div className="input-group mb-3">
-                <label
-                  className="input-group-text"
-                  htmlFor="inputGroupSelect01"
-                >
-                  Delivery Options:
-                </label>
-                <select
-                  onChange={handleDeliveryChange}
-                  className="form-select"
-                  id="delivery"
-                  name="delivery"
-                >
-                  <option>Choose...</option>
-                  {productProvider.deliveries?.map((object, i) => {
-                    return (
-                      <option key={i} value={object.deliveryMethod}>
-                        {object.deliveryMethod} - {object.deliveryTime} days
-                        delivery time - Price: {object.price}:-
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </form>
-          ) : (
-            <></>
-          )}
-
-          {/*
-          <form className="modal-bid-form" onSubmit={checkBid}>
-            {!props.pageSource ? (
-              <label>
-                Place your bid{" "}
-                <input
-                  type="number"
-                  min={props.currentBid}
-                  max={props.product.buyout}
-                  //placeholder="Bid..."
-                  name="bid"
-                  onChange={handleChange}
-                  value={input}
-                />
-                <button type="submit">BID</button>
-              </label>
-            ) : (
+              Highest bid:{" "}
+              {productProvider.highestBid ? (
+                <span>{productProvider.highestBid}</span>
+              ) : (
+                <span>no bids</span>
+              )}
+              <br />
+              My bid:{" "}
+              {productProvider.myHighestBid ? (
+                <span>{productProvider.myHighestBid}</span>
+              ) : (
+                <span>no bid</span>
+              )}
+            </p>
+            {!productProvider.pageSource &&
+            productProvider.product.ownerId !== provider.user ? (
               <>
-                {props.pageSource === "mywonauctions" ? (
-                  <div className="input-group mb-3">
-                    <label
-                      className="input-group-text"
-                      htmlFor="inputGroupSelect01"
-                    >
-                      Delivery Options:
-                    </label>
-                    <select
+                <form className="modal-bid-form" onSubmit={checkBid}>
+                  <label>
+                    Place your bid{" "}
+                    <input
+                      type="number"
+                      min={productProvider.currentBid}
+                      max={productProvider.product.buyout}
+                      //placeholder="Bid..."
+                      name="bid"
                       onChange={handleChange}
-                      className="form-select"
-                      id="endTime"
-                      name="endTime"
-                    >
-                      <option>Choose...</option>
-                      {props.deliveries?.map((object, i) => {
-                        return (
-                          <option key={i} value={object.deliveryMethod}>
-                            {object.deliveryMethod}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                ) : (
-                  <></>
-                )}
+                      value={input}
+                    />
+                    <button type="submit">BID</button>
+                  </label>
+                </form>
+                <br />
+                <label>
+                  Buyout price: {productProvider.product.buyout}{" "}
+                  <button onClick={handleBuyout}>BUYOUT</button>
+                </label>
               </>
+            ) : productProvider.pageSource === "mywonauctions" && !finished ? (
+              <form className="modal-delivery-form">
+                <div className="input-group mb-3">
+                  <label
+                    className="input-group-text"
+                    htmlFor="inputGroupSelect01"
+                  >
+                    Delivery Options:
+                  </label>
+                  <select
+                    onChange={handleDeliveryChange}
+                    className="form-select"
+                    id="delivery"
+                    name="delivery"
+                  >
+                    <option>Choose...</option>
+                    {productProvider.deliveries?.map((object, i) => {
+                      return (
+                        <option key={i} value={object.deliveryMethod}>
+                          {object.deliveryMethod} - {object.deliveryTime} days
+                          delivery time - Price: {object.price}:-
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </form>
+            ) : (
+              <></>
             )}
-          </form>
-          {!props.pageSource ? (
-            <>
-              <br />
-              <label>
-                Buyout price: {props.product.buyout}{" "}
-                <button onClick={handleBuyout}>BUYOUT</button>
-              </label>
-            </>
+          </div>
+          {productProvider.product.image ? (
+            <div className="modal-image-container">
+              <img
+                className="modal-image"
+                src={productProvider.product.image}
+                alt="image"
+              ></img>
+            </div>
           ) : (
             <></>
           )}
-          */}
         </div>
         {finished ? (
           <div>

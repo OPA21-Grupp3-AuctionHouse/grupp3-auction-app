@@ -9,18 +9,15 @@ function OrderModal(props) {
   const productProvider = useContext(ProductContext);
   const [choosenDelivery, setChoosenDelivery] = useState([]);
 
-  
-    useEffect(() => {
+  useEffect(() => {
     async function getAuction() {
-      console.log(productProvider.product.id);
       DeliveryService.getAuctionById(productProvider.product.id).then((res) => {
-        console.log(res.data);
         setChoosenDelivery(res.data.deliveryMethod);
       });
     }
     getAuction();
   }, []);
-  
+
   return (
     <Modal
       {...props}
@@ -45,9 +42,15 @@ function OrderModal(props) {
             <br />
             <p>Description: {productProvider.product.description}</p>
             <br />
-            <p>Delivery adress: {productProvider.address[0]
-              }, {productProvider.address[1]} {productProvider.address[2]}.</p>
-            {choosenDelivery ? <p>Delivery method: {choosenDelivery}</p> : <p>Delivery method:</p>}
+            <p>
+              Delivery adress: {productProvider.address[0]},{" "}
+              {productProvider.address[1]} {productProvider.address[2]}.
+            </p>
+            {choosenDelivery ? (
+              <p>Delivery method: {choosenDelivery}</p>
+            ) : (
+              <p>Delivery method:</p>
+            )}
 
             {/*             Type: {props.product.Type}
             <br /> */}
