@@ -37,7 +37,6 @@ const Login = () => {
 
   function CheckError(response) {
     if (response.status >= 200 && response.status <= 299) {
-      localStorage.setItem("user", response.data.username);
       navigate("/startpage");
     } else {
       setError(true);
