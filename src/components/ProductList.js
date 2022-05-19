@@ -9,7 +9,6 @@ function ProductList() {
     (product) => product.orderStatus === "Active"
   );
 
-  console.log(provider.user);
   if (activeProducts) {
     if (provider.filteredView === false) {
       return (

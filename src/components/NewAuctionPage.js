@@ -1,11 +1,14 @@
 import React from "react";
 import { useContext, useState } from "react";
+import PhotoService from "../services/PhotoService";
 import ProductService from "../services/ProductService";
 
 import { DataContext } from "./AuctionPage";
 
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);
+  const [formData, setFormData] = useState();
+  const [imagePreview, setImagePreview] = useState("");
 
   const categories = [
     "Baseball Cards",
@@ -39,13 +42,13 @@ const NewAuctionPage = () => {
   };
 
   const [auction, setAuction] = useState({
-    imageURL: "",
+    image: "",
     category: "",
     name: "",
     description: "",
     price: "",
     endTime: "",
-    ownerId: provider.user,
+    ownerId: "",
     orderStatus: "Active",
     buyout: "",
     winner: "",
@@ -53,41 +56,64 @@ const NewAuctionPage = () => {
 
   const handleChangeImage = (e) => {
     e.preventDefault();
-    const tempImage = URL.createObjectURL(e.target.files[0]);
-    setAuction({ ...auction, imageURL: tempImage });
+    let tempImage = e.target.files[0];
+    setImagePreview(URL.createObjectURL(tempImage));
+
+    console.log(tempImage);
+    setFormData(tempImage);
+    console.log(formData);
+  };
+
+  const imageSubmit = (e) => {
+    e.preventDefault();
   };
 
   const handleAuctionSubmit = (e) => {
     e.preventDefault();
+    console.log(auction);
     if (parseInt(auction.price) > parseInt(auction.buyout)) {
       alert("Buyout must be higher than price");
     } else if (auction.category && auction.name && auction.description) {
-      ProductService.createProduct(auction).then((res) => {
-        setAuction({
-          name: "",
-          category: "",
-          description: "",
-          buyout: "",
-          startPrice: "",
-          price: "",
-        });
-        ProductService.getProducts().then((res) => {
-          provider.setProducts(res.data);
-          console.log(res.data);
+      var bodyFormData = new FormData();
+      bodyFormData.append("file", formData);
+      console.log(bodyFormData);
+      PhotoService.addPhoto(bodyFormData).then((res) => {
+        auction.image = res.data;
+
+        setImagePreview("");
+        ProductService.createProduct(auction).then((res) => {
+          setAuction({
+            name: "",
+            category: "",
+            description: "",
+            buyout: "",
+            startPrice: "",
+            price: "",
+            image: "",
+          });
+
+          ProductService.getProducts().then((res) => {
+            provider.setProducts(res.data);
+          });
         });
       });
+      document.querySelector(".new-auction-page-form").reset();
+      document.querySelector(".new-auction-page-form-secondary").reset();
     } else {
-      alert("enter values");
+      alert("Enter all fields");
     }
   };
 
-  console.log(auction);
   const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
 
     setAuction({ ...auction, [name]: value });
+
+    if (auction.ownerId === "") {
+      setAuction({ ...auction, ownerId: provider.user });
+    }
   };
 
   return (
@@ -99,6 +125,7 @@ const NewAuctionPage = () => {
               Name:
             </span>
             <input
+              maxlength="30"
               type="text"
               className="form-control"
               aria-label="Sizing example input"
@@ -122,7 +149,11 @@ const NewAuctionPage = () => {
             >
               <option>Choose...</option>
               {categories.map((category) => {
-                return <option value={category}>{category}</option>;
+                return (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                );
               })}
             </select>
           </div>
@@ -132,6 +163,7 @@ const NewAuctionPage = () => {
             </span>
             <input
               type="text"
+              maxlength="550"
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
@@ -157,14 +189,14 @@ const NewAuctionPage = () => {
             />
           </div>
         </form>
-        <form className="new-auction-page-form">
+        <form className="new-auction-page-form-secondary">
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
               Buyout:
             </span>
             <input
               type="number"
-              min={parseInt(auction.price) + 1}
+              min={auction.price + 1}
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
@@ -211,6 +243,7 @@ const NewAuctionPage = () => {
               name="image"
             />
           </div>
+
           <button
             className="submit-button-profile"
             onClick={handleAuctionSubmit}
@@ -218,9 +251,9 @@ const NewAuctionPage = () => {
             Submit
           </button>
         </form>
-        {auction.imageURL !== "" ? (
+        {imagePreview !== "" ? (
           <img
-            src={auction.imageURL}
+            src={imagePreview}
             className="new-auction-page-picture"
             alt="Preview av bild"
             type="image/*"

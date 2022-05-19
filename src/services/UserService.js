@@ -34,9 +34,11 @@ class UserService {
   }
 
   logoutUser() {
-    return axios.get(`http://localhost:8080/logout`, {
-      withCredentials: true,
-    });
+    return axios
+      .get(`http://localhost:8080/logout`, {
+        withCredentials: true,
+      })
+      .then(localStorage.removeItem("user"));
   }
 }
 

@@ -4,9 +4,15 @@ const API_URL = "http://localhost:8080/";
 
 class AuthService {
   login(formData) {
-    return axios.post(API_URL + "login", formData, {
-      withCredentials: true,
-    });
+    return axios
+      .post(API_URL + "login", formData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("user", res.data.username);
+        return res;
+      });
   }
 
   /*
@@ -29,10 +35,6 @@ class AuthService {
       });
   }
   */
-
-  logout() {
-    localStorage.removeItem("user");
-  }
 
   register(formData) {
     return axios.post(API_URL + "register", formData, {
