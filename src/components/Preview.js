@@ -1,4 +1,4 @@
-import PreviewPic from "../Images/Penrose triangle.png";
+import PreviewPic from "../Images/Testvideo.gif";
 
 const Preview = () => {
   return <img className="preview" src={PreviewPic} alt="preview" />;
