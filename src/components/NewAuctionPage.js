@@ -45,7 +45,7 @@ const NewAuctionPage = () => {
     description: "",
     price: "",
     endTime: "",
-    ownerId: provider.user,
+    ownerId: "",
     orderStatus: "Active",
     buyout: "",
     winner: "",
@@ -59,35 +59,44 @@ const NewAuctionPage = () => {
 
   const handleAuctionSubmit = (e) => {
     e.preventDefault();
+    console.log(auction);
     if (parseInt(auction.price) > parseInt(auction.buyout)) {
       alert("Buyout must be higher than price");
     } else if (auction.category && auction.name && auction.description) {
-      ProductService.createProduct(auction).then((res) => {
+      ProductService.createProduct(auction).then(() => {
         setAuction({
-          name: "",
+          imageURL: "",
           category: "",
+          name: "",
           description: "",
-          buyout: "",
-          startPrice: "",
           price: "",
+          endTime: "",
+          ownerId: provider.user,
+          orderStatus: "Active",
+          buyout: "",
+          winner: "",
         });
         ProductService.getProducts().then((res) => {
           provider.setProducts(res.data);
-          console.log(res.data);
         });
       });
+      document.querySelector(".new-auction-page-form").reset();
+      document.querySelector(".new-auction-page-form-secondary").reset();
     } else {
-      alert("enter values");
+      alert("Enter all fields");
     }
   };
 
-  console.log(auction);
   const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
 
     setAuction({ ...auction, [name]: value });
+
+    if (auction.ownerId === "") {
+      setAuction({ ...auction, ownerId: provider.user });
+    }
   };
 
   return (
@@ -122,7 +131,11 @@ const NewAuctionPage = () => {
             >
               <option>Choose...</option>
               {categories.map((category) => {
-                return <option value={category}>{category}</option>;
+                return (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                );
               })}
             </select>
           </div>
@@ -157,14 +170,14 @@ const NewAuctionPage = () => {
             />
           </div>
         </form>
-        <form className="new-auction-page-form">
+        <form className="new-auction-page-form-secondary">
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
               Buyout:
             </span>
             <input
               type="number"
-              min={parseInt(auction.price) + 1}
+              min={auction.price + 1}
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"

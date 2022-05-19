@@ -17,7 +17,7 @@ function OrderModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.product.name}
+          {provider.product.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -31,9 +31,9 @@ function OrderModal(props) {
             Buyout was {props.product.buyout} 
             <br /> 
             <br />
-            Date aquired: {props.product.endTime}
+            Date aquired: {provider.product.endTime}
             <br />
-{/*             Type: {props.product.Type}
+            {/*             Type: {props.product.Type}
             <br /> */}
             Description: {props.product.description}
             <br />
@@ -42,9 +42,6 @@ function OrderModal(props) {
             <br />
             Delivery method used: 
             <br /> 
-            <br />
-            Regret purchase? Well too bad, NO REFUNDS
-            <br />
           </div>
         </div>
       </Modal.Body>

@@ -48,23 +48,23 @@ const OrderSort = () => {
 
   return (
     <div className="orderSort-outer-container">
-      <button className="my-bid-image-bar">Image</button>
+      <button className="history-image-bar">Image</button>
       <button
-        className="my-bid-name-bar"
+        className="history-name-bar"
         onClick={sortOrderColumn}
         value="name"
       >
         Name
       </button>
       <button
-        className="status-head"
+        className="history-status-bar"
         onClick={sortOrderColumn}
         value="orderStatus"
       >
         Status
       </button>
       <button
-        className="my-bid-endtime-bar"
+        className="history-date-bar"
         onClick={sortOrderColumn}
         value="endTime"
       >
@@ -73,7 +73,11 @@ const OrderSort = () => {
       {/*       <button className="type-head" onClick={sortOrderColumn} value="Type">
         Type
       </button> */}
-      <button className="prices-head" onClick={sortOrderColumn} value="price">
+      <button
+        className="history-price-bar"
+        onClick={sortOrderColumn}
+        value="price"
+      >
         Price
       </button>
     </div>

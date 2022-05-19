@@ -44,7 +44,6 @@ function AuctionPage() {
 
     async function getAddress() {
       UserService.getAddress().then((res) => {
-        console.log(res);
         setAddress(res.data);
       });
     }
@@ -63,13 +62,11 @@ function AuctionPage() {
 
     async function getAllDeliveriesModal() {
       DeliveryService.getAllDeliveries().then((res) => {
-        console.log(res);
         let companyNames = [];
         res.data.map((companyname) => {
           companyNames.push(companyname);
         });
         setDeliveries(companyNames);
-        console.log(companyNames);
       });
     }
     getAllDeliveriesModal();
