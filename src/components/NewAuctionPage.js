@@ -125,7 +125,7 @@ const NewAuctionPage = () => {
               Name:
             </span>
             <input
-              maxlength="30"
+              maxLength="30"
               type="text"
               className="form-control"
               aria-label="Sizing example input"
@@ -163,7 +163,7 @@ const NewAuctionPage = () => {
             </span>
             <input
               type="text"
-              maxlength="550"
+              maxLength="550"
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
