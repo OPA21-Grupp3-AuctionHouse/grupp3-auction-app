@@ -15,9 +15,20 @@ class DeliveryService {
     return axios.get(`${API_URL_TEST}/Delivery/${id}`);
   }
 
+  getAuction(AuctionId) {
+    return axios.get(`${API_URL_TEST}/Finished/getAuctionById`, AuctionId);
+  }
+  
+  getAllAuctions() {
+    return axios.get(`${API_URL_TEST}/Finished/getAllAuctions`);
+  }
+
   postAuction(auction) {
     console.log(auction);
     return axios.post(`${API_URL_TEST}/Finished/addAuction`, auction);
+  }
+  getAuctionById(auctionId) {
+    return axios.get(`${API_URL_TEST}/Finished/getAuctionById?AuctionId=`+auctionId);
   }
 }
 

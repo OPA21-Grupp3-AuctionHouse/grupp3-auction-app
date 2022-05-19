@@ -11,21 +11,8 @@ import WelcomePageFooter from "./components/WelcomePageFooter";
 import Preview from "./components/Preview";
 import PrivateRoute from "./components/PrivateRoute";
 
-// export const UserContext = createContext();
-
 function App() {
-  /*  const [user, setUser] = useState();
-
-  useEffect(() => {
-    async function getUser() {
-      UserService.getUser().then((res) => {
-        setUser(res.data);
-      });
-    }
-
-    getUser();
-  }, []); */
-
+ 
   return (
     <div className="App">
       <Routes>

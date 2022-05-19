@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Col, Row, Form, Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../services/AuthService";
-import UserService from "../../services/UserService";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -13,7 +12,6 @@ const Login = () => {
   });
 
   // States for checking the errors
-  //const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
   //Authenticated state
@@ -47,7 +45,6 @@ const Login = () => {
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    //setSubmitted(true);
     setError(false);
 
     AuthService.login(formData)
@@ -55,29 +52,11 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
       });
-
-    /*
-    fetch("http://localhost:8080/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then(CheckError)
-
-    UserService.loginUser(formData)
-      .then((res) => {
-        CheckError(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-      */
   };
 
   // handling the input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    //setSubmitted(false);
   };
 
   return (

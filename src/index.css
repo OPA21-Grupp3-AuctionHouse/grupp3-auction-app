@@ -465,7 +465,7 @@ header {
 
 /*Order Css*/
 .order-container {
-  height: inherit;
+  height: 87%;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -541,6 +541,26 @@ header {
   justify-content: center;
 }
 
+.history-price-bar,
+.history-image-bar,
+.history-status-bar,
+.history-price,
+.history-image,
+.history-status {
+  width: 16%;
+  display: flex;
+  justify-content: center;
+}
+
+.history-name-bar,
+.history-date-bar,
+.history-name,
+.history-date {
+  width: 26%;
+  display: flex;
+  justify-content: center;
+}
+
 .order-card {
   height: 5vh;
   width: 100%;
@@ -564,7 +584,8 @@ header {
   width: 100%;
 }
 
-.new-auction-page-form {
+.new-auction-page-form,
+.new-auction-page-form-secondary {
   display: flex;
   flex-direction: column;
   flex-grow: 0.1;
@@ -650,6 +671,24 @@ header {
   background: #c5dad6;
 }
 
+.modal-body-left {
+  display: flex;
+  flex-grow: 0.5;
+  flex-direction: column;
+}
+
+.modal-body-right {
+}
+
+.modal-outer-body {
+  display: flex;
+}
+
+.Modal-image-css {
+  margin-left: 20px;
+  max-width: 430px;
+  max-height: 600px;
+}
 @media (max-width: 1080px) {
   .auction-outer-container {
     width: 100vw;

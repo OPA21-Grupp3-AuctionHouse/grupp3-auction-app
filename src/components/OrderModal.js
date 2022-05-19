@@ -1,31 +1,22 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useState, useEffect} from "react";
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "./ProductCard";
+import DeliveryService from "../services/DeliveryService";
+
 function OrderModal(props) {
-  const [delivery, setDelivery] = useState();
+  const productProvider = useContext(ProductContext);
+  const [choosenDelivery, setChoosenDelivery] = useState([]);
 
-
-  /*const getAllDeliveriesModal = () => {
-    DeliveryService.getAllDeliveries().then((res) => {
-      console.log(res)
-      setDeliveries(res.data.CompanyName)
-      console.log(deliveries)
-    })
-  }*/
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    const value = e.target.value;
-
-    setDelivery(value);
-    console.log(value)
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-  }
+  useEffect(() => {
+    async function getAuction() {
+      DeliveryService.getAuctionById(productProvider.product.id).then((res) => {
+        setChoosenDelivery(res.data.deliveryMethod);
+      });
+    }
+    getAuction();
+  }, []);
 
   return (
     <Modal
@@ -36,24 +27,41 @@ function OrderModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.product.name}
+          {productProvider.product.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
-        
-
-          <div>
-          Status: {props.product.orderStatus}
+        <div className="modal-outer-body">
+          <div className="modal-body-left">
+            <p>Status: {productProvider.product.orderStatus}</p>
             <br />
-            Date aquired: {props.product.endTime}
+            <p>Date aquired: {productProvider.datetime}</p>
             <br />
-{/*             Type: {props.product.Type}
-            <br /> */}
-            Price: {props.product.price}
+            <p>Your price: {productProvider.highestBid}</p>
+            <p>Description: {productProvider.product.description}</p>
             <br />
-            <div className="input-group mb-3">
+            <p>
+              Delivery adress: {productProvider.address[0]},{" "}
+              {productProvider.address[1]} {productProvider.address[2]}.
+            </p>
+            {choosenDelivery ? (
+              <p>Delivery method: {choosenDelivery}</p>
+            ) : (
+              <p>Delivery method:</p>
+            )}
+            <br />
+            <div className="input-group mb-3"></div>
           </div>
+          <div className="modal-body-right">
+            {productProvider.product.image ? (
+              <img
+                className="Modal-image-css"
+                src={`http://localhost:8080/api/download/${productProvider.product.image}`}
+                alt="jaja"
+              ></img>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </Modal.Body>
