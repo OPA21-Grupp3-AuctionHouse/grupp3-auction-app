@@ -42,8 +42,8 @@ function OrderModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
-          <div>
+        <div className="modal-outer-body">
+          <div className="modal-body-left">
             Status: {productProvider.product.orderStatus}
             <br />
             Date aquired: {productProvider.product.endTime}
@@ -53,6 +53,17 @@ function OrderModal(props) {
             Price: {productProvider.product.price}
             <br />
             <div className="input-group mb-3"></div>
+          </div>
+          <div className="modal-body-right">
+            {productProvider.product.image ? (
+              <img
+                className="Modal-image-css"
+                src={`http://localhost:8080/api/download/${productProvider.product.image}`}
+                alt="jaja"
+              ></img>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </Modal.Body>

@@ -72,7 +72,11 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         });
         product.endTime = "Auction over";
         console.log(product);
-        ProductService.updateProduct(product);
+        ProductService.updateProduct(product).then((res) =>
+          ProductService.getProducts().then((res) => {
+            provider.setProducts(res.data);
+          })
+        );
       }
     }, 1000);
 
@@ -247,7 +251,13 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
               )}
             </div>
             <div className="my-auction-name">{product.name}</div>
-            <div className="my-auction-name">{product.description}</div>
+            {product.description.length > 20 ? (
+              <div className="product-description">
+                {product.description.slice(0, 20) + "..."}
+              </div>
+            ) : (
+              <div className="product-description">{product.description}</div>
+            )}
             {product.orderStatus === "In transit" ? (
               <div className="my-auction-endtime">Sit back and relax</div>
             ) : (
@@ -290,7 +300,14 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             </div>
             <div className="product-category">{product.category}</div>
             <div className="product-name">{product.name}</div>
-            <div className="product-description">{product.description}</div>
+            {product.description.length > 20 ? (
+              <div className="product-description">
+                {product.description.slice(0, 20) + "..."}
+              </div>
+            ) : (
+              <div className="product-description">{product.description}</div>
+            )}
+
             <div className="product-time">{product.timeRemaining}</div>
             <div className="product-price">{currentBid}</div>
             <div className="product-buyout">{product.buyout}</div>

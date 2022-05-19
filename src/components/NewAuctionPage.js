@@ -8,7 +8,7 @@ import { DataContext } from "./AuctionPage";
 const NewAuctionPage = () => {
   const provider = useContext(DataContext);
   const [formData, setFormData] = useState();
-  const [imagePreview, setImagePreview] = useState();
+  const [imagePreview, setImagePreview] = useState("");
 
   const categories = [
     "Baseball Cards",
@@ -125,6 +125,7 @@ const NewAuctionPage = () => {
               Name:
             </span>
             <input
+              maxlength="30"
               type="text"
               className="form-control"
               aria-label="Sizing example input"
@@ -162,6 +163,7 @@ const NewAuctionPage = () => {
             </span>
             <input
               type="text"
+              maxlength="550"
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
