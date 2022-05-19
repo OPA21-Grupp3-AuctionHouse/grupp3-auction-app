@@ -55,10 +55,13 @@ function ProductModal(props) {
         bidTime: new Date(),
         bidAmount: input,
       };
-      if (Date.parse(props.product.endTime) - new Date().getTime() < 300000) {
+      if (
+        Date.parse(productProvider.product.endTime) - new Date().getTime() <
+        300000
+      ) {
         let newEndTime = new Date(new Date().getTime() + 300000);
-        props.product.endTime = newEndTime;
-        ProductService.updateProduct(props.product);
+        productProvider.product.endTime = newEndTime;
+        ProductService.updateProduct(productProvider.product);
       }
       createBid(newBid);
       provider.setBids([...provider.bids, newBid]);
