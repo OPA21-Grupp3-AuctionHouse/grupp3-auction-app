@@ -23,6 +23,10 @@ class UserService {
     return axios.get(`${API_URL_TEST}/getUsername`, { withCredentials: true });
   }
 
+  getAddress() {
+    return axios.get(`${API_URL_TEST}/getAddress`, { withCredentials: true });
+  }
+
   loginUser(formData) {
     return axios.post(`http://localhost:8080/login`, formData, {
       withCredentials: true,
@@ -30,9 +34,11 @@ class UserService {
   }
 
   logoutUser() {
-    return axios.get(`http://localhost:8080/logout`, {
-      withCredentials: true,
-    });
+    return axios
+      .get(`http://localhost:8080/logout`, {
+        withCredentials: true,
+      })
+      .then(localStorage.removeItem("user"));
   }
 }
 

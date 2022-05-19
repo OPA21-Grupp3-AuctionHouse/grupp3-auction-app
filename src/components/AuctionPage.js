@@ -29,16 +29,22 @@ export const DataContext = createContext();
 function AuctionPage() {
   const [products, setProducts] = useState([]);
   const [bids, setBids] = useState([]);
-  const [highestBid, setHighestBid] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [filteredView, setFilteredView] = useState(Boolean);
   const [user, setUser] = useState();
+  const [address, setAddress] = useState();
   const [deliveries, setDeliveries] = useState();
 
   useEffect(() => {
     async function getUser() {
       UserService.getUser().then((res) => {
         setUser(res.data);
+      });
+    }
+
+    async function getAddress() {
+      UserService.getAddress().then((res) => {
+        setAddress(res.data);
       });
     }
 
@@ -54,30 +60,21 @@ function AuctionPage() {
       });
     }
 
-    const getAllDeliveriesModal = () => {
+    async function getAllDeliveriesModal() {
       DeliveryService.getAllDeliveries().then((res) => {
-        console.log(res);
         let companyNames = [];
         res.data.map((companyname) => {
           companyNames.push(companyname);
         });
         setDeliveries(companyNames);
-        console.log(companyNames);
       });
-    };
+    }
     getAllDeliveriesModal();
     getUser();
+    getAddress();
     getProducts();
     getBids();
   }, []);
-
-  /*
-  const getHighestBid = () => {
-    BidService.getHighestBid().then((res) => {
-      setHighestBid(res.data);
-    });
-  };
-  */
 
   const sortBySearch = (searchInput) => {
     const result = products.filter((product) => {
@@ -149,7 +146,7 @@ function AuctionPage() {
                     <div className="auction-inner-inner-container">
                       <SearchBar sortBySearch={sortBySearch} />
                       <SortBar />
-                      <ProductList setFilteredView={setFilteredView} />
+                      <ProductList />
                     </div>
                   </DataContext.Provider>
                 </>
@@ -185,8 +182,6 @@ function AuctionPage() {
                       filteredView,
                       bids,
                       setBids,
-                      highestBid,
-                      setHighestBid,
                       user,
                       setUser,
                     }}
@@ -213,10 +208,9 @@ function AuctionPage() {
                       filteredView,
                       bids,
                       setBids,
-                      highestBid,
-                      setHighestBid,
                       user,
                       setUser,
+                      address,
                       deliveries,
                     }}
                   >
