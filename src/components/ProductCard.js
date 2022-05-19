@@ -4,6 +4,7 @@ import { DataContext } from "../components/AuctionPage";
 import BidService from "../services/BidService";
 import OrderModal from "./OrderModal";
 import ProductService from "../services/ProductService";
+import DeliveryService from "../services/DeliveryService";
 
 export const ProductContext = createContext();
 
@@ -14,6 +15,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [highestBid, setHighestBid] = useState();
   const [myHighestBid, setMyHighestBid] = useState();
   const [currentBid, setCurrentBid] = useState();
+  const [datetime, setDatetime] = useState();
 
   const provider = useContext(DataContext);
 
@@ -52,6 +54,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   };
 
   useEffect(() => {
+    getTime();
     loadHighestBids();
     loadMyHighestBid();
   }, [bids]);
@@ -115,6 +118,14 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       provider.setMyBidsProducts(tempTestList);
     }
   };
+
+  const getTime = () =>{
+    DeliveryService.getAllAuctions().then((res) => {
+      console.log(res.data);
+      const currntAuctionTime = res.data.filter((auction) => auction.auctionId === product.id)
+      setDatetime(currntAuctionTime[0].date);
+    });
+  }
 
   if (pageSource === "mybids") {
     return (
@@ -213,7 +224,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
 
             <div className="history-name">{product.name}</div>
             <div className="history-status">{product.orderStatus}</div>
-            <div className="history-date">{product.endTime}</div>
+            <div className="history-date">{datetime}</div>
             <div className="history-price">{product.price}</div>
           </div>
           <OrderModal show={modalShow} onHide={() => setModalShow(false)} />
@@ -235,6 +246,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
           address,
           deliveries,
           pageSource,
+          setDatetime,
         }}
       >
         <>
