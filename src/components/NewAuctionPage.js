@@ -56,7 +56,7 @@ const NewAuctionPage = () => {
       alert("Buyout must be higher than price");
     } else if (auction.category && auction.name && auction.description) {
       var bodyFormData = new FormData();
-      bodyFormData.append("image", formData);
+      bodyFormData.append("file", formData);
       console.log(bodyFormData);
       PhotoService.addPhoto(bodyFormData).then((res) => {
         auction.image = res.data;

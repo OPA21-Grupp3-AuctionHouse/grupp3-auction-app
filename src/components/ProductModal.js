@@ -181,6 +181,13 @@ function ProductModal(props) {
             <></>
           )}
         </div>
+        <div>
+          <img
+            className="Modal-image-css"
+            src={`http://localhost:8080/api/download/${props.product.image}`}
+            alt="jaja"
+          ></img>
+        </div>
       </Modal.Body>
       <Modal.Footer>
         {props.pageSource === "mywonauctions" ? (

@@ -116,7 +116,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
           <div className="product-image">
             <img
               className="Card-image-css"
-              src={product.imageURL}
+              src={`http://localhost:8080/api/download/${product.image}`}
               alt="jaja"
             ></img>
           </div>
@@ -147,7 +147,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
           <div className="product-image">
             <img
               className="Card-image-css"
-              src={product.imageURL}
+              src={`http://localhost:8080/api/download/${product.image}`}
               alt="jaja"
             ></img>
           </div>
@@ -176,7 +176,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
           <div className="product-image">
             <img
               className="Card-image-css"
-              src={product.image}
+              src={`http://localhost:8080/api/download/${product.image}`}
               alt="product"
             ></img>
           </div>
@@ -200,7 +200,7 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
           <div className="my-auction-image">
             <img
               className="Card-image-css"
-              src={product.imageURL}
+              src={`http://localhost:8080/api/download/${product.image}`}
               alt="jaja"
             ></img>
           </div>
@@ -228,7 +228,13 @@ const ProductCard = ({ product, pageSource, deliveries }) => {
     return (
       <>
         <div className="product-card" onClick={handleClick}>
-          <div className="product-image">image</div>
+          <div className="product-image">
+            <img
+              className="Card-image-css"
+              src={`http://localhost:8080/api/download/${product.image}`}
+              alt="jaja"
+            ></img>
+          </div>
           <div className="product-category">{product.category}</div>
           <div className="product-name">{product.name}</div>
           <div className="product-description">{product.description}</div>
