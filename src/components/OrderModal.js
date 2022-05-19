@@ -1,13 +1,26 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useContext } from "react";
-import { DataContext } from "./AuctionPage";
-
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "./ProductCard";
+import DeliveryService from "../services/DeliveryService";
 
 function OrderModal(props) {
- const provider = useContext(DataContext);
+  const productProvider = useContext(ProductContext);
+  const [choosenDelivery, setChoosenDelivery] = useState([]);
 
+  
+    useEffect(() => {
+    async function getAuction() {
+      console.log(productProvider.product.id);
+      DeliveryService.getAuctionById(productProvider.product.id).then((res) => {
+        console.log(res.data);
+        setChoosenDelivery(res.data.deliveryMethod);
+      });
+    }
+    getAuction();
+  }, []);
+  
   return (
     <Modal
       {...props}
@@ -17,31 +30,27 @@ function OrderModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {provider.product.name}
+          {productProvider.product.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div>
           <div>
-          Status: {props.product.orderStatus}
-            <br />            
+            <p>Status: {productProvider.product.orderStatus}</p>
             <br />
-            Your price: {props.product.price}
+            <p>Your price: {productProvider.product.price}</p>
+            <p>Buyout was {productProvider.product.buyout}</p>
             <br />
-            Buyout was {props.product.buyout} 
-            <br /> 
+            <p>Date aquired: {productProvider.product.endTime}</p>
             <br />
-            Date aquired: {provider.product.endTime}
+            <p>Description: {productProvider.product.description}</p>
             <br />
+            <p>Delivery adress: {productProvider.address[0]
+              }, {productProvider.address[1]} {productProvider.address[2]}.</p>
+            {choosenDelivery ? <p>Delivery method: {choosenDelivery}</p> : <p>Delivery method:</p>}
+
             {/*             Type: {props.product.Type}
             <br /> */}
-            Description: {props.product.description}
-            <br />
-            <br />
-            Delivery address: {provider.address[0]}, {""} {provider.address[1]} {provider.address[2]}
-            <br />
-            Delivery method used: 
-            <br /> 
           </div>
         </div>
       </Modal.Body>

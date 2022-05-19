@@ -14,7 +14,6 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [highestBid, setHighestBid] = useState();
   const [myHighestBid, setMyHighestBid] = useState();
   const [currentBid, setCurrentBid] = useState();
-
   const provider = useContext(DataContext);
 
   const loadBids = () => {
@@ -183,6 +182,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       <ProductContext.Provider
         value={{
           product,
+          address,
         }}
       >
         <>
@@ -190,8 +190,8 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-image">
               <img
                 className="Card-image-css"
-                src={product.image}
-                alt="product"
+                src= {product.imageURL}
+                alt="image"
               ></img>
             </div>
 
@@ -200,7 +200,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             <div className="history-date">{product.endTime}</div>
             <div className="history-price">{product.price}</div>
           </div>
-          <OrderModal show={modalShow} onHide={() => setModalShow(false)} />
+          <OrderModal show={modalShow} onHide={() => setModalShow(false)} address={address}/>
         </>
       </ProductContext.Provider>
     );

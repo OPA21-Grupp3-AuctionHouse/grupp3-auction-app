@@ -19,6 +19,7 @@ function OrderList() {
         <ProductCard
           key={product.id}
           product={product}
+          address={provider.address}
           pageSource="myhistory"
         />
       ))}
