@@ -71,7 +71,7 @@ const Login = () => {
               <div className="messages">{errorMessage()}</div>
 
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>USERNAME</Form.Label>
+                <Form.Label>Username</Form.Label>
                 <Form.Control
                   required
                   type="username"

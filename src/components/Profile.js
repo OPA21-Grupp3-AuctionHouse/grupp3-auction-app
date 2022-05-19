@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DataContext } from "./AuctionPage";
 import UserService from "../services/UserService";
 import AuthService from "../services/AuthService";
+import { Form } from "react-bootstrap";
 
 const Profile = () => {
   const provider = useContext(DataContext);
@@ -206,14 +207,14 @@ const Profile = () => {
 
         <div className="profile-form-div">
           <h3>Change password</h3>
-          <form>
+          <form onSubmit={updatePassword}>
             <div className="input-group mb-3">
               <span className="input-group-text" id="inputGroup-sizing-default">
                 Current Password:
               </span>
 
               <input
-                required
+                required="required"
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
@@ -229,7 +230,7 @@ const Profile = () => {
               </span>
 
               <input
-                required
+                required="required"
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
@@ -245,24 +246,17 @@ const Profile = () => {
               </span>
 
               <input
-                required
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 type="text"
                 id="repeatPassword"
                 name="repeatPassword"
+                required="required"
                 onChange={handleChangePassword}
               />
             </div>
-            <button
-              className="submit-button-profile"
-              type="submit"
-              onClick={updatePassword}
-              style={{ marginLeft: "1vh" }}
-            >
-              Change password
-            </button>
+            <input className="submit-button-profile" type="submit" />
           </form>
         </div>
       </div>
