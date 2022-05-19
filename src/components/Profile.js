@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { DataContext } from "./AuctionPage";
 import UserService from "../services/UserService";
+import AuthService from "../services/AuthService";
 
 const Profile = () => {
   const provider = useContext(DataContext);
@@ -16,15 +17,18 @@ const Profile = () => {
   });
 
   const [tempPassword, setTempPassword] = useState({
-    newPassword: "",
+    oldpassword: "",
     password: "",
+
     repeatPassword: "",
   });
 
   useEffect(() => {
     async function loadUser() {
-      UserService.getUserById(provider.user).then((res) => {
-        setTempUser(res.data);
+      UserService.getUser().then((res) => {
+        UserService.getUserById(res.data).then((res) => {
+          setTempUser(res.data);
+        });
       });
     }
 
@@ -71,20 +75,20 @@ const Profile = () => {
 
   const updatePassword = (e) => {
     e.preventDefault();
-    if (
-      provider.user.password === tempPassword.password &&
-      tempPassword.newPassword === tempPassword.repeatPassword
-    ) {
-      provider.setUser({
-        ...provider.user,
-        password: tempPassword.newPassword,
-      });
-      alert("Password changed!");
-    } else if (provider.user.password !== tempPassword.password) {
-      alert("Wrong current password");
+    if (tempPassword.repeatPassword !== tempPassword.password) {
+      alert("New passwords not the same");
     } else {
-      //document.querySelector("#repeatPassword").
-      alert("New passwords doesnt match");
+      let formData = new FormData();
+
+      formData.append("oldpassword", tempPassword.oldpassword);
+      formData.append("password", tempPassword.password);
+      AuthService.updatePassword(formData).then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          alert("Password changed!");
+        } else {
+          alert("wrong password");
+        }
+      });
     }
   };
 
@@ -209,6 +213,23 @@ const Profile = () => {
               </span>
 
               <input
+                required
+                className="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                type="text"
+                id="oldpassword"
+                name="oldpassword"
+                onChange={handleChangePassword}
+              />
+            </div>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                New Password:
+              </span>
+
+              <input
+                required
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
@@ -220,25 +241,11 @@ const Profile = () => {
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="inputGroup-sizing-default">
-                New Password:
-              </span>
-
-              <input
-                className="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                type="text"
-                id="newPassword"
-                name="newPassword"
-                onChange={handleChangePassword}
-              />
-            </div>
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="inputGroup-sizing-default">
                 Repeat Password:
               </span>
 
               <input
+                required
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"

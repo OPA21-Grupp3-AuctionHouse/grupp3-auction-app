@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "./AuctionPage";
 
 const SortBar = () => {
   const provider = useContext(DataContext);
+  const [az, setAz] = useState(false);
 
   const sortColumn = (e) => {
     e.preventDefault();
@@ -11,24 +12,61 @@ const SortBar = () => {
       provider.setSearchResult([
         ...provider.searchResult.sort(compareCategory),
       ]);
-      provider.setProducts([...provider.products.sort(compareCategory)]);
+      if (az) {
+        provider.setProducts([...provider.products.sort(compareCategory)]);
+        setAz(false);
+      } else {
+        provider.setProducts([...provider.products.sort(compareCategory2)]);
+        setAz(true);
+      }
     } else if (e.target.value === "name") {
       provider.setSearchResult([...provider.searchResult.sort(compareName)]);
-      provider.setProducts([...provider.products.sort(compareName)]);
+      if (az) {
+        provider.setProducts([...provider.products.sort(compareName)]);
+        setAz(false);
+      } else {
+        provider.setProducts([...provider.products.sort(compareName2)]);
+        setAz(true);
+      }
     } else if (e.target.value === "description") {
       provider.setSearchResult([
         ...provider.searchResult.sort(compareDescription),
       ]);
-      provider.setProducts([...provider.products.sort(compareDescription)]);
+      if (az) {
+        provider.setProducts([...provider.products.sort(compareDescription)]);
+        setAz(false);
+      } else {
+        provider.setProducts([...provider.products.sort(compareDescription2)]);
+        setAz(true);
+      }
     } else if (e.target.value === "time") {
       provider.setSearchResult([...provider.searchResult.sort(compareTime)]);
-      provider.setProducts([...provider.products.sort(compareTime)]);
+
+      if (az) {
+        provider.setProducts([...provider.products.sort(compareTime)]);
+        setAz(false);
+      } else {
+        provider.setProducts([...provider.products.sort(compareTime2)]);
+        setAz(true);
+      }
     } else if (e.target.value === "price") {
       provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
-      provider.setProducts([...provider.products.sort(comparePrice)]);
+      if (az) {
+        provider.setProducts([...provider.products.sort(comparePrice)]);
+        setAz(false);
+      } else {
+        provider.setProducts([...provider.products.sort(comparePrice2)]);
+        setAz(true);
+      }
     } else if (e.target.value === "buyout") {
       provider.setSearchResult([...provider.searchResult.sort(compareBuyout)]);
-      provider.setProducts([...provider.products.sort(compareBuyout)]);
+      if (az) {
+        provider.setProducts([...provider.products.sort(compareBuyout)]);
+        setAz(false);
+      } else {
+        provider.setProducts([...provider.products.sort(compareBuyout2)]);
+        setAz(true);
+      }
     }
   };
 
@@ -70,6 +108,16 @@ const SortBar = () => {
     return 0;
   }
 
+  function compareCategory2(a, b) {
+    if (a.category.toLowerCase() < b.category.toLowerCase()) {
+      return 1;
+    }
+    if (a.category.toLowerCase() > b.category.toLowerCase()) {
+      return -1;
+    }
+    return 0;
+  }
+
   function compareName(a, b) {
     if (a.name.toLowerCase() < b.name.toLowerCase()) {
       return -1;
@@ -79,7 +127,15 @@ const SortBar = () => {
     }
     return 0;
   }
-
+  function compareName2(a, b) {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      return 1;
+    }
+    if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      return -1;
+    }
+    return 0;
+  }
   function compareDescription(a, b) {
     if (a.description.toLowerCase() < b.description.toLowerCase()) {
       return -1;
@@ -89,17 +145,34 @@ const SortBar = () => {
     }
     return 0;
   }
-
-  function compareTime(a, b) {
-    return new Date(a.endTime) - new Date(b.endTime);
+  function compareDescription2(a, b) {
+    if (a.description.toLowerCase() < b.description.toLowerCase()) {
+      return 1;
+    }
+    if (a.description.toLowerCase() > b.description.toLowerCase()) {
+      return -1;
+    }
+    return 0;
   }
-
+  function compareTime(a, b) {
+    console.log(a.endTime);
+    console.log(b.endTime);
+    return Date.parse(a.endTime) - Date.parse(b.endTime);
+  }
+  function compareTime2(a, b) {
+    return Date.parse(b.endTime) - Date.parse(a.endTime);
+  }
   function comparePrice(a, b) {
     return a.price - b.price;
   }
-
+  function comparePrice2(a, b) {
+    return b.price - a.price;
+  }
   function compareBuyout(a, b) {
     return a.buyout - b.buyout;
+  }
+  function compareBuyout2(a, b) {
+    return b.buyout - a.buyout;
   }
 };
 

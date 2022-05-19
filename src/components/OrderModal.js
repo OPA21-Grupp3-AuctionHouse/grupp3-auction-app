@@ -31,15 +31,13 @@ function OrderModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
-          <div>
+        <div className="modal-outer-body">
+          <div className="modal-body-left">
             <p>Status: {productProvider.product.orderStatus}</p>
             <br />
-            <p>Your price: {productProvider.product.price}</p>
-            <p>Buyout was {productProvider.product.buyout}</p>
+            <p>Date aquired: {productProvider.datetime}</p>
             <br />
-            <p>Date aquired: {productProvider.product.endTime}</p>
-            <br />
+            <p>Your price: {productProvider.highestBid}</p>
             <p>Description: {productProvider.product.description}</p>
             <br />
             <p>
@@ -51,9 +49,19 @@ function OrderModal(props) {
             ) : (
               <p>Delivery method:</p>
             )}
-
-            {/*             Type: {props.product.Type}
-            <br /> */}
+            <br />
+            <div className="input-group mb-3"></div>
+          </div>
+          <div className="modal-body-right">
+            {productProvider.product.image ? (
+              <img
+                className="Modal-image-css"
+                src={`http://localhost:8080/api/download/${productProvider.product.image}`}
+                alt="jaja"
+              ></img>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </Modal.Body>

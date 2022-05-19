@@ -16,7 +16,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [highestBid, setHighestBid] = useState();
   const [myHighestBid, setMyHighestBid] = useState();
   const [currentBid, setCurrentBid] = useState();
-  const [datetime, setDateTime] = useState();
+  const [datetime, setDatetime] = useState();
 
   const provider = useContext(DataContext);
 
@@ -41,6 +41,12 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       }
     });
   };
+
+  useEffect(() => {
+    if (pageSource === "myhistory") {
+      getTime();
+    }
+  }, []);
 
   const loadMyHighestBid = () => {
     BidService.getMyHighestBid(product.id, provider.user).then((res) => {
@@ -76,7 +82,11 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         });
         product.endTime = "Auction over";
         console.log(product);
-        ProductService.updateProduct(product);
+        ProductService.updateProduct(product).then((res) =>
+          ProductService.getProducts().then((res) => {
+            provider.setProducts(res.data);
+          })
+        );
       }
     }, 1000);
 
@@ -128,7 +138,22 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
     });
     */
     DeliveryService.getAuctionById(product.id).then((res) => {
-      setDateTime(res.data.date);
+      setDatetime(res.data.date);
+    });
+  };
+
+  const getTime = () => {
+    DeliveryService.getAllAuctions().then((res) => {
+      const currntAuctionTime = res.data.filter(
+        (auction) => auction.auctionId === product.id
+      );
+      if (currntAuctionTime) {
+        setDatetime(
+          currntAuctionTime[0].date.slice(0, 10) +
+            " " +
+            currntAuctionTime[0].date.slice(11, 19)
+        );
+      }
     });
   };
 
@@ -149,11 +174,15 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="my-bid-image">
-              <img
-                className="Card-image-css"
-                src={product.image}
-                alt="jaja"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="my-bid-name">{product.name}</div>
             <div className="my-bid-endtime">{product.timeRemaining}</div>
@@ -183,11 +212,15 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="my-auction-image">
-              <img
-                className="Card-image-css"
-                src={product.image}
-                alt="jaja"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="my-auction-name">{product.name}</div>
             <div className="my-auction-endtime">{product.timeRemaining}</div>
@@ -203,23 +236,29 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
       <ProductContext.Provider
         value={{
           product,
+          datetime,
           address,
+          highestBid,
         }}
       >
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="history-image">
-              <img
-                className="Card-image-css"
-                src={product.image}
-                alt="image"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="history-name">{product.name}</div>
             <div className="history-status">{product.orderStatus}</div>
             <div className="history-date">{datetime}</div>
-            <div className="history-price">{product.price}</div>
+            <div className="history-price">{highestBid}</div>
           </div>
           <OrderModal
             show={modalShow}
@@ -249,21 +288,31 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="my-auction-image">
-              <img
-                className="Card-image-css"
-                src={product.image}
-                alt="jaja"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="my-auction-name">{product.name}</div>
-            <div className="my-auction-name">{product.description}</div>
+            {product.description.length > 20 ? (
+              <div className="product-description">
+                {product.description.slice(0, 20) + "..."}
+              </div>
+            ) : (
+              <div className="product-description">{product.description}</div>
+            )}
             {product.orderStatus === "In transit" ? (
               <div className="my-auction-endtime">Sit back and relax</div>
             ) : (
               <div className="my-auction-endtime">Choose a shipping method</div>
             )}
 
-            <div className="my-auction-price">Price paid: {myHighestBid}</div>
+            <div className="my-auction-price">Price paid: {highestBid}</div>
           </div>
           <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
         </>
@@ -287,15 +336,26 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         <>
           <div className="product-card" onClick={handleClick}>
             <div className="product-image">
-              <img
-                className="Card-image-css"
-                src={product.image}
-                alt="jaja"
-              ></img>
+              {product.image ? (
+                <img
+                  className="Card-image-css"
+                  src={`http://localhost:8080/api/download/${product.image}`}
+                  alt="no pic"
+                ></img>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="product-category">{product.category}</div>
             <div className="product-name">{product.name}</div>
-            <div className="product-description">{product.description}</div>
+            {product.description.length > 20 ? (
+              <div className="product-description">
+                {product.description.slice(0, 20) + "..."}
+              </div>
+            ) : (
+              <div className="product-description">{product.description}</div>
+            )}
+
             <div className="product-time">{product.timeRemaining}</div>
             <div className="product-price">{currentBid}</div>
             <div className="product-buyout">{product.buyout}</div>

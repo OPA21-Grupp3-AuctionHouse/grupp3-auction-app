@@ -101,7 +101,7 @@ const MyAuctionsBar = () => {
   }
 
   function compareHighestBid(a, b) {
-    return a.price - b.price;
+    return a.highestBid - b.highestBid;
   }
 
   function compareBuyout(a, b) {
