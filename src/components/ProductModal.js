@@ -34,6 +34,7 @@ function ProductModal(props) {
         auctionId: productProvider.product.id,
         userId: provider.user,
         deliveryMethod: delivery,
+        address: provider.address[0]
       });
       productProvider.product.orderStatus = "In transit";
       ProductService.updateProduct(productProvider.product);
