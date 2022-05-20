@@ -14,6 +14,9 @@ const Login = () => {
   // States for checking the errors
   const [error, setError] = useState(false);
 
+  //Authenticated state
+  // const [authenticated, setAuthenticated] = useState(false);
+
   let navigate = useNavigate();
 
   // Showing error message if error is true
@@ -68,7 +71,7 @@ const Login = () => {
               <div className="messages">{errorMessage()}</div>
 
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>USERNAME</Form.Label>
+                <Form.Label>Username</Form.Label>
                 <Form.Control
                   required
                   type="username"
