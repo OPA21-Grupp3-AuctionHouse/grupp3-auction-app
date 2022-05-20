@@ -43,7 +43,6 @@ function AuctionPage() {
 
     async function getAddress() {
       UserService.getAddress().then((res) => {
-        console.log(res.data);
         setAddress(res.data);
       });
     }

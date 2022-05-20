@@ -49,9 +49,6 @@ function ProductModal(props) {
     //Se till så att budet är högre än tidigare högsta bud, och att det är ett giltigt heltal
     //props.placeBid()
     if (input >= productProvider.product.price) {
-      console.log(productProvider.currentBid);
-      console.log(productProvider.highestBid);
-      console.log("input: " + input);
       if (
         productProvider.currentBid === 0 ||
         input >= productProvider.currentBid + 5
@@ -74,7 +71,7 @@ function ProductModal(props) {
         createBid(newBid);
         provider.setBids([...provider.bids, newBid]);
       } else {
-        alert("Bid too low!");
+        alert("Bid too low! Minimum bid is " + (productProvider.highestBid + 5) + ".");
       }
     } else {
       alert("Bid too low!");
@@ -222,7 +219,7 @@ function ProductModal(props) {
               <img
                 className="modal-image"
                 src={`http://localhost:8080/api/download/${productProvider.product.image}`}
-                alt="image"
+                alt="no pic"
               ></img>
             </div>
           ) : (
