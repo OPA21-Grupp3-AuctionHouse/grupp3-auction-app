@@ -30,4 +30,4 @@ jobs:
         run: ssh dev 'cd /var/www/grupp3-auction-app && git fetch && git reset --hard origin/Release-sprint3 && npm install && npm run build'
 
       - name: Restart app (Important read how to link pm2 for sudoers https://stackoverflow.com/questions/62863080/github-actions-err-bash-line-3-npm-command-not-found )
-        run: ssh dev 'pm2 restart grupp3-auction-app'
+        run: ssh dev 'pm2 restart AuctionFrontend'
