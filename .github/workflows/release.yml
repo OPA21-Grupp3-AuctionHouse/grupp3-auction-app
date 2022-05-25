@@ -27,7 +27,7 @@ jobs:
           SSH_PORT: ${{ secrets.SSH_PORT }}
 
       - name: Deploy from release (Important read how to link npm for sudoers https://stackoverflow.com/questions/62863080/github-actions-err-bash-line-3-npm-command-not-found )
-        run: ssh dev 'cd /var/www/grupp3-auction-app && git fetch && git reset --hard origin/Release-sprint3 && npm install && npm install -g serve && npm run build && serve -s build'
+        run: ssh dev 'cd /var/www/grupp3-auction-app && git fetch && git reset --hard origin/Release-sprint3 && npm install && npm install -g serve && npm run build'
 
       - name: Restart app (Important read how to link pm2 for sudoers https://stackoverflow.com/questions/62863080/github-actions-err-bash-line-3-npm-command-not-found )
         run: ssh dev 'pm2 restart AuctionFrontend'
