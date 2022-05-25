@@ -1,60 +1,105 @@
-{
-  "users": [
-    {
-      "email": "tajianaodero@gmail.com",
-      "password": "$2a$10$/LVfw5067YNGcnTSR/WB2uqxF7eGAxckd0/flhC1SF/tKSwgcM.my",
-      "firstname": "Tajiana",
-      "lastname": "Odero",
-      "username": "taj",
-      "id": 1
-    },
-    {
-      "email": "testperson1@gmail.com",
-      "password": "$2a$10$p0Y/2Chppa4WAWpl/64XQe6eRuykNOjosZF53FsZxN/jIKD8xBQPy",
-      "firstname": "Test1",
-      "lastname": "Person1",
-      "username": "TP1",
-      "id": 2
-    },
-    {
-      "email": "emilmogensen@gmail.com",
-      "password": "$2a$10$yDgdoeahD23a5tiyOqs3i./M0tGHlA4pd0MyIfYJV256N6a/R6CHC",
-      "firstname": "Emil",
-      "lastname": "Mogensen",
-      "username": "EM",
-      "id": 3
-    },
-    {
-      "email": "tp2@gmail.com",
-      "password": "$2a$10$miQN1/YrOKz8qxgo7tcMgunEfA7t8Sgc4g/JAyOL0nIU2gt2KBjKq",
-      "firstname": "test2",
-      "lastname": "person2",
-      "username": "tp2",
-      "id": 4
-    },
-    {
-      "email": "t@gmail.com",
-      "password": "$2a$10$YId/FkVbnxqrVpFCaTMMo.qO2CFxMr3ALRIn3kNMuHw9PGC3eBJHO",
-      "firstname": "t",
-      "lastname": "t",
-      "username": "t",
-      "id": 5
-    },
-    {
-      "email": "123@hotmail.com",
-      "password": "$2a$10$kuWzBOxiBHRwjC0FWHBX8OpSYyoYjo81TQol12kfCRKx1A.56pITS",
-      "firstname": "axel",
-      "lastname": "pw",
-      "username": "axelpw",
-      "id": 6
-    },
-    {
-      "email": "zhu1@live.se",
-      "password": "$2a$10$ldjxtf/8cWtc.Pusl1HUrOGURwSLwjTENybxjEEgnczYkXPHTky8.",
-      "firstname": "mikael",
-      "lastname": "z",
-      "username": "mkzz98",
-      "id": 7
-    }
-  ]
-}
+[{
+  "_id": {
+    "$oid": "6267aa5c9ee2f57ca7dd1d3f"
+  },
+  "firstName": "Emil",
+  "lastName": "M",
+  "username": "Emil",
+  "email": "emil@gmail.com",
+  "password": "$2a$10$OLEpOUEjStkXil.A2zGmpOublHJroS9k862Da3wAY0Ntz6kCNxzw2",
+  "streetAddress": "Badvägen 14",
+  "postCode": "21854",
+  "city": "Klagshamn",
+  "_class": "com.sprint2.webapi.models.User"
+},{
+  "_id": {
+    "$oid": "6267aa7c9ee2f57ca7dd1d40"
+  },
+  "firstName": "Elliot",
+  "lastName": "E",
+  "username": "Elliot",
+  "email": "elliot@gmail.com",
+  "password": "$2a$10$SatsYmKjy3OD6u42bJoVhuCJZalI3Wm0LH2R38a3OvckJLQXiiVAe",
+  "streetAddress": "Uddeholmsgatan 34A",
+  "postCode": "214 50",
+  "city": "Malmö",
+  "_class": "com.sprint2.webapi.models.User"
+},{
+  "_id": {
+    "$oid": "6267aa8c9ee2f57ca7dd1d41"
+  },
+  "firstName": "Mikael",
+  "lastName": "M",
+  "username": "Mikael",
+  "email": "mikael@gmail.com",
+  "password": "$2a$10$W64rqQtvMHbBV81mJO5sRuOOOY2LNH1Wfis/lnfOiB2KyO/iR6dhK",
+  "streetAddress": "Uddeholmsgatan 34A",
+  "postCode": "214 50",
+  "city": "Malmö",
+  "_class": "com.sprint2.webapi.models.User"
+},{
+  "_id": {
+    "$oid": "6267aaa29ee2f57ca7dd1d42"
+  },
+  "firstName": "Theo",
+  "lastName": "K",
+  "username": "Theo",
+  "email": "theo@gmail.com",
+  "password": "$2a$10$Nc2REg2nBrEQR8RftmQxtOVtacQ7NXuxu2g00rb.jl2VYuTeeOKKi",
+  "streetAddress": "Uddeholmsgatan 34A",
+  "postCode": "214 50",
+  "city": "Malmö",
+  "_class": "com.sprint2.webapi.models.User"
+},{
+  "_id": {
+    "$oid": "6267aab19ee2f57ca7dd1d43"
+  },
+  "firstName": "Axel",
+  "lastName": "A",
+  "username": "Axel",
+  "email": "axel@gmail.com",
+  "password": "$2a$10$Wtby.g3G8G/iuvVeHExub.LiQ0yizTUZDQuDja1wnVkasD0CybqMW",
+  "streetAddress": "Uddeholmsgatan 34A",
+  "postCode": "214 50",
+  "city": "Malmö",
+  "_class": "com.sprint2.webapi.models.User"
+},{
+  "_id": {
+    "$oid": "6267aae79ee2f57ca7dd1d44"
+  },
+  "firstName": "Kenny",
+  "lastName": "K",
+  "username": "Kenny",
+  "email": "kenny@gmail.com",
+  "password": "$2a$10$nWK0RiurOs2TuTz5jaFuJOdButDUivjxJds3Ftznqc0QgmlEcVUGi",
+  "streetAddress": "Uddeholmsgatan 34A",
+  "postCode": "214 50",
+  "city": "Malmö",
+  "_class": "com.sprint2.webapi.models.User"
+},{
+  "_id": {
+    "$oid": "6281ff20bbae135485b36980"
+  },
+  "firstName": "Vesta",
+  "lastName": "S",
+  "username": "Vesta",
+  "email": "vesta@gmail.com",
+  "password": "$2a$10$xE0QkblNZSJLCJiqP.GU.uWY4rgkacadmo1QXf3c1K2nbmhj9xosC",
+  "streetAddress": "Badvägen 14",
+  "postCode": "21854",
+  "city": "Klagshamn",
+  "_class": "com.sprint2.webapi.models.User"
+},{
+  "_id": {
+    "$oid": "6286ca3d041da96192b296d8"
+  },
+  "firstName": "Yodi",
+  "lastName": "MS",
+  "username": "Yodi",
+  "email": "yodi@gmail.com",
+  "password": "$2a$10$wcgMDd.l26NO/4qU2l4.e.aJLRyZn7B3NcllfmCKObTsH2ivKM7UW",
+  "streetAddress": "Badvägen 14",
+  "postCode": "21854",
+  "city": "Klagshamn",
+  "_class": "com.sprint2.webapi.models.User"
+}]

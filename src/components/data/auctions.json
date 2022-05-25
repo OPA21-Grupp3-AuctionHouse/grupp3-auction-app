@@ -1,0 +1,286 @@
+[{
+  "_id": {
+    "$oid": "6286bbb9041da96192b29689"
+  },
+  "ownerId": "6281ff20bbae135485b36980",
+  "image": "6286bbb9041da96192b29687",
+  "category": "Hockey Cards",
+  "name": "Kevin Shattenkirk",
+  "description": "New York 2017-2018 #378",
+  "price": 10,
+  "buyout": 60,
+  "endTime": "Thu Jun 02 2022 23:49:59 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c642041da96192b2969b"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c642041da96192b29699",
+  "category": "Hockey Cards",
+  "name": "Kris Letang",
+  "description": "Pittsburgh Penguins 2017-2018 #393",
+  "price": 10,
+  "buyout": 50,
+  "endTime": "Fri May 27 2022 00:35:33 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c665041da96192b2969e"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c665041da96192b2969c",
+  "category": "Hockey Cards",
+  "name": "Kyle Connor",
+  "description": "Winnipeg Jets 2017-2018 #446",
+  "price": 15,
+  "buyout": 70,
+  "endTime": "Fri Jun 03 2022 00:36:12 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c690041da96192b296a1"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c690041da96192b2969f",
+  "category": "Hockey Cards",
+  "name": "Kyle Palmieri",
+  "description": "New Jersey 2017-2018 #365",
+  "price": 15,
+  "buyout": 65,
+  "endTime": "Fri Jun 03 2022 00:36:55 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c6ea041da96192b296a4"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c6ea041da96192b296a2",
+  "category": "Football Cards",
+  "name": "Cristiano Ronaldo",
+  "description": "(Juventus) - Limited Edition",
+  "price": 60,
+  "buyout": 250,
+  "endTime": "Sun Jun 19 2022 00:38:18 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c711041da96192b296a7"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c711041da96192b296a5",
+  "category": "Football Cards",
+  "name": "Erling Haaland",
+  "description": "Limited Edition",
+  "price": 60,
+  "buyout": 250,
+  "endTime": "Sun Jun 19 2022 00:39:04 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c73b041da96192b296aa"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c73b041da96192b296a8",
+  "category": "Football Cards",
+  "name": "Lionel Messi",
+  "description": "(PSG) - Limited Edition",
+  "price": 120,
+  "buyout": 400,
+  "endTime": "Sun Jun 19 2022 00:39:45 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c75b041da96192b296ad"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c75b041da96192b296ab",
+  "category": "Football Cards",
+  "name": "Romelu Lukaku",
+  "description": "Limited Edition",
+  "price": 60,
+  "buyout": 240,
+  "endTime": "Sun Jun 19 2022 00:40:19 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c77f041da96192b296b0"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c77f041da96192b296ae",
+  "category": "Football Cards",
+  "name": "Simon Kjaer",
+  "description": "Limited Edition",
+  "price": 60,
+  "buyout": 240,
+  "endTime": "Fri Jun 03 2022 00:40:54 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c82a041da96192b296b3"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c82a041da96192b296b1",
+  "category": "Pokémon",
+  "name": "Scizor EX",
+  "description": "76/122 - Ultra Rare",
+  "price": 120,
+  "buyout": 400,
+  "endTime": "Fri Jun 03 2022 00:43:45 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c851041da96192b296b6"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c851041da96192b296b4",
+  "category": "Pokémon",
+  "name": "Professor's Research",
+  "description": "24/25 - Full Art Ultra Rare",
+  "price": 120,
+  "buyout": 450,
+  "endTime": "Sun Jun 19 2022 00:44:25 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c86f041da96192b296b9"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c86f041da96192b296b7",
+  "category": "Pokémon",
+  "name": "Surfing Pikachu V",
+  "description": "8/25 - Ultra Rare",
+  "price": 60,
+  "buyout": 250,
+  "endTime": "Sun Jun 19 2022 00:44:56 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c889041da96192b296bc"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c889041da96192b296ba",
+  "category": "Pokémon",
+  "name": "Zacian V",
+  "description": "16/25 - Ultra Rare",
+  "price": 60,
+  "buyout": 260,
+  "endTime": "Fri Jun 03 2022 00:45:22 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c8c1041da96192b296bf"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c8c1041da96192b296bd",
+  "category": "Pokémon",
+  "name": "Gyarados GX",
+  "description": "SM212 - Promo",
+  "price": 120,
+  "buyout": 420,
+  "endTime": "Fri Jun 03 2022 00:46:16 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c8f6041da96192b296c2"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c8f6041da96192b296c0",
+  "category": "Pokémon",
+  "name": "Moltres, Zapdos & Articuno GX",
+  "description": "SM210 - Alternate Art Promo",
+  "price": 180,
+  "buyout": 500,
+  "endTime": "Sun Jun 19 2022 00:47:10 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c98d041da96192b296c8"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c98d041da96192b296c3",
+  "category": "Baseball Cards",
+  "name": "Miguel Cabrera",
+  "description": "2022 MLB - Turn Back The Clock - Card 50",
+  "price": 140,
+  "buyout": 480,
+  "endTime": "Fri Jun 03 2022 00:49:43 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c9bc041da96192b296cd"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c9bc041da96192b296c9",
+  "category": "Baseball Cards",
+  "name": "Nathaniel Lowe",
+  "description": "2022 MLB - Card 200",
+  "price": 140,
+  "buyout": 460,
+  "endTime": "Sun Jun 19 2022 00:50:19 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286c9e5041da96192b296d2"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286c9e5041da96192b296ce",
+  "category": "Baseball Cards",
+  "name": "Albert Pujols",
+  "description": "2022 MLB - Card 197",
+  "price": 130,
+  "buyout": 450,
+  "endTime": "Sun Jun 19 2022 00:51:06 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+},{
+  "_id": {
+    "$oid": "6286ca05041da96192b296d7"
+  },
+  "ownerId": "6267aa5c9ee2f57ca7dd1d3f",
+  "image": "6286ca05041da96192b296d3",
+  "category": "Baseball Cards",
+  "name": "Keston Hiura",
+  "description": "2022 MLB - Card 198",
+  "price": 160,
+  "buyout": 520,
+  "endTime": "Fri Jun 03 2022 00:51:40 GMT+0200 (Central European Summer Time)",
+  "orderStatus": "Active",
+  "winner": "",
+  "_class": "com.sprint2.webapi.models.Auction"
+}]

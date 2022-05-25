@@ -1,0 +1,301 @@
+[{
+  "_id": {
+    "$oid": "6286ad72041da96192b29683"
+  },
+  "filename": "em.jpg",
+  "length": 47713,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T20:49:54.937Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 47713,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286bbb9041da96192b29687"
+  },
+  "filename": "ud1718s2-378_grande.jpg",
+  "length": 46522,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T21:50:49.415Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 46522,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c642041da96192b29699"
+  },
+  "filename": "ud1718s2-393_grande.jpg",
+  "length": 52316,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:35:46.015Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 52316,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c665041da96192b2969c"
+  },
+  "filename": "ud1718s2-446_grande.jpg",
+  "length": 48493,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:36:21.290Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 48493,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c690041da96192b2969f"
+  },
+  "filename": "ud1718s2-365_grande.jpg",
+  "length": 47313,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:37:04.697Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 47313,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c6ea041da96192b296a2"
+  },
+  "filename": "fifa22-lim-05_grande.jpg",
+  "length": 85866,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:38:34.344Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 85866,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c711041da96192b296a5"
+  },
+  "filename": "fifa22-lim-03_grande.jpg",
+  "length": 87345,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:39:13.942Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 87345,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c73b041da96192b296a8"
+  },
+  "filename": "fifa22-lim-06_grande.jpg",
+  "length": 83917,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:39:55.054Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 83917,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c75b041da96192b296ab"
+  },
+  "filename": "fifa22-lim-04_grande.jpg",
+  "length": 83860,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:40:27.040Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 83860,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c77f041da96192b296ae"
+  },
+  "filename": "fifa22-lim-02_grande.jpg",
+  "length": 84871,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:41:03.758Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 84871,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c82a041da96192b296b1"
+  },
+  "filename": "pkmbps076_grande.jpg",
+  "length": 38907,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:43:54.657Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 38907,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c851041da96192b296b4"
+  },
+  "filename": "pkm-cel-24_grande.jpg",
+  "length": 41358,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:44:33.882Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 41358,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c86f041da96192b296b7"
+  },
+  "filename": "pkm-cel-08_grande.jpg",
+  "length": 32373,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:45:03.885Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 32373,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c889041da96192b296ba"
+  },
+  "filename": "pkm-cel-16_grande.jpg",
+  "length": 44236,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:45:29.509Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 44236,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c8c1041da96192b296bd"
+  },
+  "filename": "pkm-sm212_grande.jpg",
+  "length": 50811,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:46:25.822Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 50811,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c8f6041da96192b296c0"
+  },
+  "filename": "pkm-sm210_grande.jpg",
+  "length": 94968,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:47:18.210Z"
+  },
+  "metadata": {
+    "_contentType": "image/jpeg",
+    "fileSize": 94968,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c98d041da96192b296c3"
+  },
+  "filename": "artbb-16c2s-22tntb-0050_.png",
+  "length": 799217,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:49:49.949Z"
+  },
+  "metadata": {
+    "_contentType": "image/png",
+    "fileSize": 799217,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c9bc041da96192b296c9"
+  },
+  "filename": "artbb-16c2s-22tn-0200_.png",
+  "length": 687584,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:50:36.735Z"
+  },
+  "metadata": {
+    "_contentType": "image/png",
+    "fileSize": 687584,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286c9e5041da96192b296ce"
+  },
+  "filename": "artbb-16c2s-22tn-0197_.png",
+  "length": 747712,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:51:17.862Z"
+  },
+  "metadata": {
+    "_contentType": "image/png",
+    "fileSize": 747712,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+},{
+  "_id": {
+    "$oid": "6286ca05041da96192b296d3"
+  },
+  "filename": "artbb-16c2s-22tn-0198_.png",
+  "length": 727609,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2022-05-19T22:51:49.447Z"
+  },
+  "metadata": {
+    "_contentType": "image/png",
+    "fileSize": 727609,
+    "_class": "com.mongodb.BasicDBObject"
+  }
+}]
