@@ -18,8 +18,6 @@ import MyAuctionsBar from "./MyAuctionsBar";
 import MyAuctions from "./MyAuctions";
 import BidService from "../services/BidService";
 import UserService from "../services/UserService";
-import MyFollowPage from "../unusedComponents/MyFollowPage";
-import MyFollowSort from "../unusedComponents/MyFollowSort";
 import MyWonAuctions from "./MyWonAuctions";
 import MyWonAuctionsSortBar from "./MyWonAuctionSortBar";
 import DeliveryService from "../services/DeliveryService";
@@ -287,8 +285,6 @@ function AuctionPage() {
                     }}
                   >
                     <UnderNav />
-                    <MyFollowSort />
-                    <MyFollowPage />
                   </DataContext.Provider>
                 </div>
               }
