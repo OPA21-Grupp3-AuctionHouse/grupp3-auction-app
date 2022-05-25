@@ -3,7 +3,6 @@ import { DataContext } from "./AuctionPage";
 import { ProductContext } from "./ProductCard";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
 import BidService from "../services/BidService";
 import ProductService from "../services/ProductService";
 import DeliveryService from "../services/DeliveryService";
@@ -71,7 +70,11 @@ function ProductModal(props) {
         createBid(newBid);
         provider.setBids([...provider.bids, newBid]);
       } else {
-        alert("Bid too low! Minimum bid is " + (productProvider.highestBid + 5) + ".");
+        alert(
+          "Bid too low! Minimum bid is " +
+            (productProvider.highestBid + 5) +
+            "."
+        );
       }
     } else {
       alert("Bid too low!");

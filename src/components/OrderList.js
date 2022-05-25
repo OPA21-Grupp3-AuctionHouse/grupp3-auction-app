@@ -1,9 +1,6 @@
 import React, { useContext, useState } from "react";
-//import OrderCard from "./OrderCard";
 import { DataContext } from "./AuctionPage";
 import ProductCard from "./ProductCard";
-import BidService from "../services/BidService";
-import { ThemeProvider } from "react-bootstrap";
 
 function OrderList() {
   const provider = useContext(DataContext);
