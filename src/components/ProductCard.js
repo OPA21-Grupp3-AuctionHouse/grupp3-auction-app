@@ -178,7 +178,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
               {product.image ? (
                 <img
                   className="Card-image-css"
-                  src={`http://localhost:8080/api/download/${product.image}`}
+                  src={`http://146.190.18.26:8000/api/download/${product.image}`}
                   alt="no pic"
                 ></img>
               ) : (
@@ -216,7 +216,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
               {product.image ? (
                 <img
                   className="Card-image-css"
-                  src={`http://localhost:8080/api/download/${product.image}`}
+                  src={`http://146.190.18.26:8000/api/download/${product.image}`}
                   alt="no pic"
                 ></img>
               ) : (
@@ -248,7 +248,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
               {product.image ? (
                 <img
                   className="Card-image-css"
-                  src={`http://localhost:8080/api/download/${product.image}`}
+                  src={`http://146.190.18.26:8000/api/download/${product.image}`}
                   alt="no pic"
                 ></img>
               ) : (
@@ -292,7 +292,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
               {product.image ? (
                 <img
                   className="Card-image-css"
-                  src={`http://localhost:8080/api/download/${product.image}`}
+                  src={`http://146.190.18.26:8000/api/download/${product.image}`}
                   alt="no pic"
                 ></img>
               ) : (
@@ -340,7 +340,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
               {product.image ? (
                 <img
                   className="Card-image-css"
-                  src={`http://localhost:8080/api/download/${product.image}`}
+                  src={`http://146.190.18.26:8000/api/download/${product.image}`}
                   alt="no pic"
                 ></img>
               ) : (

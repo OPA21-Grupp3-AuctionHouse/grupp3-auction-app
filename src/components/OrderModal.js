@@ -56,7 +56,7 @@ function OrderModal(props) {
             {productProvider.product.image ? (
               <img
                 className="Modal-image-css"
-                src={`http://localhost:8080/api/download/${productProvider.product.image}`}
+                src={`http://146.190.18.26:8000/api/download/${productProvider.product.image}`}
                 alt="jaja"
               ></img>
             ) : (

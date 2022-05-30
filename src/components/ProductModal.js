@@ -221,7 +221,7 @@ function ProductModal(props) {
             <div className="modal-image-container">
               <img
                 className="modal-image"
-                src={`http://localhost:8080/api/download/${productProvider.product.image}`}
+                src={`http://146.190.18.26:8000/api/download/${productProvider.product.image}`}
                 alt="no pic"
               ></img>
             </div>
