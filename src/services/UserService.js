@@ -1,7 +1,7 @@
 import axios from "axios";
 import AuthHeader from "./AuthHeader";
 
-const API_URL_TEST = "http://146.190.18.26:8000/api/user";
+const API_URL_TEST = "http://localhost:8080/api/user";
 
 class UserService {
   updateInfo(id, user) {
