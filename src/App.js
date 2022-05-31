@@ -37,32 +37,31 @@ function App() {
               </div>
             </div>
           }
-        >
-          <Route
-            path="/register"
-            element={
-              <div className="welcomeContainer">
-                <WelcomePageHeader />
-                <Row className="landing">
-                  <Col>
-                    <WelcomePage />{" "}
-                  </Col>
-                  <Col>
-                    <Register />
-                  </Col>
-                </Row>
-              </div>
-            }
-          />
-          <Route
-            path="/startpage/*"
-            element={
-              <PrivateRoute>
-                <AuctionPage />
-              </PrivateRoute>
-            }
-          />
-        </Route>
+        />
+        <Route
+          path="/register"
+          element={
+            <div className="welcomeContainer">
+              <WelcomePageHeader />
+              <Row className="landing">
+                <Col>
+                  <WelcomePage />{" "}
+                </Col>
+                <Col>
+                  <Register />
+                </Col>
+              </Row>
+            </div>
+          }
+        />
+        <Route
+          path="/startpage/*"
+          element={
+            <PrivateRoute>
+              <AuctionPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
