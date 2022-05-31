@@ -695,8 +695,6 @@ header {
   flex-direction: column;
 }
 
-.modal-body-right {
-}
 
 .modal-outer-body {
   display: flex;
