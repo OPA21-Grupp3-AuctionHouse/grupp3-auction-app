@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AuctionHeader from "./AuctionHeader";
 import UnderNav from "./UnderNav";
 import AuctionCategories from "./AuctionCategories";
@@ -107,7 +107,7 @@ function AuctionPage() {
       <div className="auction-outer-container">
         <AuctionHeader />
         <div className="auction-inner-container">
-          <BrowserRouter>
+          <Routes>
             <Route
               exact
               path="/"
@@ -315,7 +315,7 @@ function AuctionPage() {
                 </>
               }
             />
-          </BrowserRouter>
+          </Routes>
         </div>
       </div>
     </div>
