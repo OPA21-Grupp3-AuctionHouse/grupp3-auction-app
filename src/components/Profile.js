@@ -234,6 +234,7 @@ const Profile = () => {
               </span>
 
               <input
+                minlength="6"
                 required
                 className="form-control"
                 aria-label="Sizing example input"
@@ -250,6 +251,7 @@ const Profile = () => {
               </span>
 
               <input
+                minlength="6"
                 required
                 className="form-control"
                 aria-label="Sizing example input"

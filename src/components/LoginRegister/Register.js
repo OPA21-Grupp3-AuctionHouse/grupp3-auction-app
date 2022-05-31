@@ -155,6 +155,7 @@ const Register = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
+                minlength="6"
                 type="password"
                 placeholder="Password"
                 value={formData.password}
