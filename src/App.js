@@ -62,7 +62,10 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route
+          path="http://146.190.18.26:3000/*"
+          element={<Navigate to="/" />}
+        />
       </Routes>
     </div>
   );
