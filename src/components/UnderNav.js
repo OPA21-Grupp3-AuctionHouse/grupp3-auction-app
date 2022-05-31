@@ -8,11 +8,10 @@ function UnderNav() {
     <div className="under-nav-container">
       <ul>
         <Link to="/startpage/auctions">My bids</Link>
-        <Link to="/startpage/myAuction">My auctions</Link>
-        <Link to="/startpage/mywonauctions">Won auctions</Link>
-        <Link to="/startpage/history">Order history</Link>
-
-        <Link to="/startpage/newauction">Post auction</Link>
+        <Link data-cy="submitedauction" to="/startpage/myAuction">My auctions</Link>
+        <Link data-cy="wonauction" to="/startpage/mywonauctions">Won auctions</Link>
+        <Link data-cy="history" to="/startpage/history">Order history</Link>
+        <Link data-cy="createauction" to="/startpage/newauction">Post auction</Link>
       </ul>
     </div>
   );
