@@ -6,7 +6,7 @@ describe('Website', () =>{
 
 describe('Register',()=>{
     it("Create account", () => {
-        cy.fixture("example").then(({firstname, lastname, username, email, password}) =>{
+        cy.fixture("registerfixture").then(({firstname, lastname, username, email, password}) =>{
             cy
             .get('[data-cy=regbtn]').click()
             .wait(2000)

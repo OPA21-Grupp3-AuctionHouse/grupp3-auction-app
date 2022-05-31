@@ -6,7 +6,7 @@ describe("Website", () =>{
 
 describe("Log in", () => {
     it('Fill and log in', () => {
-        cy.fixture('example').then(({ username, password }) => {
+        cy.fixture('loginfixture').then(({ username, password }) => {
           cy
           .pause()
           .url().should('include', '/')

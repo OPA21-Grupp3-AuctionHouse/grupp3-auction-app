@@ -6,7 +6,7 @@ describe('Website', () =>{
 
 describe('Log in', () => {
     it('Fill and log in', () => {
-        cy.fixture('example').then(({ username, password }) => {
+        cy.fixture('loginfixture').then(({ username, password }) => {
           cy
           .pause()
           .url().should('include', '/')
@@ -30,7 +30,7 @@ describe('Log in', () => {
 
     describe('Profile',()=>{
         it("change profile information", () => {
-            cy.fixture("example").then(({firstname, lastname, city, streetadress, zipcode}) =>{
+            cy.fixture("profilefixture").then(({firstname, lastname, city, streetadress, zipcode}) =>{
                 cy
                 .wait(2000)
                 .get('form').should('be.visible')
@@ -47,7 +47,7 @@ describe('Log in', () => {
             })
         })
         it('Change password', ()=>{
-            cy.fixture('example').then(({password, newpassword, repeatpassword}) =>{
+            cy.fixture('profilefixture').then(({password, newpassword, repeatpassword}) =>{
                 cy
                 .get('input[name="password"]').type(password)
                 .get('input[name="newPassword"]').type(newpassword)
