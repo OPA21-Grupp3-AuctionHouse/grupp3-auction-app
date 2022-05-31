@@ -62,6 +62,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
