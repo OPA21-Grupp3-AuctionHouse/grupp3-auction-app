@@ -1,5 +1,5 @@
 import { React, createContext } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/LoginRegister/Login";
@@ -14,7 +14,7 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <div className="App">
-      <Routes>
+      <BrowserRouter>
         <Route
           exact
           path="/"
@@ -63,7 +63,7 @@ function App() {
           }
         />
         <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
