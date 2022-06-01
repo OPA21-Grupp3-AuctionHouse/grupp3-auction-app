@@ -144,13 +144,13 @@ function ProductModal(props) {
                     onChange={handleChange}
                     value={input}
                   />
-                  <button type="submit">BID</button>
+                  <button data-cy="makebid" type="submit">BID</button>
                 </label>
               </form>
               <br />
               <label>
                 Buyout price: {productProvider.product.buyout}{" "}
-                <button onClick={handleBuyout}>BUYOUT</button>
+                <button data-cy="buybtn" onClick={handleBuyout}>BUYOUT</button>
               </label>
             </>
           ) : productProvider.pageSource === "mywonauctions" && !finished ? (
@@ -265,7 +265,7 @@ function ProductModal(props) {
         ) : (
           <></>
         )}
-        <Button onClick={props.onHide}>Close</Button>
+        <Button data-cy= "closewin" onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

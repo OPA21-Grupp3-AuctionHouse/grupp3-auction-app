@@ -19,7 +19,6 @@ describe('Log in', () => {
     })
 
     describe("Navigation", () => {
-    
         it("Go to profile", () =>{
             cy
             .wait(3000)
@@ -44,6 +43,7 @@ describe('Log in', () => {
                 .get('input[name="city"]').type(city)
                 .get('input[name="streetAddress"]').clear()
                 .get('input[name="streetAddress"]').type(streetadress)
+                //.get('[data-cy:chprofile]').click()
             })
         })
         it('Change password', ()=>{
@@ -52,6 +52,7 @@ describe('Log in', () => {
                 .get('input[name="password"]').type(password)
                 .get('input[name="newPassword"]').type(newpassword)
                 .get('input[name="repeatPassword"]').type(repeatpassword)
+                //.get('[data-cy:chpass]').click()
 
             })
         })

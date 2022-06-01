@@ -192,6 +192,7 @@ const Profile = () => {
             <button
               className="submit-button-profile"
               type="submit"
+              data-cy="chprofile"
               onClick={handleSubmit}
               style={{ marginLeft: "1vh" }}
             >
@@ -251,6 +252,7 @@ const Profile = () => {
             <button
               className="submit-button-profile"
               type="submit"
+              data-cy="chpass"
               onClick={updatePassword}
               style={{ marginLeft: "1vh" }}
             >
