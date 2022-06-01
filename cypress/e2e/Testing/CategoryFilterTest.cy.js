@@ -22,6 +22,7 @@ describe("Navigate", () => {
         .get("[data-cy=bazaar]").click()
     })
 
+    
     let categoryFilter = ['Baseball Cards', 
                         'Football Cards', 
                         'Hockey Cards', 
@@ -35,14 +36,15 @@ describe("Navigate", () => {
 
     it("Navigates every category filter an checks if all items is of that category", () => {
         categoryFilter.forEach(category => {
-            cy.get(`[value=]${category}`).click()
+            cy.get(`[value="${category}"]`).click()
             .get(":nth-child(1) > .product-category").should("have.text", category)
             .wait(100)
         });
-        
-        
-        
-        /*.get("[value='Football Cards']").click()
+        /*
+        cy.get("[value='Baseball Cards']").click()
+        .get(":nth-child(1) > .product-category").should("have.text", "Baseball Cards")
+        .wait(100)
+        .get("[value='Football Cards']").click()
         .get(":nth-child(1) > .product-category").should("have.text", "Football Cards")
         .wait(100)
         .get("[value='Hockey Cards']").click()
