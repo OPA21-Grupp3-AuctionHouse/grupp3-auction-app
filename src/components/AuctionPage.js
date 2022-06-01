@@ -47,19 +47,21 @@ function AuctionPage() {
 
     async function getProducts() {
       ProductService.getProducts().then((res) => {
-        res.data.map((product) =>
-        BidService.getHighestBid(product.id).then((resu) => {
-          if (resu.data.bidAmount) {
-            res.data.hightestBid = resu.data.bidAmount;
-          } else {
-            res.data.hightestBid = product.price;
-          }
-        }))
-        console.log(res.data)
-        setProducts(res.data);
-      }).then();
+        let tempdata = res.data;
+        tempdata.map((product) =>
+          BidService.getHighestBid(product.id).then((resu) => {
+            if (resu.data.bidAmount) {
+              tempdata.hightestBid = resu.data.bidAmount;
+              console.log(tempdata);
+            } else {
+              tempdata.hightestBid = product.price;
+            }
+          })
+        );
+        console.log(tempdata);
+        setProducts(tempdata);
+      });
     }
-
 
     async function getBids() {
       BidService.getBids().then((res) => {
