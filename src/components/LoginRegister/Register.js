@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container, InputGroup } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./LoginRegister.css";
 import AuthService from "../../services/AuthService";
 
@@ -12,13 +12,14 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    streetAddress: "",
+    city: "",
+    postCode: "",
   });
 
   // States for checking the errors
   //const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
-
-  let navigate = useNavigate();
 
   // Showing error message if error is true
   const errorMessage = () => {
@@ -39,11 +40,11 @@ const Register = () => {
   function CheckError(response) {
     console.log(response.status);
     if (response.status >= 200 && response.status <= 299) {
-      navigate("/startpage");
+      console.log("successful registration")
       return response;
     } else {
       setError(true);
-      throw Error("Incorrect password");
+      throw Error("Unsuccessful registration");
     }
   }
 
@@ -75,17 +76,16 @@ const Register = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    //setSubmitted(false);
   };
 
   return (
     <>
       <Container>
-        <Row className="mt-5">
-          <Col>
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <h3 className="text-success p-3 text-center">Register</h3>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <h3 className="text-success p-3 text-center">Register</h3>
 
+          <Row>
+            <Col>
               <Form.Group className="mb-3" controlId="validationCustom01">
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
@@ -97,7 +97,8 @@ const Register = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
-
+            </Col>
+            <Col>
               <Form.Group className="mb-3" controlId="validationCustom02">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
@@ -109,7 +110,11 @@ const Register = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
+            </Col>
+          </Row>
 
+          <Row>
+            <Col>
               <Form.Group className="mb-3" controlId="validationCustomUsername">
                 <Form.Label>Username</Form.Label>
                 <InputGroup hasValidation>
@@ -125,7 +130,8 @@ const Register = () => {
                   />
                 </InputGroup>
               </Form.Group>
-
+            </Col>
+            <Col>
               <Form.Group className="mb-3" controlId="validationCustomeEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
@@ -137,21 +143,67 @@ const Register = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            {/* Calling to error message */}
+            <div className="messages">{errorMessage()}</div>
 
-              {/* Calling to error message */}
-              <div className="messages">{errorMessage()}</div>
+            <Form.Group className="mb-3" controlId="validationCustomPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                required
+                minlength="6"
+                type="password"
+                placeholder="Password"
+                value={formData.password}
+                name="password"
+                onChange={(e) => handleChange(e)}
+              />
+            </Form.Group>
+          </Row>
 
+          <Row>
+            <Col class="col-md-6">
               <Form.Group className="mb-3" controlId="validationCustomPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Street Address</Form.Label>
                 <Form.Control
                   required
-                  type="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  name="password"
+                  type="text"
+                  placeholder="Street Address"
+                  value={formData.streetAddress}
+                  name="streetAddress"
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
+            </Col>
+            <Col class="col-md-4">
+              <Form.Group className="mb-3" controlId="validationCustomPassword">
+                <Form.Label>City</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="City"
+                  value={formData.city}
+                  name="city"
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+            </Col>
+            <Col class="col-md-2">
+              <Form.Group className="mb-3" controlId="validationCustomPassword">
+                <Form.Label>Post Code</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Post Code"
+                  value={formData.postCode}
+                  name="postCode"
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
 
               <div className="d-grid gap-2">
                 <Button data-cy="regbtn" variant="secondary" size="lg" type="submit">
@@ -159,12 +211,10 @@ const Register = () => {
                 </Button>
               </div>
 
-              <p>
-                Already registered <Link to="/">log in?</Link>
-              </p>
-            </Form>
-          </Col>
-        </Row>
+          <p>
+            Already registered <Link to="/">log in?</Link>
+          </p>
+        </Form>
       </Container>
     </>
   );

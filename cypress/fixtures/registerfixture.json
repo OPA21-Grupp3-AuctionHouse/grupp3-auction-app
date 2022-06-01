@@ -1,7 +1,10 @@
 {
-    "firstname": "Greg",
-    "lastname":"Gregson",
-    "username" :"CypressTesting",
-    "password" :"123456",
-    "email": "gregy.son@hotmail.com"
+  "firstname": "Greg",
+  "lastname": "Gregson",
+  "username": "CypressTesting",
+  "password": "123456",
+  "email": "gregy.son@hotmail.com",
+  "streetadress": "This street is nice",
+  "zipcode": "51235",
+  "city": "Chad"
 }
