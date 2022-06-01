@@ -10,7 +10,6 @@ export const ProductContext = createContext();
 
 const ProductCard = ({ product, pageSource, address, deliveries }) => {
   const [modalShow, setModalShow] = useState(false);
-  //const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [currentDate, setCurrentDate] = useState(new Date().getTime());
   const [bids, setBids] = useState([]);
   const [highestBid, setHighestBid] = useState();
@@ -67,7 +66,6 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   useEffect(() => {
     getFinishedAuctionTime();
     loadMyHighestBid();
-    
   }, [bids]);
 
   useEffect(() => {
@@ -362,7 +360,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             )}
 
             <div className="product-time">{product.timeRemaining}</div>
-            <div className="product-price">{highestBid}</div>
+            <div className="product-price">{currentBid}</div>
             <div className="product-buyout">{product.buyout}</div>
           </div>
           <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
