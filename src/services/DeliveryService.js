@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL_TEST = "http://146.190.18.26:5000/api";
+const API_URL_TEST = "http://146.190.18.26:80/api";
 
 class DeliveryService {
   getAllDeliveries() {
