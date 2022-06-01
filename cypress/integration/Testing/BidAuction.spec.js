@@ -1,4 +1,4 @@
-//need fixing and ask teacher
+//need fixing ask 
 
 describe('Website', () =>{
     it('Go to website', () =>{
@@ -47,7 +47,6 @@ describe('MakeBid', ()=> {
         .get('[data-cy=closewin]').click()
         .wait(2000)
         .get("[data-cy=auction]").click()
-        .url().should('include', '/startpage/myAuction')
         .wait(1000)
         .get('.order-container').click('top')
     })

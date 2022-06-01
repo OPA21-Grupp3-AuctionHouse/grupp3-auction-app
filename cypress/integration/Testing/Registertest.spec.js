@@ -16,6 +16,8 @@ describe('Register',()=>{
             .get('input[name="username"]').type(username)
             .get('input[name="email"]').type(email)
             .get('input[name="password"]').type(password)
+            .wait(2000)
+            .get('[data-cy=regbtn]').click()
         })
     })
 })

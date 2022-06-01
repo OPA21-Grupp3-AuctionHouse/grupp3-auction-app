@@ -154,7 +154,7 @@ const Register = () => {
               </Form.Group>
 
               <div className="d-grid gap-2">
-                <Button variant="secondary" size="lg" type="submit">
+                <Button data-cy="regbtn" variant="secondary" size="lg" type="submit">
                   Register
                 </Button>
               </div>

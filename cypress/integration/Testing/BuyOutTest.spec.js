@@ -26,7 +26,6 @@ describe("Log in", () => {
             cy.url().should('include', '/startpage')
             .wait(2000)
             .get("[data-cy=bazaar]").click()
-            .url().should('include', '/startpage/bazaar')
             .wait(2000)
             .get('.product-container').click()
         })
@@ -43,13 +42,11 @@ describe("Log in", () => {
             cy
             .wait(2000)
             .get('[data-cy=auction]').click()
-            .url().should('include', '/startpage/auctions')
         })
         it('Go to won auction',()=>{
             cy
             .wait(2000)
             .get('[data-cy=wonauction]').click()
-            .url().should('include', '/startpage/mywonauctions')
         })
         it('Click on item',()=>{
             cy
