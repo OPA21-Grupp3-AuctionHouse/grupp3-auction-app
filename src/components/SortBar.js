@@ -155,9 +155,24 @@ const SortBar = () => {
     return 0;
   }
   function compareTime(a, b) {
+    if (a.endTime == "Auction over") {
+      return -1;
+    }
+
+    if (b.endTime == "Auction over") {
+      return -1;
+    }
+
     return Date.parse(a.endTime) - Date.parse(b.endTime);
   }
   function compareTime2(a, b) {
+    if (a.endTime == "Auction over") {
+      return -1;
+    }
+
+    if (b.endTime == "Auction over") {
+      return -1;
+    }
     return Date.parse(b.endTime) - Date.parse(a.endTime);
   }
   function comparePrice(a, b) {
