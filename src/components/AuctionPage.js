@@ -51,6 +51,18 @@ function AuctionPage() {
       });
     }
 
+    async function loadHighestBidsToProduct() {
+      products.map((product) =>
+        BidService.getHighestBid(product.id).then((res) => {
+          if (res.data.bidAmount) {
+            product.hightestBid = res.data.bidAmount;
+          } else {
+            product.hightestBid = product.price;
+          }
+        })
+      );
+    }
+
     async function getBids() {
       BidService.getBids().then((res) => {
         setBids(res.data);
@@ -71,6 +83,7 @@ function AuctionPage() {
     getAddress();
     getProducts();
     getBids();
+    loadHighestBidsToProduct();
   }, []);
 
   const sortBySearch = (searchInput) => {

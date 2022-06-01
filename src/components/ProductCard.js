@@ -37,7 +37,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
         setCurrentBid(res.data.bidAmount);
       } else {
         setHighestBid(0);
-        setCurrentBid(0);
+        setCurrentBid(product.price);
       }
     });
   };

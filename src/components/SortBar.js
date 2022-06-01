@@ -163,10 +163,10 @@ const SortBar = () => {
     return Date.parse(b.endTime) - Date.parse(a.endTime);
   }
   function comparePrice(a, b) {
-    return a.price - b.price;
+    return a.highestBid - b.highestBid;
   }
   function comparePrice2(a, b) {
-    return b.price - a.price;
+    return b.highestBid - a.highestBid;
   }
   function compareBuyout(a, b) {
     return a.buyout - b.buyout;
