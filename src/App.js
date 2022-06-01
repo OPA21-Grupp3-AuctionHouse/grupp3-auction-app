@@ -26,9 +26,10 @@ function App() {
                   <Col className="leftSide">
                     <WelcomePage />
                   </Col>
-                  <Col className="rightSide">
-                    <Login />
-                  </Col>
+                
+                <Col className="rightSide">
+                  <Login />
+                </Col>
                 </Row>
                 <WelcomePageFooter />
               </div>
