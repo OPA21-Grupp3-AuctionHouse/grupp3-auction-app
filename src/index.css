@@ -323,7 +323,7 @@ header {
 .product-image,
 .product-price,
 .product-buyout {
-  width: 10%;
+  width: 14%;
   display: flex;
   justify-content: center;
 }
@@ -694,7 +694,6 @@ header {
   flex-grow: 0.5;
   flex-direction: column;
 }
-
 
 .modal-outer-body {
   display: flex;

@@ -62,14 +62,13 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
 
   useEffect(() => {
     getFinishedAuctionTime();
-    loadHighestBids();
     loadMyHighestBid();
   }, [bids]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDate(new Date().getTime());
-
+      loadHighestBids();
       if (
         Date.parse(product.endTime) < Date.now() &&
         product.orderStatus === "Active"
