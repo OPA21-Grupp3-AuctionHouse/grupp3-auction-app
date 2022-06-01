@@ -222,7 +222,7 @@ const Profile = () => {
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-                type="text"
+                type="password"
                 id="oldpassword"
                 name="oldpassword"
                 onChange={handleChangePassword}
@@ -239,7 +239,7 @@ const Profile = () => {
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 onChange={handleChangePassword}
@@ -256,7 +256,7 @@ const Profile = () => {
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-                type="text"
+                type="password"
                 id="repeatPassword"
                 name="repeatPassword"
                 onChange={handleChangePassword}
