@@ -95,14 +95,14 @@ const Login = () => {
               </Form.Group>
 
               <div className="d-grid gap-2 mt-3">
-                <Button variant="success" size="sm" type="submit">
+                <Button variant="success" size="sm" data-cy="loginbtn" type="submit">
                   Login
                 </Button>
               </div>
 
               <Link to="/register">
                 <div className="d-grid gap-2 mt-3">
-                  <Button variant="secondary" size="sm" type="submit">
+                  <Button variant="secondary" size="sm" data-cy="regbtn" type="submit">
                     Register
                   </Button>
                 </div>

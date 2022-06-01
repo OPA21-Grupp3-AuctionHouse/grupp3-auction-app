@@ -13,11 +13,12 @@ function AuctionHeader() {
   return (
     <div className="auction-header-container">
       <ul>
-        <Link to="bazaar">Card Bazaar</Link>
-        <Link to="auctions">My Auctions</Link>
-        <Link to="profile">Profile</Link>
+        <Link data-cy="bazaar" to="bazaar">Card Bazaar</Link>
+        <Link data-cy="auction" to="auctions">My Auctions</Link>
+        <Link data-cy="profile" to="profile">Profile</Link>
         <button
           className="logout-button-profile"
+          data-cy="logout"
           type="submit"
           onClick={logout}
         >

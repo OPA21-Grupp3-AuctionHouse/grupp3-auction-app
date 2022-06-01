@@ -1,0 +1,11 @@
+{
+    "firstname": "Cyler",
+    "lastname":"Presston",
+    "streetadress" :"This street is cynice",
+    "zipcode":"51235",
+    "city":"Chad",
+    "email":"cy.press@hotmail.com",
+    "password" :"123456",
+    "newpassword": "1234567",
+    "repeatpassword":"1234567"
+}
