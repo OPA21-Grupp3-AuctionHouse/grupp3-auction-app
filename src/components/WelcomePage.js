@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+
+//Public Page. No need for log in to view this page
 const WelcomePage = () => {
   return (
     <div className="welcomePage">
