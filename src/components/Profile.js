@@ -112,7 +112,7 @@ const Profile = () => {
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-                id="name"
+                id="firstName"
                 name="firstName"
                 defaultValue={tempUser.firstName}
                 onChange={handleChange}
@@ -128,7 +128,7 @@ const Profile = () => {
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-                id="name"
+                id="lastName"
                 name="lastName"
                 defaultValue={tempUser.lastName}
                 onChange={handleChange}

@@ -164,6 +164,8 @@ const SortBar = () => {
     return Date.parse(b.endTime) - Date.parse(a.endTime);
   }
   function comparePrice(a, b) {
+    console.log(a.highestBid);
+    console.log(b.highestBid);
     return a.highestBid - b.highestBid;
   }
   function comparePrice2(a, b) {
