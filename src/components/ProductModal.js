@@ -142,11 +142,17 @@ function ProductModal(props) {
                 <span>no bids</span>
               )}
               <br />
-              My bid:{" "}
-              {productProvider.myHighestBid ? (
-                <span>{productProvider.myHighestBid}</span>
+              {!productProvider.pageSource === "myauctions" ? (
+                <>
+                  My bid:{" "}
+                  {productProvider.myHighestBid ? (
+                    <span>{productProvider.myHighestBid}</span>
+                  ) : (
+                    <span>no bid</span>
+                  )}
+                </>
               ) : (
-                <span>no bid</span>
+                <></>
               )}
             </p>
             {!productProvider.pageSource &&
