@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "cypress-file-upload": "^5.0.8",
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0"
   }

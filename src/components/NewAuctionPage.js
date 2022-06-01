@@ -248,6 +248,7 @@ const NewAuctionPage = () => {
           </div>
 
           <button
+            id="upload_file"
             className="submit-button-profile"
             onClick={handleAuctionSubmit}
           >
