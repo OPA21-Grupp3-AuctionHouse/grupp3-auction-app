@@ -52,11 +52,11 @@ function AuctionPage() {
           BidService.getHighestBid(product.id).then((resu) => {
             if (resu.data.bidAmount) {
               product.highestBid = resu.data.bidAmount;
-              console.log(tempdata);
+
             } else {
               product.highestBid = product.price;
             }
-            console.log(tempdata);
+    
             setProducts(tempdata);
           })
         );

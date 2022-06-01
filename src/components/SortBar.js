@@ -50,7 +50,6 @@ const SortBar = () => {
         setAz(true);
       }
     } else if (e.target.value === "price") {
-      console.log(provider.products);
       provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
       if (az) {
         provider.setProducts([...provider.products.sort(comparePrice)]);
@@ -156,16 +155,12 @@ const SortBar = () => {
     return 0;
   }
   function compareTime(a, b) {
-    console.log(a.endTime);
-    console.log(b.endTime);
     return Date.parse(a.endTime) - Date.parse(b.endTime);
   }
   function compareTime2(a, b) {
     return Date.parse(b.endTime) - Date.parse(a.endTime);
   }
   function comparePrice(a, b) {
-    console.log(a);
-    console.log(b);
     return a.highestBid - b.highestBid;
   }
   function comparePrice2(a, b) {

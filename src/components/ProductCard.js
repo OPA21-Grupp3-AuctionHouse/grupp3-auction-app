@@ -61,9 +61,13 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
   };
 
   useEffect(() => {
+    loadHighestBids();
+  }, []);
+
+  useEffect(() => {
     getFinishedAuctionTime();
     loadMyHighestBid();
-    loadHighestBids();
+    
   }, [bids]);
 
   useEffect(() => {
