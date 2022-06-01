@@ -42,11 +42,11 @@ const Register = () => {
   function CheckError(response) {
     console.log(response.status);
     if (response.status >= 200 && response.status <= 299) {
-      navigate("/startpage");
+      console.log("successful registration")
       return response;
     } else {
       setError(true);
-      throw Error("Incorrect password");
+      throw Error("Unsuccessful registration");
     }
   }
 
@@ -155,6 +155,7 @@ const Register = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
+                minlength="6"
                 type="password"
                 placeholder="Password"
                 value={formData.password}

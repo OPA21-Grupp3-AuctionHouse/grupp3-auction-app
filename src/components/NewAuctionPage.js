@@ -248,7 +248,7 @@ const NewAuctionPage = () => {
           </div>
 
           <button
-            id="upload_file"
+            id="post-auction"
             className="submit-button-profile"
             onClick={handleAuctionSubmit}
           >
@@ -258,6 +258,7 @@ const NewAuctionPage = () => {
         {imagePreview !== "" ? (
           <img
             src={imagePreview}
+            id="uploaded-img"
             className="new-auction-page-picture"
             alt="Preview av bild"
             type="image/*"
@@ -265,6 +266,7 @@ const NewAuctionPage = () => {
         ) : (
           <img
             src="https://preyash2047.github.io/assets/img/no-preview-available.png?h=824917b166935ea4772542bec6e8f636"
+            id="preview-img"
             className="new-auction-page-picture"
             alt="Preview av bild"
             type="image/*"

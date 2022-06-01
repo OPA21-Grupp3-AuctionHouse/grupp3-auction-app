@@ -1,40 +1,65 @@
 describe("Post Auction", () => {
-  it("succesfully posts an auction and image", () => {
+  /*  before(() => {
+    cy.login("Emil", "123456");
+  }); */
+
+  it("successfully posts an auction", () => {
+    //login user
+    cy.login("Emil", "123456");
+
     cy.visit("http://localhost:3000/startpage/newauction");
+    cy.url().should("include", "/newauction");
+    cy.pause();
+
+    //fill in input fields
+    cy.get("#name").type("test");
+    cy.get("#category").select("Hockey Cards");
+    cy.get("#description").type("test description");
+    cy.get("#price").type("120");
+    cy.get("#buyout").type("200");
+    cy.get("#endTime").select("One day");
+    cy.pause();
 
     //upload file to the input field
     cy.get("input[type=file]").attachFile("hockeycardNYI.jpg");
 
-    // click on upload button
-    cy.get("#upload_file").click();
+    //Assert the img src has changed and thus the file is correctly uploaded
+    cy.get("img[id='uploaded-img']", { timeout: 4500 })
+      .should("have.attr", "src")
+      .should("not.include", "no-preview-available");
 
-    //Assert the file name
-    cy.get("img").should("be.visible");
+    cy.pause();
+
+    // click on submit button
+    cy.get("button[id='post-auction']").click();
+
+    //assert submission
+    cy.get("#name").should("have.value", ""); // Assert that name input field is empty
   });
+
+  // all code behöver vara i samma it block för att annars så körs inte submit. Den ger 401 unauthorized error från bild upload enpointen
+  // vilket måste innebära att på något sätt tappas kontakten med den inloggade användaren när jag har separerade it block för varje "logik"a
+
+  /*   it("successfully uploads a file", () => {
+    cy.pause();
+
+    //upload file to the input field
+    cy.get("input[type=file]").attachFile("hockeycardNYI.jpg");
+
+    //Assert the file
+    cy.get("img[id='uploaded-img']", { timeout: 4500 })
+      .should("have.attr", "src")
+      .should("not.include", "no-preview-available");
+  }); */
+  /* 
+  it("posts an auction", () => {
+    cy.pause();
+
+    // click on submit button
+    cy.get("button[id='post-auction']").click();
+
+    //assert submission
+    cy.get("#name").should('have.value', ''); // Assert that name input field is empty
+
+  }) */
 });
-
-/* cy.get('#name').type("test")
-cy.get('#category').type("Hockey Card")
-cy.get('#description').type("test description")
-cy.get('#price').type("120")
-cy.get('#buyout').type("200")
-cy.get('#endTime').type("one day") */
-
-/* createProduct(auction) {
-  return axios.post(`${API_URL_TEST}/createauction`, auction, {
-    withCredentials: true,
-  });
-}
-
-it("successfully posts auction", () => {
-  cy.request({
-    method: 'POST',
-    url: 'http://localhost:8080/api/createauction',
-    form: true,
-    body: cy.fixture('post_auction.json')
-  })
-  .then((response) =>{
-    expect(response.status).to.eq.(200)
-    expect(response).to.have.property()
-  })
-}); */
