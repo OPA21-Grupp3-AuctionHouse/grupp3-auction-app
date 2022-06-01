@@ -51,15 +51,15 @@ function AuctionPage() {
         tempdata.map((product) =>
           BidService.getHighestBid(product.id).then((resu) => {
             if (resu.data.bidAmount) {
-              tempdata.hightestBid = resu.data.bidAmount;
+              product.hightestBid = resu.data.bidAmount;
               console.log(tempdata);
             } else {
-              tempdata.hightestBid = product.price;
+              product.hightestBid = product.price;
             }
+            console.log(tempdata);
+            setProducts(tempdata);
           })
         );
-        console.log(tempdata);
-        setProducts(tempdata);
       });
     }
 
