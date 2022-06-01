@@ -156,7 +156,7 @@ const SortBar = () => {
   }
   function compareTime(a, b) {
     if (a.endTime == "Auction over") {
-      return -1;
+      return 1;
     }
 
     if (b.endTime == "Auction over") {
@@ -167,7 +167,7 @@ const SortBar = () => {
   }
   function compareTime2(a, b) {
     if (a.endTime == "Auction over") {
-      return -1;
+      return 1;
     }
 
     if (b.endTime == "Auction over") {

@@ -362,7 +362,7 @@ const ProductCard = ({ product, pageSource, address, deliveries }) => {
             )}
 
             <div className="product-time">{product.timeRemaining}</div>
-            <div className="product-price">{product.highestBid}</div>
+            <div className="product-price">{highestBid}</div>
             <div className="product-buyout">{product.buyout}</div>
           </div>
           <ProductModal show={modalShow} onHide={() => setModalShow(false)} />
