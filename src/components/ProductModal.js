@@ -25,7 +25,7 @@ function ProductModal(props) {
     setDelivery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (delivery) {
       setFinished(true);
@@ -35,9 +35,15 @@ function ProductModal(props) {
         deliveryMethod: delivery,
         date: new Date(),
         address: provider.address[0],
+      }).then((res) => {
+      if(res.status === 200) {
+
+        productProvider.product.orderStatus = "In transit";
+        ProductService.updateProduct(productProvider.product);
+      }
+
       });
-      productProvider.product.orderStatus = "In transit";
-      ProductService.updateProduct(productProvider.product);
+
     } else {
       alert("Choose a shipping method!");
     }

@@ -50,6 +50,7 @@ const SortBar = () => {
         setAz(true);
       }
     } else if (e.target.value === "price") {
+      console.log(provider.products);
       provider.setSearchResult([...provider.searchResult.sort(comparePrice)]);
       if (az) {
         provider.setProducts([...provider.products.sort(comparePrice)]);
