@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Col, Row, Form, Button, Container, InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./LoginRegister.css";
 import AuthService from "../../services/AuthService";
 
@@ -16,6 +16,8 @@ const Register = () => {
     city: "",
     postCode: "",
   });
+
+  let navigate = useNavigate();
 
   // States for checking the errors
   //const [submitted, setSubmitted] = useState(false);
@@ -40,7 +42,7 @@ const Register = () => {
   function CheckError(response) {
     console.log(response.status);
     if (response.status >= 200 && response.status <= 299) {
-      console.log("successful registration")
+      navigate("/");
       return response;
     } else {
       setError(true);
@@ -205,11 +207,16 @@ const Register = () => {
             </Col>
           </Row>
 
-              <div className="d-grid gap-2">
-                <Button data-cy="regbtn" variant="secondary" size="lg" type="submit">
-                  Register
-                </Button>
-              </div>
+          <div className="d-grid gap-2">
+            <Button
+              data-cy="regbtn"
+              variant="secondary"
+              size="lg"
+              type="submit"
+            >
+              Register
+            </Button>
+          </div>
 
           <p>
             Already registered <Link to="/">log in?</Link>
