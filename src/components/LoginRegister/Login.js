@@ -4,12 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import UserService from "../../services/UserService";
 import "./LoginRegister.css";
+import axios from "axios";
 
 const Login = () => {
   //states for login
   const [formData, setFormData] = useState({
     username: "", // required
     password: "", // required
+  });
+  const [formData2, setFormData2] = useState({
+    forgotusername: "",
   });
 
   // States for checking the errors
@@ -40,6 +44,15 @@ const Login = () => {
       throw Error("Incorrect password");
     }
   }
+
+  const forgetPassword = (e) => {
+    return axios.post(
+      "http://localhost:8080/forgotPassword/" + formData2.forgotusername,
+      {
+        withCredentials: true,
+      }
+    );
+  };
 
   // Handling form submit
   const handleSubmit = (e) => {
@@ -74,6 +87,10 @@ const Login = () => {
   // handling the input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    //setSubmitted(false);
+  };
+  const handleChange2 = (e) => {
+    setFormData2({ ...formData2, [e.target.name]: e.target.value });
     //setSubmitted(false);
   };
 
@@ -113,19 +130,49 @@ const Login = () => {
               </Form.Group>
 
               <div className="d-grid gap-2 mt-3">
-                <Button variant="success" size="sm" data-cy="loginbtn" type="submit">
+                <Button
+                  variant="success"
+                  size="sm"
+                  data-cy="loginbtn"
+                  type="submit"
+                >
                   Login
                 </Button>
               </div>
 
               <Link to="/register">
                 <div className="d-grid gap-2 mt-3">
-                  <Button variant="secondary" size="sm" data-cy="regbtn" type="submit">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    data-cy="regbtn"
+                    type="submit"
+                  >
                     Register
                   </Button>
                 </div>
               </Link>
             </Form>
+
+            <Form.Control
+              required
+              type="forgotusername"
+              placeholder="forgotusername"
+              value={formData2.forgotusername}
+              name="forgotusername"
+              onChange={(e) => handleChange2(e)}
+              style={{ margintop: "2px" }}
+            />
+            <div className="d-grid gap-2 mt-3">
+              <Button
+                variant="success"
+                size="sm"
+                type="submit"
+                onClick={forgetPassword}
+              >
+                Forgot Password
+              </Button>
+            </div>
           </Col>
         </Row>
       </Container>
